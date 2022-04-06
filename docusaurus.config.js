@@ -1,8 +1,97 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const oneDarkTheme = {
+  plain: {
+    backgroundColor: "#1e222a",
+    color: "#abb2bf",
+  },
+  styles: [
+    {
+      types: ["comment", "prolog", "doctype", "cdata", "punctuation"],
+      style: {
+        color: "#777d86",
+      },
+    },
+    {
+      types: ["namespace"],
+      style: {
+        opacity: 0.7,
+      },
+    },
+    {
+      types: [
+        "number",
+        "boolean",
+        "entity",
+        "url",
+        "unit",
+        "statement",
+        "at-rule",
+        "placeholder",
+      ],
+      style: {
+        color: "#d19a66",
+      },
+    },
+    {
+      types: ["string", "regex"],
+      style: {
+        color: "#98c379",
+      },
+    },
+    {
+      types: ["operator", "keyword", "control", "directive"],
+      style: {
+        color: "#c678dd",
+      },
+    },
+    {
+      types: ["property", "function"],
+      style: {
+        color: "#e5c07b",
+      },
+    },
+    {
+      types: [
+        "tag",
+        "tag-id",
+        "selector",
+        "atrule-id",
+        "attr-name",
+        "attr-value",
+        "variable",
+      ],
+      style: {
+        color: "#e06c75",
+      },
+    },
+    {
+      types: ["deleted"],
+      style: {
+        textDecorationLine: "line-through",
+      },
+    },
+    {
+      types: ["inserted"],
+      style: {
+        textDecorationLine: "underline",
+      },
+    },
+    {
+      types: ["italic"],
+      style: {
+        fontStyle: "italic",
+      },
+    },
+    {
+      types: ["important", "bold"],
+      style: {
+        fontWeight: "bold",
+      },
+    },
+  ],
+};
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -71,9 +160,12 @@ const config = {
         ],
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: oneDarkTheme,
+        darkTheme: oneDarkTheme,
         additionalLanguages: ["lua"],
+      },
+      colorMode: {
+        defaultMode: "dark",
       },
     }),
 };
