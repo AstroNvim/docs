@@ -130,7 +130,7 @@ const config = {
         title: "AstroVim",
         logo: {
           alt: "AstroVim Logo",
-          src: "img/logo.svg",
+          src: "img/astrovim.png",
         },
         items: [
           {

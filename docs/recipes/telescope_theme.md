@@ -5,7 +5,7 @@ title: NvChad Telescope Theme
 
 These code snippets make the telescope look like the default NvChad telescope theme:
 
-**TODO INSERT SCREENSHOT**
+![Screenshot of telescope theme](/img/recipes/telescope_theme.png)
 
 Create file `user/theme.lua`:
 

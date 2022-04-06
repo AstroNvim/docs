@@ -4,6 +4,8 @@ title: Getting Started
 sidebar_position: 1
 ---
 
+![AstroVim Screenshot](/img/overview.png)
+
 ## ⚡ Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
