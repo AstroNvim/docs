@@ -30,6 +30,15 @@ export default function Home() {
       description="An aesthetic and feature-rich neovim config that is extensible and easy to use with a great set of plugins"
     >
       <HomepageHeader />
+      <main>
+        <div className="container banner">
+          <img
+            className="banner_logo"
+            src="/img/dashboard.png"
+            alt="AstroVim Dashboard"
+          />
+        </div>
+      </main>
     </Layout>
   );
 }
