@@ -55,7 +55,7 @@ const config = {
             position: "right",
           },
           {
-            to: "configuration/config_options",
+            to: "configuration/basic_configuration",
             label: "Configuration",
             position: "right",
           },

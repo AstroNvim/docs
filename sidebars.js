@@ -24,6 +24,8 @@ module.exports = {
       type: "category",
       label: "Configuration",
       items: [
+        "configuration/basic_configuration",
+        "configuration/plugin_defaults",
         "configuration/config_options",
         "configuration/override_formats",
         "configuration/splitting_up",

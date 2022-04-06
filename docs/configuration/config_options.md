@@ -1,7 +1,6 @@
 ---
 id: config_options
 title: Available User Options
-sidebar_position: 1
 ---
 
 | `init.lua` table key              | Expected Format                    | Use Case                                                                            |
@@ -29,9 +28,8 @@ sidebar_position: 1
 | `plugins.indent_blankline`        | `table` or `function(table)...end` | Modify the `indent_blankline.setup()` options                                       |
 | `plugins.indent-o-matic`          | `table` or `function(table)...end` | Modify the `indent-o-matic.setup()` options                                         |
 | `plugins.lualine`                 | `table` or `function(table)...end` | Modify the `lualine.setup()` options                                                |
-| `plugins.lspsaga`                 | `table` or `function(table)...end` | Modify the `lspsaga.setup()` options                                                |
 | `plugins.neoscroll`               | `table` or `function(table)...end` | Modify the `neoscroll.setup()` options                                              |
-| `plugins.nvim-tree`               | `table` or `function(table)...end` | Modify the `nvim-tree.setup()` options                                              |
+| `plugins.neo-tree`                | `table` or `function(table)...end` | Modify the `nvim-tree.setup()` options                                              |
 | `plugins.symbols_outline`         | `table` or `function(table)...end` | Modify the `symbols_outline.setup()` options                                        |
 | `plugins.telescope`               | `table` or `function(table)...end` | Modify the `telescope.setup()` options                                              |
 | `plugins.toggleterm`              | `table` or `function(table)...end` | Modify the `toggleterm.setup()` options                                             |
