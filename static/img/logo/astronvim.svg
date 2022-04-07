@@ -25,9 +25,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="118.79394"
-     inkscape:cy="112.07642"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="86.974134"
+     inkscape:cy="116.67262"
      inkscape:window-width="1862"
      inkscape:window-height="1022"
      inkscape:window-x="24"
@@ -111,45 +111,63 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="Layer 1"
-     transform="translate(0,-5.9396821)">
+     inkscape:label="N Left"
+     transform="translate(0,-5.9396821)"
+     style="display:inline">
     <path
-       d="M 176,246 112,102 148,246 Z"
+       d="M 173.36719,246 110.176,98.4445 148,246 Z"
        fill="url(#paint0_linear_3_17)"
        id="path914"
-       style="fill:url(#paint0_linear_3_17)" />
-    <path
-       id="path916"
-       style="fill:url(#paint1_linear_3_17)"
-       d="M 70.585938,6 110.17578,98.445312 129.33984,143.18945 151.45898,194.8418 173.36719,246 H 239 L 208.47852,175.58008 186.99023,126 134.97852,6 Z" />
+       style="fill:url(#paint0_linear_3_17)"
+       sodipodi:nodetypes="cccc" />
     <path
        d="M 70.5855,6 20.7107,175.581 0,246 H 70.5855 L 77.62,219.782 95.4596,153.292 110.176,98.4445 Z"
        fill="url(#paint2_linear_3_17)"
        id="path920"
        style="fill:url(#paint2_linear_3_17)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="A Left"
+     style="display:inline">
     <path
        d="M 134.97852,6 0,246 70.5855,6 Z"
        fill="#66d3f4"
        fill-opacity="0.89"
        id="path924"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cccc"
+       transform="translate(0,-5.9396821)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="A Cross"
+     style="display:inline">
     <path
-       d="M 154.47759,197.58832 0,246 22.629842,169.06495 128.40154,138.89894 Z"
-       fill="#69dafd"
-       fill-opacity="0.95"
-       id="path926"
-       sodipodi:nodetypes="ccccc" />
-    <path
-       d="M 210.39858,180.00686 185.5474,122.66694 259.82483,101.52137 Z"
+       d="M 210.39858,180.00686 0,246 22.629842,169.06495 185.5474,122.66694 259.82483,101.52137 Z"
        fill="#69dafd"
        fill-opacity="0.82"
        id="path928"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cccccc"
+       transform="translate(0,-5.9396821)"
+       style="display:inline;fill:#69dafd;fill-opacity:0.94902" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="A Right"
+     style="display:inline">
+    <path
+       id="path916"
+       style="opacity:1;fill:url(#paint1_linear_3_17)"
+       d="M 70.585938,6 110.17578,98.445312 129.33984,143.18945 151.45898,194.8418 173.36719,246 H 239 L 208.47852,175.58008 186.99023,126 134.97852,6 Z"
+       transform="translate(0,-5.9396821)" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="Layer 2"
+     inkscape:label="N Right"
      style="display:inline"
      transform="translate(0,-5.9396821)">
     <path
