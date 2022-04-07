@@ -5,7 +5,7 @@ title: Custom Colorscheme
 
 ## Using a Custom Colorscheme Before Plugin Installed
 
-One thing that might be an annoyance is if you are using a custom colorscheme in your user configuration and are trying to set it before the plugin is installed. It is recommended to add a check before setting the colorscheme in your `init.lua` file before setting it. For example if you want to use [Catppuccin](https://github.com/catppuccin/nvim). The typical way to tell AstroVim to use a colorscheme in your `user/init.lua` file:
+One thing that might be an annoyance is if you are using a custom colorscheme in your user configuration and are trying to set it before the plugin is installed. It is recommended to add a check before setting the colorscheme in your `init.lua` file before setting it. For example if you want to use [Catppuccin](https://github.com/catppuccin/nvim). The typical way to tell AstroNvim to use a colorscheme in your `user/init.lua` file:
 
 ```lua
 return {
@@ -71,4 +71,4 @@ return {
 }
 ```
 
-> Note in this approach also handles the case when the colorscheme is not installed yet and AstroVim will not try to set it.
+> Note in this approach also handles the case when the colorscheme is not installed yet and AstroNvim will not try to set it.

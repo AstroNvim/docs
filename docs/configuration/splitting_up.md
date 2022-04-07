@@ -3,7 +3,7 @@ id: splitting_up
 title: Splitting Up Configuration
 ---
 
-AstroVim can be fully configured using just the `user/init.lua` file, but also
+AstroNvim can be fully configured using just the `user/init.lua` file, but also
 supports easily being configured with separate files. These files will be
 automatically detected if the file location corresponds to the location in the
 `init.lua` table.
@@ -43,7 +43,7 @@ end
 
 ## Lazy Loaded Files
 
-When separating these files into separate files they are lazy loaded by AstroVim and only called when they are needed. This is particularly useful when configuring plugins when you may want to `require` them.
+When separating these files into separate files they are lazy loaded by AstroNvim and only called when they are needed. This is particularly useful when configuring plugins when you may want to `require` them.
 
 For example if you want to add bindings to `nvim-tree` that use the `nvim_tree_callback` function. This can be easily achieved with the file `plugins/nvim-tree.lua` with the contents:
 
@@ -66,7 +66,7 @@ return {
 
 ## Example File Tree
 
-A heavily modified AstroVim setup that leverages these separate files could have a file structure as such:
+A heavily modified AstroNvim setup that leverages these separate files could have a file structure as such:
 
 ```
 user/

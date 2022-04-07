@@ -3,7 +3,7 @@ id: plugin_defaults
 title: Default Plugin Configurations
 ---
 
-This page documents the default options that are set by AstroVim for each individual plugin. All of these options would go in the `plugins` table in the `user/init.lua` configuration file.
+This page documents the default options that are set by AstroNvim for each individual plugin. All of these options would go in the `plugins` table in the `user/init.lua` configuration file.
 
 ## Autopairs
 

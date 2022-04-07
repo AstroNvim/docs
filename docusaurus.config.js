@@ -95,7 +95,7 @@ const oneDarkTheme = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "AstroVim",
+  title: "AstroNvim",
   tagline:
     "An aesthetic and feature-rich neovim config that is extensible and easy to use with a great set of plugins",
   url: "https://astronvim.github.io",
@@ -127,10 +127,10 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "AstroVim",
+        title: "AstroNvim",
         logo: {
-          alt: "AstroVim Logo",
-          src: "img/astrovim.png",
+          alt: "AstroNvim Logo",
+          src: "img/logo/astronvim.svg",
         },
         items: [
           {
@@ -154,7 +154,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://github.com/kabinspace/AstroVim",
+            href: "https://github.com/AstroNvim/AstroNvim",
             position: "right",
           },
         ],

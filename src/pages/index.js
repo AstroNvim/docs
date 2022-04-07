@@ -26,7 +26,7 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`AstroVim`}
+      title={`AstroNvim`}
       description="An aesthetic and feature-rich neovim config that is extensible and easy to use with a great set of plugins"
     >
       <HomepageHeader />
@@ -35,7 +35,7 @@ export default function Home() {
           <img
             className="banner_logo"
             src="/img/dashboard.png"
-            alt="AstroVim Dashboard"
+            alt="AstroNvim Dashboard"
           />
         </div>
       </main>

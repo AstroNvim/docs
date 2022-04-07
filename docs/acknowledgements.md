@@ -5,9 +5,8 @@ title: Acknowledgements
 
 ## ⭐ Credits
 
-Sincere appreciation to the following repositories, plugin authors and the entire neovim community out there that made the development of AstroVim possible.
+Sincere appreciation to the following repositories, plugin authors and the entire neovim community out there that made the development of AstroNvim possible.
 
-- [Plugins](https://github.com/kabinspace/AstroVim/wiki/Default-Plugins)
 - [NvChad](https://github.com/NvChad/NvChad)
 - [LunarVim](https://github.com/LunarVim)
 - [CosmicVim](https://github.com/CosmicNvim/CosmicNvim)
@@ -18,7 +17,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 
 </div>
 
-## Plugins used in AstroVim
+## Plugins used in AstroNvim
 
 | Plugin                     | Git Repository                                                 |
 | -------------------------- | -------------------------------------------------------------- |

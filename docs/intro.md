@@ -4,7 +4,7 @@ title: Getting Started
 sidebar_position: 1
 ---
 
-![AstroVim Screenshot](/img/overview.png)
+![AstroNvim Screenshot](/img/overview.png)
 
 ## ⚡ Requirements
 
@@ -33,7 +33,7 @@ mv ~/.local/share/nvim/site ~/.local/share/nvim/site.bak
 #### Clone the repository
 
 ```sh
-git clone https://github.com/kabinspace/AstroVim ~/.config/nvim
+git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 nvim +PackerSync
 ```
 
@@ -57,7 +57,7 @@ Run `:PackerClean` to remove any disabled or unused plugins
 
 Run `:PackerSync` to update and clean plugins
 
-#### Update AstroVim
+#### Update AstroNvim
 
 Run `:AstroUpdate` to get the latest updates from the repository
 
@@ -82,7 +82,7 @@ cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
 ```
 
 The provided example
-[user_example](https://github.com/kabinspace/AstroVim/blob/main/lua/user_example)
+[user_example](https://github.com/AstroNvim/AstroNvim/blob/main/lua/user_example)
 contains an `init.lua` file which can be used for all user configuration. After
 running the `cp` command above this file can be found in
 `~/.config/nvim/lua/user/init.lua`.
