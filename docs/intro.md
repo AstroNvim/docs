@@ -1,7 +1,7 @@
 ---
 id: intro
 title: Getting Started
-sidebar_position: 1
+slug: /
 ---
 
 ![AstroNvim Screenshot](/img/overview.png)
@@ -15,8 +15,6 @@ sidebar_position: 1
 > Note when using default theme: For MacOS, the default terminal does not have true color support. You wil need to use [iTerm2](https://iterm2.com/) or another [terminal emulator](https://gist.github.com/XVilka/8346728#terminal-emulators) that has true color support.
 
 ## 🛠️ Installation
-
-### Linux
 
 #### Make a backup of your current nvim folder
 

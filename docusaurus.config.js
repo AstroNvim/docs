@@ -116,6 +116,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
         },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -134,7 +135,7 @@ const config = {
         },
         items: [
           {
-            to: "intro",
+            to: "/",
             label: "Get Started",
             position: "right",
           },
