@@ -71,4 +71,8 @@ return {
 }
 ```
 
-> Note in this approach also handles the case when the colorscheme is not installed yet and AstroNvim will not try to set it.
+:::tip
+
+This approach also handles the case when the colorscheme is not installed yet and AstroNvim will not try to set it.
+
+:::

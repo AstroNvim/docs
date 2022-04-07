@@ -16,9 +16,13 @@ cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
 
 Below is the provided user configuration template found at `~/.config/nvim/lua/user/init.lua` after the `cp` command above.
 
-> For more details of the provided defaults for each plugin please refer to [Default Plugin Configurations](/configuration/plugin_defaults)
+::tip
 
-> For an exhaustive list of all available options in the `user/init.lua` file please refer to [Available User Options](/configuration/config_options)
+For more details of the provided defaults for each plugin please refer to [Default Plugin Configurations](/configuration/plugin_defaults)
+
+For an exhaustive list of all available options in the `user/init.lua` file please refer to [Available User Options](/configuration/config_options)
+
+:::
 
 ```lua
 local config = {

@@ -6,13 +6,27 @@ slug: /
 
 ![AstroNvim Screenshot](/img/overview.png)
 
+:::caution
+
+If you previously installed AstroVim before it was rebranded to AstroNvim please run the following command:
+
+```sh
+git -C ~/.config/nvim remote set-url origin https://github.com/AstroNvim/AstroNvim.git
+```
+
+:::
+
 ## ⚡ Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 - [Neovim 0.7+](https://github.com/neovim/neovim/releases/tag/v0.7.0)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using)
 
-> Note when using default theme: For MacOS, the default terminal does not have true color support. You wil need to use [iTerm2](https://iterm2.com/) or another [terminal emulator](https://gist.github.com/XVilka/8346728#terminal-emulators) that has true color support.
+:::info
+
+When using default theme: For MacOS, the default terminal does not have true color support. You wil need to use [iTerm2](https://iterm2.com/) or another [terminal emulator](https://gist.github.com/XVilka/8346728#terminal-emulators) that has true color support.
+
+:::
 
 ## 🛠️ Installation
 
