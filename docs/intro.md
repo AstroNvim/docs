@@ -9,7 +9,7 @@ sidebar_position: 1
 ## ⚡ Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- [Neovim 0.6+](https://github.com/neovim/neovim/releases/tag/v0.6.1)
+- [Neovim 0.7+](https://github.com/neovim/neovim/releases/tag/v0.7.0)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using)
 
 > Note when using default theme: For MacOS, the default terminal does not have true color support. You wil need to use [iTerm2](https://iterm2.com/) or another [terminal emulator](https://gist.github.com/XVilka/8346728#terminal-emulators) that has true color support.
