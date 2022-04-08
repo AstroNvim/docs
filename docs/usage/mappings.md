@@ -41,13 +41,12 @@ title: Default Mappings
 
 ## Dashboard Mappings
 
-| Action         | Mappings                  |
-| -------------- | ------------------------- |
-| Dashboard      | `Space + d`, `Space + db` |
-| Dashboard Jump | `Space + db`              |
-| New File       | `Space + fn`              |
-| Load Session   | `Space + sl`              |
-| Save Session   | `Space + ss`              |
+| Action       | Mappings     |
+| ------------ | ------------ |
+| Dashboard    | `Space + d`  |
+| New File     | `Space + fn` |
+| Load Session | `Space + Sl` |
+| Save Session | `Space + Ss` |
 
 ## Packer Mappings
 
@@ -93,6 +92,7 @@ title: Default Mappings
 | Find files      | `Space + ff`               |
 | Buffers         | `Space + fb`               |
 | Help Tags       | `Space + fh`, `Space + sh` |
+| Marks           | `Space + fm`               |
 | Old Files       | `Space + fo`               |
 | Man Pages       | `Space + sm`               |
 | Notifications   | `Space + sn`               |
