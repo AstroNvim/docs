@@ -1,7 +1,6 @@
 ---
 id: basic_configuration
 title: Basic Configuration
-sidebar_position: 1
 ---
 
 ## Set Up User Configuration

@@ -24,6 +24,7 @@ module.exports = {
       type: "category",
       label: "Configuration",
       items: [
+        "configuration/manage_user_config",
         "configuration/basic_configuration",
         "configuration/plugin_defaults",
         "configuration/config_options",
@@ -36,12 +37,12 @@ module.exports = {
       label: "Recipes",
       items: [
         "recipes/black_belt",
-        "recipes/unattended_install",
-        "recipes/manage_user_config",
         "recipes/colorscheme",
         "recipes/cmp",
         "recipes/snippets",
+        "recipes/globalstatus",
         "recipes/telescope_theme",
+        "recipes/unattended_install",
       ],
     },
     "acknowledgements",

@@ -145,7 +145,7 @@ const config = {
             position: "right",
           },
           {
-            to: "configuration/basic_configuration",
+            to: "configuration/manage_user_config",
             label: "Configuration",
             position: "right",
           },
