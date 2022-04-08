@@ -70,7 +70,7 @@ title: Default Mappings
 | Symbols Outline      | `Space + lS`               |
 | Line Diagnostics     | `gl`, `Space + ld`         |
 | All Diagnostics      | `Space + lD`               |
-| Code Actions         | Space + la`                |
+| Code Actions         | `Space + la`               |
 | Rename               | `Space + rn`, `Space + lr` |
 | Document Symbols     | `Space + ls`               |
 | Diagnostic Next      | `gj`                       |
