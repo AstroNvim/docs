@@ -11,11 +11,17 @@ To begin making custom user configurations you must create a `user/` folder. The
 cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
 ```
 
+:::tip
+
+If you want to keep your user configuration completely separate from the cloned repository, you can also put this folder in `$XDG_CONFIG_HOME/astronvim/lua/user`. AstroNvim adds the folder `$XDG_CONFIG_HOME/astronvim` to the `runtimepath` so any `vimscript` or `lua` files in there can be sourced.
+
+:::
+
 ### Example User Configuration
 
 Below is the provided user configuration template found at `~/.config/nvim/lua/user/init.lua` after the `cp` command above.
 
-::tip
+:::tip
 
 For more details of the provided defaults for each plugin please refer to [Default Plugin Configurations](/configuration/plugin_defaults)
 

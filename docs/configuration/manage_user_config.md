@@ -21,6 +21,12 @@ git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 git clone https://github.com/username/astronvim_config.git ~/.config/nvim/lua/user
 ```
 
+:::tip
+
+If you want to keep your user configuration completely separate from the cloned repository, you can also put this folder in `$XDG_CONFIG_HOME/astronvim/lua/user`. AstroNvim adds the folder `$XDG_CONFIG_HOME/astronvim` to the `runtimepath` so any `vimscript` or `lua` files in there can be sourced.
+
+:::
+
 4. Copy the example `init.lua` file provided with AstroNvim to your user directory:
 
 ```sh
