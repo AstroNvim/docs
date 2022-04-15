@@ -21,6 +21,13 @@ git -C ~/.config/nvim remote set-url origin https://github.com/AstroNvim/AstroNv
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 - [Neovim 0.7+](https://github.com/neovim/neovim/releases/tag/v0.7.0)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using)
+- Optional Requirements:
+  - [fzf](https://github.com/junegunn/fzf) - live grep telescope search (`<leader>fw`)
+  - [lazygit](https://github.com/jesseduffield/lazygit) - git ui toggle terminal (`<leader>tl` or `<leader>gg`)
+  - [NCDU](https://dev.yorhel.nl/ncdu) - disk usage toggle terminal (`<leader>tu`)
+  - [Htop](https://htop.dev/) - process viewer toggle terminal (`<leader>tt`)
+  - [Python](https://www.python.org/) - python repl toggle terminal (`<leader>tp`)
+  - [Node](https://nodejs.org/en/) - node repl toggle terminal (`<leader>tn`)
 
 :::info
 
