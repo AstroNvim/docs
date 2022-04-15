@@ -36,6 +36,7 @@ title: Available User Options
 | `plugins.treesitter`              | `table` or `function(table)...end` | Modify the `treesitter.setup()` options                                             |
 | `plugins.which-key`               | `table` or `function(table)...end` | Modify the `which-key.setup()` options                                              |
 | `which-key.register_n_leader`     | `table` or `function(table)...end` | Modify the default which-key normal mode bindings with `<leader>` prefix            |
+| `cmp.source_priority`             | `table` or `function(table)...end` | Modify the default cmp sources and their priorities                                 |
 | `lsp.server-settings.<lsp>`       | `table` or `function(table)...end` | Modify the LSP server settings, replace `<lsp>` with server name                    |
 | `lsp.on_attach`                   | `function(client, bufnr)...end`    | Modify the lsp `on_attach` function                                                 |
 | `lsp.server_registration`         | `function(server, opts)...end`     | Modify the `lsp-installer` `server_registration` function                           |
