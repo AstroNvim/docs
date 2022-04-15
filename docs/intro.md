@@ -49,6 +49,18 @@ git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 nvim +PackerSync
 ```
 
+:::info
+
+If you are still using Neovim v0.6 you can still use the last version of AstroNvim prior to the Neovim v0.7 release. After running the `git clone` command above please checkout the `nvim-0.6` branch like so:
+
+```
+git -C ~/.config/nvim checkout nvim-0.6
+```
+
+_Note:_ This branch will not be updated after the Neovim v0.7 release and will not get any new features or bug fixes.
+
+:::
+
 ## 📦 Setup
 
 #### Install LSP
