@@ -27,7 +27,6 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Popup API                  | https://github.com/nvim-lua/popup.nvim                         |
 | Notifications              | https://github.com/rcarriga/nvim-notify                        |
 | Neovim UI Enhancer         | https://github.com/MunifTanjim/nui.nvim                        |
-| Boost Startup time         | https://github.com/nathom/filetype.nvim                        |
 | Automatic Indent Detection | https://github.com/Darazaki/indent-o-matic                     |
 | Curshold Fix               | https://github.com/antoinemadec/FixCursorHold.nvim             |
 | Smarter Splits             | https://github.com/mrjones2014/smart-splits.nvim               |

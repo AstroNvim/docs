@@ -22,7 +22,6 @@ title: Available User Options
 | `plugins.cmp`                     | `table` or `function(table)...end` | Modify the `cmp.setup()` options                                                    |
 | `plugins.colorizer`               | `table` or `function(table)...end` | Modify the `colorizer.setup()` options                                              |
 | `plugins.Comment`                 | `table` or `function(table)...end` | Modify the `Comment.setup()` options                                                |
-| `plugins.filetype`                | `table` or `function(table)...end` | Modify the `filetype.setup()` options                                               |
 | `plugins.gitsigns`                | `table` or `function(table)...end` | Modify the `gitsigns.setup()` options                                               |
 | `plugins.nvim-web-devicons`       | `table` or `function(table)...end` | Modify the `nvim-web-devicons.setup()` options                                      |
 | `plugins.indent_blankline`        | `table` or `function(table)...end` | Modify the `indent_blankline.setup()` options                                       |
