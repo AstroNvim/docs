@@ -107,6 +107,8 @@ const config = {
   organizationName: "AstroNvim", // Usually your GitHub org/user name.
   projectName: "astronvim.github.io", // Usually your repo name.
 
+  plugins: ["docusaurus-plugin-matomo"],
+
   presets: [
     [
       "classic",
@@ -167,6 +169,12 @@ const config = {
       },
       colorMode: {
         defaultMode: "dark",
+      },
+      matomo: {
+        matomoUrl: "https://matomo.mehalter.com/",
+        siteId: "9",
+        phpLoader: "matomo.php",
+        jsLoader: "matomo.js",
       },
     }),
 };
