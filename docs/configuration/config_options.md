@@ -28,7 +28,7 @@ title: Available User Options
 | `plugins.indent-o-matic`          | `table` or `function(table)...end` | Modify the `indent-o-matic.setup()` options                                         |
 | `plugins.lualine`                 | `table` or `function(table)...end` | Modify the `lualine.setup()` options                                                |
 | `plugins.neoscroll`               | `table` or `function(table)...end` | Modify the `neoscroll.setup()` options                                              |
-| `plugins.neo-tree`                | `table` or `function(table)...end` | Modify the `nvim-tree.setup()` options                                              |
+| `plugins.neo-tree`                | `table` or `function(table)...end` | Modify the `neo-tree.setup()` options                                              |
 | `plugins.symbols_outline`         | `table` or `function(table)...end` | Modify the `symbols_outline.setup()` options                                        |
 | `plugins.telescope`               | `table` or `function(table)...end` | Modify the `telescope.setup()` options                                              |
 | `plugins.toggleterm`              | `table` or `function(table)...end` | Modify the `toggleterm.setup()` options                                             |
