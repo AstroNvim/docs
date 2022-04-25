@@ -36,12 +36,16 @@ plugins = {
 },
 ```
 
-Or adding new normal mode `<leader>` bindings to `which-key`:
+Or adding new bindings to `which-key`:
 
 ```lua
 ["which-key"] = {
-  register_n_leader = {
-    ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
+  register_mappings = {
+    n = { -- normal mode
+      ["<leader>"] = { -- leader prefix
+        ["N"] = { "<cmd>tabnew<cr>", "New Buffer" }, -- normal mode, <leader>N
+      },
+    }
   },
 },
 ```
