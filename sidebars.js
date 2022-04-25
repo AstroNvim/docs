@@ -41,6 +41,7 @@ module.exports = {
         "recipes/cmp",
         "recipes/snippets",
         "recipes/globalstatus",
+        "recipes/manual_lsp",
         "recipes/telescope_theme",
         "recipes/unattended_install",
       ],
