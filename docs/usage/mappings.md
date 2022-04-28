@@ -5,25 +5,26 @@ title: Default Mappings
 
 ## General Mappings
 
-| Action          | Mappings               |
-| --------------- | ---------------------- |
-| Leader key      | `Space`                |
-| Escape key      | `ii`, `jj`, `jk`, `kj` |
-| Resize up       | `Ctrl + Up`            |
-| Resize Down     | `Ctrl + Down`          |
-| Resize Left     | `Ctrl + Left`          |
-| Resize Right    | `Ctrl + Right`         |
-| Up Window       | `Ctrl + k`             |
-| Down Window     | `Ctrl + j`             |
-| Left Window     | `Ctrl + h`             |
-| Right Window    | `Ctrl + l`             |
-| Force Write     | `Ctrl + s`             |
-| Force Quit      | `Ctrl + q`             |
-| Close Buffer    | `Space + c`            |
-| Terminal        | `Ctrl + \`             |
-| Next Buffer     | `Shift + l`            |
-| Previous Buffer | `Shift + h`            |
-| Comment         | `Space + /`            |
+| Action                  | Mappings               |
+| ----------------------- | ---------------------- |
+| Leader key              | `Space`                |
+| Escape key              | `ii`, `jj`, `jk`, `kj` |
+| Resize up               | `Ctrl + Up`            |
+| Resize Down             | `Ctrl + Down`          |
+| Resize Left             | `Ctrl + Left`          |
+| Resize Right            | `Ctrl + Right`         |
+| Up Window               | `Ctrl + k`             |
+| Down Window             | `Ctrl + j`             |
+| Left Window             | `Ctrl + h`             |
+| Right Window            | `Ctrl + l`             |
+| Force Write             | `Ctrl + s`             |
+| Force Quit              | `Ctrl + q`             |
+| Close Buffer            | `Space + c`            |
+| Terminal                | `Ctrl + \`             |
+| Next Buffer             | `Shift + l`            |
+| Previous Buffer         | `Shift + h`            |
+| Comment                 | `Space + /`            |
+| Toggle URL Highlighting | `Space + u`            |
 
 ## Bufferline
 
