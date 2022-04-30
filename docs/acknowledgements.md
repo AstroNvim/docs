@@ -42,7 +42,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | LSP Completion             | https://github.com/hrsh7th/nvim-cmp                            |
 | LSP Manager                | https://github.com/williamboman/nvim-lsp-installer             |
 | Built-in LSP               | https://github.com/neovim/nvim-lspconfig                       |
-| LSP Symbols                | https://github.com/simrat39/symbols-outline.nvim               |
+| LSP Symbols                | https://github.com/stevearc/aerial.nvim                        |
 | Formatting & Linting       | https://github.com/jose-elias-alvarez/null-ls.nvim             |
 | Fuzzy Finder               | https://github.com/nvim-telescope/telescope.nvim               |
 | Fuzzy Finder Syntax        | https://github.com/nvim-telescope/telescope-fzf-native.nvim    |

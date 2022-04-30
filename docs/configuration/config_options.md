@@ -16,6 +16,7 @@ title: Available User Options
 | `enabled`                         | `table` or `function(table)...end` | Easily enable or disable default plugins                                                      |
 | `luasnip`                         | `table` or `function(table)...end` | Modify available `luasnip` options                                                            |
 | `plugins.init`                    | `table` or `function(table)...end` | Modify the default plugins table such as adding new plugins                                   |
+| `plugins.aerial`                  | `table` or `function(table)...end` | Modify the `aerial.setup()` options                                                           |
 | `plugins.autopairs`               | `table` or `function(table)...end` | Modify the `autopairs.setup()` options                                                        |
 | `plugins.better_escape`           | `table` or `function(table)...end` | Modify the `better_escape.setup()` options                                                    |
 | `plugins.bufferline`              | `table` or `function(table)...end` | Modify the `bufferline.setup()` options                                                       |
@@ -29,7 +30,6 @@ title: Available User Options
 | `plugins.lualine`                 | `table` or `function(table)...end` | Modify the `lualine.setup()` options                                                          |
 | `plugins.neoscroll`               | `table` or `function(table)...end` | Modify the `neoscroll.setup()` options                                                        |
 | `plugins.neo-tree`                | `table` or `function(table)...end` | Modify the `neo-tree.setup()` options                                                         |
-| `plugins.symbols_outline`         | `table` or `function(table)...end` | Modify the `symbols_outline.setup()` options                                                  |
 | `plugins.telescope`               | `table` or `function(table)...end` | Modify the `telescope.setup()` options                                                        |
 | `plugins.toggleterm`              | `table` or `function(table)...end` | Modify the `toggleterm.setup()` options                                                       |
 | `plugins.treesitter`              | `table` or `function(table)...end` | Modify the `treesitter.setup()` options                                                       |
