@@ -19,6 +19,7 @@ title: Default Mappings
 | Right Window            | `Ctrl + l`             |
 | Force Write             | `Ctrl + s`             |
 | Force Quit              | `Ctrl + q`             |
+| New File                | `Space + fn`           |
 | Close Buffer            | `Space + c`            |
 | Terminal                | `Ctrl + \`             |
 | Next Buffer             | `Shift + l`            |
@@ -42,12 +43,19 @@ title: Default Mappings
 
 ## Dashboard Mappings
 
-| Action       | Mappings     |
-| ------------ | ------------ |
-| Dashboard    | `Space + d`  |
-| New File     | `Space + fn` |
-| Load Session | `Space + Sl` |
-| Save Session | `Space + Ss` |
+| Action    | Mappings    |
+| --------- | ----------- |
+| Dashboard | `Space + d` |
+
+## Session Manager Mappings
+
+| Action                         | Mappings     |
+| ------------------------------ | ------------ |
+| Save Session                   | `Space + Ss` |
+| Last Session                   | `Space + Sl` |
+| Delete Session                 | `Space + Sd` |
+| Search Sessions                | `Space + Sf` |
+| Load Current Directory Session | `Space + S.` |
 
 ## Packer Mappings
 

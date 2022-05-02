@@ -35,6 +35,29 @@ local config = {
   -- Set colorscheme
   colorscheme = "default_theme",
 
+  -- Set dashboard header
+  header = {
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " █████  ███████ ████████ ██████   ██████",
+    "██   ██ ██         ██    ██   ██ ██    ██",
+    "███████ ███████    ██    ██████  ██    ██",
+    "██   ██      ██    ██    ██   ██ ██    ██",
+    "██   ██ ███████    ██    ██   ██  ██████",
+    " ",
+    "    ███    ██ ██    ██ ██ ███    ███",
+    "    ████   ██ ██    ██ ██ ████  ████",
+    "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
+    "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
+    "    ██   ████   ████   ██ ██      ██",
+    " ",
+    " ",
+    " ",
+  },
+
   -- Default theme configuration
   default_theme = {
     diagnostics_style = "none",
@@ -51,7 +74,7 @@ local config = {
     end,
   },
 
-  -- Disable default plugins
+  -- Disable default plugins (DEPRECATED: please move to the plugins.init table)
   enabled = {
     bufferline = true,
     neo_tree = true,
@@ -61,7 +84,6 @@ local config = {
     toggle_term = true,
     comment = true,
     indent_blankline = true,
-    dashboard = true,
     which_key = true,
     neoscroll = true,
     ts_rainbow = true,
@@ -78,6 +100,7 @@ local config = {
   plugins = {
     -- Add plugins, the packer syntax without the "use"
     init = {
+      -- ["goolord/alpha-nvim"] = { disable = true }, -- New method for disbaling a default plugin
       -- { "andweeb/presence.nvim" },
       -- {
       --   "ray-x/lsp_signature.nvim",

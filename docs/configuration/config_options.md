@@ -6,6 +6,7 @@ title: Available User Options
 | `init.lua` table key              | Expected Format                    | Use Case                                                                                      |
 | --------------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
 | `colorscheme`                     | `string`                           | The colorscheme to be set                                                                     |
+| `header`                          | table of `string`s                 | The header to be displayed on the Dashboard                                                   |
 | `ui.nui_input`                    | `boolean`                          | Whether or not to enable using NUI for vim.ui.input                                           |
 | `ui.telescope_select`             | `boolean`                          | Whether or not to enable using Telescope for vim.ui.select                                    |
 | `polish`                          | `function()...end`                 | Lua function to be run last. Good place for setting vim options and adding mappings           |
@@ -13,7 +14,7 @@ title: Available User Options
 | `default_theme.colors`            | `table` or `function(table)...end` | Modify the default theme's color table                                                        |
 | `default_theme.highlights`        | `table` or `function(table)...end` | Modify the default theme's highlight groups                                                   |
 | `diagnostics`                     | `table` or `function(table)...end` | Modify the default vim diagnostics options                                                    |
-| `enabled`                         | `table` or `function(table)...end` | Easily enable or disable default plugins                                                      |
+| `enabled`                         | `table` or `function(table)...end` | Easily enable or disable default plugins (DEPRECATED)                                         |
 | `luasnip`                         | `table` or `function(table)...end` | Modify available `luasnip` options                                                            |
 | `plugins.init`                    | `table` or `function(table)...end` | Modify the default plugins table such as adding new plugins                                   |
 | `plugins.aerial`                  | `table` or `function(table)...end` | Modify the `aerial.setup()` options                                                           |
