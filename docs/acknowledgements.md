@@ -16,6 +16,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Plugin                     | Git Repository                                                 |
 | -------------------------- | -------------------------------------------------------------- |
 | Plugin Manager             | https://github.com/wbthomason/packer.nvim                      |
+| Session Manager            | https://github.com/Shatur/neovim-session-manager               |
 | Optimiser                  | https://github.com/lewis6991/impatient.nvim                    |
 | Lua Functions              | https://github.com/nvim-lua/plenary.nvim                       |
 | Popup API                  | https://github.com/nvim-lua/popup.nvim                         |
@@ -47,7 +48,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Fuzzy Finder               | https://github.com/nvim-telescope/telescope.nvim               |
 | Fuzzy Finder Syntax        | https://github.com/nvim-telescope/telescope-fzf-native.nvim    |
 | Git Integration            | https://github.com/lewis6991/gitsigns.nvim                     |
-| Start Screen               | https://github.com/glepnir/dashboard-nvim                      |
+| Start Screen               | https://github.com/goolord/alpha-nvim                          |
 | Color Highlighting         | https://github.com/norcalli/nvim-colorizer.lua                 |
 | Autopairs                  | https://github.com/windwp/nvim-autopairs                       |
 | Terminal                   | https://github.com/akinsho/toggleterm.nvim                     |

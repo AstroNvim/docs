@@ -74,22 +74,6 @@ local config = {
     end,
   },
 
-  -- Disable default plugins (DEPRECATED: please move to the plugins.init table)
-  enabled = {
-    bufferline = true,
-    neo_tree = true,
-    lualine = true,
-    gitsigns = true,
-    colorizer = true,
-    toggle_term = true,
-    comment = true,
-    indent_blankline = true,
-    which_key = true,
-    neoscroll = true,
-    ts_rainbow = true,
-    ts_autotag = true,
-  },
-
   -- Disable AstroNvim ui features
   ui = {
     nui_input = true,

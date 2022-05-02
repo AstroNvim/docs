@@ -14,7 +14,6 @@ title: Available User Options
 | `default_theme.colors`            | `table` or `function(table)...end` | Modify the default theme's color table                                                        |
 | `default_theme.highlights`        | `table` or `function(table)...end` | Modify the default theme's highlight groups                                                   |
 | `diagnostics`                     | `table` or `function(table)...end` | Modify the default vim diagnostics options                                                    |
-| `enabled`                         | `table` or `function(table)...end` | Easily enable or disable default plugins (DEPRECATED)                                         |
 | `luasnip`                         | `table` or `function(table)...end` | Modify available `luasnip` options                                                            |
 | `plugins.init`                    | `table` or `function(table)...end` | Modify the default plugins table such as adding new plugins                                   |
 | `plugins.aerial`                  | `table` or `function(table)...end` | Modify the `aerial.setup()` options                                                           |
