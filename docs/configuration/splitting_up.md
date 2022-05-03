@@ -89,7 +89,7 @@ user/
 │   ├── bufferline.lua
 │   ├── which-key.lua
 |   ├── packer.lua
-|   ├── symbols_outline.lua
+|   ├── aerial.lua
 |   ├── telescope.lua
 |   ├── toggleterm.lua
 |   ├── treesitter.lua
