@@ -6,6 +6,7 @@ title: Available User Options
 | `init.lua` table key              | Expected Format                    | Use Case                                                                                      |
 | --------------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
 | `colorscheme`                     | `string`                           | The colorscheme to be set                                                                     |
+| `options`                         | `table` or `function(table)...end` | The `vim.x.y` variables to be set                                                             |
 | `header`                          | table of `string`s                 | The header to be displayed on the Dashboard                                                   |
 | `ui.nui_input`                    | `boolean`                          | Whether or not to enable using NUI for vim.ui.input                                           |
 | `ui.telescope_select`             | `boolean`                          | Whether or not to enable using Telescope for vim.ui.select                                    |

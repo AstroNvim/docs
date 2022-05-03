@@ -3,9 +3,9 @@ id: colorscheme
 title: Custom Colorscheme
 ---
 
-## Using a Custom Colorscheme Before Plugin Installed
+## Using a Custom Colorscheme
 
-One thing that might be an annoyance is if you are using a custom colorscheme in your user configuration and are trying to set it before the plugin is installed. It is recommended to add a check before setting the colorscheme in your `init.lua` file before setting it. For example if you want to use [Catppuccin](https://github.com/catppuccin/nvim). The typical way to tell AstroNvim to use a colorscheme in your `user/init.lua` file:
+Example setting a custom colorscheme with `catppuccin` in your `user/init.lua`:
 
 ```lua
 return {
@@ -25,31 +25,11 @@ return {
 }
 ```
 
-If this is set up in a clean environment there will be an error when trying to set the `colorscheme` because `catppuccin` has not been installed yet on the initial loading. This can be resolved with something like the following in the `user/init.lua` file:
+:::tip
 
-```lua
-local colorscheme = "default_theme"
-local theme_installed, _ = pcall(require, "catppuccin")
-if theme_installed then
-  colorscheme = "catppuccin"
-end
+There used to be a recommended trick to check for your colorscheme before setting it. We have improved the base installation to do this checking automatically. So no more need for user side checking.
 
-return {
-  colorscheme = colorscheme,
-
-  plugins = {
-    init = {
-      {
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function()
-          require("catppuccin").setup {}
-        end,
-      },
-    },
-  },
-}
-```
+:::
 
 ## Using a Custom Colorscheme Configured with Global Variables
 
