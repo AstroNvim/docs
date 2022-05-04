@@ -27,7 +27,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Smarter Splits             | https://github.com/mrjones2014/smart-splits.nvim               |
 | Icons                      | https://github.com/ryanoasis/vim-devicons                      |
 | Bufferline                 | https://github.com/akinsho/bufferline.nvim                     |
-| Buffer Closing             | https://github.com/moll/vim-bbye                               |
+| Buffer Closing             | https://github.com/famiu/bufdelete.nvim                        |
 | File Explorer              | https://github.com/nvim-neo-tree/neo-tree.nvim                 |
 | Statusline                 | https://github.com/nvim-lualine/lualine.nvim                   |
 | Syntax Highlighting        | https://github.com/nvim-treesitter/nvim-treesitter             |
