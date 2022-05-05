@@ -31,8 +31,8 @@ title: Default Mappings
 
 | Action            | Mappings |
 | ----------------- | -------- |
-| Move Buffer Right | `}`      |
-| Move Buffer Left  | `{`      |
+| Move Buffer Right | `>b`     |
+| Move Buffer Left  | `<b`     |
 
 ## Neo-Tree
 
