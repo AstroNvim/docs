@@ -36,7 +36,7 @@ title: Available User Options
 | `plugins.treesitter`              | `table` or `function(table)...end` | Modify the `treesitter.setup()` options                                                       |
 | `plugins.which-key`               | `table` or `function(table)...end` | Modify the `which-key.setup()` options                                                        |
 | `which-key.register_mappings`     | `table` or `function(table)...end` | Modify the default which-key bindings                                                         |
-| `which-key.register_n_leader`     | `table` or `function(table)...end` | Modify the default which-key normal mode bindings with `<leader>` prefix                      |
+| `which-key.show`                  | `function(orig_show)...end`        | Modify the default `which-key.show()` method. Must return `function(key, opts)...end`         |
 | `cmp.source_priority`             | `table` or `function(table)...end` | Modify the default cmp sources and their priorities                                           |
 | `lsp.servers`                     | `table` or `function(table)...end` | List of language servers to be set up that are already installed without `nvim-lsp-installer` |
 | `lsp.server-settings.<lsp>`       | `table` or `function(table)...end` | Modify the LSP server settings, replace `<lsp>` with server name                              |
