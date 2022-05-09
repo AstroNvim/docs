@@ -79,6 +79,7 @@ title: Default Mappings
 | Line Diagnostics     | `gl`, `Space + ld`         |
 | All Diagnostics      | `Space + lD`               |
 | Code Actions         | `Space + la`               |
+| Signature Help       | `Space + lh`               |
 | Rename               | `Space + rn`, `Space + lr` |
 | Document Symbols     | `Space + ls`               |
 | Diagnostic Next      | `gj`                       |
