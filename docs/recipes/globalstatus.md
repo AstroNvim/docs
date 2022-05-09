@@ -7,48 +7,6 @@ By default AstroNvim enables the new global statusbar that comes with Neovim v0.
 
 ```lua
 return {
-  plugins = {
-    lualine = {
-      options = {
-        globalstatus = false,
-      },
-    },
-  },
-  polish = function()
-    vim.api.nvim_del_augroup_by_name "dashboard_settings"
-    vim.api.nvim_create_augroup("dashboard_settings", {})
-    if require("core.utils").is_available "bufferline.nvim" then
-      vim.api.nvim_create_autocmd("FileType", {
-        desc = "Disable tabline for dashboard",
-        group = "dashboard_settings",
-        pattern = "dashboard",
-        command = "set showtabline=0",
-      })
-      vim.api.nvim_create_autocmd("BufWinLeave", {
-        desc = "Reenable tabline when leaving dashboard",
-        group = "dashboard_settings",
-        pattern = "<buffer>",
-        command = "set showtabline=2",
-      })
-    end
-    vim.api.nvim_create_autocmd("FileType", {
-      desc = "Disable statusline for dashboard",
-      group = "dashboard_settings",
-      pattern = "dashboard",
-      command = "set laststatus=0",
-    })
-    vim.api.nvim_create_autocmd("BufWinLeave", {
-      desc = "Reenable statusline when leaving dashboard",
-      group = "dashboard_settings",
-      pattern = "<buffer>",
-      command = "set laststatus=2",
-    })
-    vim.api.nvim_create_autocmd("BufEnter", {
-      desc = "No cursorline on dashboard",
-      group = "dashboard_settings",
-      pattern = "*",
-      command = "if &ft is 'dashboard' | set nocursorline | endif",
-    })
-  end,
+  options = { opt = { laststatus = 2 } }
 }
 ```

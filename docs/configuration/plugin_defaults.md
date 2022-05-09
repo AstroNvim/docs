@@ -417,95 +417,79 @@ indent_blankline = {
 },
 ```
 
-## Lualine
+## Feline
 
 ```lua
-lualine = {
-  options = {
-    disabled_filetypes = { "NvimTree", "neo-tree", "dashboard", "Outline" },
-    component_separators = "",
-    section_separators = "",
-    globalstatus = true,
+feline = {
+  disable = { filetypes = { "^NvimTree$", "^neo%-tree$", "^dashboard$", "^Outline$", "^aerial$" } },
+  theme = {
+    fg = status.get_hl_prop("Feline", "foreground", colors.fg),
+    bg = status.get_hl_prop("Feline", "background", colors.bg_1),
   },
-  sections = {
-    lualine_a = { spacer },
-    lualine_b = {},
-    lualine_c = {
+  components = {
+    active = {
       {
-        "branch",
-        icon = "",
-        color = { fg = get_hl_prop("Conditional", "foreground", colors.purple_1), gui = "bold" },
-        padding = { left = 2, right = 1 },
+        status.colored_spacer(1),
+        status.spacer(2),
+        {
+          provider = "git_branch",
+          hl = status.fg_hl(colors.purple_1, "Conditional", "foreground", { style = "bold" }),
+          icon = " ",
+        },
+        status.spacer(3, status.git_head_available),
+        {
+          provider = { name = "file_type", opts = { filetype_icon = true, case = "lowercase" } },
+          enabled = status.filetype_available,
+        },
+        status.spacer(2, status.filetype_available),
+        { provider = "git_diff_added", hl = status.fg_hl(colors.green, "GitSignsAdd"), icon = "  " },
+        { provider = "git_diff_changed", hl = status.fg_hl(colors.orange_1, "GitSignsChange"), icon = " 柳" },
+        { provider = "git_diff_removed", hl = status.fg_hl(colors.red_1, "GitSignsDelete"), icon = "  " },
+        status.spacer(2, status.git_changed),
+        {
+          provider = "diagnostic_errors",
+          enabled = status.diagnostic_exists "ERROR",
+          hl = status.fg_hl(colors.red_1, "DiagnosticError"),
+          icon = "  ",
+        },
+        {
+          provider = "diagnostic_warnings",
+          enabled = status.diagnostic_exists "WARN",
+          hl = status.fg_hl(colors.orange_1, "DiagnosticWarn"),
+          icon = "  ",
+        },
+        {
+          provider = "diagnostic_info",
+          enabled = status.diagnostic_exists "INFO",
+          hl = status.fg_hl(colors.white_2, "DiagnosticInfo"),
+          icon = "  ",
+        },
+        {
+          provider = "diagnostic_hints",
+          enabled = status.diagnostic_exists "HINT",
+          hl = status.fg_hl(colors.yellow_1, "DiagnosticHint"),
+          icon = "  ",
+        },
       },
       {
-        "filetype",
-        cond = conditions.buffer_not_empty,
-        padding = { left = 2, right = 1 },
-      },
-      {
-        "diff",
-        symbols = { added = " ", modified = "柳", removed = " " },
-        cond = conditions.hide_in_width,
-        padding = { left = 2, right = 1 },
-      },
-      {
-        "diagnostics",
-        sources = { "nvim_diagnostic" },
-        symbols = { error = " ", warn = " ", info = " ", hint = " " },
-        padding = { left = 2, right = 1 },
-      },
-      {
-        function()
-          return "%="
-        end,
+        { provider = status.lsp_progress, hl = { gui = "none" }, enabled = status.hide_in_width },
+        { provider = "lsp_client_names", hl = { gui = "none" }, icon = "   ", enabled = status.hide_in_width },
+        status.spacer(2, status.hide_in_width),
+        {
+          provider = status.treesitter_status,
+          hl = status.fg_hl(colors.green, "GitSignsAdd"),
+          enabled = status.hide_in_width,
+        },
+        status.spacer(2),
+        { provider = "position" },
+        status.spacer(2),
+        { provider = "line_percentage" },
+        status.spacer(1),
+        { provider = "scroll_bar", hl = status.fg_hl(colors.yellow, "TypeDef") },
+        status.spacer(2),
+        status.colored_spacer(1),
       },
     },
-    lualine_x = {
-      {
-        status.lsp_progress,
-        color = { gui = "none" },
-        padding = { left = 0, right = 1 },
-        cond = conditions.hide_in_width,
-      },
-      {
-        status.lsp_name,
-        icon = " ",
-        color = { gui = "none" },
-        padding = { left = 0, right = 1 },
-        cond = conditions.hide_in_width,
-      },
-      {
-        status.treesitter_status,
-        color = { fg = get_hl_prop("GitSignsAdd", "foreground", colors.green) },
-        padding = { left = 1, right = 0 },
-        cond = conditions.hide_in_width,
-      },
-      {
-        "location",
-        padding = { left = 1, right = 1 },
-      },
-      {
-        "progress",
-        color = { gui = "none" },
-        padding = { left = 0, right = 0 },
-      },
-      {
-        status.progress_bar,
-        padding = { left = 1, right = 2 },
-        color = { fg = get_hl_prop("TypeDef", "foreground", colors.yellow) },
-        cond = nil,
-      },
-    },
-    lualine_y = {},
-    lualine_z = { spacer },
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
   },
 },
 ```
