@@ -40,6 +40,7 @@ module.exports = {
         "recipes/colorscheme",
         "recipes/cmp",
         "recipes/snippets",
+        "recipes/alpha",
         "recipes/globalstatus",
         "recipes/manual_lsp",
         "recipes/telescope_theme",
