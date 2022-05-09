@@ -82,6 +82,18 @@ return {
 }
 ```
 
+:::tip
+
+Instead of passing a string and a number to `add_cmp_source` you can pass a single table parameter with a full table with options
+
+```lua
+config = function()
+  require("core.utils").add_cmp_source({ name = "emoji", priority = 700, keyword_length = 2, max_item_count = 7 })
+end,
+```
+
+:::
+
 If you are adding several new sources in your `plugins.init` table this can make it hard to keep track of all of the priorities and how they are in relation to each other, so you can also use a helper function we have provided to extend the `cmp.source_priority` table. For example you can use the following code which adds both `emoji` and `pandoc_references` completions to `cmp`:
 
 ```lua
