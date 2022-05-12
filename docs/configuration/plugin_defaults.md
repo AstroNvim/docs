@@ -33,11 +33,7 @@ autopairs = {
 ## Better Escape
 
 ```lua
-better_escape = {
-  mapping = { "ii", "jj", "jk", "kj" },
-  timeout = vim.o.timeoutlen,
-  keys = "<ESC>",
-},
+better_escape = {},
 ```
 
 ## Bufferline
