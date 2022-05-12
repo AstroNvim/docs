@@ -31,6 +31,7 @@ title: Available User Options
 | `plugins.lualine`                 | `table` or `function(table)...end` | Modify the `lualine.setup()` options                                                          |
 | `plugins.cinnamon`                | `table` or `function(table)...end` | Modify the `cinnamon.setup()` options                                                         |
 | `plugins.neo-tree`                | `table` or `function(table)...end` | Modify the `neo-tree.setup()` options                                                         |
+| `plugins.null-ls`                 | `table` or `function(table)...end` | Modify the `null-ls.setup()` options                                                          |
 | `plugins.telescope`               | `table` or `function(table)...end` | Modify the `telescope.setup()` options                                                        |
 | `plugins.toggleterm`              | `table` or `function(table)...end` | Modify the `toggleterm.setup()` options                                                       |
 | `plugins.treesitter`              | `table` or `function(table)...end` | Modify the `treesitter.setup()` options                                                       |
