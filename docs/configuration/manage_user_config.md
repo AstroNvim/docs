@@ -30,7 +30,7 @@ If you want to keep your user configuration completely separate from the cloned 
 4. Copy the example `init.lua` file provided with AstroNvim to your user directory:
 
 ```sh
-cp ~/.config/nvim/lua/user_example/init.lua ~/.config/nvim/lua/user/init.lua
+cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
 ```
 
 5. Initlialize AstroNvim (this example is using the unattended installation as described above)
