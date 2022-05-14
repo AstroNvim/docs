@@ -74,7 +74,7 @@ return {
         "hrsh7th/cmp-emoji",
         after = "nvim-cmp",
         config = function()
-          require("core.utils").add_cmp_source("emoji", 700)
+          astronvim.add_cmp_source("emoji", 700)
         end,
       },
     },
@@ -88,7 +88,7 @@ Instead of passing a string and a number to `add_cmp_source` you can pass a sing
 
 ```lua
 config = function()
-  require("core.utils").add_cmp_source({ name = "emoji", priority = 700, keyword_length = 2, max_item_count = 7 })
+  astronvim.add_cmp_source({ name = "emoji", priority = 700, keyword_length = 2, max_item_count = 7 })
 end,
 ```
 
@@ -104,14 +104,14 @@ return {
         "hrsh7th/cmp-emoji",
         after = "nvim-cmp",
         config = function()
-          require("core.utils").add_user_cmp_source "emoji"
+          astronvim.add_user_cmp_source "emoji"
         end,
       },
       {
         "mehalter/cmp-pandoc-references",
         after = "nvim-cmp",
         config = function()
-          require("core.utils").add_user_cmp_source "pandoc_references"
+          astronvim.add_user_cmp_source "pandoc_references"
         end,
       },
     },
