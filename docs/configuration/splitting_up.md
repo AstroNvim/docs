@@ -71,7 +71,6 @@ A heavily modified AstroNvim setup that leverages these separate files could hav
 ```
 user/
 ├── init.lua
-├── null-ls.lua
 ├── default_theme/
 │   ├── init.lua
 │   ├── colors.lua
@@ -86,6 +85,7 @@ user/
 ├── luasnip.lua
 ├── plugins/
 |   ├── init.lua
+|   ├── null-ls.lua
 │   ├── bufferline.lua
 │   ├── which-key.lua
 |   ├── packer.lua
