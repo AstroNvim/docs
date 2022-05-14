@@ -97,7 +97,7 @@ Run `:AstroUpdate` to get the latest updates from the repository
 - File explorer with [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
 - Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-- Statusline with [Lualine](https://github.com/nvim-lualine/lualine.nvim)
+- Statusline with [Feline](https://github.com/feline-nvim/feline.nvim)
 - Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
 - Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 - Syntax highlighting with [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
