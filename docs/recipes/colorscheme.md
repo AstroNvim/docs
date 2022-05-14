@@ -37,13 +37,13 @@ Some colorscheme plugins are configured through global variables rather than Lua
 
 ```lua
 return {
+  colorscheme = "sonokai",
   plugins = {
     init = {
       {
         "sainnhe/sonokai",
-        config = function()
+        setup = function()
           vim.g.sonokai_style = "shusia"
-          vim.cmd "colorscheme sonokai"
         end,
       },
     },
