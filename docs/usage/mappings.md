@@ -8,7 +8,7 @@ title: Default Mappings
 | Action                  | Mappings       |
 | ----------------------- | -------------- |
 | Leader key              | `Space`        |
-| Escape key              | jj`, `jk`      |
+| Escape key              | `jj`, `jk`     |
 | Resize up               | `Ctrl + Up`    |
 | Resize Down             | `Ctrl + Down`  |
 | Resize Left             | `Ctrl + Left`  |
