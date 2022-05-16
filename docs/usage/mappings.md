@@ -69,27 +69,26 @@ title: Default Mappings
 
 ## LSP Mappings
 
-| Action               | Mappings                   |
-| -------------------- | -------------------------- |
-| LSP Info             | `Space + li`               |
-| LSP Installer        | `Space + lI`               |
-| Hover Document       | `Shift + k`                |
-| Format Document      | `Space + lf`               |
-| Symbols Outline      | `Space + lS`               |
-| Line Diagnostics     | `gl`, `Space + ld`         |
-| All Diagnostics      | `Space + lD`               |
-| Code Actions         | `Space + la`               |
-| Signature Help       | `Space + lh`               |
-| Rename               | `Space + rn`, `Space + lr` |
-| Document Symbols     | `Space + ls`               |
-| Diagnostic Next      | `gj`                       |
-| Diagnostics Previous | `gk`                       |
-| Declaration          | `gD`                       |
-| Definition           | `gd`                       |
-| Implementation       | `gI`                       |
-| References           | `gr`                       |
-| Open Float           | `go`                       |
-| Symbol Outline       | `Space + lS`               |
+| Action               | Mappings           |
+| -------------------- | ------------------ |
+| LSP Info             | `Space + li`       |
+| LSP Installer        | `Space + lI`       |
+| Hover Document       | `Shift + k`        |
+| Format Document      | `Space + lf`       |
+| Symbols Outline      | `Space + lS`       |
+| Line Diagnostics     | `gl`, `Space + ld` |
+| All Diagnostics      | `Space + lD`       |
+| Code Actions         | `Space + la`       |
+| Signature Help       | `Space + lh`       |
+| Rename               | `Space + lr`       |
+| Document Symbols     | `Space + ls`       |
+| Diagnostic Next      | `]d`               |
+| Diagnostics Previous | `[d`               |
+| Declaration          | `gD`               |
+| Definition           | `gd`               |
+| Implementation       | `gI`               |
+| References           | `gr`               |
+| Symbol Outline       | `Space + lS`       |
 
 ## Telescope Mappings
 
