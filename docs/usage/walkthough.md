@@ -34,7 +34,7 @@ To hover over a document you need to press `Shift` + `k`
 
 ### Open rename prompt
 
-To open rename prompt you need to press `Space` + `rn`
+To open rename prompt you need to press `Space` + `lr`
 
 ### Go to definition
 
