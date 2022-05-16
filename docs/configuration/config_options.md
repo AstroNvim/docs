@@ -14,6 +14,7 @@ title: Available User Options
 | `default_theme.diagnostics_style` | `table` or `string`                | Set highlight style options for virtual text                                                  |
 | `default_theme.colors`            | `table` or `function(table)...end` | Modify the default theme's color table                                                        |
 | `default_theme.highlights`        | `table` or `function(table)...end` | Modify the default theme's highlight groups                                                   |
+| `default_theme.plugins`           | `table` or `function(table)...end` | Modify the default theme's enabled plugin highlight groups                                    |
 | `diagnostics`                     | `table` or `function(table)...end` | Modify the default vim diagnostics options                                                    |
 | `luasnip`                         | `table` or `function(table)...end` | Modify available `luasnip` options                                                            |
 | `plugins.init`                    | `table` or `function(table)...end` | Modify the default plugins table such as adding new plugins                                   |
