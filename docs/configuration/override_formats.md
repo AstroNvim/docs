@@ -4,7 +4,7 @@ title: Override Formats
 ---
 
 This applies to all `init.lua` fields except those that expect specific
-function definitions such as lsp.on_attach`, `lsp.server_registration`, and `polish`.
+function definitions such as `lsp.on_attach`, `lsp.server_registration`, and `polish`.
 
 Anywhere where you want to override a default provided lua table such as
 `plugins.init` (specifying user plugins) or `plugins.X` where `X` is a default
