@@ -62,6 +62,29 @@ return {
 }
 ```
 
+### Modify Existing Source Options
+
+You may want to modify the options for the default provided `cmp` sources. This can be done by overriding the plugin's `config` function in the `plugin.init`. For example, if you want to make the `buffer` source display completions from all available buffers you could have a `user/init.lua` file like this:
+
+```lua
+return {
+  plugins = {
+    ["hrsh7th/cmp-buffer"] = {
+      config = function()
+        astronvim.add_user_cmp_source {
+          name = "buffer",
+          option = {
+            get_bufnrs = function()
+              return vim.api.nvim_list_bufs()
+            end,
+          },
+        }
+      end,
+    },
+  },
+}
+```
+
 ### Add More Sources
 
 A user may want to include several new sources. We have provided a couple different easy ways to do this using the `plugins.init` table to install a `cmp` source plugin and some provided helper functions to add the source and it's priority. This is an example of a `user/init.lua` that adds emoji autocompletion:
@@ -91,6 +114,8 @@ config = function()
   astronvim.add_cmp_source({ name = "emoji", priority = 700, keyword_length = 2, max_item_count = 7 })
 end,
 ```
+
+Here `priority` is optional as the `cmp.source_priority` table can be used to set the priority. If priority is specified in the `add_cmp_source` and the `cmp.source_priority` table the `cmp.source_priority` will take precedence.
 
 :::
 
