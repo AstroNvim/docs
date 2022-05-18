@@ -167,3 +167,91 @@ source_priority = {
 ```
 
 :::
+
+### Advanced Setup For Filetype and Cmdline
+
+`cmp` offers setting up custom sources for both `filetype` and `cmdline` (`cmp.setup.filetype()` and `cmp.setup.cmdline()` respectively). We have added a simple API for this as well in the user configuration. Here is a complete example for customizing these as well as getting the sources with the sources defined in the `user/init.lua` `cmp.source_priority` table:
+
+:::caution
+
+From my experience, the filetype detection does not work well with our lazy loading, so it's recommended to disable `cmp` lazy loading if you are using this feature. The way it works in our set up is `friendly-snippets` is lazy loaded when the user goes into insert mode and then `LuaSnip` and `cmp` follow in sequence. Therefore, you want to disable the lazy loading of `friendly-snippets` to get `cmp` to load on startup. This is included in the example below in the `plugins.init` table.
+
+:::
+
+```lua
+return {
+  plugins = {
+    init = {
+      -- disable lazy loading for friendly snippets
+      -- that triggers the loading of cmp
+      ["rafamadriz/friendly-snippets"] = { event = { nil } },
+      -- add more custom sources
+      {
+        "hrsh7th/cmp-emoji",
+        after = "nvim-cmp",
+        config = function()
+          astronvim.add_user_cmp_source "emoji"
+        end,
+      },
+    },
+  },
+  cmp = {
+    -- set cmp source priorities
+    source_priority = {
+      nvim_lsp = 1000,
+      luasnip = 750,
+      emoji = 700,
+      buffer = 500,
+      path = 250,
+    },
+    setup = function()
+      -- load cmp to access it's internal functions
+      local cmp = require "cmp"
+      local user_source = astronvim.get_user_cmp_source
+
+      -- store a local variable with a source list to share between filetypes
+      local prose_sources = {
+        user_source "luasnip",
+        user_source "buffer",
+        user_source "emoji",
+      }
+      local config = {
+        -- configure cmp.setup.filetype(filetype, options)
+        filetype = {
+          -- first key is the filetype that you are setting up
+          lua = { -- for lua only load lsp sources and buffer sources as a fallback
+            sources = cmp.config.sources({
+              user_source "nvim_lsp",
+            }, {
+              user_source "buffer",
+            }),
+          },
+          -- markdown and latex share the same sources
+          markdown = { sources = prose_sources },
+          latex = { sources = prose_sources },
+        },
+        -- configure cmp.setup.cmd(source, options)
+        cmdline = {
+          -- first key is the source that you are setting up
+          ["/"] = {
+            -- set up custom mappings
+            mapping = cmp.mapping.preset.cmdline(),
+            -- configure sources normally without getting priority from cmp.source_priority
+            sources = { { name = "buffer" } },
+          },
+          [":"] = {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+              user_source "path",
+            }, {
+              { name = "cmdline" },
+            }),
+          },
+        },
+      }
+      -- return config
+      return config
+    end,
+  },
+}
+```
