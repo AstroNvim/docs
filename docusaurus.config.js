@@ -129,6 +129,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {
+          name: "keywords",
+          content:
+            "vim, lua, neovim, ide, nvim, nvim-configuration, neovim-lua, neovim-config, neovim-setup, astrovim, astronvim, astro",
+        },
+      ],
       navbar: {
         title: "AstroNvim",
         logo: {
