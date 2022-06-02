@@ -36,7 +36,7 @@ return {
 
 ### LSP Specific Plugins
 
-There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `nvim-lsp-installer` for installing the language servers. You can use the `lsp.skip_setup` table for specifying which language servers to guarantee AstroNvim will not automatically call the `lspconfig` setup for. We also provide our `capabilities` table and `on_attach` functions that we use internally as global variables: `astronvim.lsp.capabilities` and `astronvim.lsp.on_attach`. Here is a couple examples for some common LSP plugins:
+There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `nvim-lsp-installer` for installing the language servers. You can use the `lsp.skip_setup` table for specifying which language servers to guarantee AstroNvim will not automatically call the `lspconfig` setup for. We also provide a helper function for getting the AstroNvim default server configuration like our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.server-settings`. Here is a couple examples for some common LSP plugins:
 
 **[typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim)**
 
@@ -52,10 +52,7 @@ return {
         after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
         config = function()
           require("typescript").setup {
-            server = { -- this allows integration with all our lsp stuff
-              capabilities = astronvim.lsp.capabilities,
-              on_attach = astronvim.lsp.on_attach,
-            },
+            server = astronvim.lsp.server_settings "tsserver",
           }
         end,
       },
@@ -73,6 +70,13 @@ return {
 return {
   lsp = {
     skip_setup = { "clangd" },
+    ["server-settings"] = {
+      clangd = {
+        capabilities = {
+          offsetEncoding = "utf-8",
+        },
+      },
+    },
   },
   plugins = {
     init = {
@@ -81,10 +85,7 @@ return {
         after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
         config = function()
           require("clangd_extensions").setup {
-            server = { -- this allows integration with all our lsp stuff
-              capabilities = astronvim.lsp.capabilities,
-              on_attach = astronvim.lsp.on_attach,
-            },
+            server = astronvim.lsp.server_settings "clangd",
           }
         end,
       },
