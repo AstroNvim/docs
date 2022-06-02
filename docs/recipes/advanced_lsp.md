@@ -47,16 +47,18 @@ return {
   },
   plugins = {
     init = {
-      "jose-elias-alvarez/typescript.nvim",
-      after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
-      config = function()
-        require("typescript").setup {
-          server = { -- this allows integration with all our lsp stuff
-            capabilities = astronvim.lsp.capabilities,
-            on_attach = astronvim.lsp.on_attach,
-          },
-        }
-      end,
+      {
+        "jose-elias-alvarez/typescript.nvim",
+        after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
+        config = function()
+          require("typescript").setup {
+            server = { -- this allows integration with all our lsp stuff
+              capabilities = astronvim.lsp.capabilities,
+              on_attach = astronvim.lsp.on_attach,
+            },
+          }
+        end,
+      },
     },
     ["nvim-lsp-installer"] = {
       ensure_installed = { "tsserver" },
@@ -74,16 +76,18 @@ return {
   },
   plugins = {
     init = {
-      "p00f/clangd_extensions.nvim",
-      after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
-      config = function()
-        require("clangd_extensions").setup {
-          server = { -- this allows integration with all our lsp stuff
-            capabilities = astronvim.lsp.capabilities,
-            on_attach = astronvim.lsp.on_attach,
-          },
-        }
-      end,
+      {
+        "p00f/clangd_extensions.nvim",
+        after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
+        config = function()
+          require("clangd_extensions").setup {
+            server = { -- this allows integration with all our lsp stuff
+              capabilities = astronvim.lsp.capabilities,
+              on_attach = astronvim.lsp.on_attach,
+            },
+          }
+        end,
+      },
     },
     ["nvim-lsp-installer"] = {
       ensure_installed = { "clangd" },
