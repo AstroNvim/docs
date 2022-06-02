@@ -42,6 +42,7 @@ title: Available User Options
 | `cmp.source_priority`             | `table` or `function(table)...end` | Modify the default cmp sources and their priorities                                           |
 | `which-key.setup`                 | `table` or `function(table)...end` | Modify the extended `cmp` setup calls                                                         |
 | `lsp.servers`                     | `table` or `function(table)...end` | List of language servers to be set up that are already installed without `nvim-lsp-installer` |
+| `lsp.skip_setup`                  | `table` or `function(table)...end` | List of language servers to guarantee the lspconfig setup is never called on automatically    |
 | `lsp.server-settings.<lsp>`       | `table` or `function(table)...end` | Modify the LSP server settings, replace `<lsp>` with server name                              |
 | `lsp.on_attach`                   | `function(client, bufnr)...end`    | Modify the lsp `on_attach` function                                                           |
 | `lsp.server_registration`         | `function(server, opts)...end`     | Modify the `lsp-installer` `server_registration` function                                     |
