@@ -46,7 +46,7 @@ updater = {
 },
 ```
 
-### Options:
+### Options
 
 - `channel`: This can be either `"nightly"` or `"stable"` and those two options are described above
 - `remote`: This lets you choose to use a separate remote outside of the `origin` which can be useful for checking out other forks and testing PRs from community members
