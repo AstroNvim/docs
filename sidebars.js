@@ -25,6 +25,7 @@ module.exports = {
       label: "Configuration",
       items: [
         "configuration/manage_user_config",
+        "configuration/updater",
         "configuration/basic_configuration",
         "configuration/plugin_defaults",
         "configuration/config_options",

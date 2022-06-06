@@ -5,6 +5,7 @@ title: Available User Options
 
 | `init.lua` table key              | Expected Format                    | Use Case                                                                                      |
 | --------------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
+| `updater`                         | `table` or `function(table)...end` | The configuration for the AstroNvim updater                                                   |
 | `colorscheme`                     | `string`                           | The colorscheme to be set                                                                     |
 | `options`                         | `table` or `function(table)...end` | The `vim.x.y` variables to be set                                                             |
 | `header`                          | table of `string`s                 | The header to be displayed on the Dashboard                                                   |
