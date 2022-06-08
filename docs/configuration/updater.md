@@ -35,7 +35,7 @@ updater = {
   version = "latest",
   branch = "main",
   commit = nil,
-  pin_plugins = true,
+  pin_plugins = nil,
   skip_prompts = false,
   show_changelog = true,
   -- remotes = { -- easily add new remotes to track
@@ -53,7 +53,7 @@ updater = {
 - `version`: (`stable` only) This allows you to apply a filter for searching for versions. `"latest"` is automatically treated as `"v*"`, other examples can be exact versions (`v1.4.0`) or search filters (`v1.*`)
 - `branch`: (`nightly` only) This allows you to check out a different branch on the specified `remote`
 - `commit`: (`nightly` only) This allows you to pin the `nightly` updates to a specific commit
-- `pin_plugins`: This value controls the automatic management of core plugin commits. This can either be `false` which completely disables it, `true` which enables it for `stable` only and automatically uses the current version's snapshot, or a string to pin to a specific snapshot on either `nightly` or `stable` such as `"v1.4.0"`.
+- `pin_plugins`: This value controls the automatic management of core plugin commits. This can either be `nil` (default) which will pin plugin commits only on `stable`, `false` which completely disables it, `true` which enables it for both `stable` and `nightly`.
 - `skip_prompts`: This lets you skip the confirmation prompts in the update process and automatically accept each one
 - `show_changelog`: This allows you to skip the printing of the complete changelog at the end of the update
 - `remotes`: This is a configuration table for easily setting up more remotes for AstroNvim to pull from. The above example shows the different formats for the URL that are supported and once a remote is defined, the key can be used in the `remote` option field.
