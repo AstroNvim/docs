@@ -92,25 +92,27 @@ title: Default Mappings
 
 ## Telescope Mappings
 
-| Action          | Mappings                   |
-| --------------- | -------------------------- |
-| Live Grep       | `Space + fw`               |
-| Git Status      | `Space + gt`               |
-| Git Branches    | `Space + gb`, `Space + sb` |
-| Git Commits     | `Space + gc`               |
-| Find files      | `Space + ff`               |
-| Buffers         | `Space + fb`               |
-| Help Tags       | `Space + fh`, `Space + sh` |
-| Marks           | `Space + fm`               |
-| Old Files       | `Space + fo`               |
-| Man Pages       | `Space + sm`               |
-| Notifications   | `Space + sn`               |
-| Registers       | `Space + sr`               |
-| Keymaps         | `Space + sk`               |
-| Commands        | `Space + sc`               |
-| LSP Symbols     | `Space + ls`               |
-| LSP References  | `Space + lR`               |
-| LSP Diagnostics | `Space + lD`               |
+| Action                            | Mappings                   |
+| --------------------------------- | -------------------------- |
+| Live Grep                         | `Space + fw`               |
+| Live Grep (include hidden files)  | `Space + fW`               |
+| Git Status                        | `Space + gt`               |
+| Git Branches                      | `Space + gb`, `Space + sb` |
+| Git Commits                       | `Space + gc`               |
+| Find files                        | `Space + ff`               |
+| Find files (include hidden files) | `Space + fF`               |
+| Buffers                           | `Space + fb`               |
+| Help Tags                         | `Space + fh`, `Space + sh` |
+| Marks                             | `Space + fm`               |
+| Old Files                         | `Space + fo`               |
+| Man Pages                         | `Space + sm`               |
+| Notifications                     | `Space + sn`               |
+| Registers                         | `Space + sr`               |
+| Keymaps                           | `Space + sk`               |
+| Commands                          | `Space + sc`               |
+| LSP Symbols                       | `Space + ls`               |
+| LSP References                    | `Space + lR`               |
+| LSP Diagnostics                   | `Space + lD`               |
 
 ## Toggle Terminal Mappings
 
