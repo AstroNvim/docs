@@ -33,19 +33,19 @@ There used to be a recommended trick to check for your colorscheme before settin
 
 ## Using a Custom Colorscheme Configured with Global Variables
 
-Some colorscheme plugins are configured through global variables rather than Lua functions like `setup()` so they require a slightly different setup in Packer to get them working correctly. For example if we want to use [Sonokai](https://github.com/sainnhe/sonokai):
+Some colorscheme plugins are configured through global variables rather than Lua functions like `config()` so they require a slightly different setup in Packer to get them working correctly. For example if we want to use [Sonokai](https://github.com/sainnhe/sonokai):
 
 ```lua
 return {
   colorscheme = "sonokai",
+  options = {
+    g = {
+      sonokai_style = "shusia"
+    }
+  }
   plugins = {
     init = {
-      {
-        "sainnhe/sonokai",
-        setup = function()
-          vim.g.sonokai_style = "shusia"
-        end,
-      },
+      { "sainnhe/sonokai" },
     },
   },
 }
