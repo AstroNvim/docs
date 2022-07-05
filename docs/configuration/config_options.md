@@ -3,47 +3,46 @@ id: config_options
 title: Available User Options
 ---
 
-| `init.lua` table key              | Expected Format                    | Use Case                                                                                      |
-| --------------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
-| `updater`                         | `table` or `function(table)...end` | The configuration for the AstroNvim updater                                                   |
-| `colorscheme`                     | `string`                           | The colorscheme to be set                                                                     |
-| `options`                         | `table` or `function(table)...end` | The `vim.x.y` variables to be set                                                             |
-| `header`                          | table of `string`s                 | The header to be displayed on the Dashboard                                                   |
-| `ui.nui_input`                    | `boolean`                          | Whether or not to enable using NUI for vim.ui.input                                           |
-| `ui.telescope_select`             | `boolean`                          | Whether or not to enable using Telescope for vim.ui.select                                    |
-| `polish`                          | `function()...end`                 | Lua function to be run last. Good place for setting vim options and adding mappings           |
-| `default_theme.diagnostics_style` | `table` or `string`                | Set highlight style options for virtual text                                                  |
-| `default_theme.colors`            | `table` or `function(table)...end` | Modify the default theme's color table                                                        |
-| `default_theme.highlights`        | `table` or `function(table)...end` | Modify the default theme's highlight groups                                                   |
-| `default_theme.plugins`           | `table` or `function(table)...end` | Modify the default theme's enabled plugin highlight groups                                    |
-| `diagnostics`                     | `table` or `function(table)...end` | Modify the default vim diagnostics options                                                    |
-| `luasnip`                         | `table` or `function(table)...end` | Modify available `luasnip` options                                                            |
-| `plugins.init`                    | `table` or `function(table)...end` | Modify the default plugins table such as adding new plugins                                   |
-| `plugins.aerial`                  | `table` or `function(table)...end` | Modify the `aerial.setup()` options                                                           |
-| `plugins.autopairs`               | `table` or `function(table)...end` | Modify the `autopairs.setup()` options                                                        |
-| `plugins.better_escape`           | `table` or `function(table)...end` | Modify the `better_escape.setup()` options                                                    |
-| `plugins.bufferline`              | `table` or `function(table)...end` | Modify the `bufferline.setup()` options                                                       |
-| `plugins.cmp`                     | `table` or `function(table)...end` | Modify the `cmp.setup()` options                                                              |
-| `plugins.colorizer`               | `table` or `function(table)...end` | Modify the `colorizer.setup()` options                                                        |
-| `plugins.Comment`                 | `table` or `function(table)...end` | Modify the `Comment.setup()` options                                                          |
-| `plugins.gitsigns`                | `table` or `function(table)...end` | Modify the `gitsigns.setup()` options                                                         |
-| `plugins.nvim-web-devicons`       | `table` or `function(table)...end` | Modify the `nvim-web-devicons.setup()` options                                                |
-| `plugins.indent_blankline`        | `table` or `function(table)...end` | Modify the `indent_blankline.setup()` options                                                 |
-| `plugins.indent-o-matic`          | `table` or `function(table)...end` | Modify the `indent-o-matic.setup()` options                                                   |
-| `plugins.lualine`                 | `table` or `function(table)...end` | Modify the `lualine.setup()` options                                                          |
-| `plugins.cinnamon`                | `table` or `function(table)...end` | Modify the `cinnamon.setup()` options                                                         |
-| `plugins.neo-tree`                | `table` or `function(table)...end` | Modify the `neo-tree.setup()` options                                                         |
-| `plugins.null-ls`                 | `table` or `function(table)...end` | Modify the `null-ls.setup()` options                                                          |
-| `plugins.telescope`               | `table` or `function(table)...end` | Modify the `telescope.setup()` options                                                        |
-| `plugins.toggleterm`              | `table` or `function(table)...end` | Modify the `toggleterm.setup()` options                                                       |
-| `plugins.treesitter`              | `table` or `function(table)...end` | Modify the `treesitter.setup()` options                                                       |
-| `plugins.which-key`               | `table` or `function(table)...end` | Modify the `which-key.setup()` options                                                        |
-| `which-key.register_mappings`     | `table` or `function(table)...end` | Modify the default which-key bindings                                                         |
-| `which-key.show`                  | `function(orig_show)...end`        | Modify the default `which-key.show()` method. Must return `function(key, opts)...end`         |
-| `cmp.source_priority`             | `table` or `function(table)...end` | Modify the default cmp sources and their priorities                                           |
-| `which-key.setup`                 | `table` or `function(table)...end` | Modify the extended `cmp` setup calls                                                         |
-| `lsp.servers`                     | `table` or `function(table)...end` | List of language servers to be set up that are already installed without `nvim-lsp-installer` |
-| `lsp.skip_setup`                  | `table` or `function(table)...end` | List of language servers to guarantee the lspconfig setup is never called on automatically    |
-| `lsp.server-settings.<lsp>`       | `table` or `function(table)...end` | Modify the LSP server settings, replace `<lsp>` with server name                              |
-| `lsp.on_attach`                   | `function(client, bufnr)...end`    | Modify the lsp `on_attach` function                                                           |
-| `lsp.server_registration`         | `function(server, opts)...end`     | Modify the `lsp-installer` `server_registration` function                                     |
+| `init.lua` table key              | Alternate File Path (in `user/` folder) | Expected Format                    | Use Case                                                                                                              |
+| --------------------------------- | --------------------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `updater`                         | `updater.lua`                           | `table` or `function(table)...end` | The configuration for the AstroNvim updater                                                                           |
+| `colorscheme`                     | `colorscheme.lua`                       | `string`                           | The colorscheme to be set                                                                                             |
+| `options`                         | `options.lua`                           | `table` or `function(table)...end` | The `vim.x.y` variables to be set                                                                                     |
+| `header`                          | `header.lua`                            | table of `string`s                 | The header to be displayed on the Dashboard                                                                           |
+| `ui`                              | `ui.lua`                                | `table` or `function(table)...end` | Toggle custom UI elements (`nui_input` controls NUI for inputs, `telescope_select` controls Telescope for selections) |
+| `polish`                          | `polish.lua`                            | `function()...end`                 | Lua function to be run last. Good place for setting vim options and adding mappings                                   |
+| `default_theme.diagnostics_style` | `default_theme/diagnostics_style.lua`   | `table` or `string`                | Set highlight style options for virtual text                                                                          |
+| `default_theme.colors`            | `default_theme/colors.lua`              | `table` or `function(table)...end` | Modify the default theme's color table                                                                                |
+| `default_theme.highlights`        | `default_theme/highlights.lua`          | `table` or `function(table)...end` | Modify the default theme's highlight groups                                                                           |
+| `default_theme.plugins`           | `default_theme/plugins.lua`             | `table` or `function(table)...end` | Modify the default theme's enabled plugin highlight groups                                                            |
+| `diagnostics`                     | `diagnostics.lua`                       | `table` or `function(table)...end` | Modify the default vim diagnostics options                                                                            |
+| `luasnip`                         | `luasnip.lua`                           | `table` or `function(table)...end` | Modify available `luasnip` options                                                                                    |
+| `plugins.init`                    | `plugins/init.lua`                      | `table` or `function(table)...end` | Modify the default plugins table such as adding new plugins                                                           |
+| `plugins.aerial`                  | `plugins/aerial.lua`                    | `table` or `function(table)...end` | Modify the `aerial.setup()` options                                                                                   |
+| `plugins.autopairs`               | `plugins/autopairs.lua`                 | `table` or `function(table)...end` | Modify the `autopairs.setup()` options                                                                                |
+| `plugins.better_escape`           | `plugins/better_escape.lua`             | `table` or `function(table)...end` | Modify the `better_escape.setup()` options                                                                            |
+| `plugins.bufferline`              | `plugins/bufferline.lua`                | `table` or `function(table)...end` | Modify the `bufferline.setup()` options                                                                               |
+| `plugins.cmp`                     | `plugins/cmp.lua`                       | `table` or `function(table)...end` | Modify the `cmp.setup()` options                                                                                      |
+| `plugins.colorizer`               | `plugins/colorizer.lua`                 | `table` or `function(table)...end` | Modify the `colorizer.setup()` options                                                                                |
+| `plugins.Comment`                 | `plugins/Comment.lua`                   | `table` or `function(table)...end` | Modify the `Comment.setup()` options                                                                                  |
+| `plugins.gitsigns`                | `plugins/gitsigns.lua`                  | `table` or `function(table)...end` | Modify the `gitsigns.setup()` options                                                                                 |
+| `plugins.nvim-web-devicons`       | `plugins/nvim-web-devicons.lua`         | `table` or `function(table)...end` | Modify the `nvim-web-devicons.setup()` options                                                                        |
+| `plugins.indent_blankline`        | `plugins/indent_blankline.lua`          | `table` or `function(table)...end` | Modify the `indent_blankline.setup()` options                                                                         |
+| `plugins.indent-o-matic`          | `plugins/indent-o-matic.lua`            | `table` or `function(table)...end` | Modify the `indent-o-matic.setup()` options                                                                           |
+| `plugins.lualine`                 | `plugins/lualine.lua`                   | `table` or `function(table)...end` | Modify the `lualine.setup()` options                                                                                  |
+| `plugins.cinnamon`                | `plugins/cinnamon.lua`                  | `table` or `function(table)...end` | Modify the `cinnamon.setup()` options                                                                                 |
+| `plugins.neo-tree`                | `plugins/neo-tree.lua`                  | `table` or `function(table)...end` | Modify the `neo-tree.setup()` options                                                                                 |
+| `plugins.null-ls`                 | `plugins/null-ls.lua`                   | `table` or `function(table)...end` | Modify the `null-ls.setup()` options                                                                                  |
+| `plugins.telescope`               | `plugins/telescope.lua`                 | `table` or `function(table)...end` | Modify the `telescope.setup()` options                                                                                |
+| `plugins.toggleterm`              | `plugins/toggleterm.lua`                | `table` or `function(table)...end` | Modify the `toggleterm.setup()` options                                                                               |
+| `plugins.treesitter`              | `plugins/treesitter.lua`                | `table` or `function(table)...end` | Modify the `treesitter.setup()` options                                                                               |
+| `plugins.which-key`               | `plugins/which-key.lua`                 | `table` or `function(table)...end` | Modify the `which-key.setup()` options                                                                                |
+| `which-key.register_mappings`     | `which-key/register_mappings.lua`       | `table` or `function(table)...end` | Modify the default which-key bindings                                                                                 |
+| `which-key.show`                  | `which-key/show.lua`                    | `function(orig_show)...end`        | Modify the default `which-key.show()` method. Must return `function(key, opts)...end`                                 |
+| `cmp.source_priority`             | `cmp/source_priority.lua`               | `table` or `function(table)...end` | Modify the default cmp sources and their priorities                                                                   |
+| `cmp.setup`                       | `cmp/setup.lua`                         | `table` or `function(table)...end` | Modify the extended `cmp` setup calls                                                                                 |
+| `lsp.servers`                     | `lsp/servers.lua`                       | `table` or `function(table)...end` | List of language servers to be set up that are already installed without `nvim-lsp-installer`                         |
+| `lsp.skip_setup`                  | `lsp/skip_setup.lua`                    | `table` or `function(table)...end` | List of language servers to guarantee the lspconfig setup is never called on automatically                            |
+| `lsp.server-settings.<lsp>`       | `lsp/server-settings/<lsp>.lua`         | `table` or `function(table)...end` | Modify the LSP server settings, replace `<lsp>` with server name                                                      |
+| `lsp.on_attach`                   | `lsp/on_attach.lua`                     | `function(client, bufnr)...end`    | Modify the lsp `on_attach` function                                                                                   |
+| `lsp.server_registration`         | `lsp/server_registration.lua`           | `function(server, opts)...end`     | Modify the `lsp-installer` `server_registration` function                                                             |
