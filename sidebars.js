@@ -29,6 +29,7 @@ module.exports = {
         "configuration/basic_configuration",
         "configuration/plugin_defaults",
         "configuration/config_options",
+        "configuration/config_mechanism",
         "configuration/override_formats",
         "configuration/splitting_up",
       ],
