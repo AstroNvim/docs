@@ -65,8 +65,7 @@ local config = {
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-      autopairs_toggle_flag = true, -- enable toggle_autopairs
-      cmp_toggle_flag = true, -- enable toggle_completion
+      cmp_enabled = true, -- enable cmp at start
     },
   },
 
