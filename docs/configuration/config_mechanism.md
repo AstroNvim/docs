@@ -27,13 +27,13 @@ Running `rg user_plugin_opts` at the root of the source tree should reveal many
 hook points of `user_plugin_opts` calls in the source where the upstream sets
 default values.
 
-## How user settings of AstroNvim works
+## How AstroNvim works for user settings
 
 Let us describe tersely in plain words how this shim function
-`astronvim.user_plugin_opts` works when it is called as
+`astronvim.user_plugin_opts` works in AstroNvim when it is called as
 `user_plugin_opts("MODULE", DEFAULT, EXTEND)` with a twist of
-oversimplification for you to get started without reading the entire source
-code.
+oversimplification.  This should provide some perspective for how AstroNvim
+works for user settings.
 
 * The `DEFAULT` contains a table setting the upstream default values.
 * The `"MODULE"` contains a string specifying user settings by the module or
