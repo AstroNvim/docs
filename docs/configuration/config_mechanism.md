@@ -3,47 +3,97 @@ id: config_mechanism
 title: Configuration Mechanism
 ---
 
-Configuration mechanism of AstroNvim uses a wrapper function
-`astronvim.user_plugin_opts` when setting default values in the upstream
-source.
+## Value of `runtimepath` option
 
-This wrapper function is designed to check user configuration settings.  If
-user configuration exists, it overrides or extends the upstream default values.
+The AstroNvim start-up code extends the value of `runtimepath` and it contains
+not only `$XDG_CONFIG_HOME/nvim` but also `$XDG_CONFIG_HOME/astronvim`. Here,
+`$XDG_CONFIG_HOME` is normally set to `~/.config`.
+
+This allows us to place user settings under the normal path of
+`~/.config/nvim/lua/user` and the offset path of
+`~/.config/astronvim/lua/user`.
+
+Its value can be verified by `:lua print(vim.go.runtimepath)`.
+
+## Shim function and its hook points
+
+Configuration mechanism of AstroNvim uses the shim function
+`astronvim.user_plugin_opts` (usually aliased to local variable
+`user_plugin_opts`) when setting default values in the upstream source. The
+resulting default values returned by this shim function are the user requested
+combination of corresponding upstream and user settings.
 
 Running `rg user_plugin_opts` at the root of the source tree should reveal many
-occurrences of `astronvim.user_plugin_opts` calls in the source.  Those are
-good code point to start reading the source code.
+hook points of `user_plugin_opts` calls in the source where the upstream sets
+default values.
 
-### How user configuration of AstroNvim works
+## How user settings of AstroNvim works
 
-Let us describe tersely how `astronvim.user_plugin_opts` function works in
-order to understand how user configuration of AstroNvim works.
+Let us describe tersely in plain words how this shim function
+`astronvim.user_plugin_opts` works when it is called as
+`user_plugin_opts("MODULE", DEFAULT, EXTEND)` with a twist of
+oversimplification for you to get started without reading the entire source
+code.
 
-The `astronvim.user_plugin_opts(module, default, extend, prefix)` is defined in
-`lua/core/utils/init.lua`.  Since it is usually called without 4th-argument, it
-is essentially as follows:
+* The `DEFAULT` contains a table setting the upstream default values.
+* The `"MODULE"` contains a string specifying user settings by the module or
+  variable name.
+* If the module named `user.MODULE` doesn't exist, then AstroNvim obtains user
+  settings from the `user/init.lua` file while looking for the `MODULE`
+  variable in it.
+  * This is the single setting file case using the `user/init.lua` file as
+    discussed before.
+  * If the `EXTEND` is `nil` (missing) or `true`, settings are extended:
+    * If the `MODULE` variable contains a table, then AstroNvim generates
+      settings by calling the `vim.tbl_deep_extend("force", DEFAULT, MODULE)`
+      function extending the `DEFAULT` table by the `MODULE` table.
+    * If the `MODULE` variable contains a function, then AstroNvim generates
+      custom extended settings by calling the `MODULE` function with the
+      `DEFAULT` as its argument.
+  * If the `EXTEND` is `false`, settings are overridden:
+    * If the `MODULE` variable contains a table, then AstroNvim ignores
+      `DEFAULT` and generates settings from the `MODULE` table.
+    * If the `MODULE` variable contains a function, then AstroNvim ignores
+      `DEFAULT` and generates settings by executing the `MODULE` function.
+* If the module named `user.MODULE` exists, then AstroNvim obtains user
+  settings from the `user.MODULE` module.
+  * This is the [Splitting Up Configuration](/configuration/splitting_up) case.
+  * If the `EXTEND` is `nil` (missing) or `true`, settings are extended:
+    * If the `user.MODULE` module returns a table, then AstroNvim assigns the
+      returned table to the `MODULE` variable, and generates settings by
+      calling the `vim.tbl_deep_extend("force", DEFAULT, MODULE)` function
+      extending the `DEFAULT` table the `MODULE` table.
+    * If the `user.MODULE` module returns a function, then AstroNvim assigns
+      the returned function to the `MODULE` variable, and generates custom
+      extended settings by calling the `MODULE` function with the `DEFAULT` as
+      its argument.
+  * If the `EXTEND` is `false`, settings are overridden:
+    * If the `user.MODULE` module returns a table, then AstroNvim ignores
+      `DEFAULT` and generates settings from the `MODULE` table.
+    * If the `user.MODULE` module returns a function, then AstroNvim ignores
+      `DEFAULT` and generates settings by executing the `MODULE` function.
+* If neither the module named `user.MODULE` nor the variable named `MODULE` in
+  the `user/init.lua` file exist, then AstroNvim generates settings from the
+  original upstream `DEFAULT`.
 
-```lua
-function astronvim.user_plugin_opts(module, default, extend)
-  if extend == nil then extend = true end  -- default value is true
-  default = default or {}                  -- default value is {}
-  local user_settings = load_module_file("user" .. "." .. module)
-  if user_settings == nil then user_settings = user_setting_table(module) end
-  if user_settings ~= nil then default = func_or_extend(user_settings, default, extend) end
-  return default
-end
-```
+:::tip
 
-Let's consider a case when this is called as `user_settings("MODULE", DEFAULT, EXTEND)`.
+Please note `.` in the lua module path corresponds to `/` in the directory
+path.  Also the `foo.bar` lua module may be at `$runtimepath/foo/bar.lua` or
+`$runtimepath/foo/bar/init.lua`.
 
-* If module named `user.MODULE` doesn't exist, then set `user_settings` using `user.init.lua` module while looking for `"MODULE"` in this module.
-  * This is the single user configuration case with the `user/init.lua` file as discussed before.
-* If module named `user.MODULE` exists, then set `user_settings` using `user.MODULE` module.
-  * This is the [Splitting Up Configuration](/configuration/splitting_up) case.  The specified `"MODULE"` corresponds to each split configuration file.
-* If neither module named `user.MODULE` nor `user.init.lua` exists, then leave `user_settings` unset.
-  * This is the no user configuration case.
-* If `user_settings` isn't set, the original upstream `DEFAULT` is returned and used by AstroNvim.
-* If `user_settings` is set, the upstream `DEFAULT` is updated by `user_settings`.  Update method depends on the `EXTEND` value.
+:::
 
+:::tip
 
+For the definition of `vim.tbl_deep_extend`, see `:help tbl_deep_extend`.
+
+:::
+
+:::tip
+
+For the actual definition of `user_plugin_opts` and related functions, see
+their definition in `lua/core/utils/init.lua`.
+
+:::
 
