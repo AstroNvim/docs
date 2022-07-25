@@ -35,45 +35,21 @@ plugins = {
 },
 ```
 
-Or adding new bindings to `which-key` for top level menu:
+For adding new key mappings and updating which-key menu, `mapping` and
+`["which-key"]` table are used to extend existing configuration.
 
 ```lua
-["which-key"] = {
-  register_mappings = {
-    n = { -- normal mode
-      ["<leader>"] = { -- leader prefix
-        ["N"] = { "<cmd>tabnew<cr>", "New Buffer" }, -- normal mode, <leader>N
-      },
-    }
-  },
-},
-```
-
-Or adding new bindings to `which-key` for top and second level menu:
-```lua
--- Modify which-key registration
-["which-key"] = {
-  -- Add bindings which show up as group
-  register_mappings = {
-    -- first key is the mode, n == normal mode
-    n = {
-      -- second key is the prefix, <leader> prefixes
-      ["<leader>"] = {
-        ["b"] = { name = "Buffer" },
-      },
-    },
-  },
-},
-
 mappings = {
   -- first key is the mode
+  -- desc setting is stored by vim.keymap.set() as a part of opts table in vim lua module
   n = {
     -- second key is the lefthand side of the map
-    -- Install ncdu package, Disk size w/o snapshot btrfs subvolumes and .git
+    -- Terminal
+    -- Install ncdu package: (Disk size w/o snapshot btrfs subvolumes and .git)
     ["<leader>tu"] = { function() astronvim.toggle_term_cmd "ncdu -x --exclude .git" end, desc = "Term for NCDU w/o junks" },
-    -- Install mc package
+    -- Install mc package:
     ["<leader>tm"] = { function() astronvim.toggle_term_cmd "mc . ~" end, desc = "Term for MC" },
-    -- Install libreply-perl + libterm-readline-gnu-perl packages
+    -- Install libreply-perl + libterm-readline-gnu-perl packages:
     ["<leader>tp"] = { function() astronvim.toggle_term_cmd "reply" end, desc = "Term for perl5 REPL" },
     -- BUffer
     ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
@@ -88,12 +64,40 @@ mappings = {
     ["<leader>bp"] = { "<cmd>BufferLineCyclePrev<cr>", desc = "Previous" },
     ["<leader>br"] = { "<cmd>BufferLineCloseRight<cr>", desc = "Close right-side" },
     ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+    -- quick save
+    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+  },
+  t = {
+    -- setting a mapping to false will disable it
+    -- ["<esc>"] = false,
   },
 },
+
+-- Modify which-key registration (this is parsed after mapping)
+["which-key"] = {
+  -- Add bindings which show up as group name
+  -- 
+  -- Don't create settings for key mapping here.  Such mapping becomes usable
+  -- only via slow which-key interface (not usable via native fast vim key
+  -- mapping)
+  --
+  -- which-key will pick up defined vim key mappings, if defined with desc.
+  register_mappings = {
+    -- first key is the mode, n == normal mode
+    n = {
+      -- second key is the prefix, <leader> prefixes
+      ["<leader>"] = {
+        -- third key is the key to bring up next level and its displayed name in which-key top level
+        ["b"] = { name = "Buffer" },
+      },
+    },
+  },
+},
+
 ```
 
 :::tip
-Please pay attention to the use of `name` and `desc` or lack of them.
+Please pay attention to the use of `name` and `desc` used in the above.
 :::
 
 ### Override Function
