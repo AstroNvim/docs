@@ -35,7 +35,7 @@ plugins = {
 },
 ```
 
-Or adding new bindings to `which-key`:
+Or adding new bindings to `which-key` for top level menu:
 
 ```lua
 ["which-key"] = {
@@ -48,6 +48,53 @@ Or adding new bindings to `which-key`:
   },
 },
 ```
+
+Or adding new bindings to `which-key` for top and second level menu:
+```lua
+-- Modify which-key registration
+["which-key"] = {
+  -- Add bindings which show up as group
+  register_mappings = {
+    -- first key is the mode, n == normal mode
+    n = {
+      -- second key is the prefix, <leader> prefixes
+      ["<leader>"] = {
+        ["b"] = { name = "Buffer" },
+      },
+    },
+  },
+},
+
+mappings = {
+  -- first key is the mode
+  n = {
+    -- second key is the lefthand side of the map
+    -- Install ncdu package, Disk size w/o snapshot btrfs subvolumes and .git
+    ["<leader>tu"] = { function() astronvim.toggle_term_cmd "ncdu -x --exclude .git" end, desc = "Term for NCDU w/o junks" },
+    -- Install mc package
+    ["<leader>tm"] = { function() astronvim.toggle_term_cmd "mc . ~" end, desc = "Term for MC" },
+    -- Install libreply-perl + libterm-readline-gnu-perl packages
+    ["<leader>tp"] = { function() astronvim.toggle_term_cmd "reply" end, desc = "Term for perl5 REPL" },
+    -- BUffer
+    ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+    ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
+    ["<leader>bd"] = { "<cmd>BufferLineSortByDirectory<cr>", desc = "Sort by directory" },
+    ["<leader>bD"] = { "<cmd>BufferLineSortByRelativeDirectory<cr>", desc = "Sort by rel. dir." },
+    ["<leader>be"] = { "<cmd>BufferLineSortByExtension<cr>", desc = "Sort by extention" },
+    ["<leader>bf"] = { "<cmd>Telescope buffers<cr>", desc = "Find" },
+    ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+    ["<leader>bl"] = { "<cmd>BufferLineCloseLeft<cr>", desc = "Close left-side" },
+    ["<leader>bn"] = { "<cmd>BufferLineCycleNext<cr>", desc = "Next" },
+    ["<leader>bp"] = { "<cmd>BufferLineCyclePrev<cr>", desc = "Previous" },
+    ["<leader>br"] = { "<cmd>BufferLineCloseRight<cr>", desc = "Close right-side" },
+    ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+  },
+},
+```
+
+:::tip
+Please pay attention to the use of `name` and `desc` or lack of them.
+:::
 
 ### Override Function
 
