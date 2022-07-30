@@ -38,23 +38,6 @@ works for user settings.
 * The `DEFAULT` contains a table setting the upstream default values.
 * The `"MODULE"` contains a string specifying user settings by the module or
   variable name.
-* If the module named `user.MODULE` doesn't exist, then AstroNvim obtains user
-  settings from the `user/init.lua` file while looking for the `MODULE`
-  variable in it.
-  * This is the single setting file case using the `user/init.lua` file as
-    discussed before.
-  * If the `EXTEND` is `nil` (missing) or `true`, settings are extended:
-    * If the `MODULE` variable contains a table, then AstroNvim generates
-      settings by calling the `vim.tbl_deep_extend("force", DEFAULT, MODULE)`
-      function extending the `DEFAULT` table by the `MODULE` table.
-    * If the `MODULE` variable contains a function, then AstroNvim generates
-      custom extended settings by calling the `MODULE` function with the
-      `DEFAULT` as its argument.
-  * If the `EXTEND` is `false`, settings are overridden:
-    * If the `MODULE` variable contains a table, then AstroNvim ignores
-      `DEFAULT` and generates settings from the `MODULE` table.
-    * If the `MODULE` variable contains a function, then AstroNvim ignores
-      `DEFAULT` and generates settings by executing the `MODULE` function.
 * If the module named `user.MODULE` exists, then AstroNvim obtains user
   settings from the `user.MODULE` module.
   * This is the [Splitting Up Configuration](/configuration/splitting_up) case.
@@ -71,6 +54,23 @@ works for user settings.
     * If the `user.MODULE` module returns a table, then AstroNvim ignores
       `DEFAULT` and generates settings from the `MODULE` table.
     * If the `user.MODULE` module returns a function, then AstroNvim ignores
+      `DEFAULT` and generates settings by executing the `MODULE` function.
+* If the module named `user.MODULE` doesn't exist, then AstroNvim obtains user
+  settings from the `user/init.lua` file while looking for the `MODULE`
+  variable in it.
+  * This is the single setting file case using the `user/init.lua` file as
+    discussed before.
+  * If the `EXTEND` is `nil` (missing) or `true`, settings are extended:
+    * If the `MODULE` variable contains a table, then AstroNvim generates
+      settings by calling the `vim.tbl_deep_extend("force", DEFAULT, MODULE)`
+      function extending the `DEFAULT` table by the `MODULE` table.
+    * If the `MODULE` variable contains a function, then AstroNvim generates
+      custom extended settings by calling the `MODULE` function with the
+      `DEFAULT` as its argument.
+  * If the `EXTEND` is `false`, settings are overridden:
+    * If the `MODULE` variable contains a table, then AstroNvim ignores
+      `DEFAULT` and generates settings from the `MODULE` table.
+    * If the `MODULE` variable contains a function, then AstroNvim ignores
       `DEFAULT` and generates settings by executing the `MODULE` function.
 * If neither the module named `user.MODULE` nor the variable named `MODULE` in
   the `user/init.lua` file exist, then AstroNvim generates settings from the
