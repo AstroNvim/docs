@@ -191,6 +191,17 @@ const config = {
         jsLoader: "matomo.js",
       },
     }),
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        indexBlog: false,
+        hashed: true,
+        docsRouteBasePath: "/",
+        searchBarShortcutHint: false,
+      },
+    ],
+  ],
 };
 
 module.exports = config;
