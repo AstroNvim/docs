@@ -5,7 +5,7 @@ title: Advanced LSP Setup
 
 ### LSP Setup Without Installer
 
-AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following is a minimal `user/init.lua` file that simply sets up `pyright` language server for a user with `pyright` already available on their system:
+AstroNvim comes with [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following is a minimal `user/init.lua` file that simply sets up `pyright` language server for a user with `pyright` already available on their system:
 
 ```lua
 return {
@@ -36,7 +36,7 @@ return {
 
 ### LSP Specific Plugins
 
-There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `lsp.skip_setup` table for specifying which language servers to guarantee AstroNvim will not automatically call the `lspconfig` setup for. We also provide a helper function for getting the AstroNvim default server configuration like our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.server-settings`. Here is a couple examples for some common LSP plugins:
+There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `nvim-lsp-installer` for installing the language servers. You can use the `lsp.skip_setup` table for specifying which language servers to guarantee AstroNvim will not automatically call the `lspconfig` setup for. We also provide a helper function for getting the AstroNvim default server configuration like our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.server-settings`. Here is a couple examples for some common LSP plugins:
 
 **[typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim)**
 
@@ -49,7 +49,7 @@ return {
     init = {
       {
         "jose-elias-alvarez/typescript.nvim",
-        after = "mason-lspconfig.nvim",
+        after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
         config = function()
           require("typescript").setup {
             server = astronvim.lsp.server_settings "tsserver",
@@ -57,7 +57,7 @@ return {
         end,
       },
     },
-    ["mason-lspconfig"] = {
+    ["nvim-lsp-installer"] = {
       ensure_installed = { "tsserver" },
     },
   },
@@ -82,7 +82,7 @@ return {
     init = {
       {
         "p00f/clangd_extensions.nvim",
-        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+        after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
         config = function()
           require("clangd_extensions").setup {
             server = astronvim.lsp.server_settings "clangd",
@@ -90,7 +90,7 @@ return {
         end,
       },
     },
-    ["mason-lspconfig"] = {
+    ["nvim-lsp-installer"] = {
       ensure_installed = { "clangd" },
     },
   },
@@ -121,7 +121,7 @@ return {
       {
         "akinsho/flutter-tools.nvim",
         requires = "nvim-lua/plenary.nvim",
-        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+        after = "nvim-lsp-installer", -- make sure to load after nvim-lsp-installer
         config = function()
           require("flutter-tools").setup {
             lsp = astronvim.lsp.server_settings "dartls", -- get the server settings and built in capabilities/on_attach
@@ -129,7 +129,7 @@ return {
         end,
       },
     },
-    ["mason-lspconfig"] = {
+    ["nvim-lsp-installer"] = {
       ensure_installed = { "dartls" }, -- install dartls
     },
   },

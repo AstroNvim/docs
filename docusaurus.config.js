@@ -117,6 +117,9 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
+          versions: {
+            current: { label: "nightly", path: "nightly" },
+          },
         },
         blog: false,
         theme: {
@@ -143,6 +146,10 @@ const config = {
           src: "img/logo/astronvim.svg",
         },
         items: [
+          {
+            type: "docsVersionDropdown",
+            position: "left",
+          },
           {
             to: "/",
             label: "Get Started",
