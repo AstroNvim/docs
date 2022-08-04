@@ -151,26 +151,6 @@ const config = {
             position: "left",
           },
           {
-            to: "/",
-            label: "Get Started",
-            position: "right",
-          },
-          {
-            to: "usage/walkthrough",
-            label: "Basic Usage",
-            position: "right",
-          },
-          {
-            to: "configuration/manage_user_config",
-            label: "Configuration",
-            position: "right",
-          },
-          {
-            to: "recipes/black_belt",
-            label: "Recipes",
-            position: "right",
-          },
-          {
             href: "https://github.com/AstroNvim/AstroNvim",
             position: "right",
           },
