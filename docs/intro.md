@@ -73,7 +73,7 @@ mv $HOME\AppData\Local\nvim $HOME\AppData\Local\nvim.bak
 #### Clean old plugins (Optional but recommended)
 
 ```sh
-mv ~\AppData\Local\nvim-data ~\AppData\Local\nvim-data.bak
+mv $HOME\AppData\Local\nvim-data $HOME\AppData\Local\nvim-data.bak
 ```
 
 #### Clone the repository
