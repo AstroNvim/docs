@@ -5,6 +5,9 @@ slug: /
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ![AstroNvim Screenshot](/img/overview.png)
 
 :::caution
@@ -34,6 +37,10 @@ When using default theme: For MacOS, the default terminal does not have true col
 
 ## 🛠️ Installation
 
+<Tabs>
+
+<TabItem value="nix" label="Linux/Mac OS (Unix)" default>
+
 #### Make a backup of your current nvim folder
 
 ```sh
@@ -53,17 +60,49 @@ git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 nvim +PackerSync
 ```
 
-:::info
+</TabItem>
 
-If you are still using Neovim v0.6 you can still use the last version of AstroNvim prior to the Neovim v0.7 release. After running the `git clone` command above please checkout the `nvim-0.6` branch like so:
+<TabItem value="windoze" label="Windows" default>
 
+#### Make a backup of your current nvim folder
+
+```sh
+mv $HOME\AppData\Local\nvim $HOME\AppData\Local\nvim.bak
 ```
-git -C ~/.config/nvim checkout nvim-0.6
+
+#### Clean old plugins (Optional but recommended)
+
+```sh
+mv ~\AppData\Local\nvim-data ~\AppData\Local\nvim-data.bak
 ```
 
-_Note:_ This branch will not be updated after the Neovim v0.7 release and will not get any new features or bug fixes.
+#### Clone the repository
 
-:::
+```sh
+git clone https://github.com/AstroNvim/AstroNvim $HOME\AppData\Local\nvim
+nvim +PackerSync
+```
+
+</TabItem>
+
+<TabItem value="docker" label="Docker" default>
+
+If you want to try AstroNvim before installing you can user the following Docker command to open a test instance without touching your current Neovim configuration. This also allows you to use `:TSInstall` and `:LspInstall` to load and evaluate language servers and treesitter parsers as well.
+
+```sh
+docker run -w /root -it --rm alpine:edge sh -uelic '
+  apk add git nodejs lazygit ncdu htop python3 neovim ripgrep alpine-sdk --update
+  git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+  # Uncomment the line below and replace the link with your user config repo to load a user config
+  # git clone https://github.com/username/AstroNvim_user ~/.config/nvim/lua/user
+  nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
+  nvim
+'
+```
+
+</TabItem>
+
+</Tabs>
 
 ## 📦 Setup
 
