@@ -62,24 +62,24 @@ nvim +PackerSync
 
 </TabItem>
 
-<TabItem value="windoze" label="Windows" default>
+<TabItem value="windoze" label="Windows (PowerShell)" default>
 
 #### Make a backup of your current nvim folder
 
-```sh
-mv $HOME\AppData\Local\nvim $HOME\AppData\Local\nvim.bak
+```powershell
+Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 ```
 
 #### Clean old plugins (Optional but recommended)
 
-```sh
-mv $HOME\AppData\Local\nvim-data $HOME\AppData\Local\nvim-data.bak
+```powershell
+Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ```
 
 #### Clone the repository
 
-```sh
-git clone https://github.com/AstroNvim/AstroNvim $HOME\AppData\Local\nvim
+```powershell
+git clone https://github.com/AstroNvim/AstroNvim $env:LOCALAPPDATA\nvim
 nvim +PackerSync
 ```
 
