@@ -49,7 +49,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Fuzzy Finder Syntax        | https://github.com/nvim-telescope/telescope-fzf-native.nvim    |
 | Git Integration            | https://github.com/lewis6991/gitsigns.nvim                     |
 | Start Screen               | https://github.com/goolord/alpha-nvim                          |
-| Color Highlighting         | https://github.com/norcalli/nvim-colorizer.lua                 |
+| Color Highlighting         | https://github.com/NvChad/nvim-colorizer.lua                   |
 | Autopairs                  | https://github.com/windwp/nvim-autopairs                       |
 | Terminal                   | https://github.com/akinsho/toggleterm.nvim                     |
 | Commenting                 | https://github.com/numToStr/Comment.nvim                       |
