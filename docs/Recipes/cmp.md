@@ -263,9 +263,11 @@ If you have the [`codicon.ttf` font](https://github.com/microsoft/vscode-codicon
 ```lua
 return {
   plugins = {
-    lspkind = {
-      preset = "codicons",
-    },
+    lspkind = function(config)
+      config.preset = "codicons"
+      config.symbol_map = nil
+      return config
+    end,
   },
 }
 ```
