@@ -128,6 +128,10 @@ Run `:PackerSync` to update and clean plugins
 
 Run `:AstroUpdate` to get the latest updates from the repository
 
+#### Reload AstroNvim (_EXPERIMENTAL_)
+
+Run `:AstroReload` to reload the AstroNvim configuration and any new user configuration changes without restarting. This is currently an experimental feature and may lead to instability until the next restart. We have noticed that in particular some language servers do not correctly unattach and reattach after the reloading and cause multiple LSP clients to attach to the same buffer.
+
 ## ✨ Features
 
 - File explorer with [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)

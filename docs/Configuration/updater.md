@@ -44,6 +44,8 @@ updater = {
   pin_plugins = nil,
   skip_prompts = false,
   show_changelog = true,
+  auto_reload = false,
+  auto_quit = false,
   -- remotes = { -- easily add new remotes to track
   --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
   --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
@@ -62,4 +64,6 @@ updater = {
 - `pin_plugins`: This value controls the automatic management of core plugin commits. This can either be `nil` (default) which will pin plugin commits only on `stable`, `false` which completely disables it, `true` which enables it for both `stable` and `nightly`.
 - `skip_prompts`: This lets you skip the confirmation prompts in the update process and automatically accept each one
 - `show_changelog`: This allows you to skip the printing of the complete changelog at the end of the update
+- `auto_reload`: This allows you to reload the AstroNvim configuration without restarting. This can lead to instability if you continue using the current session specifically with some language servers. It is recommended to also set `auto_quit = true` to automatically restart
+- `auto_quit`: This allows you to automatically quit AstroNvim after a successful update to quickly reopen Neovim. If used with `auto_reload`, then this will handle the rest of the update process and you can simply run `nvim` again.
 - `remotes`: This is a configuration table for easily setting up more remotes for AstroNvim to pull from. The above example shows the different formats for the URL that are supported and once a remote is defined, the key can be used in the `remote` option field.
