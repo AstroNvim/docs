@@ -940,3 +940,11 @@ treesitter = {
   },
 },
 ```
+
+## Window Picker
+
+```lua
+{
+  other_win_hl_color = colors.grey_4
+}
+```
