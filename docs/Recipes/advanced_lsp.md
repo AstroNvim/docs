@@ -135,3 +135,29 @@ return {
   },
 }
 ```
+
+**[rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)**
+
+```lua
+return {
+  lsp = {
+    skip_setup = { "rust_analyzer" }, -- skip lsp setup because rust-tools will do it itself
+  },
+  plugins = {
+    init = {
+      {
+        "simrat39/rust-tools.nvim",
+        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+        config = function()
+          require("rust-tools").setup {
+            server = astronvim.lsp.server_settings "rust_analyzer", -- get the server settings and built in capabilities/on_attach
+          }
+        end,
+      },
+    },
+    ["mason-lspconfig"] = {
+      ensure_installed = { "rust_analyzer" }, -- install rust_analyzer
+    },
+  },
+}
+```
