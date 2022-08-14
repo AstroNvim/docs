@@ -3,7 +3,7 @@ id: telescope_theme
 title: NvChad Telescope Theme
 ---
 
-This code snippet make the default theme telescope look like the default NvChad telescope theme:
+This code snippet makes the default theme telescope look like the default NvChad telescope theme:
 
 ![Screenshot of telescope theme](/img/recipes/telescope_theme.png)
 
