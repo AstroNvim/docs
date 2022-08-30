@@ -82,9 +82,11 @@ title: Default Mappings
 | Signature Help       | `Space + lh`       |
 | Rename               | `Space + lr`       |
 | Document Symbols     | `Space + ls`       |
+| Workspace Symbols    | `Space + lG`       |
 | Diagnostic Next      | `]d`               |
 | Diagnostics Previous | `[d`               |
 | Declaration          | `gD`               |
+| Type Definition      | `gT`               |
 | Definition           | `gd`               |
 | Implementation       | `gI`               |
 | References           | `gr`               |
@@ -111,6 +113,7 @@ title: Default Mappings
 | Keymaps                           | `Space + sk`               |
 | Commands                          | `Space + sc`               |
 | LSP Symbols                       | `Space + ls`               |
+| LSP Workspace Symbols             | `Space + lG`               |
 | LSP References                    | `Space + lR`               |
 | LSP Diagnostics                   | `Space + lD`               |
 
