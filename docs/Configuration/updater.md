@@ -26,7 +26,7 @@ As of AstroNvim `v1.4.0` we have adopted a release model using two channels: `st
 
 The `stable` update channel is meant to provide tracking of officially tagged releases that should be the most stable experience that you can achieve with no fear of plugin updates breaking your editor or anything. With each stable release we release a snapshot of the core provided plugins and their latest working commit at the time of release. By default on the `stable` channel AstroNvim will use these snapshots to pin all of the core plugins to these commits and keep them from updating and potentially bringing in breaking changes. These tagged releases also will happen a lot less frequently and each update will come with several changes/bug fixes/features/etc. There is also the ability to filter what versions you want to update to for example if you only want to stay in `v1.X` and never upate to `v2` whenever it gets released that can be configured. The updater will also warn you if there are any breaking changes included in the update that may require manual updating of your user configuration, and ask if you want to continue or abort the process.
 
-**Stable**
+**Nihtly**
 
 The `nightly` update channel is meant for people who want more regular updates and follow the latest and greatest features real time. This also by default does not track pinned plugin versions and the core plugins are able to update freely with `:PackerSync`.
 
