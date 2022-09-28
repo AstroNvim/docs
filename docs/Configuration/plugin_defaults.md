@@ -413,77 +413,40 @@ indent_blankline = {
 },
 ```
 
-## Feline
+## Heirline
 
 ```lua
-feline = {
-  disable = { filetypes = { "^NvimTree$", "^neo%-tree$", "^dashboard$", "^Outline$", "^aerial$" } },
-  theme = {
-    fg = status.get_hl_prop("Feline", "foreground", colors.fg),
-    bg = status.get_hl_prop("Feline", "background", colors.bg_1),
+heirline = {
+  {
+    hl = { fg = "fg", bg = "bg" },
+    astronvim.status.component.mode(),
+    astronvim.status.component.git_branch(),
+    astronvim.status.component.file_info(
+      astronvim.is_available "bufferline.nvim" and { filetype = {}, filename = false, file_modified = false } or nil
+    ),
+    astronvim.status.component.git_diff(),
+    astronvim.status.component.diagnostics(),
+    astronvim.status.component.fill(),
+    astronvim.status.component.lsp(),
+    astronvim.status.component.treesitter(),
+    astronvim.status.component.nav(),
+    astronvim.status.component.mode { surround = { separator = "right" } },
   },
-  components = {
-    active = {
-      {
-        status.colored_spacer(1),
-        status.spacer(2),
-        {
-          provider = "git_branch",
-          hl = status.fg_hl(colors.purple_1, "Conditional", "foreground", { style = "bold" }),
-          icon = " ",
-        },
-        status.spacer(3, status.git_head_available),
-        {
-          provider = { name = "file_type", opts = { filetype_icon = true, case = "lowercase" } },
-          enabled = status.filetype_available,
-        },
-        status.spacer(2, status.filetype_available),
-        { provider = "git_diff_added", hl = status.fg_hl(colors.green, "GitSignsAdd"), icon = "  " },
-        { provider = "git_diff_changed", hl = status.fg_hl(colors.orange_1, "GitSignsChange"), icon = " 柳" },
-        { provider = "git_diff_removed", hl = status.fg_hl(colors.red_1, "GitSignsDelete"), icon = "  " },
-        status.spacer(2, status.git_changed),
-        {
-          provider = "diagnostic_errors",
-          enabled = status.diagnostic_exists "ERROR",
-          hl = status.fg_hl(colors.red_1, "DiagnosticError"),
-          icon = "  ",
-        },
-        {
-          provider = "diagnostic_warnings",
-          enabled = status.diagnostic_exists "WARN",
-          hl = status.fg_hl(colors.orange_1, "DiagnosticWarn"),
-          icon = "  ",
-        },
-        {
-          provider = "diagnostic_info",
-          enabled = status.diagnostic_exists "INFO",
-          hl = status.fg_hl(colors.white_2, "DiagnosticInfo"),
-          icon = "  ",
-        },
-        {
-          provider = "diagnostic_hints",
-          enabled = status.diagnostic_exists "HINT",
-          hl = status.fg_hl(colors.yellow_1, "DiagnosticHint"),
-          icon = "  ",
-        },
-      },
-      {
-        { provider = status.lsp_progress, hl = { gui = "none" }, enabled = status.hide_in_width },
-        { provider = "lsp_client_names", hl = { gui = "none" }, icon = "   ", enabled = status.hide_in_width },
-        status.spacer(2, status.hide_in_width),
-        {
-          provider = status.treesitter_status,
-          hl = status.fg_hl(colors.green, "GitSignsAdd"),
-          enabled = status.hide_in_width,
-        },
-        status.spacer(2),
-        { provider = "position" },
-        status.spacer(2),
-        { provider = "line_percentage" },
-        status.spacer(1),
-        { provider = "scroll_bar", hl = status.fg_hl(colors.yellow, "TypeDef") },
-        status.spacer(2),
-        status.colored_spacer(1),
+  {
+    init = astronvim.status.init.pick_child_on_condition,
+    {
+      condition = function() return astronvim.status.condition.buffer_matches { buftype = { "terminal" } } end,
+      init = function() vim.opt_local.winbar = nil end,
+    },
+    {
+      condition = astronvim.status.condition.is_active,
+      astronvim.status.component.breadcrumbs { hl = { fg = "winbar_fg", bg = "winbar_bg" } },
+    },
+    {
+      astronvim.status.component.file_info {
+        file_icon = { highlight = false },
+        hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
+        surround = false,
       },
     },
   },

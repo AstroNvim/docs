@@ -36,7 +36,7 @@ LSP:
 ```lua
 return function(client, bufnr)
   if client.name == "sumneko_lua" then
-    client.resolved_capabilities.document_formatting = true
+    client.server_capabilities.documentFormattingProvider = true
   end
 end
 ```

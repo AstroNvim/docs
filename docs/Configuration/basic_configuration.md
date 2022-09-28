@@ -68,6 +68,12 @@ local config = {
     default_theme = function(highlights) -- or a function that returns a new table of colors to set
       local C = require "default_theme.colors"
 
+      -- New approach instead of diagnostic_style
+      highlights.DiagnosticError.italic = true
+      highlights.DiagnosticHint.italic = true
+      highlights.DiagnosticInfo.italic = true
+      highlights.DiagnosticWarn.italic = true
+
       highlights.Normal = { fg = C.fg, bg = C.bg }
       return highlights
     end,
@@ -109,8 +115,6 @@ local config = {
 
   -- Default theme configuration
   default_theme = {
-    -- set the highlight style for diagnostic messages
-    diagnostics_style = { italic = true },
     -- Modify the color palette for the default theme
     colors = {
       fg = "#abb2bf",
@@ -179,12 +183,6 @@ local config = {
       --     },
       --   },
       -- },
-      -- Example disabling formatting for a specific language server
-      -- gopls = { -- override table for require("lspconfig").gopls.setup({...})
-      --   on_attach = function(client, bufnr)
-      --     client.resolved_capabilities.document_formatting = false
-      --   end
-      -- }
     },
   },
 
@@ -244,21 +242,9 @@ local config = {
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
-        -- Set a formatter
-        null_ls.builtins.formatting.stylua,
+        -- Set a formatter that is manually installed
         null_ls.builtins.formatting.prettier,
       }
-      -- set up null-ls's on_attach function
-      -- NOTE: You can remove this on attach function to disable format on save
-      config.on_attach = function(client)
-        if client.resolved_capabilities.document_formatting then
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            desc = "Auto format before save",
-            pattern = "<buffer>",
-            callback = vim.lsp.buf.formatting_sync,
-          })
-        end
-      end
       return config -- return final config table to use in require("null-ls").setup(config)
     end,
     treesitter = { -- overrides `require("treesitter").setup(...)`
@@ -268,9 +254,9 @@ local config = {
     ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
       ensure_installed = { "sumneko_lua" },
     },
-    -- use mason-tool-installer to configure DAP/Formatters/Linter installation
-    ["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
-      ensure_installed = { "prettier", "stylua" },
+    -- use mason-null-ls to install and setup configure null-ls sources
+    ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
+      ensure_installed = { "stylua" },
     },
     packer = { -- overrides `require("packer").setup(...)`
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
@@ -305,7 +291,7 @@ local config = {
   -- Modify which-key registration (Use this with mappings table in the above.)
   ["which-key"] = {
     -- Add bindings which show up as group name
-    register_mappings = {
+    register = {
       -- first key is the mode, n == normal mode
       n = {
         -- second key is the prefix, <leader> prefixes
