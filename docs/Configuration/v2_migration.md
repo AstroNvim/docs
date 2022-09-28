@@ -9,7 +9,7 @@ title: Migration to v2.0
 
 - `configs/lsp/handlers.lua` has been moved to `lua/core/utils/lsp.lua`. If you are doing `require("configs.lsp.handlers")` anywhere, you should move to using `astronvim.lsp`
 
-- We have replaced Feline with the plugin [`Heirline.nvim`](https://github.com/rebelot/heirline.nvim). This provides us with a much more powerful way to provide custom statusline and winbar support to AstroNvim. This has also come with a new module `astronvim.status` that will provide many building blocks for creating custom statuslines for users if they want to modify the default bar. **TODO: ADD DOCUMENTATION ON HEIRLINE AND NEW STATUS MODULE**
+- We have replaced Feline with the plugin [`Heirline.nvim`](https://github.com/rebelot/heirline.nvim). This provides us with a much more powerful way to provide custom statusline and winbar support to AstroNvim. This has also come with a new module `astronvim.status` that will provide many building blocks for creating custom statuslines for users if they want to modify the default bar. We have also provided new documentation for this at [Recipes/Customizing Statusline](../Recipes/status)
 
 - `which-key.register_mappings` key has been simplified to just `which-key.register`. If you have `register_mappings` table in your `user/init.lua` file then simply rename it to `register`. If you have the file `user/which-key/register_mappings.lua` for your configuration, just simply rename that file to `user/which-key/register.lua`
 
