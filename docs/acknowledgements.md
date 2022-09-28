@@ -30,7 +30,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Bufferline                 | https://github.com/akinsho/bufferline.nvim                     |
 | Buffer Closing             | https://github.com/famiu/bufdelete.nvim                        |
 | File Explorer              | https://github.com/nvim-neo-tree/neo-tree.nvim                 |
-| Statusline                 | https://github.com/feline-nvim/feline.nvim                     |
+| Statusline                 | https://github.com/rebelot/heirline.nvim                       |
 | Syntax Highlighting        | https://github.com/nvim-treesitter/nvim-treesitter             |
 | Parenthesis Highlighting   | https://github.com/p00f/nvim-ts-rainbow                        |
 | Autoclose tags             | https://github.com/windwp/nvim-ts-autotag                      |

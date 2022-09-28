@@ -21,7 +21,6 @@ title: Default Mappings
 | Force Quit              | `Ctrl + q`     |
 | New File                | `Space + fn`   |
 | Close Buffer            | `Space + c`    |
-| Terminal                | `Ctrl + \`     |
 | Next Buffer             | `Shift + l`    |
 | Previous Buffer         | `Shift + h`    |
 | Comment                 | `Space + /`    |
@@ -56,22 +55,25 @@ title: Default Mappings
 | Search Sessions                | `Space + Sf` |
 | Load Current Directory Session | `Space + S.` |
 
-## Packer Mappings
+## Package Management Mappings
 
-| Action         | Mappings     |
-| -------------- | ------------ |
-| Packer Compile | `Space + pc` |
-| Packer Install | `Space + pi` |
-| Packer Sync    | `Space + ps` |
-| Packer Status  | `Space + pS` |
-| Packer Update  | `Space + pu` |
+| Action            | Mappings     |
+| --------------    | ------------ |
+| AstroNvim Updater | `Space + pA` |
+| AstroNvim Version | `Space + pv` |
+| Mason Installer   | `Space + pI` |
+| Mason Updater     | `Space + pU` |
+| Packer Compile    | `Space + pc` |
+| Packer Install    | `Space + pi` |
+| Packer Status     | `Space + pS` |
+| Packer Sync       | `Space + ps` |
+| Packer Update     | `Space + pu` |
 
 ## LSP Mappings
 
 | Action               | Mappings           |
 | -------------------- | ------------------ |
 | LSP Info             | `Space + li`       |
-| LSP Installer        | `Space + lI`       |
 | Hover Document       | `Shift + k`        |
 | Format Document      | `Space + lf`       |
 | Symbols Outline      | `Space + lS`       |
@@ -120,7 +122,6 @@ title: Default Mappings
 
 | Action                    | Mappings                   |
 | ------------------------- | -------------------------- |
-| Toggle Terminal           | `Ctrl + \`                 |
 | Floating Terminal         | `Space + tf`               |
 | Horizontal Split Terminal | `Space + th`               |
 | Vertical Split Terminal   | `Space + tv`               |
@@ -149,10 +150,12 @@ title: Default Mappings
 | Toggle autopairs         | `Space +ua` |
 | Toggle background        | `Space +ub` |
 | Toggle completion        | `Space +uc` |
+| Toggle color highligts   | `Space +uC` |
+| Toggle diagnostics       | `Space +ud` |
 | Toggle signcolumn        | `Space +ug` |
 | Change indent setting    | `Space +ui` |
-| Toggle spellcheck        | `Space +up` |
 | Change line numbering    | `Space +un` |
+| Toggle spellcheck        | `Space +up` |
 | Toggle URL highlight     | `Space +uu` |
 | Toggle wrap              | `Space +uw` |
 | Toggle syntax highlight  | `Space +uy` | 
