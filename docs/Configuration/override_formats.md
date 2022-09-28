@@ -35,19 +35,52 @@ plugins = {
 },
 ```
 
-Or adding new bindings to `which-key`:
+For adding new key mappings and updating which-key menu, `mapping` and
+`["which-key"]` table are used to extend existing configuration.
 
 ```lua
+mappings = {
+  -- first key is the mode
+  -- desc setting is stored by vim.keymap.set() as a part of opts table in vim lua module
+  n = {
+    -- second key is the lefthand side of the map
+    -- BUffer
+    ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+    ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
+    ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+    -- quick save
+    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+  },
+  t = {
+    -- setting a mapping to false will disable it
+    -- ["<esc>"] = false,
+  },
+},
+-- Modify which-key registration (this is parsed after mapping)
 ["which-key"] = {
+  -- Add bindings which show up as group name
+  -- 
+  -- Don't create settings for key mapping here.  Such mapping becomes usable
+  -- only via slow which-key interface (not usable via native fast vim key
+  -- mapping)
+  --
+  -- which-key will pick up defined vim key mappings, if defined with desc.
   register_mappings = {
-    n = { -- normal mode
-      ["<leader>"] = { -- leader prefix
-        ["N"] = { "<cmd>tabnew<cr>", "New Buffer" }, -- normal mode, <leader>N
+    -- first key is the mode, n == normal mode
+    n = {
+      -- second key is the prefix, <leader> prefixes
+      ["<leader>"] = {
+        -- third key is the key to bring up next level and its displayed name in which-key top level
+        ["b"] = { name = "Buffer" },
       },
-    }
+    },
   },
 },
 ```
+
+:::tip
+Please pay attention to the use of `name` and `desc` used in the above.
+:::
 
 ### Override Function
 

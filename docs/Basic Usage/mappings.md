@@ -25,7 +25,6 @@ title: Default Mappings
 | Next Buffer             | `Shift + l`    |
 | Previous Buffer         | `Shift + h`    |
 | Comment                 | `Space + /`    |
-| Toggle URL Highlighting | `Space + u`    |
 
 ## Bufferline
 
@@ -142,3 +141,18 @@ title: Default Mappings
 | Stage Hunk    | `Space + gs` |
 | Unstage Hunk  | `Space + gu` |
 | Git Diff      | `Space + gd` |
+
+## UI Mappings
+
+| Action                   | Mappings    |
+| ------------------------ | ----------- |
+| Toggle autopairs         | `Space +ua` |
+| Toggle background        | `Space +ub` |
+| Toggle completion        | `Space +uc` |
+| Toggle signcolumn        | `Space +ug` |
+| Change indent setting    | `Space +ui` |
+| Toggle spellcheck        | `Space +up` |
+| Change line numbering    | `Space +un` |
+| Toggle URL highlight     | `Space +uu` |
+| Toggle wrap              | `Space +uw` |
+| Toggle syntax highlight  | `Space +uy` | 
