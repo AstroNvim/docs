@@ -55,7 +55,6 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Commenting                 | https://github.com/numToStr/Comment.nvim                       |
 | Indentation                | https://github.com/lukas-reineke/indent-blankline.nvim         |
 | Keymaps Popup              | https://github.com/folke/which-key.nvim                        |
-| Smooth Scrollilng          | https://github.com/declancm/cinnamon.nvim                      |
 | Smooth Escaping            | https://github.com/max397574/better-escape.nvim                |
 
 <div align="center" id="madewithlua">
