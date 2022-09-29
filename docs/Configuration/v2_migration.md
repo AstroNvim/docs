@@ -7,6 +7,8 @@ title: Migration to v2.0
 
 - **Updater changes** Stable AstroNvim is now the default behavior of installing AstroNvim without any user configuration. This will mean slower updates as well as pinning provided plugins to protect against breaking changes. You can opt into the `nightly` update channel through  your user configuration with the `updater` table. We have also enabled automatically syncing plugins and quitting AstroNvim on a successful update which will then require a relaunch to start using the new update as quickly as possible. All of these options can also be configured in the `updater` configuration table.
 
+- `cinnamon.nvim` has been removed from the default plugin list. If you liked the smooth scrolling, please add it back to your `plugins.init` table in your user configuration
+
 - `configs/lsp/handlers.lua` has been moved to `lua/core/utils/lsp.lua`. If you are doing `require("configs.lsp.handlers")` anywhere, you should move to using `astronvim.lsp`
 
 - We have replaced Feline with the plugin [`Heirline.nvim`](https://github.com/rebelot/heirline.nvim). This provides us with a much more powerful way to provide custom statusline and winbar support to AstroNvim. This has also come with a new module `astronvim.status` that will provide many building blocks for creating custom statuslines for users if they want to modify the default bar. We have also provided new documentation for this at [Recipes/Customizing Statusline](../Recipes/status)

@@ -453,15 +453,6 @@ heirline = {
 },
 ```
 
-## Cinnamon
-
-```lua
-cinnamon = {
-  extra_keymaps = true,
-  extended_keymaps = true,
-},
-```
-
 ## Neo-Tree
 
 ```lua
