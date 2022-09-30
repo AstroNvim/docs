@@ -20,9 +20,9 @@ return {
           return false
         end
 
-        -- disable prettier for javascript files
-        if client.name == "prettier" and vim.bo.filetype == "javascript" then
-          return false
+        -- only enable null-ls for javascript files
+        if vim.bo.filetype == "javascript" then
+          return client.name == "null-ls"
         end
 
         -- enable all other clients
@@ -60,9 +60,9 @@ return {
     formatting = {
       disabled = { "sumneko_lua" },
       filter = function(client)
-        -- disable prettier for javascript files
-        if client.name == "prettier" and vim.bo.filetype == "javascript" then
-          return false
+        -- only enable null-ls for javascript files
+        if vim.bo.filetype == "javascript" then
+          return client.name == "null-ls"
         end
 
         -- enable all other clients
