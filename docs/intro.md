@@ -91,7 +91,7 @@ If you want to try AstroNvim before installing you can user the following Docker
 
 ```sh
 docker run -w /root -it --rm alpine:edge sh -uelic '
-  apk add git nodejs lazygit ncdu htop python3 neovim ripgrep alpine-sdk --update
+  apk add git nodejs npm lazygit ncdu htop python3 neovim ripgrep alpine-sdk --update
   git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
   # Uncomment the line below and replace the link with your user config repo to load a user config
   # git clone https://github.com/username/AstroNvim_user ~/.config/nvim/lua/user
