@@ -5,7 +5,13 @@ title: Migration to v2.0
 
 # Migrating from v1.x to v2.0
 
-- **Updater changes** Stable AstroNvim is now the default behavior of installing AstroNvim without any user configuration. This will mean slower updates as well as pinning provided plugins to protect against breaking changes. You can opt into the `nightly` update channel through  your user configuration with the `updater` table. We have also enabled automatically syncing plugins and quitting AstroNvim on a successful update which will then require a relaunch to start using the new update as quickly as possible. All of these options can also be configured in the `updater` configuration table. If you want to achieve the previous update behavior of AstroNvim, you can put the following `updater` settings in your user configuration:
+:::danger
+
+AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features. Please refer to the Neovim v0.8 changelog and review the breaking changes to see if any of the Lua that you have in your user configuration for AstroNvim needs to be updated to follow the new APIs as well.
+
+:::
+
+- **Updater changes:** Stable AstroNvim is now the default behavior of installing AstroNvim without any user configuration. This will mean slower updates as well as pinning provided plugins to protect against breaking changes. You can opt into the `nightly` update channel through  your user configuration with the `updater` table. We have also enabled automatically syncing plugins and quitting AstroNvim on a successful update which will then require a relaunch to start using the new update as quickly as possible. All of these options can also be configured in the `updater` configuration table. If you want to achieve the previous update behavior of AstroNvim, you can put the following `updater` settings in your user configuration:
   ```lua
   updater = {
     -- get nightly updates
@@ -18,6 +24,8 @@ title: Migration to v2.0
   ```
 
 - We have also deprected the configuration item `plugins.nvim-lsp-installer` as we have since moved to `mason-lspconfig`. if you have `nvim-lsp-installer` configuration in your `user/init.lua` file or the file `user/plugins/nvim-lsp-installer.lua`, this should be replaced with `mason-lspconfig`.
+
+- Formatting has been greatly improved with Neovim v0.8 that doesn't require users to disable formatting capabilities for any LSP clients. It allows for filtering of clients that have formatting enabled as well as formatting with multiple language servers without having to select a specific one to use. We have added a new `lsp.formatting` option to the user configuration that allow users to easily control the filter function and disable language servers more easily. If you are disabling formatting capabilities of any LSP clients in your `lsp.sever-settings` configuration, we would recommend that you remove that and try out formatting without disabling anything. If you need to disable formatting for clients, check out the new [LSP Formatting Documentation](../Recipes/advanced_lsp.md#controlling-formatting).
 
 - Format on save is now a default behavior of AstroNvim. We have also combined the `on_attach` for language servers and `null-ls` together. If you are setting up automatic saving in your `plugins.null-ls` table with the `on_attach` function, you can remove this all together. We recommend removing the entire `on_attach` function for `null-ls` and do all the configuration within the `lsp.on_attach` function in your user configuration.
 

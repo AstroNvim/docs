@@ -30,14 +30,11 @@ return {
 
 Another example would be adding a custom `lsp.on_attach` function, this could
 be in a file `lsp/on_attach.lua` that returns a `function(client, bufnr)...end`
-for example, if you wanted to enable document formatting for the `sumneko_lua`
-LSP:
+for example, if you want to run some code when a language server attaches:
 
 ```lua
 return function(client, bufnr)
-  if client.name == "sumneko_lua" then
-    client.server_capabilities.documentFormattingProvider = true
-  end
+  -- run some code when a language server attaches
 end
 ```
 
