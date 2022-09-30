@@ -73,6 +73,30 @@ return {
 }
 ```
 
+#### Configure other formatting options
+
+the `lsp.formatting` option also allows you to specify other parameters for the `vim.lsp.buf.format()` call. Any of the other formatting options are allowed to be used here to be used as the default options. This means being able to easily adjust the default `timeout_ms` for formatting in AstroNvim or making asynchronous formatting the default. For example you can do the following to increase the formatting timeout along with adjust the filtering:
+
+```lua
+return {
+  lsp = {
+    formatting = {
+      timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
+      disabled = { "sumneko_lua" },
+      filter = function(client)
+        -- only enable null-ls for javascript files
+        if vim.bo.filetype == "javascript" then
+          return client.name == "null-ls"
+        end
+
+        -- enable all other clients
+        return true
+      end,
+    },
+  },
+}
+```
+
 ### LSP Setup Without Installer
 
 AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following is a minimal `user/init.lua` file that simply sets up `pyright` language server for a user with `pyright` already available on their system:
