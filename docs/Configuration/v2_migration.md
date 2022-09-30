@@ -23,7 +23,7 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
   }
   ```
 
-- We have also deprected the configuration item `plugins.nvim-lsp-installer` as we have since moved to `mason-lspconfig`. if you have `nvim-lsp-installer` configuration in your `user/init.lua` file or the file `user/plugins/nvim-lsp-installer.lua`, this should be replaced with `mason-lspconfig`.
+- We have also deprecated the configuration item `plugins.nvim-lsp-installer` as we have since moved to `mason-lspconfig`. if you have `nvim-lsp-installer` configuration in your `user/init.lua` file or the file `user/plugins/nvim-lsp-installer.lua`, this should be replaced with `mason-lspconfig`.
 
 - Formatting has been greatly improved with Neovim v0.8 that doesn't require users to disable formatting capabilities for any LSP clients. It allows for filtering of clients that have formatting enabled as well as formatting with multiple language servers without having to select a specific one to use. We have added a new `lsp.formatting` option to the user configuration that allow users to easily control the filter function and disable language servers more easily. If you are disabling formatting capabilities of any LSP clients in your `lsp.server-settings` configuration, we would recommend that you remove that and try out formatting without disabling anything. If you need to disable formatting for clients, check out the new [LSP Formatting Documentation](../Recipes/advanced_lsp.md#controlling-formatting).
 
@@ -80,7 +80,7 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
   | Toggle wrap              | `Space + uw` |
   | Toggle syntax highlight  | `Space + uy` |
 
-- We have deprected the `ui` configuration  table for enabling and disabling using `nui` and `telescope` for `input` and `select` windows. This has been replaced with the plugin `dressing` now that it is back in active development. These features can be controlled with overriding the `dressing` setup with `plugins.dressing` table or the file `user/plugins/dressing.lua`. If you have not disabled any of the `ui` elements then you don't need to add anything. If you have set either of them to false, you will want to add the following to your user configuration:
+- We have deprecated the `ui` configuration  table for enabling and disabling using `nui` and `telescope` for `input` and `select` windows. This has been replaced with the plugin `dressing` now that it is back in active development. These features can be controlled with overriding the `dressing` setup with `plugins.dressing` table or the file `user/plugins/dressing.lua`. If you have not disabled any of the `ui` elements then you don't need to add anything. If you have set either of them to false, you will want to add the following to your user configuration:
 
   - `ui.nui_input = false`, the following should be added to your `user/init.lua` to override the dressing settings:
     ```lua
