@@ -145,17 +145,17 @@ title: Default Mappings
 
 ## UI Mappings
 
-| Action                   | Mappings    |
-| ------------------------ | ----------- |
-| Toggle autopairs         | `Space +ua` |
-| Toggle background        | `Space +ub` |
-| Toggle completion        | `Space +uc` |
-| Toggle color highligts   | `Space +uC` |
-| Toggle diagnostics       | `Space +ud` |
-| Toggle signcolumn        | `Space +ug` |
-| Change indent setting    | `Space +ui` |
-| Change line numbering    | `Space +un` |
-| Toggle spellcheck        | `Space +up` |
-| Toggle URL highlight     | `Space +uu` |
-| Toggle wrap              | `Space +uw` |
-| Toggle syntax highlight  | `Space +uy` | 
+| Action                   | Mappings     |
+| ------------------------ | -----------  |
+| Toggle autopairs         | `Space + ua` |
+| Toggle background        | `Space + ub` |
+| Toggle completion        | `Space + uc` |
+| Toggle color highligts   | `Space + uC` |
+| Toggle diagnostics       | `Space + ud` |
+| Toggle signcolumn        | `Space + ug` |
+| Change indent setting    | `Space + ui` |
+| Change line numbering    | `Space + un` |
+| Toggle spellcheck        | `Space + up` |
+| Toggle URL highlight     | `Space + uu` |
+| Toggle wrap              | `Space + uw` |
+| Toggle syntax highlight  | `Space + uy` |
