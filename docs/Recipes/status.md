@@ -244,7 +244,7 @@ return {
   -- add new user interface icon
   icons = {
     VimIcon = "",
-  }
+  },
   -- modify variables used by heirline but not defined in the setup call directly
   heirline = {
     -- define the separators between each section
