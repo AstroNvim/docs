@@ -3,6 +3,22 @@ id: advanced_lsp
 title: Advanced LSP Setup
 ---
 
+### Disable auto-format on save
+
+AstroNvim has made formatting on save part of the default functionality out of the box. If you don't want your code to get auto formatted on save, you can delete the autocommand group by overriding your `on_attach` function in your `lsp` table. Here is a minimal `user/init.lua` file that disables the formatting on save:
+
+```lua
+return {
+  lsp = {
+    on_attach = function(client, bufnr)
+      if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_del_augroup_by_name "auto_format"
+      end
+    end,
+  },
+}
+```
+
 ### Controlling Formatting
 
 Since Neovim v0.8 there have been improvements to how language servers are used for formatting files. Previously Neovim could only use a single language server to format files at a time and would prompt on each format if multiple were available. This led to users disabling formatting capabilities for different language servers and losing that functionality all together for convenience. Now you are able to format with many formatters at the same time and filter them with a function. To empower this, AstroNvim has a configuration option for controlling what formatters are used. This can be done either with a filter function or a list of disabled clients. Here are a couple example `user/init.lua` contents that demonstrate each possibility.
