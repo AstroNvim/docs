@@ -5,25 +5,25 @@ title: Default Mappings
 
 ## General Mappings
 
-| Action                  | Mappings       |
-| ----------------------- | -------------- |
-| Leader key              | `Space`        |
-| Escape key              | `jj`, `jk`     |
-| Resize up               | `Ctrl + Up`    |
-| Resize Down             | `Ctrl + Down`  |
-| Resize Left             | `Ctrl + Left`  |
-| Resize Right            | `Ctrl + Right` |
-| Up Window               | `Ctrl + k`     |
-| Down Window             | `Ctrl + j`     |
-| Left Window             | `Ctrl + h`     |
-| Right Window            | `Ctrl + l`     |
-| Force Write             | `Ctrl + s`     |
-| Force Quit              | `Ctrl + q`     |
-| New File                | `Space + fn`   |
-| Close Buffer            | `Space + c`    |
-| Next Buffer             | `Shift + l`    |
-| Previous Buffer         | `Shift + h`    |
-| Comment                 | `Space + /`    |
+| Action          | Mappings       |
+| --------------- | -------------- |
+| Leader key      | `Space`        |
+| Escape key      | `jj`, `jk`     |
+| Resize up       | `Ctrl + Up`    |
+| Resize Down     | `Ctrl + Down`  |
+| Resize Left     | `Ctrl + Left`  |
+| Resize Right    | `Ctrl + Right` |
+| Up Window       | `Ctrl + k`     |
+| Down Window     | `Ctrl + j`     |
+| Left Window     | `Ctrl + h`     |
+| Right Window    | `Ctrl + l`     |
+| Force Write     | `Ctrl + s`     |
+| Force Quit      | `Ctrl + q`     |
+| New File        | `Space + fn`   |
+| Close Buffer    | `Space + c`    |
+| Next Buffer     | `Shift + l`    |
+| Previous Buffer | `Shift + h`    |
+| Comment         | `Space + /`    |
 
 ## Bufferline
 
@@ -58,7 +58,7 @@ title: Default Mappings
 ## Package Management Mappings
 
 | Action            | Mappings     |
-| --------------    | ------------ |
+| ----------------- | ------------ |
 | AstroNvim Updater | `Space + pA` |
 | AstroNvim Version | `Space + pv` |
 | Mason Installer   | `Space + pI` |
@@ -145,17 +145,17 @@ title: Default Mappings
 
 ## UI Mappings
 
-| Action                   | Mappings     |
-| ------------------------ | -----------  |
-| Toggle autopairs         | `Space + ua` |
-| Toggle background        | `Space + ub` |
-| Toggle completion        | `Space + uc` |
-| Toggle color highligts   | `Space + uC` |
-| Toggle diagnostics       | `Space + ud` |
-| Toggle signcolumn        | `Space + ug` |
-| Change indent setting    | `Space + ui` |
-| Change line numbering    | `Space + un` |
-| Toggle spellcheck        | `Space + up` |
-| Toggle URL highlight     | `Space + uu` |
-| Toggle wrap              | `Space + uw` |
-| Toggle syntax highlight  | `Space + uy` |
+| Action                  | Mappings     |
+| ----------------------- | ------------ |
+| Toggle autopairs        | `Space + ua` |
+| Toggle background       | `Space + ub` |
+| Toggle autocompletion   | `Space + uc` |
+| Toggle color highlights | `Space + uC` |
+| Toggle diagnostics      | `Space + ud` |
+| Toggle signcolumn       | `Space + ug` |
+| Change indent setting   | `Space + ui` |
+| Change line numbering   | `Space + un` |
+| Toggle spellcheck       | `Space + up` |
+| Toggle URL highlight    | `Space + uu` |
+| Toggle wrap             | `Space + uw` |
+| Toggle syntax highlight | `Space + uy` |

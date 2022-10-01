@@ -11,7 +11,8 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
 
 :::
 
-- **Updater changes:** Stable AstroNvim is now the default behavior of installing AstroNvim without any user configuration. This will mean slower updates as well as pinning provided plugins to protect against breaking changes. You can opt into the `nightly` update channel through  your user configuration with the `updater` table. We have also enabled automatically syncing plugins and quitting AstroNvim on a successful update which will then require a relaunch to start using the new update as quickly as possible. All of these options can also be configured in the `updater` configuration table. If you want to achieve the previous update behavior of AstroNvim, you can put the following `updater` settings in your user configuration:
+- **Updater changes:** Stable AstroNvim is now the default behavior of installing AstroNvim without any user configuration. This will mean slower updates as well as pinning provided plugins to protect against breaking changes. You can opt into the `nightly` update channel through your user configuration with the `updater` table. We have also enabled automatically syncing plugins and quitting AstroNvim on a successful update which will then require a relaunch to start using the new update as quickly as possible. All of these options can also be configured in the `updater` configuration table. If you want to achieve the previous update behavior of AstroNvim, you can put the following `updater` settings in your user configuration:
+
   ```lua
   updater = {
     -- get nightly updates
@@ -38,6 +39,7 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
 - `which-key.register_mappings` key has been simplified to just `which-key.register`. If you have `register_mappings` table in your `user/init.lua` file then simply rename it to `register`. If you have the file `user/which-key/register_mappings.lua` for your configuration, just simply rename that file to `user/which-key/register.lua`
 
 - `default_theme.diagnostics_style` has been deprecated in favor of the improved `highlights` configuration which allows you to easily override any highlight group for any theme. To achieve the same functionality as the `default_theme.diagnostics_style` you include this in your `user/init.lua` configuration table:
+
   ```lua
   highlights = {
     default_theme = function(highlights)
@@ -51,6 +53,7 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
   ```
 
 - We have removed the default escape bindings for the terminal mode. This caused a lot of frictions with users who wanted to use terminal interfaces within AstroNvim. We have also removed the `<C-\>` binding to toggle the terminal since this conflicted with a very useful default binding. The following are the mappings that were removed just in case anyone wants to add them back:
+
   ```lua
   mappings = {
     n = {
@@ -65,22 +68,22 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
 
 - We have added a new UI menu (`<leader>u`) for quickly toggling UI/UX elements of AstroNvim. Ranging from toggling completion and syntax highlighting to toggling indentation level. Previously `<leader>u` was used by default to toggle underlining URLs, but this has been moved to within the new UI menu. New Mappings:
 
-  | Action                   | Mappings     |
-  | ------------------------ | -----------  |
-  | Toggle autopairs         | `Space + ua` |
-  | Toggle background        | `Space + ub` |
-  | Toggle completion        | `Space + uc` |
-  | Toggle color highligts   | `Space + uC` |
-  | Toggle diagnostics       | `Space + ud` |
-  | Toggle signcolumn        | `Space + ug` |
-  | Change indent setting    | `Space + ui` |
-  | Change line numbering    | `Space + un` |
-  | Toggle spellcheck        | `Space + up` |
-  | Toggle URL highlight     | `Space + uu` |
-  | Toggle wrap              | `Space + uw` |
-  | Toggle syntax highlight  | `Space + uy` |
+  | Action                  | Mappings     |
+  | ----------------------- | ------------ |
+  | Toggle autopairs        | `Space + ua` |
+  | Toggle background       | `Space + ub` |
+  | Toggle autocompletion   | `Space + uc` |
+  | Toggle color highlights | `Space + uC` |
+  | Toggle diagnostics      | `Space + ud` |
+  | Toggle signcolumn       | `Space + ug` |
+  | Change indent setting   | `Space + ui` |
+  | Change line numbering   | `Space + un` |
+  | Toggle spellcheck       | `Space + up` |
+  | Toggle URL highlight    | `Space + uu` |
+  | Toggle wrap             | `Space + uw` |
+  | Toggle syntax highlight | `Space + uy` |
 
-- We have deprecated the `ui` configuration  table for enabling and disabling using `nui` and `telescope` for `input` and `select` windows. This has been replaced with the plugin `dressing` now that it is back in active development. These features can be controlled with overriding the `dressing` setup with `plugins.dressing` table or the file `user/plugins/dressing.lua`. If you have not disabled any of the `ui` elements then you don't need to add anything. If you have set either of them to false, you will want to add the following to your user configuration:
+- We have deprecated the `ui` configuration table for enabling and disabling using `nui` and `telescope` for `input` and `select` windows. This has been replaced with the plugin `dressing` now that it is back in active development. These features can be controlled with overriding the `dressing` setup with `plugins.dressing` table or the file `user/plugins/dressing.lua`. If you have not disabled any of the `ui` elements then you don't need to add anything. If you have set either of them to false, you will want to add the following to your user configuration:
 
   - `ui.nui_input = false`, the following should be added to your `user/init.lua` to override the dressing settings:
     ```lua
