@@ -19,7 +19,7 @@ AstroNvim v1.4.0 has added `stable` and `nightly` update channels. For the time 
 ## ⚡ Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- [Neovim 0.8+ (*Not* including nightly)](https://github.com/neovim/neovim/releases/tag/v0.8.0)
+- [Neovim 0.8 (_Not_ including nightly)](https://github.com/neovim/neovim/releases/tag/v0.8.0)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using)
 - Optional Requirements:
   - [ripgrep](https://github.com/BurntSushi/ripgrep) - live grep telescope search (`<leader>fw`)
