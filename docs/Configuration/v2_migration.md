@@ -38,16 +38,18 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
 
 - `which-key.register_mappings` key has been simplified to just `which-key.register`. If you have `register_mappings` table in your `user/init.lua` file then simply rename it to `register`. If you have the file `user/which-key/register_mappings.lua` for your configuration, just simply rename that file to `user/which-key/register.lua`
 
-- `default_theme.diagnostics_style` has been deprecated in favor of the improved `highlights` configuration which allows you to easily override any highlight group for any theme. To achieve the same functionality as the `default_theme.diagnostics_style` you include this in your `user/init.lua` configuration table:
+- `default_theme.diagnostics_style` has been deprecated in favor of the improved `highlights` configuration table which allows you to easily override any highlight group in the theme before it gets set. To achieve the same functionality as the `default_theme.diagnostics_style` you include this in your `user/init.lua` configuration table:
 
   ```lua
-  highlights = {
-    default_theme = function(highlights)
+  default_theme = {
+    highlights = function(hl)
       -- New approach instead of diagnostic_style
-      highlights.DiagnosticError.italic = true
-      highlights.DiagnosticHint.italic = true
-      highlights.DiagnosticInfo.italic = true
-      highlights.DiagnosticWarn.italic = true
+      hl.DiagnosticError.italic = true
+      hl.DiagnosticHint.italic = true
+      hl.DiagnosticInfo.italic = true
+      hl.DiagnosticWarn.italic = true
+
+      return hl
     end,
   },
   ```
