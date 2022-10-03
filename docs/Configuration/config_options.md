@@ -4,9 +4,10 @@ title: Available User Options
 ---
 
 | `init.lua` table key              | Expected Format                    | Use Case                                                                                                                   | Alternate File Path (in `user/` folder) |
-| --------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------      | --------------------------------------- |
+| --------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `updater`                         | `table` or `function(table)...end` | The configuration for the AstroNvim updater                                                                                | `updater.lua`                           |
 | `colorscheme`                     | `string`                           | The colorscheme to be set                                                                                                  | `colorscheme.lua`                       |
+| `highlights.init`                 | `table` or `function(table)...end` | Custom highlight groups for the all colorschemes                                                                           | `highlights/init.lua`                   |
 | `highlights.<colorscheme>`        | `table` or `function(table)...end` | Custom highlight groups for the specified theme, replace `<colorscheme>` with colorscheme name                             | `highlights/<colorscheme>.lua`          |
 | `options`                         | `table` or `function(table)...end` | The `vim.x.y` variables to be set                                                                                          | `options.lua`                           |
 | `header`                          | table of `string`s                 | The header to be displayed on the Dashboard                                                                                | `header.lua`                            |
