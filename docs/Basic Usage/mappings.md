@@ -122,6 +122,7 @@ title: Default Mappings
 
 | Action                    | Mappings                   |
 | ------------------------- | -------------------------- |
+| Toggle Terminal           | `Ctrl + '`                 |
 | Floating Terminal         | `Space + tf`               |
 | Horizontal Split Terminal | `Space + th`               |
 | Vertical Split Terminal   | `Space + tv`               |

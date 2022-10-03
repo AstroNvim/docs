@@ -54,7 +54,7 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
   },
   ```
 
-- We have removed the default escape bindings for the terminal mode. This caused a lot of frictions with users who wanted to use terminal interfaces within AstroNvim. We have also removed the `<C-\>` binding to toggle the terminal since this conflicted with a very useful default binding. The following are the mappings that were removed just in case anyone wants to add them back:
+- We have removed the default escape bindings for the terminal mode. This caused a lot of frictions with users who wanted to use terminal interfaces within AstroNvim. We have also changed the `<C-\>` binding to be `<C-'>` for toggling the terminal since this conflicted with a very useful default binding. The following are the mappings that were removed just in case anyone wants to add them back:
 
   ```lua
   mappings = {
