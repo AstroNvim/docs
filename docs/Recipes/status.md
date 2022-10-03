@@ -60,8 +60,6 @@ heirline = {
 }
 ```
 
-
-
 ## Using `astronvim.status` Module
 
 AstroNvim provides a module loaded as `astronvim.status` for building components in Heirline for both the statusline and winbar. It has several submodules:
@@ -105,7 +103,7 @@ local component = {
 }
 ```
 
-This will give us  a simple component where the background changes colors with each mode and displays the text of the current mode. If we want to make this component a bit prettier and add surrounding characters, we can use the `astronvim.status.utils.surround` function with our component to do this. This surround method also handles setting the highlight group so we no longer need to set that inside of our component. An example of this would be:
+This will give us a simple component where the background changes colors with each mode and displays the text of the current mode. If we want to make this component a bit prettier and add surrounding characters, we can use the `astronvim.status.utils.surround` function with our component to do this. This surround method also handles setting the highlight group so we no longer need to set that inside of our component. An example of this would be:
 
 ```lua
 local component = {
@@ -230,10 +228,9 @@ return {
 }
 ```
 
-
 ## Replicate NvChad Statusline
 
-NvChad comes with a very specific statusline configuration that a lot of people like, so we figured it would be a nice exercise of the extensibility of our `astronvim.status` API to show how to build that statusline in AstroNvim. *Warning:* This is a fairly complicated example and is meant to be used by people who want it and to demonstrate how much you can customize the statusline.
+NvChad comes with a very specific statusline configuration that a lot of people like, so we figured it would be a nice exercise of the extensibility of our `astronvim.status` API to show how to build that statusline in AstroNvim. _Warning:_ This is a fairly complicated example and is meant to be used by people who want it and to demonstrate how much you can customize the statusline.
 
 ![Screenshot of the NvChad style statusline](/img/recipes/nvchad_statusline.png)
 
@@ -255,7 +252,7 @@ return {
     -- add new colors that can be used by heirline
     colors = {
       blank_bg = "#5c6370",
-      file_bg = "#3e4452",
+      file_info_bg = "#3e4452",
       nav_icon_bg = "#89b06d",
       folder_icon_bg = "#ec5f67",
     },
@@ -288,7 +285,7 @@ return {
           { provider = "" },
           -- define the surrounding separator and colors to be used inside of the component
           -- and the color to the right of the separated out section
-          surround = { separator = "left", color = { main = "blank_bg", right = "file_bg" } },
+          surround = { separator = "left", color = { main = "blank_bg", right = "file_info_bg" } },
         },
         -- add a section for the currently opened file information
         astronvim.status.component.file_info {
@@ -297,7 +294,7 @@ return {
           -- add padding
           padding = { right = 1 },
           -- define the section separator
-          surround = { separator = "left" },
+          surround = { separator = "left", condition = false },
         },
         -- add a component for the current git branch if it exists and use no separator for the sections
         astronvim.status.component.git_branch { surround = { separator = "none" } },
@@ -339,7 +336,7 @@ return {
             file_modified = false,
             file_read_only = false,
             -- use no separator for this part but define a background color
-            surround = { separator = "none", color = "file_bg" },
+            surround = { separator = "none", color = "file_info_bg" },
           },
         },
         -- the final component of the NvChad statusline is the navigation section
@@ -354,7 +351,7 @@ return {
             hl = { fg = "bg" },
             -- use the right separator and define the background color
             -- as well as the color to the left of the separator
-            surround = { separator = "right", color = { main = "nav_icon_bg", left = "file_bg" } },
+            surround = { separator = "right", color = { main = "nav_icon_bg", left = "file_info_bg" } },
           },
           -- add a navigation component and just display the percentage of progress in the file
           astronvim.status.component.nav {
@@ -366,7 +363,7 @@ return {
             -- define the foreground color
             hl = { fg = "nav_icon_bg" },
             -- use no separator and define the background color
-            surround = { separator = "none", color = "file_bg" },
+            surround = { separator = "none", color = "file_info_bg" },
           },
         },
       }
@@ -377,7 +374,7 @@ return {
 
       -- return the final confiuration table
       return config
-    end
+    end,
   },
 }
 ```
