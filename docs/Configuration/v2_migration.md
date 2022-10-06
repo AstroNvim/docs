@@ -26,6 +26,19 @@ AstroNvim requires the migration to Neovim v0.8 to use the new APIs and features
 
 - We have also deprecated the configuration item `plugins.nvim-lsp-installer` as we have since moved to `mason-lspconfig`. if you have `nvim-lsp-installer` configuration in your `user/init.lua` file or the file `user/plugins/nvim-lsp-installer.lua`, this should be replaced with `mason-lspconfig`.
 
+- With the maturity of mason specific plugins `mason-lspconfig` and `mason-null-ls` we are going to remove `mason-tool-installer.nvim` as a provided plugin. `mason-lspconfig` provides a way to automatically install language servers and `mason-null-ls` can automatically install null-ls sources. These plugins also provide functionality for letting us set things up so the tool installer plugin is nearly down to no use. If you use Mason to automatically install debuggers and want to add it back please add this plugin to your `user/init.lua` file in your `plugins.init` table with this:
+
+  ```lua
+  ["WhoIsSethDaniel/mason-tool-installer.nvim"] = {
+    after = "mason.nvim",
+    config = function()
+      require("mason-tool-installer").setup({
+        -- your config for the plugin here
+      })
+    end,
+  },
+  ```
+
 - Formatting has been greatly improved with Neovim v0.8 that doesn't require users to disable formatting capabilities for any LSP clients. It allows for filtering of clients that have formatting enabled as well as formatting with multiple language servers without having to select a specific one to use. We have added a new `lsp.formatting` option to the user configuration that allow users to easily control the filter function and disable language servers more easily. If you are disabling formatting capabilities of any LSP clients in your `lsp.server-settings` configuration, we would recommend that you remove that and try out formatting without disabling anything. If you need to disable formatting for clients, check out the new [LSP Formatting Documentation](../Recipes/advanced_lsp.md#controlling-formatting).
 
 - Format on save is now a default behavior of AstroNvim. We have also combined the `on_attach` for language servers and `null-ls` together. If you are setting up automatic saving in your `plugins.null-ls` table with the `on_attach` function, you can remove this all together. We recommend removing the entire `on_attach` function for `null-ls` and do all the configuration within the `lsp.on_attach` function in your user configuration.
