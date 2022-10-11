@@ -71,7 +71,7 @@ For the complete documentation on this API checkout the [AstroNvim Lua API docs]
 :::
 
 | Module                       | Description                                                                                                                                   |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `astronvim.status.component` | A collection of methods to assist in building entire components. This is the main piece to interact with when building custom statuslines     |
 | `astronvim.status.hl`        | A collection of methods to assist in setting the color of a component                                                                         |
 | `astronvim.status.provider`  | A collection of methods that can be set as Heirline providers                                                                                 |
@@ -152,6 +152,8 @@ return {
         astronvim.status.component.git_diff(),
         astronvim.status.component.diagnostics(),
         astronvim.status.component.fill(),
+        astronvim.status.component.macro_recording(),
+        astronvim.status.component.fill(),
         astronvim.status.component.lsp(),
         astronvim.status.component.treesitter(),
         astronvim.status.component.nav(),
@@ -216,6 +218,8 @@ return {
         astronvim.status.component.file_info(),
         astronvim.status.component.git_diff(),
         astronvim.status.component.diagnostics(),
+        astronvim.status.component.fill(),
+        astronvim.status.component.macro_recording(),
         astronvim.status.component.fill(),
         astronvim.status.component.lsp(),
         astronvim.status.component.treesitter(),
