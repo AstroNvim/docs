@@ -254,12 +254,15 @@ return {
       right = { " ", "" }, -- separator for the right side of the statusline
     },
     -- add new colors that can be used by heirline
-    colors = {
-      blank_bg = "#5c6370",
-      file_info_bg = "#3e4452",
-      nav_icon_bg = "#89b06d",
-      folder_icon_bg = "#ec5f67",
-    },
+    colors = function(hl)
+      -- use helper function to get highlight group properties
+      colors.blank_bg = astronvim.get_hlgroup("Folded").fg
+      colors.file_info_bg = astronvim.get_hlgroup("Visual").bg
+      colors.nav_icon_bg = astronvim.get_hlgroup("String").fg
+      colors.folder_icon_bg = astronvim.get_hlgroup("Error").fg
+      return colors
+    end,
+  },
   },
   plugins = {
     -- override the heirline setup call
