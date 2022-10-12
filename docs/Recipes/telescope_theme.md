@@ -11,30 +11,32 @@ This code snippet makes the default theme telescope look like the default NvChad
 
 ```lua
 return {
-  default_theme = {
-    colors = function(C)
-      C.telescope_green = C.green
-      C.telescope_red = C.red
-      C.telescope_fg = C.fg
-      C.telescope_bg = C.black_1
-      C.telescope_bg_alt = C.bg_1
-      return C
-    end,
-    highlights = function(hl)
-      local C = require "default_theme.colors"
-      hl.TelescopeBorder = { fg = C.telescope_bg_alt, bg = C.telescope_bg }
-      hl.TelescopeNormal = { bg = C.telescope_bg }
-      hl.TelescopePreviewBorder = { fg = C.telescope_bg, bg = C.telescope_bg }
-      hl.TelescopePreviewNormal = { bg = C.telescope_bg }
-      hl.TelescopePreviewTitle = { fg = C.telescope_bg, bg = C.telescope_green }
-      hl.TelescopePromptBorder = { fg = C.telescope_bg_alt, bg = C.telescope_bg_alt }
-      hl.TelescopePromptNormal = { fg = C.telescope_fg, bg = C.telescope_bg_alt }
-      hl.TelescopePromptPrefix = { fg = C.telescope_red, bg = C.telescope_bg_alt }
-      hl.TelescopePromptTitle = { fg = C.telescope_bg, bg = C.telescope_red }
-      hl.TelescopeResultsBorder = { fg = C.telescope_bg, bg = C.telescope_bg }
-      hl.TelescopeResultsNormal = { bg = C.telescope_bg }
-      hl.TelescopeResultsTitle = { fg = C.telescope_bg, bg = C.telescope_bg }
-      return hl
+  highlights = {
+    -- set highlights for all themes
+    -- use a function override to let us use lua to retrieve colors from highlight group
+    -- there is no default table so we don't need to put a parameter for this function
+    init = function()
+      -- get highlights from highlight groups
+      local normal = astronvim.get_hlgroup "Normal"
+      local fg, bg = normal.fg, normal.bg
+      local bg_alt = astronvim.get_hlgroup("Visual").bg
+      local green = astronvim.get_hlgroup("String").fg
+      local red = astronvim.get_hlgroup("Error").fg
+      -- return a table of highlights for telescope based on colors gotten from highlight groups
+      return {
+        TelescopeBorder = { fg = bg_alt, bg = bg },
+        TelescopeNormal = { bg = bg },
+        TelescopePreviewBorder = { fg = bg, bg = bg },
+        TelescopePreviewNormal = { bg = bg },
+        TelescopePreviewTitle = { fg = bg, bg = green },
+        TelescopePromptBorder = { fg = bg_alt, bg = bg_alt },
+        TelescopePromptNormal = { fg = fg, bg = bg_alt },
+        TelescopePromptPrefix = { fg = red, bg = bg_alt },
+        TelescopePromptTitle = { fg = bg, bg = red },
+        TelescopeResultsBorder = { fg = bg, bg = bg },
+        TelescopeResultsNormal = { bg = bg },
+        TelescopeResultsTitle = { fg = bg, bg = bg },
+      }
     end,
   },
 }
