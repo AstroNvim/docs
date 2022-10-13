@@ -5,16 +5,14 @@ title: Advanced LSP Setup
 
 ### Disable auto-format on save
 
-AstroNvim has made formatting on save part of the default functionality out of the box. If you don't want your code to get auto formatted on save, you can delete the autocommand group by overriding your `on_attach` function in your `lsp` table. Here is a minimal `user/init.lua` file that disables the formatting on save:
+AstroNvim has made formatting on save part of the default functionality out of the box. If you don't want your code to get auto formatted on save, you can disable it in your `lsp.formatting` table. Here is a minimal `user/init.lua` file that disables the formatting on save:
 
 ```lua
 return {
   lsp = {
-    on_attach = function(client, bufnr)
-      if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_del_augroup_by_name "auto_format"
-      end
-    end,
+    formatting = {
+      format_on_save = false, -- enable or disable automatic formatting on save
+    },
   },
 }
 ```
