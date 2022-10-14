@@ -3,7 +3,7 @@ id: advanced_lsp
 title: Advanced LSP Setup
 ---
 
-### Disable auto-format on save
+### Customizing auto-format on save
 
 AstroNvim has made formatting on save part of the default functionality out of the box. If you don't want your code to get auto formatted on save, you can disable it in your `lsp.formatting` table. Here is a minimal `user/init.lua` file that disables the formatting on save:
 
@@ -16,6 +16,26 @@ return {
   },
 }
 ```
+
+We have also added an extension to just `true` or `false` for this option to give more the user the ability to disable the auto formatting for specific filetypes. For example:
+
+```lua
+return {
+  lsp = {
+    formatting = {
+      format_on_save = {
+        enabled = true, -- enable format on save
+        ignore_filetypes = { -- disable format on save for specified filetypes
+          "markdown",
+          "python",
+        }
+      },
+    },
+  },
+}
+```
+
+With the formatting on save enabled, we have also provided the mapping `<leader>uf` to toggle the auto formatting temporarily along with the variable `vim.g.autoformat_enabled` which allows you to control whether the auto formatter runs on startup initially (_Note:_ Format on save must be enabled in the `lsp.formatting` table for this option and keybinding to do anything).
 
 ### Controlling Formatting
 

@@ -153,6 +153,7 @@ title: Default Mappings
 | Toggle autocompletion   | `Space + uc` |
 | Toggle color highlights | `Space + uC` |
 | Toggle diagnostics      | `Space + ud` |
+| Toggle auto formatting  | `Space + uf` |
 | Toggle signcolumn       | `Space + ug` |
 | Change indent setting   | `Space + ui` |
 | Change line numbering   | `Space + un` |
