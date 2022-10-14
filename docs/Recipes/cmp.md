@@ -255,19 +255,3 @@ return {
   },
 }
 ```
-
-### VS Code Style Icons
-
-If you have the [`codicon.ttf` font](https://github.com/microsoft/vscode-codicons/tree/main/dist) installed then you can easily modify the `lspkind` options in your `user/init.lua` file to match the icons used in VS Code:
-
-```lua
-return {
-  plugins = {
-    lspkind = function(config)
-      config.preset = "codicons"
-      config.symbol_map = nil
-      return config
-    end,
-  },
-}
-```
