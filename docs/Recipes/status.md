@@ -263,7 +263,6 @@ return {
       return colors
     end,
   },
-  },
   plugins = {
     -- override the heirline setup call
     heirline = function(config)
