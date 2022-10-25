@@ -10,7 +10,7 @@ To toggle file explorer you need to press `Space` + `e`
 
 ### Opening terminal
 
-To toggle terminal you need to press `Ctrl` + `\`
+To toggle terminal you need to press `F7`
 
 ### Opening LSP symbols
 
