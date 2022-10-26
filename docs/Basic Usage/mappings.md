@@ -91,7 +91,6 @@ title: Default Mappings
 | Definition           | `gd`               |
 | Implementation       | `gI`               |
 | References           | `gr`               |
-| Symbol Outline       | `Space + lS`       |
 
 ## Telescope Mappings
 
