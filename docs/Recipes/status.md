@@ -181,7 +181,7 @@ return {
         -- if the window is not currently active, show the file information
         {
           astronvim.status.component.file_info {
-            file_icon = { highlight = false },
+            file_icon = { hl = false },
             hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
             surround = false,
           },
@@ -296,7 +296,7 @@ return {
         -- add a section for the currently opened file information
         astronvim.status.component.file_info {
           -- enable the file_icon and disable the highlighting based on filetype
-          file_icon = { highlight = false, padding = { left = 0 } },
+          file_icon = { hl = false, padding = { left = 0 } },
           -- add padding
           padding = { right = 1 },
           -- define the section separator

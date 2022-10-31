@@ -8,9 +8,11 @@ title: Custom VS Code Style Snippets
 ```lua
 return {
   luasnip = {
-    vscode_snippet_paths = {
-      "./lua/user/snippets",
-    },
+    vscode = {
+      paths = {
+        "./lua/user/snippets",
+      },
+    } ,
   },
 }
 ```
