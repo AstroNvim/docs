@@ -93,6 +93,8 @@ const oneDarkTheme = {
   ],
 };
 
+const socials = require("./socials");
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "AstroNvim",
@@ -150,10 +152,7 @@ const config = {
             type: "docsVersionDropdown",
             position: "left",
           },
-          {
-            href: "https://github.com/AstroNvim/AstroNvim",
-            position: "right",
-          },
+          ...socials,
         ],
       },
       prism: {

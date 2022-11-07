@@ -24,20 +24,22 @@
   font-size: 1.75rem;
 }
 
-.navbar__item.navbar__link[href*="github"] {
-  padding: 0 1.5rem 0 0;
+.social {
   display: flex;
-  font-size: 0;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+}
+.social path {
+  fill: var(--ifm-color-primary-contrast-foreground);
 }
 
-.navbar__item.navbar__link[href*="github"]:before {
-  content: "";
-  width: 1.5rem;
-  height: 1.5rem;
-  background-image: url("/img/brand-github.svg");
-  background-repeat: no-repeat;
+.social:hover path {
+  fill: var(--ifm-color-primary);
 }
 
-html[data-theme="dark"] .navbar__item.navbar__link[href*="github"]:before {
-  background-image: url("/img/brand-github-inverted.svg");
+@media screen and (max-width: 996px) {
+  .social {
+    display: none;
+  }
 }
