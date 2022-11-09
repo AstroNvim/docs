@@ -20,8 +20,8 @@ import TabItem from '@theme/TabItem';
 - Optional Requirements:
   - [ripgrep](https://github.com/BurntSushi/ripgrep) - live grep telescope search (`<leader>fw`)
   - [lazygit](https://github.com/jesseduffield/lazygit) - git ui toggle terminal (`<leader>tl` or `<leader>gg`)
-  - [NCDU](https://dev.yorhel.nl/ncdu) - disk usage toggle terminal (`<leader>tu`)
-  - [Htop](https://htop.dev/) - process viewer toggle terminal (`<leader>tt`)
+  - [go DiskUsage()](https://github.com/dundee/gdu) - disk usage toggle terminal (`<leader>tu`)
+  - [bottom](https://github.com/ClementTsang/bottom) - process viewer toggle terminal (`<leader>tt`)
   - [Python](https://www.python.org/) - python repl toggle terminal (`<leader>tp`)
   - [Node](https://nodejs.org/en/) - node repl toggle terminal (`<leader>tn`)
 
@@ -87,7 +87,7 @@ If you want to try AstroNvim before installing you can user the following Docker
 
 ```sh
 docker run -w /root -it --rm alpine:edge sh -uelic '
-  apk add git nodejs npm lazygit ncdu htop python3 neovim ripgrep alpine-sdk --update
+  apk add git nodejs npm lazygit gdu btm python3 neovim ripgrep alpine-sdk --update
   git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
   # Uncomment the line below and replace the link with your user config repo to load a user config
   # git clone https://github.com/username/AstroNvim_user ~/.config/nvim/lua/user

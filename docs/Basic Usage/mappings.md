@@ -127,8 +127,8 @@ title: Default Mappings
 | Vertical Split Terminal   | `Space + tv`               |
 | LazyGit                   | `Space + tl`, `Space + gg` |
 | Node                      | `Space + tn`               |
-| NCDU                      | `Space + tu`               |
-| Htop                      | `Space + tt`               |
+| GDU                       | `Space + tu`               |
+| Btm                       | `Space + tt`               |
 
 ## Git Mappings
 
