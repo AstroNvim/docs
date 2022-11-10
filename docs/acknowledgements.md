@@ -40,6 +40,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Completion Engine          | https://github.com/hrsh7th/nvim-cmp                            |
 | Snippet Completion         | https://github.com/saadparwaiz1/cmp_luasnip                    |
 | Buffer Completion          | https://github.com/hrsh7th/cmp-buffer                          |
+| Command Line Completion    | https://github.com/hrsh7th/cmp-cmdline                         |
 | Path Completion            | https://github.com/hrsh7th/cmp-path                            |
 | LSP Completion             | https://github.com/hrsh7th/nvim-cmp                            |
 | Built-in LSP               | https://github.com/neovim/nvim-lspconfig                       |

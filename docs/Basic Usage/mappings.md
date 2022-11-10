@@ -159,6 +159,7 @@ title: Default Mappings
 | Change line numbering   | `Space + un` |
 | Toggle paste mode       | `Space + up` |
 | Toggle spellcheck       | `Space + us` |
+| Toggle conceal          | `Space + uS` |
 | Toggle tabline          | `Space + ut` |
 | Toggle URL highlight    | `Space + uu` |
 | Toggle wrap             | `Space + uw` |
