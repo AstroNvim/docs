@@ -182,10 +182,11 @@ From my experience, the filetype detection does not work well with our lazy load
 return {
   plugins = {
     init = {
-      -- disable lazy loading for friendly snippets
+      -- Add lazy loading for command line
       -- that triggers the loading of cmp
-      ["rafamadriz/friendly-snippets"] = { event = { nil } },
+      ["hrsh7th/nvim-cmp"] = { keys = { ":", "/", "?" } },
       -- add more custom sources
+      ["hrsh7th/cmp-cmdline"] = { after = "nvim-cmp" },
       {
         "hrsh7th/cmp-emoji",
         after = "nvim-cmp",
@@ -215,6 +216,21 @@ return {
         user_source "buffer",
         user_source "emoji",
       }
+
+      -- configure mappings for cmdline
+      local fallback_func = function(func)
+        return function(fallback)
+          if cmp.visible() then
+            cmp[func]()
+          else
+            fallback()
+          end
+        end
+      end
+      local mappings = cmp.mapping.preset.cmdline {
+        ["<C-j>"] = { c = fallback_func "select_next_item" },
+        ["<C-k>"] = { c = fallback_func "select_prev_item" },
+      }
       local config = {
         -- configure cmp.setup.filetype(filetype, options)
         filetype = {
@@ -230,23 +246,17 @@ return {
           markdown = { sources = prose_sources },
           latex = { sources = prose_sources },
         },
-        -- configure cmp.setup.cmd(source, options)
+        -- configure cmp.setup.cmdline(source, options)
         cmdline = {
           -- first key is the source that you are setting up
-          ["/"] = {
-            -- set up custom mappings
-            mapping = cmp.mapping.preset.cmdline(),
-            -- configure sources normally without getting priority from cmp.source_priority
-            sources = { { name = "buffer" } },
-          },
           [":"] = {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-              user_source "path",
-            }, {
-              { name = "cmdline" },
-            }),
+            -- set up custom mappings
+            mapping = mappings,
+            -- configure sources normally without getting priority from cmp.source_priority
+            sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } })
           },
+          ["/"] = { mapping = mappings, sources = { { name = "buffer" } } },
+          ["?"] = { mapping = mappings, sources = { { name = "buffer" } } },
         },
       }
       -- return config
