@@ -30,7 +30,7 @@ We have provided a default set up for prioritizing different completions for `cm
 
 :::tip
 
-This table is an override table and the example below shows the defaults we have provided, so by listing only one of thse sources with a priority will make the others just assume the default value.
+This table is an override table and the example below shows the defaults we have provided, so by listing only one of these sources with a priority will make the others just assume the default value.
 
 :::
 
@@ -47,7 +47,7 @@ return {
 }
 ```
 
-By changing the number values you can change the priority (higher number == higher preference). These can also be controlled with boolean values for easily disabling a default source. In this case, `true` translates to high priority of 1000 and `false` translates to disabling a source. For example we can do a simple enable for `luasnip` and `nvim_lsp` which puts them both at equal hight priority, make `path` less of a priority, and disable `buffer`:
+By changing the number values you can change the priority (higher number == higher preference). These can also be controlled with boolean values for easily disabling a default source. In this case, `true` translates to high priority of 1000 and `false` translates to disabling a source. For example we can do a simple enable for `luasnip` and `nvim_lsp` which puts them both at equal high priority, make `path` less of a priority, and disable `buffer`:
 
 ```lua
 return {

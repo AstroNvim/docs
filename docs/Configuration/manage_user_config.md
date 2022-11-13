@@ -33,7 +33,7 @@ If you want to keep your user configuration completely separate from the cloned 
 cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
 ```
 
-5. Initlialize AstroNvim (this example is using the unattended installation as described above)
+5. Initialize AstroNvim (this example is using the unattended installation as described above)
 
 ```sh
 nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
