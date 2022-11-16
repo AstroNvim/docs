@@ -184,6 +184,31 @@ return {
 }
 ```
 
+### Custom LSP Definition
+
+`nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can be done completely through `lsp.servers` and `lsp.server-settings` just like setting up servers that are supported by `lspconfig`! For these custom servers, the minimum requirement is setting up a `cmd` in `server-settings`, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
+
+```lua
+return {
+  lsp = {
+    servers = {
+      "prolog_lsp",
+    },
+    ["server-settings"] = {
+      prolog_lsp = {
+        cmd = {"swipl",
+               "-g", "use_module(library(lsp_server)).",
+               "-g", "lsp_server:main",
+               "-t", "halt",
+               "--", "stdio"};
+        filetypes = {"prolog"};
+        root_dir = require("lspconfig.util").root_pattern("pack.pl");
+      }
+    },
+  },
+}
+```
+
 ### LSP Specific Plugins
 
 There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `lsp.skip_setup` table for specifying which language servers to guarantee AstroNvim will not automatically call the `lspconfig` setup for. We also provide a helper function for getting the AstroNvim default server configuration like our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.server-settings`. Here is a couple examples for some common LSP plugins:

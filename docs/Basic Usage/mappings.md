@@ -57,17 +57,18 @@ title: Default Mappings
 
 ## Package Management Mappings
 
-| Action            | Mappings     |
-| ----------------- | ------------ |
-| AstroNvim Updater | `Space + pA` |
-| AstroNvim Version | `Space + pv` |
-| Mason Installer   | `Space + pI` |
-| Mason Updater     | `Space + pU` |
-| Packer Compile    | `Space + pc` |
-| Packer Install    | `Space + pi` |
-| Packer Status     | `Space + pS` |
-| Packer Sync       | `Space + ps` |
-| Packer Update     | `Space + pu` |
+| Action                    | Mappings     |
+| ------------------------- | ------------ |
+| AstroNvim Packages Update | `Space + pa` |
+| AstroNvim Updater         | `Space + pA` |
+| AstroNvim Version         | `Space + pv` |
+| Mason Installer           | `Space + pI` |
+| Mason Updater             | `Space + pU` |
+| Packer Compile            | `Space + pc` |
+| Packer Install            | `Space + pi` |
+| Packer Status             | `Space + pS` |
+| Packer Sync               | `Space + ps` |
+| Packer Update             | `Space + pu` |
 
 ## LSP Mappings
 

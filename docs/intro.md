@@ -122,7 +122,11 @@ Run `:PackerSync` to update and clean plugins
 
 #### Update AstroNvim
 
-Run `:AstroUpdate` to get the latest updates from the repository
+Run `:AstroUpdate` (`<leader>pA`) to get the latest updates from the repository
+
+#### Update AstroNvim Packages
+
+Run `:AstroUpdatePackages` (`<leader>pa`) to update both Packer plugins and Mason packages
 
 #### Reload AstroNvim (_EXPERIMENTAL_)
 
