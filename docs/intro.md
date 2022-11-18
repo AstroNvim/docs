@@ -53,7 +53,7 @@ mv ~/.local/share/nvim/site ~/.local/share/nvim/site.bak
 
 ```sh
 git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-nvim +PackerSync
+nvim
 ```
 
 </TabItem>
@@ -76,7 +76,7 @@ Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 
 ```powershell
 git clone https://github.com/AstroNvim/AstroNvim $env:LOCALAPPDATA\nvim
-nvim +PackerSync
+nvim
 ```
 
 </TabItem>
@@ -87,11 +87,11 @@ If you want to try AstroNvim before installing you can user the following Docker
 
 ```sh
 docker run -w /root -it --rm alpine:edge sh -uelic '
-  apk add git nodejs npm lazygit gdu btm python3 neovim ripgrep alpine-sdk --update
+  apk add bash git lua nodejs npm lazygit bottom python3 go neovim ripgrep alpine-sdk --update
   git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
   # Uncomment the line below and replace the link with your user config repo to load a user config
   # git clone https://github.com/username/AstroNvim_user ~/.config/nvim/lua/user
-  nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
+  nvim --headless -c "autocmd User PackerComplete quitall"
   nvim
 '
 ```

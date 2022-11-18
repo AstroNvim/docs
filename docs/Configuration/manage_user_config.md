@@ -36,7 +36,7 @@ cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
 5. Initlialize AstroNvim (this example is using the unattended installation as described above)
 
 ```sh
-nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim  --headless -c 'autocmd User PackerComplete quitall'
 ```
 
 6. Modify the `~/.config/nvim/lua/user` folder and `user/init.lua` file to your liking and push the changes you make to your repository
@@ -60,5 +60,5 @@ git clone https://github.com/username/astronvim_config.git ~/.config/nvim/lua/us
 3. Initialize AstroNvim
 
 ```sh
-nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim  --headless -c 'autocmd User PackerComplete quitall'
 ```
