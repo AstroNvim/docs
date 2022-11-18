@@ -25,7 +25,13 @@ return {
   polish = function()
     local function alpha_on_bye(cmd)
       local bufs = vim.fn.getbufinfo { buflisted = true }
-      vim.cmd(cmd)
+      local wins = vim.fn.winnr "$"
+      if wins > 1 and not bufs[2] then
+        vim.cmd(cmd)
+        vim.cmd [[silent only]]
+      else
+        vim.cmd(cmd)
+      end
       if require("core.utils").is_available "alpha-nvim" and not bufs[2] then
         require("alpha").start(true)
       end
