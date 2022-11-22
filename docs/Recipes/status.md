@@ -245,6 +245,11 @@ return {
   -- add new user interface icon
   icons = {
     VimIcon = "",
+    ScrollText = "",
+    GitBranch = "",
+    GitAdd = "",
+    GitChange = "",
+    GitDelete = "",
   },
   -- modify variables used by heirline but not defined in the setup call directly
   heirline = {
@@ -256,6 +261,11 @@ return {
     -- add new colors that can be used by heirline
     colors = function(hl)
       -- use helper function to get highlight group properties
+      local comment_fg = astronvim.get_hlgroup("Comment").fg
+      hl.git_branch_fg = comment_fg
+      hl.git_added = comment_fg
+      hl.git_changed = comment_fg
+      hl.git_removed = comment_fg
       hl.blank_bg = astronvim.get_hlgroup("Folded").fg
       hl.file_info_bg = astronvim.get_hlgroup("Visual").bg
       hl.nav_icon_bg = astronvim.get_hlgroup("String").fg
@@ -275,7 +285,7 @@ return {
         -- add the vim mode component
         astronvim.status.component.mode {
           -- enable mode text with padding as well as an icon before it
-          mode_text = { icon = { kind = "VimIcon", padding = { right = 1, left = 1 } } },
+          mode_text = { hl = { bold = true }, icon = { kind = "VimIcon", padding = { right = 1, left = 1 } } },
           -- define the highlight color for the text
           hl = { fg = "bg" },
           -- surround the component with a separators
@@ -297,6 +307,7 @@ return {
         astronvim.status.component.file_info {
           -- enable the file_icon and disable the highlighting based on filetype
           file_icon = { hl = false, padding = { left = 0 } },
+          filename = { fallback = "Empty" },
           -- add padding
           padding = { right = 1 },
           -- define the section separator
@@ -336,13 +347,13 @@ return {
           astronvim.status.component.file_info {
             -- we only want filename to be used and we can change the fname
             -- function to get the current working directory name
-            filename = { fname = function() return vim.fn.getcwd() end, padding = { left = 1 } },
+            filename = { fname = function(nr) return vim.fn.getcwd(nr) end, padding = { left = 1 } },
             -- disable all other elements of the file_info component
             file_icon = false,
             file_modified = false,
             file_read_only = false,
             -- use no separator for this part but define a background color
-            surround = { separator = "none", color = "file_info_bg" },
+            surround = { separator = "none", color = "file_info_bg", condition = false },
           },
         },
         -- the final component of the NvChad statusline is the navigation section
@@ -350,7 +361,7 @@ return {
         { -- make nav section with icon border
           -- define a custom component with just a file icon
           astronvim.status.component.builder {
-            { provider = astronvim.get_icon "DefaultFile" },
+            { provider = astronvim.get_icon "ScrollText" },
             -- add padding after icon
             padding = { right = 1 },
             -- set the icon foreground
