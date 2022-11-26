@@ -46,14 +46,14 @@ mv ~/.config/nvim ~/.config/nvim.bak
 #### Clean old plugins (Optional but recommended)
 
 ```sh
-mv ~/.local/share/nvim/site ~/.local/share/nvim/site.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
 ```
 
 #### Clone the repository
 
 ```sh
 git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-nvim
+nvim +PackerSync
 ```
 
 </TabItem>
