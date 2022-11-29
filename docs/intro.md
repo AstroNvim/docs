@@ -83,7 +83,7 @@ nvim
 
 <TabItem value="docker" label="Docker" default>
 
-If you want to try AstroNvim before installing you can user the following Docker command to open a test instance without touching your current Neovim configuration. This also allows you to use `:TSInstall` and `:LspInstall` to load and evaluate language servers and treesitter parsers as well.
+If you want to try AstroNvim before installing you can use the following Docker command to open a test instance without touching your current Neovim configuration. This also allows you to use `:TSInstall` and `:LspInstall` to load and evaluate language servers and treesitter parsers as well.
 
 ```sh
 docker run -w /root -it --rm alpine:edge sh -uelic '
