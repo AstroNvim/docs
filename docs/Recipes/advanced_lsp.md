@@ -239,6 +239,91 @@ return {
 }
 ```
 
+**[deno-nvim](https://github.com/sigmaSd/deno-nvim)**
+
+```lua
+return {
+  lsp = {
+    skip_setup = { "denols" },
+  },
+  plugins = {
+    init = {
+      {
+        "sigmasd/deno-nvim",
+        after = "mason-lspconfig.nvim",
+        config = function()
+          require("deno-nvim").setup {
+            server = astronvim.lsp.server_settings "denols",
+          }
+        end
+      },
+    },
+    ["mason-lspconfig"] = {
+      ensure_installed = { "denols" },
+    },
+  },
+}
+```
+
+**tsserver + denols**
+
+Since both `tsserver` and `denols` (and others such as `eslint` and `prettier`) attach to TypeScript/JavaScript files, some extra configuration may be required if both are installed.
+
+To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, add the following to `lsp.server-settings`:
+
+```lua
+return {
+  lsp = {
+    ["server-settings"] = {
+      denols = {
+        root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+      },
+      tsserver = {
+        root_dir = require("lspconfig.util").root_pattern("package.json"),
+      },
+      -- For eslint:
+      -- eslint = {
+      --   root_dir = require("lspconfig.util").root_pattern("package.json"),
+      -- },
+    },
+  },
+}
+```
+
+For `null-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the following to `mason-null-ls.setup_handlers`:
+
+```lua
+return {
+  ["mason-null-ls"] = {
+    setup_handlers = {
+      prettier = function()
+        require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
+          condition = function(utils)
+            return utils.root_has_file("package.json")
+          end
+        }))
+      end,
+      -- For prettierd:
+      -- prettierd = function()
+      --   require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+      --     condition = function(utils)
+      --       return utils.root_has_file("package.json")
+      --     end
+      --   }))
+      -- end,
+      -- For eslint_d:
+      -- eslint_d = function()
+      --   require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+      --     condition = function(utils)
+      --       return utils.root_has_file("package.json")
+      --     end
+      --   }))
+      -- end,
+    }
+  },
+}
+```
+
 **[clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)**
 
 ```lua
