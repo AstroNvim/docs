@@ -43,10 +43,12 @@ When using default theme: For MacOS, the default terminal does not have true col
 mv ~/.config/nvim ~/.config/nvim.bak
 ```
 
-#### Clean old plugins (Optional but recommended)
+#### Clean neovim folders (Optional but recommended)
 
 ```sh
-mv ~/.local/share/nvim/site ~/.local/share/nvim/site.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 
 #### Clone the repository
