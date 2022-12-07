@@ -52,7 +52,7 @@ return {
 
 ### Automatically Install Debuggers
 
-`mason-nvim-dap` also allows you to automatically install debuggers that you may want. This can be configured in the `plugins.mason-nvim.dap` table like this:
+`mason-nvim-dap` also allows you to automatically install debuggers that you may want. This can be configured in the `plugins.mason-nvim-dap` table like this:
 
 ```lua
 return {
@@ -125,6 +125,22 @@ return {
       -- modify config table if necessary to configure `nvim-dap-ui`
       return config
     end,
+  },
+}
+```
+
+## Enable Plugins on Windows
+
+This does not work out of the box and we cannot provide support for it at the moment, but if you want to enable the plugins on Windows then you can manually enable the `dap` related plugins in your user configuration. Here is an example in `user/init.lua`:
+
+```lua
+return {
+  plugins = {
+    init = {
+      ["mfussenegger/nvim-dap"] = { disable = false },
+      ["rcarriga/nvim-dap-ui"] = { disable = false },
+      ["jayp0521/mason-nvim-dap.nvim"] = { disable = false },
+    },
   },
 }
 ```
