@@ -44,6 +44,10 @@ To go to the definition you need to press `g` + `d`
 
 To use code actions you need to press `Space` + `la`
 
+### Debugging
+
+To use the debugger you can press `Space` + `D` to see the available bindings and options
+
 ### Telescope search
 
 To find files you need to press `Space` + `ff`

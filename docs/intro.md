@@ -116,6 +116,11 @@ Enter `:TSInstall` followed by the name of the language you want to install
 
 > Example: `:TSInstall python`
 
+#### Install Debugger
+
+Enter `:DapInstall` followed by the name of the debugger you want to install<br>
+Example: `:DapInstall python`
+
 #### Manage plugins
 
 Run `:PackerClean` to remove any disabled or unused plugins
