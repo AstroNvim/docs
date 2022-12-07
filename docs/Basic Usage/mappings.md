@@ -93,6 +93,24 @@ title: Default Mappings
 | Implementation       | `gI`               |
 | References           | `gr`               |
 
+## Debugger Mappings
+
+| Action                  | Mappings                  |
+| ----------------------- | ------------------------- |
+| Start/Continue Debugger | `Space + Dc` or `<F5>`    |
+| Pause Debugger          | `Space + Dp` or `<F6>`    |
+| Restart Debugger        | `Space + Dr` or `<C-F5>`  |
+| Close Debugger Session  | `Space + Dq`              |
+| Terminate Debugger      | `Space + DQ` or `<S-F5>`  |
+| Toggle Breakpoint       | `Space + Db` or `<F9>`    |
+| Clear Breakpoints       | `Space + DB`              |
+| Step Over               | `Space + Do` or `<F10>`   |
+| Step Into               | `Space + Di` or `<F11>`   |
+| Step Out                | `Space + DO` or `<S-F11>` |
+| Toggle REPL             | `Space + DR`              |
+| Toggle Debugger UI      | `Space + Du`              |
+| Debugger Hover          | `Space + Dh`              |
+
 ## Telescope Mappings
 
 | Action                            | Mappings                   |
