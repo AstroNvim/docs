@@ -186,6 +186,21 @@ comment = {
 },
 ```
 
+## Dressing
+
+```lua
+dressing = {
+  input = {
+    default_prompt = "➤ ",
+    win_options = { winhighlight = "Normal:Normal,NormalNC:Normal" },
+  },
+  select = {
+    backend = { "telescope", "builtin" },
+    builtin = { win_options = { winhighlight = "Normal:Normal,NormalNC:Normal" } },
+  },
+}
+```
+
 ## GitSigns
 
 ```lua
@@ -427,7 +442,7 @@ heirline = {
     astronvim.status.component.git_diff(),
     astronvim.status.component.diagnostics(),
     astronvim.status.component.fill(),
-    astronvim.status.component.macro_recording(),
+    astronvim.status.component.cmd_info(),
     astronvim.status.component.fill(),
     astronvim.status.component.lsp(),
     astronvim.status.component.treesitter(),
@@ -435,22 +450,16 @@ heirline = {
     astronvim.status.component.mode { surround = { separator = "right" } },
   },
   {
-    init = astronvim.status.init.pick_child_on_condition,
-    {
-      condition = function() return astronvim.status.condition.buffer_matches { buftype = { "terminal" } } end,
-      init = function() vim.opt_local.winbar = nil end,
+    fallthrough = false,
+    astronvim.status.component.file_info {
+      condition = function() return not astronvim.status.condition.is_active() end,
+      unique_path = {},
+      file_icon = { hl = false },
+      hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
+      surround = false,
+      update = "BufEnter",
     },
-    {
-      condition = astronvim.status.condition.is_active,
-      astronvim.status.component.breadcrumbs { hl = { fg = "winbar_fg", bg = "winbar_bg" } },
-    },
-    {
-      astronvim.status.component.file_info {
-        file_icon = { highlight = false },
-        hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
-        surround = false,
-      },
-    },
+    astronvim.status.component.breadcrumbs { hl = { fg = "winbar_fg", bg = "winbar_bg" } },
   },
 },
 ```
