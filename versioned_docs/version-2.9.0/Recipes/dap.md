@@ -19,7 +19,7 @@ Configuring `nvim-dap` can be very manual and require deep knowledge of the debu
 
 ## Installing Debuggers With Mason
 
-By default there are a few debuggers that can be automatically installed and configured just through Mason (with the help of [`mason-nvim-dap`](https://github.com/jay-babu/mason-nvim-dap.nvim)). This can be done using either the `:DapInnstall` command or through the Mason UI with `:Mason`. For details on configuring `mason-nvim-dap` as well as which debuggers are supported, please check their `README` and documentation. It provides a function for setting up custom handlers for when a recognizable debugger is installed, this can be configured with the `mason-nvim-dap.setup_handlers` table (or `user/mason-nvim-dap/setup_handlers.lua` file) like this:
+By default there are a few debuggers that can be automatically installed and configured just through Mason (with the help of [`mason-nvim-dap`](https://github.com/jay-babu/mason-nvim-dap.nvim)). This can be done using either the `:DapInstall` command or through the Mason UI with `:Mason`. For details on configuring `mason-nvim-dap` as well as which debuggers are supported, please check their `README` and documentation. It provides a function for setting up custom handlers for when a recognizable debugger is installed, this can be configured with the `mason-nvim-dap.setup_handlers` table (or `user/mason-nvim-dap/setup_handlers.lua` file) like this:
 
 ```lua
 return {
