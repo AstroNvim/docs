@@ -15,11 +15,15 @@ We have provided a couple recipes below for common use cases that can be copy/pa
 
 ## Basic Options
 
-There are some basic options that we have exposed outside of the `plugins.heirline` table for overriding the Heirline `setup(...)` function. These options are used to easily change the colors of sections and the separators used for sections. These would be in a top level `heirline` table in your `user/init.lua` file or split up into files `heirline/colors.lua` and `heirline/separators.lua` in your `user/` folder.
+There are some basic options that we have exposed outside of the `plugins.heirline` table for overriding the Heirline `setup(...)` function. These options are used to easily change the colors of sections and the separators used for sections. These would be in a top level `heirline` table in your `user/init.lua` file or split up into files `heirline/separators.lua`, `heirline/colors.lua`, `heirline/attributes.lua`, and `heirline/icon_highlights.lua` in your `user/` folder.
 
 - `heirline.separators` provides an easy way to change the character that surrounds your statusline components. The key is the side of the component and the two characters are the characters to be put on the left and right of the component respectively.
 
 - `heirline.colors` provides an easy way to override the color of each component that we provide in the statusline. We have provided the default options for these which are derived from the current theme that is loaded. The values that we show are the highlight group name and the property that they are using. If you are curious how these values are evaluated, please check out the source code in `lus/configs/heirline.lua`. Also we set values for `git_branch_fg` and `treesitter_fg` correspond to the names of components in `astronvim.status.component`. Any component can be given a color here followed by `_fg` and `_bg` to control the foreground and background colors. If a value is not provided then it defaults to `section_fg` and `section_bg`. We don't use custom colors for the other sections by default which is why only `git_branch_fg` and `treesitter_fg` are set.
+
+- `heirline.attributes` provides an easy way to override the highlight attributes for each component that we provide in the `status` API. The available options here can be found with `:h attr-list`. Similar to the `heirline.colors` table, we have set the key values corresponding to the names of the components in `astronvim.status.component` Any component can be given attributes.
+
+- `heirline.icon_highlights` lets you easily control when breadcrumbs and filetype icons should be dynamically or statically colored. By default, LSP breadcrumbs have highlighting disabled and the filetype icon is colored in the statusline, colored for active and visible buffers in the tabline, and disabled in the winbar. These values can either be `true` or `false` to enable/disable them always, or a function where the first component is the Heirline component for doing dynamic changing when to color the icon.
 
 Default Options:
 
@@ -30,7 +34,8 @@ heirline = {
     left = { "", "  " },
     right = { "  ", "" },
     center = { "  ", "  " },
-  }
+    tab = { "", " " },
+  },
   colors = {
     fg = StatusLine.fg,
     bg = StatusLine.bg,
@@ -46,16 +51,55 @@ heirline = {
     diag_WARN = DiagnosticWarn.fg,
     diag_INFO = DiagnosticInfo.fg,
     diag_HINT = DiagnosticHint.fg,
+    winbar_fg = WinBar.fg,
+    winbar_bg = WinBar.bg,
+    winbarnc_fg = WinBarNC.fg,
+    winbarnc_bg = WinBarNC.bg,
+    tabline_bg = StatusLine.bg,
+    tabline_fg = StatusLine.bg,
+    buffer_fg = Comment.fg,
+    buffer_path_fg = WinBarNC.fg,
+    buffer_close_fg = Comment.fg,
+    buffer_bg = StatusLine.bg,
+    buffer_active_fg = Normal.fg,
+    buffer_active_path_fg = WinBarNC.fg,
+    buffer_active_close_fg = Error.fg,
+    buffer_active_bg = Normal.bg,
+    buffer_visible_fg = Normal.fg,
+    buffer_visible_path_fg = WinBarNC.fg,
+    buffer_visible_close_fg = Error.fg,
+    buffer_visible_bg = Normal.bg,
+    buffer_overflow_fg = Comment.fg,
+    buffer_overflow_bg = StatusLine.bg,
+    buffer_picker_fg = Error.fg,
+    tab_close_fg = Error.fg,
+    tab_close_bg = StatusLine.bg,
+    tab_fg = TabLine.fg,
+    tab_bg = TabLine.bg,
+    tab_active_fg = TabLineSel.fg,
+    tab_active_bg = TabLineSel.bg,
+    inactive = HeirlineInactive.fg,
     normal = HeirlineNormal.fg,
     insert = HeirlineInsert.fg,
     visual = HeirlineVisual.fg,
     replace = HeirlineReplace.fg,
     command = HeirlineCommand.fg,
-    inactive = HeirlineInactive.fg,
-    winbar_fg = WinBar.fg,
-    winbar_bg = WinBar.bg,
-    winbarnc_fg = WinBarNC.fg,
-    winbarnc_bg = WinBarNC.bg,
+    terminal = HeirlineTerminal.fg,
+  },
+  attributes = {
+    buffer_active = { bold = true, italic = true },
+    buffer_picker = { bold = true },
+    macro_recording = { bold = true },
+    git_branch = { bold = true },
+    git_diff = { bold = true },
+  }
+  icon_highlights = {
+    breadcrumbs = false,
+    file_icon = {
+      tabline = function(self) return self.is_active or self.is_visible end,
+      statusline = true,
+      winbar = false,
+    },
   }
 }
 ```
@@ -79,6 +123,7 @@ For the complete documentation on this API checkout the [AstroNvim Lua API docs]
 | `astronvim.status.init`      | A collection of methods that can be set as Heirline init functions for building components with dynamic subcomponents such as LSP breadcrumbs |
 | `astronvim.status.utils`     | A collection of miscellaneous helper functions that `astronvim.status` uses such as surroundig components and getting buffers                 |
 | `astronvim.status.env`       | A place to store globally accessible variables such as separators, mode text, etc.                                                            |
+| `astronvim.status.heirline`  | A collection of tools specific for Heirline as well as a few aliases for easily interfacing with Heirline utilities                           |
 
 Heirline is built through building up components in a nested way, where each component either has it's own sub components or a provider to tell what content should be displayed. For a detailed description on the basic concepts of configuring Heirline, please check out their extremely well written [cookbook](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md).
 
@@ -133,6 +178,22 @@ local component = astronvim.status.component.mode({
 })
 ```
 
+## Heirline Based Bufferline
+
+AstroNvim now has a Heirline based bufferline implementation that uses our `astronvim.status` API for creating a highly performant and customizable bufferline. This will be made default with AstroNvim v3 (whenever that ends up being), but in the mean time we have included an option that will allow users to opt into using this feature early. This can be easily toggled in the `options` table like this:
+
+```lua
+return {
+  options = {
+    g = {
+      heirline_bufferline = true
+    }
+  }
+}
+```
+
+After setting the `vim.g.heirline_bufferline` variable to `true`, you will need to restart and run `:PackerSync` to fully remove the `bufferline.nvim` plugin and start using the new and improved bufferline.
+
 ## Default Heirline Configuration
 
 This is a code block that redefines the default statusline and winbar that are used in AstroNvim inside of the user configuration file for reference and a starting point to make modifications:
@@ -147,12 +208,14 @@ return {
         astronvim.status.component.mode(),
         astronvim.status.component.git_branch(),
         astronvim.status.component.file_info(
-          astronvim.is_available "bufferline.nvim" and { filetype = {}, filename = false, file_modified = false } or nil
+          (astronvim.is_available "bufferline.nvim" or vim.g.heirline_bufferline)
+              and { filetype = {}, filename = false, file_modified = false }
+            or nil
         ),
         astronvim.status.component.git_diff(),
         astronvim.status.component.diagnostics(),
         astronvim.status.component.fill(),
-        astronvim.status.component.macro_recording(),
+        astronvim.status.component.cmd_info(),
         astronvim.status.component.fill(),
         astronvim.status.component.lsp(),
         astronvim.status.component.treesitter(),
@@ -162,28 +225,72 @@ return {
 
       -- winbar
       config[2] = {
+        static = {
+          -- define static disabled table for winbar
+          disabled = {
+            buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
+            filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
+          },
+        },
+        -- set winbar bufnr
+        init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
         fallthrough = false,
-        -- if the current buffer matches the following buftype or filetype, disable the winbar
+        -- if the buffer matches a disabled buffer, disable winbar
         {
-          condition = function()
-            return astronvim.status.condition.buffer_matches {
-              buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-              filetype = { "NvimTree", "neo-tree", "dashboard", "Outline", "aerial" },
-            }
+          condition = function(self)
+            return vim.opt.diff:get() or astronvim.status.condition.buffer_matches(self.disabled or {})
           end,
           init = function() vim.opt_local.winbar = nil end,
         },
-        -- if the window is currently active, show the breadcrumbs
-        {
-          condition = astronvim.status.condition.is_active,
-          astronvim.status.component.breadcrumbs { hl = { fg = "winbar_fg", bg = "winbar_bg" } },
+        -- use file_info if winbar is in a buffer that is not active
+        astronvim.status.component.file_info {
+          condition = function() return not astronvim.status.condition.is_active() end,
+          unique_path = {},
+          file_icon = { hl = astronvim.status.hl.file_icon "winbar" },
+          file_modified = false,
+          file_read_only = false,
+          hl = astronvim.status.hl.get_attributes("winbarnc", true),
+          surround = false,
+          update = "BufEnter",
         },
-        -- if the window is not currently active, show the file information
+        -- use breadcrumbs if winbar is in a buffer that is active
+        astronvim.status.component.breadcrumbs { hl = astronvim.status.hl.get_attributes("winbar", true) },
+      }
+
+      -- bufferline (only used if vim.g.heirline_bufferline = true)
+      config[3] = {
+        { -- file tree padding
+          condition = function(self)
+            self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
+            return astronvim.status.condition.buffer_matches(
+              { filetype = { "neo%-tree", "NvimTree" } },
+              vim.api.nvim_win_get_buf(self.winid)
+            )
+          end,
+          provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid)) end,
+          hl = { bg = "tabline_bg" },
+        },
+        -- Create a list of components for each buffer using the tabline_file_info component for each buffer
+        astronvim.status.heirline.make_buflist(astronvim.status.component.tabline_file_info()),
+        -- Fill the rest of the tabline with empty space
+        astronvim.status.component.fill { hl = { bg = "tabline_bg" } }, -- fill the rest of the tabline with background color
+        -- tab list
         {
-          astronvim.status.component.file_info {
-            file_icon = { hl = false },
-            hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
-            surround = false,
+          -- if there are more than 1 tab pages, enable this
+          condition = function() return #vim.api.nvim_list_tabpages() >= 2 end,
+          -- Create a list of components for each tab and create a simple component for each
+          astronvim.status.heirline.make_tablist {
+            provider = astronvim.status.provider.tabnr(),
+            -- set the highlight based on the type of tab
+            hl = function(self)
+              return astronvim.status.hl.get_attributes(astronvim.status.heirline.tab_type(self, "tab"), true)
+            end,
+          },
+          -- button to close current tab
+          {
+            provider = astronvim.status.provider.close_button { kind = "TabClose", padding = { left = 1, right = 1 } },
+            hl = astronvim.status.hl.get_attributes("tab_close", true),
+            on_click = { callback = astronvim.close_tab, name = "heirline_tabline_close_tab_callback" },
           },
         },
       }
@@ -219,7 +326,7 @@ return {
         astronvim.status.component.git_diff(),
         astronvim.status.component.diagnostics(),
         astronvim.status.component.fill(),
-        astronvim.status.component.macro_recording(),
+        astronvim.status.component.cmd_info(),
         astronvim.status.component.fill(),
         astronvim.status.component.lsp(),
         astronvim.status.component.treesitter(),
@@ -269,9 +376,18 @@ return {
       hl.blank_bg = astronvim.get_hlgroup("Folded").fg
       hl.file_info_bg = astronvim.get_hlgroup("Visual").bg
       hl.nav_icon_bg = astronvim.get_hlgroup("String").fg
+      hl.nav_fg = hl.nav_icon_bg
       hl.folder_icon_bg = astronvim.get_hlgroup("Error").fg
       return hl
     end,
+    attributes = {
+      mode = { bold = true },
+    },
+    icon_highlights = {
+      file_icon = {
+        statusline = false,
+      },
+    },
   },
   plugins = {
     -- override the heirline setup call
@@ -285,9 +401,7 @@ return {
         -- add the vim mode component
         astronvim.status.component.mode {
           -- enable mode text with padding as well as an icon before it
-          mode_text = { hl = { bold = true }, icon = { kind = "VimIcon", padding = { right = 1, left = 1 } } },
-          -- define the highlight color for the text
-          hl = { fg = "bg" },
+          mode_text = { icon = { kind = "VimIcon", padding = { right = 1, left = 1 } } },
           -- surround the component with a separators
           surround = {
             -- it's a left element, so use the left separator
@@ -306,7 +420,7 @@ return {
         -- add a section for the currently opened file information
         astronvim.status.component.file_info {
           -- enable the file_icon and disable the highlighting based on filetype
-          file_icon = { hl = false, padding = { left = 0 } },
+          file_icon = { padding = { left = 0 } },
           filename = { fallback = "Empty" },
           -- add padding
           padding = { right = 1 },
@@ -373,12 +487,10 @@ return {
           -- add a navigation component and just display the percentage of progress in the file
           astronvim.status.component.nav {
             -- add some padding for the percentage provider
-            percentage = { padding = { left = 1, right = 1 } },
+            percentage = { padding = { right = 1 } },
             -- disable all other providers
             ruler = false,
             scrollbar = false,
-            -- define the foreground color
-            hl = { fg = "nav_icon_bg" },
             -- use no separator and define the background color
             surround = { separator = "none", color = "file_info_bg" },
           },

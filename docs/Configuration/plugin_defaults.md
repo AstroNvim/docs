@@ -5,6 +5,87 @@ title: Default Plugin Configurations
 
 This page documents the default options that are set by AstroNvim for each individual plugin. All of these options would go in the `plugins` table in the `user/init.lua` configuration file.
 
+## Aerial
+
+```lua
+aerial = {
+  close_behavior = "global",
+  backends = { "lsp", "treesitter", "markdown" },
+  min_width = 28,
+  show_guides = true,
+  filter_kind = {
+    "Array",
+    "Boolean",
+    "Class",
+    "Constant",
+    "Constructor",
+    "Enum",
+    "EnumMember",
+    "Event",
+    "Field",
+    "File",
+    "Function",
+    "Interface",
+    "Key",
+    "Method",
+    "Module",
+    "Namespace",
+    "Null",
+    "Number",
+    "Object",
+    "Operator",
+    "Package",
+    "Property",
+    "String",
+    "Struct",
+    "TypeParameter",
+    "Variable",
+  },
+  icons = {
+    Array = "",
+    Boolean = "⊨",
+    Class = "",
+    Constant = "",
+    Constructor = "",
+    Key = "",
+    Function = "",
+    Method = "ƒ",
+    Namespace = "",
+    Null = "NULL",
+    Number = "#",
+    Object = "⦿",
+    Property = "",
+    TypeParameter = "𝙏",
+    Variable = "",
+    Enum = "ℰ",
+    Package = "",
+    EnumMember = "",
+    File = "",
+    Module = "",
+    Field = "",
+    Interface = "ﰮ",
+    String = "𝓐",
+    Struct = "𝓢",
+    Event = "",
+    Operator = "+",
+  },
+  guides = {
+    mid_item = "├ ",
+    last_item = "└ ",
+    nested_top = "│ ",
+    whitespace = "  ",
+  },
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set("n", "{", "<cmd>AerialPrev<cr>", { buffer = bufnr, desc = "Jump backwards in Aerial" })
+    vim.keymap.set("n", "}", "<cmd>AerialNext<cr>", { buffer = bufnr, desc = "Jump forwards in Aerial" })
+    -- Jump up the tree with '[[' or ']]'
+    vim.keymap.set("n", "[[", "<cmd>AerialPrevUp<cr>", { buffer = bufnr, desc = "Jump up and backwards in Aerial" })
+    vim.keymap.set("n", "]]", "<cmd>AerialNextUp<cr>", { buffer = bufnr, desc = "Jump up and forwards in Aerial" })
+  end,
+},
+```
+
 ## Autopairs
 
 ```lua
@@ -258,154 +339,92 @@ gitsigns = {
 },
 ```
 
-## Web Devicons
+## Heirline
 
 ```lua
-["nvim-web-devicons"] = {
-  c = {
-    icon = "",
-    color = colors.c,
-    name = "c",
+heirline = {
+  { -- statusline
+    hl = { fg = "fg", bg = "bg" },
+    astronvim.status.component.mode(),
+    astronvim.status.component.git_branch(),
+    astronvim.status.component.file_info(
+      (astronvim.is_available "bufferline.nvim" or vim.g.heirline_bufferline)
+          and { filetype = {}, filename = false, file_modified = false }
+        or nil
+    ),
+    astronvim.status.component.git_diff(),
+    astronvim.status.component.diagnostics(),
+    astronvim.status.component.fill(),
+    astronvim.status.component.cmd_info(),
+    astronvim.status.component.fill(),
+    astronvim.status.component.lsp(),
+    astronvim.status.component.treesitter(),
+    astronvim.status.component.nav(),
+    astronvim.status.component.mode { surround = { separator = "right" } },
   },
-  css = {
-    icon = "",
-    color = colors.css,
-    name = "css",
+  { -- winbar
+    static = {
+      disabled = {
+        buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
+        filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
+      },
+    },
+    init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
+    fallthrough = false,
+    { -- disable winbar for some buffer and file types
+      condition = function(self)
+        return vim.opt.diff:get() or astronvim.status.condition.buffer_matches(self.disabled or {})
+      end,
+      init = function() vim.opt_local.winbar = nil end,
+    },
+    -- inactive buffer winbar
+    astronvim.status.component.file_info {
+      condition = function() return not astronvim.status.condition.is_active() end,
+      unique_path = {},
+      file_icon = { hl = astronvim.status.hl.file_icon "winbar" },
+      file_modified = false,
+      file_read_only = false,
+      hl = astronvim.status.hl.get_attributes("winbarnc", true),
+      surround = false,
+      update = "BufEnter",
+    },
+    -- active buffer winbar
+    astronvim.status.component.breadcrumbs { hl = astronvim.status.hl.get_attributes("winbar", true) },
   },
-  deb = {
-    icon = "",
-    color = colors.deb,
-    name = "deb",
-  },
-  Dockerfile = {
-    icon = "",
-    color = colors.docker,
-    name = "Dockerfile",
-  },
-  html = {
-    icon = "",
-    color = colors.html,
-    name = "html",
-  },
-  js = {
-    icon = "",
-    color = colors.js,
-    name = "js",
-  },
-  kt = {
-    icon = "󱈙",
-    color = colors.kt,
-    name = "kt",
-  },
-  lock = {
-    icon = "",
-    color = colors.lock,
-    name = "lock",
-  },
-  lua = {
-    icon = "",
-    color = colors.lua,
-    name = "lua",
-  },
-  mp3 = {
-    icon = "",
-    color = colors.mp3,
-    name = "mp3",
-  },
-  mp4 = {
-    icon = "",
-    color = colors.mp4,
-    name = "mp4",
-  },
-  out = {
-    icon = "",
-    color = colors.out,
-    name = "out",
-  },
-  py = {
-    icon = "",
-    color = colors.py,
-    name = "py",
-  },
-  ["robots.txt"] = {
-    icon = "ﮧ",
-    color = colors.robot,
-    name = "robots",
-  },
-  toml = {
-    icon = "",
-    color = colors.toml,
-    name = "toml",
-  },
-  ts = {
-    icon = "",
-    color = colors.ts,
-    name = "ts",
-  },
-  ttf = {
-    icon = "",
-    color = colors.ttf,
-    name = "TrueTypeFont",
-  },
-  rb = {
-    icon = "",
-    color = colors.rb,
-    name = "rb",
-  },
-  rpm = {
-    icon = "",
-    color = colors.rpm,
-    name = "rpm",
-  },
-  vue = {
-    icon = "﵂",
-    color = colors.vue,
-    name = "vue",
-  },
-  woff = {
-    icon = "",
-    color = colors.woff,
-    name = "WebOpenFontFormat",
-  },
-  woff2 = {
-    icon = "",
-    color = colors.woff2,
-    name = "WebOpenFontFormat2",
-  },
-  xz = {
-    icon = "",
-    color = colors.zip,
-    name = "xz",
-  },
-  zip = {
-    icon = "",
-    color = colors.zip,
-    name = "zip",
-  },
-  jsx = {
-    icon = "ﰆ",
-    color = colors.jsx,
-    name = "jsx",
-  },
-  rust = {
-    icon = "",
-    color = colors.rs,
-    name = "rs",
-  },
-  jpg = {
-    icon = "",
-    color = colors.jpg,
-    name = "jpg",
-  },
-  png = {
-    icon = "",
-    color = colors.png,
-    name = "png",
-  },
-  jpeg = {
-    icon = "",
-    color = colors.jpeg,
-    name = "jpeg",
+  { -- bufferline
+    { -- file tree padding
+      condition = function(self)
+        self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
+        return astronvim.status.condition.buffer_matches(
+          { filetype = { "neo%-tree", "NvimTree" } },
+          vim.api.nvim_win_get_buf(self.winid)
+        )
+      end,
+      provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid)) end,
+      hl = { bg = "tabline_bg" },
+    },
+    -- component for each buffer tab
+    astronvim.status.heirline.make_buflist(astronvim.status.component.tabline_file_info()),
+    -- fill the rest of the tabline with background color
+    astronvim.status.component.fill { hl = { bg = "tabline_bg" } },
+    -- tab list
+    {
+      -- only show tabs if there are more than one
+      condition = function() return #vim.api.nvim_list_tabpages() >= 2 end,
+      -- create components for each tab page
+      astronvim.status.heirline.make_tablist { -- component for each tab
+        provider = astronvim.status.provider.tabnr(),
+        hl = function(self)
+          return astronvim.status.hl.get_attributes(astronvim.status.heirline.tab_type(self, "tab"), true)
+        end,
+      },
+      -- close button for current tab
+      {
+        provider = astronvim.status.provider.close_button { kind = "TabClose", padding = { left = 1, right = 1 } },
+        hl = astronvim.status.hl.get_attributes("tab_close", true),
+        on_click = { callback = astronvim.close_tab, name = "heirline_tabline_close_tab_callback" },
+      },
+    },
   },
 },
 ```
@@ -425,42 +444,6 @@ indent_blankline = {
 ["indent-o-matic"] = {
   max_lines = 2048,
   standard_widths = { 2, 4, 8 },
-},
-```
-
-## Heirline
-
-```lua
-heirline = {
-  {
-    hl = { fg = "fg", bg = "bg" },
-    astronvim.status.component.mode(),
-    astronvim.status.component.git_branch(),
-    astronvim.status.component.file_info(
-      astronvim.is_available "bufferline.nvim" and { filetype = {}, filename = false, file_modified = false } or nil
-    ),
-    astronvim.status.component.git_diff(),
-    astronvim.status.component.diagnostics(),
-    astronvim.status.component.fill(),
-    astronvim.status.component.cmd_info(),
-    astronvim.status.component.fill(),
-    astronvim.status.component.lsp(),
-    astronvim.status.component.treesitter(),
-    astronvim.status.component.nav(),
-    astronvim.status.component.mode { surround = { separator = "right" } },
-  },
-  {
-    fallthrough = false,
-    astronvim.status.component.file_info {
-      condition = function() return not astronvim.status.condition.is_active() end,
-      unique_path = {},
-      file_icon = { hl = false },
-      hl = { fg = "winbarnc_fg", bg = "winbarnc_bg" },
-      surround = false,
-      update = "BufEnter",
-    },
-    astronvim.status.component.breadcrumbs { hl = { fg = "winbar_fg", bg = "winbar_bg" } },
-  },
 },
 ```
 
@@ -611,87 +594,6 @@ packer = {
   },
   auto_clean = true,
   compile_on_sync = true,
-},
-```
-
-## Aerial
-
-```lua
-aerial = {
-  close_behavior = "global",
-  backends = { "lsp", "treesitter", "markdown" },
-  min_width = 28,
-  show_guides = true,
-  filter_kind = {
-    "Array",
-    "Boolean",
-    "Class",
-    "Constant",
-    "Constructor",
-    "Enum",
-    "EnumMember",
-    "Event",
-    "Field",
-    "File",
-    "Function",
-    "Interface",
-    "Key",
-    "Method",
-    "Module",
-    "Namespace",
-    "Null",
-    "Number",
-    "Object",
-    "Operator",
-    "Package",
-    "Property",
-    "String",
-    "Struct",
-    "TypeParameter",
-    "Variable",
-  },
-  icons = {
-    Array = "",
-    Boolean = "⊨",
-    Class = "",
-    Constant = "",
-    Constructor = "",
-    Key = "",
-    Function = "",
-    Method = "ƒ",
-    Namespace = "",
-    Null = "NULL",
-    Number = "#",
-    Object = "⦿",
-    Property = "",
-    TypeParameter = "𝙏",
-    Variable = "",
-    Enum = "ℰ",
-    Package = "",
-    EnumMember = "",
-    File = "",
-    Module = "",
-    Field = "",
-    Interface = "ﰮ",
-    String = "𝓐",
-    Struct = "𝓢",
-    Event = "",
-    Operator = "+",
-  },
-  guides = {
-    mid_item = "├ ",
-    last_item = "└ ",
-    nested_top = "│ ",
-    whitespace = "  ",
-  },
-  on_attach = function(bufnr)
-    -- Jump forwards/backwards with '{' and '}'
-    vim.keymap.set("n", "{", "<cmd>AerialPrev<cr>", { buffer = bufnr, desc = "Jump backwards in Aerial" })
-    vim.keymap.set("n", "}", "<cmd>AerialNext<cr>", { buffer = bufnr, desc = "Jump forwards in Aerial" })
-    -- Jump up the tree with '[[' or ']]'
-    vim.keymap.set("n", "[[", "<cmd>AerialPrevUp<cr>", { buffer = bufnr, desc = "Jump up and backwards in Aerial" })
-    vim.keymap.set("n", "]]", "<cmd>AerialNextUp<cr>", { buffer = bufnr, desc = "Jump up and forwards in Aerial" })
-  end,
 },
 ```
 
@@ -847,6 +749,158 @@ treesitter = {
   },
   autotag = {
     enable = true,
+  },
+},
+```
+
+## Web Devicons
+
+```lua
+["nvim-web-devicons"] = {
+  c = {
+    icon = "",
+    color = colors.c,
+    name = "c",
+  },
+  css = {
+    icon = "",
+    color = colors.css,
+    name = "css",
+  },
+  deb = {
+    icon = "",
+    color = colors.deb,
+    name = "deb",
+  },
+  Dockerfile = {
+    icon = "",
+    color = colors.docker,
+    name = "Dockerfile",
+  },
+  html = {
+    icon = "",
+    color = colors.html,
+    name = "html",
+  },
+  js = {
+    icon = "",
+    color = colors.js,
+    name = "js",
+  },
+  kt = {
+    icon = "󱈙",
+    color = colors.kt,
+    name = "kt",
+  },
+  lock = {
+    icon = "",
+    color = colors.lock,
+    name = "lock",
+  },
+  lua = {
+    icon = "",
+    color = colors.lua,
+    name = "lua",
+  },
+  mp3 = {
+    icon = "",
+    color = colors.mp3,
+    name = "mp3",
+  },
+  mp4 = {
+    icon = "",
+    color = colors.mp4,
+    name = "mp4",
+  },
+  out = {
+    icon = "",
+    color = colors.out,
+    name = "out",
+  },
+  py = {
+    icon = "",
+    color = colors.py,
+    name = "py",
+  },
+  ["robots.txt"] = {
+    icon = "ﮧ",
+    color = colors.robot,
+    name = "robots",
+  },
+  toml = {
+    icon = "",
+    color = colors.toml,
+    name = "toml",
+  },
+  ts = {
+    icon = "",
+    color = colors.ts,
+    name = "ts",
+  },
+  ttf = {
+    icon = "",
+    color = colors.ttf,
+    name = "TrueTypeFont",
+  },
+  rb = {
+    icon = "",
+    color = colors.rb,
+    name = "rb",
+  },
+  rpm = {
+    icon = "",
+    color = colors.rpm,
+    name = "rpm",
+  },
+  vue = {
+    icon = "﵂",
+    color = colors.vue,
+    name = "vue",
+  },
+  woff = {
+    icon = "",
+    color = colors.woff,
+    name = "WebOpenFontFormat",
+  },
+  woff2 = {
+    icon = "",
+    color = colors.woff2,
+    name = "WebOpenFontFormat2",
+  },
+  xz = {
+    icon = "",
+    color = colors.zip,
+    name = "xz",
+  },
+  zip = {
+    icon = "",
+    color = colors.zip,
+    name = "zip",
+  },
+  jsx = {
+    icon = "ﰆ",
+    color = colors.jsx,
+    name = "jsx",
+  },
+  rust = {
+    icon = "",
+    color = colors.rs,
+    name = "rs",
+  },
+  jpg = {
+    icon = "",
+    color = colors.jpg,
+    name = "jpg",
+  },
+  png = {
+    icon = "",
+    color = colors.png,
+    name = "png",
+  },
+  jpeg = {
+    icon = "",
+    color = colors.jpeg,
+    name = "jpeg",
   },
 },
 ```

@@ -5,32 +5,40 @@ title: Default Mappings
 
 ## General Mappings
 
-| Action          | Mappings       |
-| --------------- | -------------- |
-| Leader key      | `Space`        |
-| Escape key      | `jj`, `jk`     |
-| Resize up       | `Ctrl + Up`    |
-| Resize Down     | `Ctrl + Down`  |
-| Resize Left     | `Ctrl + Left`  |
-| Resize Right    | `Ctrl + Right` |
-| Up Window       | `Ctrl + k`     |
-| Down Window     | `Ctrl + j`     |
-| Left Window     | `Ctrl + h`     |
-| Right Window    | `Ctrl + l`     |
-| Force Write     | `Ctrl + s`     |
-| Force Quit      | `Ctrl + q`     |
-| New File        | `Space + fn`   |
-| Close Buffer    | `Space + c`    |
-| Next Buffer     | `Shift + l`    |
-| Previous Buffer | `Shift + h`    |
-| Comment         | `Space + /`    |
+| Action                      | Mappings            |
+| --------------------------- | ------------------- |
+| Leader key                  | `Space`             |
+| Escape key                  | `jj`, `jk`          |
+| Resize up                   | `Ctrl + Up`         |
+| Resize Down                 | `Ctrl + Down`       |
+| Resize Left                 | `Ctrl + Left`       |
+| Resize Right                | `Ctrl + Right`      |
+| Up Window                   | `Ctrl + k`          |
+| Down Window                 | `Ctrl + j`          |
+| Left Window                 | `Ctrl + h`          |
+| Right Window                | `Ctrl + l`          |
+| Force Write                 | `Ctrl + s`          |
+| Force Quit                  | `Ctrl + q`          |
+| New File                    | `Space + fn`        |
+| Close Buffer                | `Space + c`         |
+| Next Buffer                 | `Shift + l`         |
+| Previous Buffer             | `Shift + h`         |
+| Next Tab (real vim tab)     | `]t`                |
+| Previous Tab (real vim tab) | `[t`                |
+| Comment                     | `Space + /`         |
+| Horizontal Split            | `\`                 |
+| Vertical Split              | <code>&#124;</code> |
 
 ## Bufferline
 
-| Action            | Mappings |
-| ----------------- | -------- |
-| Move Buffer Right | `>b`     |
-| Move Buffer Left  | `<b`     |
+| Action                                                              | Mappings                     |
+| ------------------------------------------------------------------- | ---------------------------- |
+| Move Buffer Right                                                   | `>b`                         |
+| Move Buffer Left                                                    | `<b`                         |
+| Navigate to buffer tab with interactive picker                      | `Space + bb`                 |
+| Delete a buffer tab with interactive picker                         | `Space + bd`                 |
+| Open a buffer tab in a new horizontal split with interactive picker | `Space + b\`                 |
+| Open a buffer tab in a new vertical split with interactive picker   | <code>Space + b&#124;</code> |
 
 ## Neo-Tree
 
@@ -75,6 +83,7 @@ title: Default Mappings
 | Action               | Mappings           |
 | -------------------- | ------------------ |
 | LSP Info             | `Space + li`       |
+| Null-ls Info         | `Space + lI`       |
 | Hover Document       | `Shift + k`        |
 | Format Document      | `Space + lf`       |
 | Symbols Outline      | `Space + lS`       |
