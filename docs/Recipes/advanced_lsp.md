@@ -222,8 +222,7 @@ return {
   },
   plugins = {
     init = {
-      {
-        "jose-elias-alvarez/typescript.nvim",
+      ["jose-elias-alvarez/typescript.nvim"] = {
         after = "mason-lspconfig.nvim",
         config = function()
           require("typescript").setup {
@@ -248,11 +247,10 @@ return {
   },
   plugins = {
     init = {
-      {
-        "sigmasd/deno-nvim",
+      ["sigmasd/deno-nvim"] = {
         after = "mason-lspconfig.nvim",
         config = function()
-          require("deno-nvim").setup {
+        require("deno-nvim").setup {
             server = astronvim.lsp.server_settings "denols",
           }
         end
@@ -340,8 +338,7 @@ return {
   },
   plugins = {
     init = {
-      {
-        "p00f/clangd_extensions.nvim",
+      ["p00f/clangd_extensions.nvim"] = {
         after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
         config = function()
           require("clangd_extensions").setup {
@@ -378,8 +375,7 @@ return {
   },
   plugins = {
     init = {
-      {
-        "akinsho/flutter-tools.nvim",
+      ["akinsho/flutter-tools.nvim"] = {
         requires = "nvim-lua/plenary.nvim",
         after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
         config = function()
@@ -405,8 +401,7 @@ return {
   },
   plugins = {
     init = {
-      {
-        "simrat39/rust-tools.nvim",
+      ["simrat39/rust-tools.nvim"] = {
         after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
         config = function()
           require("rust-tools").setup {
