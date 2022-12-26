@@ -250,7 +250,7 @@ return {
       ["sigmasd/deno-nvim"] = {
         after = "mason-lspconfig.nvim",
         config = function()
-        require("deno-nvim").setup {
+          require("deno-nvim").setup {
             server = astronvim.lsp.server_settings "denols",
           }
         end
