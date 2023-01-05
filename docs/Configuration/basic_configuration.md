@@ -58,15 +58,15 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "default_theme",
+  colorscheme = "astronvim",
 
   -- Override highlight groups in any theme
   highlights = {
     -- duskfox = { -- a table of overrides/changes to the default
     --   Normal = { bg = "#000000" },
     -- },
-    default_theme = function(highlights) -- or a function that returns a new table of colors to set
-      local C = require "default_theme.colors"
+    astronvim = function(highlights) -- or a function that returns a new table of colors to set
+      local C = require "astronvim_theme.colors"
 
       -- New approach instead of diagnostic_style
       highlights.DiagnosticError.italic = true
@@ -114,7 +114,7 @@ local config = {
   },
 
   -- Default theme configuration
-  default_theme = {
+  astronvim_theme = {
     -- Modify the color palette for the default theme
     colors = {
       fg = "#abb2bf",
