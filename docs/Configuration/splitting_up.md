@@ -68,7 +68,7 @@ A heavily modified AstroNvim setup that leverages these separate files could hav
 ```
 user/
 ├── init.lua
-├── default_theme/
+├── astronvim_theme/
 │   ├── init.lua
 │   ├── colors.lua
 │   └── highlights.lua
