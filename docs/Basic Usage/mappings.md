@@ -5,190 +5,191 @@ title: Default Mappings
 
 ## General Mappings
 
-| Action                      | Mappings            |
-| --------------------------- | ------------------- |
-| Leader key                  | `Space`             |
-| Escape key                  | `jj`, `jk`          |
-| Resize up                   | `Ctrl + Up`         |
-| Resize Down                 | `Ctrl + Down`       |
-| Resize Left                 | `Ctrl + Left`       |
-| Resize Right                | `Ctrl + Right`      |
-| Up Window                   | `Ctrl + k`          |
-| Down Window                 | `Ctrl + j`          |
-| Left Window                 | `Ctrl + h`          |
-| Right Window                | `Ctrl + l`          |
-| Force Write                 | `Ctrl + s`          |
-| Force Quit                  | `Ctrl + q`          |
-| New File                    | `Space + fn`        |
-| Close Buffer                | `Space + c`         |
-| Next Buffer                 | `Shift + l`         |
-| Previous Buffer             | `Shift + h`         |
-| Next Tab (real vim tab)     | `]t`                |
-| Previous Tab (real vim tab) | `[t`                |
-| Comment                     | `Space + /`         |
-| Horizontal Split            | `\`                 |
-| Vertical Split              | <code>&#124;</code> |
+| Action                      | Mappings               |
+| --------------------------- | ---------------------- |
+| Leader key                  | `Space`                |
+| Escape key                  | `jj`, `jk`             |
+| Resize up                   | `Ctrl + Up`            |
+| Resize Down                 | `Ctrl + Down`          |
+| Resize Left                 | `Ctrl + Left`          |
+| Resize Right                | `Ctrl + Right`         |
+| Up Window                   | `Ctrl + k`             |
+| Down Window                 | `Ctrl + j`             |
+| Left Window                 | `Ctrl + h`             |
+| Right Window                | `Ctrl + l`             |
+| Force Write                 | `Ctrl + s`             |
+| Force Quit                  | `Ctrl + q`             |
+| New File                    | `<leader> + fn`        |
+| Close Buffer                | `<leader> + c`         |
+| Next Tab (real vim tab)     | `]t`                   |
+| Previous Tab (real vim tab) | `[t`                   |
+| Comment                     | `<leader> + /`         |
+| Horizontal Split            | `\`                    |
+| Vertical Split              | <code>&#124;</code>    |
 
-## Bufferline
+## Buffers
 
-| Action                                                              | Mappings                     |
-| ------------------------------------------------------------------- | ---------------------------- |
-| Move Buffer Right                                                   | `>b`                         |
-| Move Buffer Left                                                    | `<b`                         |
-| Navigate to buffer tab with interactive picker                      | `Space + bb`                 |
-| Delete a buffer tab with interactive picker                         | `Space + bd`                 |
-| Open a buffer tab in a new horizontal split with interactive picker | `Space + b\`                 |
-| Open a buffer tab in a new vertical split with interactive picker   | <code>Space + b&#124;</code> |
+| Action                                                              | Mappings                        |
+| ------------------------------------------------------------------- | ------------------------------- |
+| Next Buffer                                                         | `Shift + l`                     |
+| Previous Buffer                                                     | `Shift + h`                     |
+| Move Buffer Right                                                   | `>b`                            |
+| Move Buffer Left                                                    | `<b`                            |
+| Navigate to buffer tab with interactive picker                      | `<leader> + bb`                 |
+| Delete a buffer tab with interactive picker                         | `<leader> + bd`                 |
+| Open a buffer tab in a new horizontal split with interactive picker | `<leader> + b\`                 |
+| Open a buffer tab in a new vertical split with interactive picker   | <code><leader> + b&#124;</code> |
 
 ## Neo-Tree
 
-| Action         | Mappings    |
-| -------------- | ----------- |
-| Neotree toggle | `Space + e` |
-| Neotree focus  | `Space + o` |
+| Action         | Mappings       |
+| -------------- | -------------- |
+| Neotree toggle | `<leader> + e` |
+| Neotree focus  | `<leader> + o` |
 
 ## Dashboard Mappings
 
-| Action    | Mappings    |
-| --------- | ----------- |
-| Dashboard | `Space + d` |
+| Action           | Mappings       |
+| ---------------- | -------------- |
+| Dashboard (Home) | `<leader> + h` |
 
 ## Session Manager Mappings
 
-| Action                         | Mappings     |
-| ------------------------------ | ------------ |
-| Save Session                   | `Space + Ss` |
-| Last Session                   | `Space + Sl` |
-| Delete Session                 | `Space + Sd` |
-| Search Sessions                | `Space + Sf` |
-| Load Current Directory Session | `Space + S.` |
+| Action                         | Mappings        |
+| ------------------------------ | --------------- |
+| Save Session                   | `<leader> + Ss` |
+| Last Session                   | `<leader> + Sl` |
+| Delete Session                 | `<leader> + Sd` |
+| Search Sessions                | `<leader> + Sf` |
+| Load Current Directory Session | `<leader> + S.` |
 
 ## Package Management Mappings
 
-| Action                    | Mappings     |
-| ------------------------- | ------------ |
-| AstroNvim Packages Update | `Space + pa` |
-| AstroNvim Updater         | `Space + pA` |
-| AstroNvim Version         | `Space + pv` |
-| Mason Installer           | `Space + pI` |
-| Mason Updater             | `Space + pU` |
-| Packer Compile            | `Space + pc` |
-| Packer Install            | `Space + pi` |
-| Packer Status             | `Space + pS` |
-| Packer Sync               | `Space + ps` |
-| Packer Update             | `Space + pu` |
+| Action                    | Mappings        |
+| ------------------------- | --------------- |
+| AstroNvim Packages Update | `<leader> + pa` |
+| AstroNvim Updater         | `<leader> + pA` |
+| AstroNvim Changelog       | `<leader> + pl` |
+| AstroNvim Version         | `<leader> + pv` |
+| Mason Installer           | `<leader> + pm` |
+| Mason Updater             | `<leader> + pM` |
+| Packer Install            | `<leader> + pi` |
+| Plugins Status            | `<leader> + ps` |
+| Plugins Sync              | `<leader> + pS` |
+| Plugins Check for Updates | `<leader> + pu` |
+| Plugins Update            | `<leader> + pU` |
 
 ## LSP Mappings
 
-| Action               | Mappings           |
-| -------------------- | ------------------ |
-| LSP Info             | `Space + li`       |
-| Null-ls Info         | `Space + lI`       |
-| Hover Document       | `Shift + k`        |
-| Format Document      | `Space + lf`       |
-| Symbols Outline      | `Space + lS`       |
-| Line Diagnostics     | `gl`, `Space + ld` |
-| All Diagnostics      | `Space + lD`       |
-| Code Actions         | `Space + la`       |
-| Signature Help       | `Space + lh`       |
-| Rename               | `Space + lr`       |
-| Document Symbols     | `Space + ls`       |
-| Workspace Symbols    | `Space + lG`       |
-| Diagnostic Next      | `]d`               |
-| Diagnostics Previous | `[d`               |
-| Declaration          | `gD`               |
-| Type Definition      | `gT`               |
-| Definition           | `gd`               |
-| Implementation       | `gI`               |
-| References           | `gr`               |
+| Action               | Mappings              |
+| -------------------- | --------------------- |
+| LSP Info             | `<leader> + li`       |
+| Null-ls Info         | `<leader> + lI`       |
+| Hover Document       | `Shift + k`           |
+| Format Document      | `<leader> + lf`       |
+| Symbols Outline      | `<leader> + lS`       |
+| Line Diagnostics     | `gl`, `<leader> + ld` |
+| All Diagnostics      | `<leader> + lD`       |
+| Code Actions         | `<leader> + la`       |
+| Signature Help       | `<leader> + lh`       |
+| Rename               | `<leader> + lr`       |
+| Document Symbols     | `<leader> + ls`       |
+| Workspace Symbols    | `<leader> + lG`       |
+| Diagnostic Next      | `]d`                  |
+| Diagnostics Previous | `[d`                  |
+| Declaration          | `gD`                  |
+| Type Definition      | `gT`                  |
+| Definition           | `gd`                  |
+| Implementation       | `gI`                  |
+| References           | `gr`                  |
 
 ## Debugger Mappings
 
-| Action                  | Mappings                  |
-| ----------------------- | ------------------------- |
-| Start/Continue Debugger | `Space + Dc` or `<F5>`    |
-| Pause Debugger          | `Space + Dp` or `<F6>`    |
-| Restart Debugger        | `Space + Dr` or `<C-F5>`  |
-| Close Debugger Session  | `Space + Dq`              |
-| Terminate Debugger      | `Space + DQ` or `<S-F5>`  |
-| Toggle Breakpoint       | `Space + Db` or `<F9>`    |
-| Clear Breakpoints       | `Space + DB`              |
-| Step Over               | `Space + Do` or `<F10>`   |
-| Step Into               | `Space + Di` or `<F11>`   |
-| Step Out                | `Space + DO` or `<S-F11>` |
-| Toggle REPL             | `Space + DR`              |
-| Toggle Debugger UI      | `Space + Du`              |
-| Debugger Hover          | `Space + Dh`              |
+| Action                  | Mappings                     |
+| ----------------------- | ---------------------------- |
+| Start/Continue Debugger | `<leader> + dc` or `<F5>`    |
+| Pause Debugger          | `<leader> + dp` or `<F6>`    |
+| Restart Debugger        | `<leader> + dr` or `<C-F5>`  |
+| Close Debugger Session  | `<leader> + dq`              |
+| Terminate Debugger      | `<leader> + dQ` or `<S-F5>`  |
+| Toggle Breakpoint       | `<leader> + db` or `<F9>`    |
+| Clear Breakpoints       | `<leader> + dB`              |
+| Step Over               | `<leader> + do` or `<F10>`   |
+| Step Into               | `<leader> + di` or `<F11>`   |
+| Step Out                | `<leader> + dO` or `<S-F11>` |
+| Toggle REPL             | `<leader> + dR`              |
+| Toggle Debugger UI      | `<leader> + du`              |
+| Debugger Hover          | `<leader> + dh`              |
 
 ## Telescope Mappings
 
-| Action                            | Mappings                   |
-| --------------------------------- | -------------------------- |
-| Live Grep                         | `Space + fw`               |
-| Live Grep (include hidden files)  | `Space + fW`               |
-| Git Status                        | `Space + gt`               |
-| Git Branches                      | `Space + gb`, `Space + sb` |
-| Git Commits                       | `Space + gc`               |
-| Find files                        | `Space + ff`               |
-| Find files (include hidden files) | `Space + fF`               |
-| Buffers                           | `Space + fb`               |
-| Help Tags                         | `Space + fh`, `Space + sh` |
-| Marks                             | `Space + fm`               |
-| Old Files                         | `Space + fo`               |
-| Man Pages                         | `Space + sm`               |
-| Notifications                     | `Space + sn`               |
-| Registers                         | `Space + sr`               |
-| Keymaps                           | `Space + sk`               |
-| Commands                          | `Space + sc`               |
-| LSP Symbols                       | `Space + ls`               |
-| LSP Workspace Symbols             | `Space + lG`               |
-| LSP References                    | `Space + lR`               |
-| LSP Diagnostics                   | `Space + lD`               |
+| Action                            | Mappings                         |
+| --------------------------------- | -------------------------------- |
+| Live Grep                         | `<leader> + fw`                  |
+| Live Grep (include hidden files)  | `<leader> + fW`                  |
+| Git Status                        | `<leader> + gt`                  |
+| Git Branches                      | `<leader> + gb`, `<leader> + sb` |
+| Git Commits                       | `<leader> + gc`                  |
+| Find files                        | `<leader> + ff`                  |
+| Find files (include hidden files) | `<leader> + fF`                  |
+| Buffers                           | `<leader> + fb`                  |
+| Help Tags                         | `<leader> + fh`, `<leader> + sh` |
+| Marks                             | `<leader> + fm`                  |
+| Old Files                         | `<leader> + fo`                  |
+| Man Pages                         | `<leader> + sm`                  |
+| Notifications                     | `<leader> + sn`                  |
+| Registers                         | `<leader> + sr`                  |
+| Keymaps                           | `<leader> + sk`                  |
+| Commands                          | `<leader> + sc`                  |
+| LSP Symbols                       | `<leader> + ls`                  |
+| LSP Workspace Symbols             | `<leader> + lG`                  |
+| LSP References                    | `<leader> + lR`                  |
+| LSP Diagnostics                   | `<leader> + lD`                  |
 
 ## Toggle Terminal Mappings
 
-| Action                    | Mappings                   |
-| ------------------------- | -------------------------- |
-| Toggle Terminal           | `F7`                       |
-| Floating Terminal         | `Space + tf`               |
-| Horizontal Split Terminal | `Space + th`               |
-| Vertical Split Terminal   | `Space + tv`               |
-| LazyGit                   | `Space + tl`, `Space + gg` |
-| Node                      | `Space + tn`               |
-| GDU                       | `Space + tu`               |
-| Btm                       | `Space + tt`               |
+| Action                    | Mappings                         |
+| ------------------------- | -------------------------------- |
+| Toggle Terminal           | `F7`                             |
+| Floating Terminal         | `<leader> + tf`                  |
+| Horizontal Split Terminal | `<leader> + th`                  |
+| Vertical Split Terminal   | `<leader> + tv`                  |
+| LazyGit                   | `<leader> + tl`, `<leader> + gg` |
+| Node                      | `<leader> + tn`                  |
+| GDU                       | `<leader> + tu`                  |
+| Btm                       | `<leader> + tt`                  |
 
 ## Git Mappings
 
-| Action        | Mappings     |
-| ------------- | ------------ |
-| Next Hunk     | `Space + gj` |
-| Previous Hunk | `Space + gk` |
-| Blame Line    | `Space + gl` |
-| Preview Hunk  | `Space + gp` |
-| Reset Hunk    | `Space + gr` |
-| Stage Hunk    | `Space + gs` |
-| Unstage Hunk  | `Space + gu` |
-| Git Diff      | `Space + gd` |
+| Action        | Mappings        |
+| ------------- | --------------- |
+| Next Hunk     | `<leader> + gj` |
+| Previous Hunk | `<leader> + gk` |
+| Blame Line    | `<leader> + gl` |
+| Preview Hunk  | `<leader> + gp` |
+| Reset Hunk    | `<leader> + gr` |
+| Stage Hunk    | `<leader> + gs` |
+| Unstage Hunk  | `<leader> + gu` |
+| Git Diff      | `<leader> + gd` |
 
 ## UI Mappings
 
-| Action                  | Mappings     |
-| ----------------------- | ------------ |
-| Toggle autopairs        | `Space + ua` |
-| Toggle background       | `Space + ub` |
-| Toggle autocompletion   | `Space + uc` |
-| Toggle color highlights | `Space + uC` |
-| Toggle diagnostics      | `Space + ud` |
-| Toggle auto formatting  | `Space + uf` |
-| Toggle signcolumn       | `Space + ug` |
-| Change indent setting   | `Space + ui` |
-| Toggle statusline       | `Space + ul` |
-| Change line numbering   | `Space + un` |
-| Toggle paste mode       | `Space + up` |
-| Toggle spellcheck       | `Space + us` |
-| Toggle conceal          | `Space + uS` |
-| Toggle tabline          | `Space + ut` |
-| Toggle URL highlight    | `Space + uu` |
-| Toggle wrap             | `Space + uw` |
-| Toggle syntax highlight | `Space + uy` |
+| Action                  | Mappings        |
+| ----------------------- | --------------- |
+| Toggle autopairs        | `<leader> + ua` |
+| Toggle background       | `<leader> + ub` |
+| Toggle autocompletion   | `<leader> + uc` |
+| Toggle color highlights | `<leader> + uC` |
+| Toggle diagnostics      | `<leader> + ud` |
+| Toggle auto formatting  | `<leader> + uf` |
+| Toggle signcolumn       | `<leader> + ug` |
+| Change indent setting   | `<leader> + ui` |
+| Toggle statusline       | `<leader> + ul` |
+| Change line numbering   | `<leader> + un` |
+| Toggle paste mode       | `<leader> + up` |
+| Toggle spellcheck       | `<leader> + us` |
+| Toggle conceal          | `<leader> + uS` |
+| Toggle tabline          | `<leader> + ut` |
+| Toggle URL highlight    | `<leader> + uu` |
+| Toggle wrap             | `<leader> + uw` |
+| Toggle syntax highlight | `<leader> + uy` |
