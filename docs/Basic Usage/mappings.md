@@ -8,7 +8,6 @@ title: Default Mappings
 | Action                      | Mappings            |
 | --------------------------- | ------------------- |
 | Leader key                  | `Space`             |
-| Escape key                  | `jj`, `jk`          |
 | Resize up                   | `Ctrl + Up`         |
 | Resize Down                 | `Ctrl + Down`       |
 | Resize Left                 | `Ctrl + Left`       |
@@ -19,7 +18,7 @@ title: Default Mappings
 | Right Window                | `Ctrl + l`          |
 | Force Write                 | `Ctrl + s`          |
 | Force Quit                  | `Ctrl + q`          |
-| New File                    | `Leader + fn`       |
+| New File                    | `Leader + n`        |
 | Close Buffer                | `Leader + c`        |
 | Next Tab (real vim tab)     | `]t`                |
 | Previous Tab (real vim tab) | `[t`                |
@@ -31,14 +30,20 @@ title: Default Mappings
 
 | Action                                                              | Mappings                      |
 | ------------------------------------------------------------------- | ----------------------------- |
-| Next Buffer                                                         | `Shift + l`                   |
-| Previous Buffer                                                     | `Shift + h`                   |
+| Next Buffer                                                         | `]b`                          |
+| Previous Buffer                                                     | `[b`                          |
 | Move Buffer Right                                                   | `>b`                          |
 | Move Buffer Left                                                    | `<b`                          |
 | Navigate to buffer tab with interactive picker                      | `Leader + bb`                 |
 | Delete a buffer tab with interactive picker                         | `Leader + bd`                 |
 | Open a buffer tab in a new horizontal split with interactive picker | `Leader + b\`                 |
 | Open a buffer tab in a new vertical split with interactive picker   | <code>Leader + b&#124;</code> |
+
+## Better Escape
+
+| Action     | Mappings   |
+| ---------- | ---------- |
+| Escape key | `jj`, `jk` |
 
 ## Neo-Tree
 
@@ -123,28 +128,29 @@ title: Default Mappings
 
 ## Telescope Mappings
 
-| Action                            | Mappings                     |
-| --------------------------------- | ---------------------------- |
-| Live Grep                         | `Leader + fw`                |
-| Live Grep (include hidden files)  | `Leader + fW`                |
-| Git Status                        | `Leader + gt`                |
-| Git Branches                      | `Leader + gb`, `Leader + sb` |
-| Git Commits                       | `Leader + gc`                |
-| Find files                        | `Leader + ff`                |
-| Find files (include hidden files) | `Leader + fF`                |
-| Buffers                           | `Leader + fb`                |
-| Help Tags                         | `Leader + fh`, `Leader + sh` |
-| Marks                             | `Leader + fm`                |
-| Old Files                         | `Leader + fo`                |
-| Man Pages                         | `Leader + sm`                |
-| Notifications                     | `Leader + sn`                |
-| Registers                         | `Leader + sr`                |
-| Keymaps                           | `Leader + sk`                |
-| Commands                          | `Leader + sc`                |
-| LSP Symbols                       | `Leader + ls`                |
-| LSP Workspace Symbols             | `Leader + lG`                |
-| LSP References                    | `Leader + lR`                |
-| LSP Diagnostics                   | `Leader + lD`                |
+| Action                            | Mappings      |
+| --------------------------------- | ------------- |
+| Marks                             | `Leader + f'` |
+| Buffers                           | `Leader + fb` |
+| Word at cursor                    | `Leader + fc` |
+| Commands                          | `Leader + fC` |
+| Find files                        | `Leader + ff` |
+| Find files (include hidden files) | `Leader + fF` |
+| Help Tags                         | `Leader + fh` |
+| Keymaps                           | `Leader + fk` |
+| Man Pages                         | `Leader + fm` |
+| Notifications                     | `Leader + fn` |
+| Old Files                         | `Leader + fo` |
+| Registers                         | `Leader + fr` |
+| Live Grep                         | `Leader + fw` |
+| Live Grep (include hidden files)  | `Leader + fW` |
+| Git Branches                      | `Leader + gb` |
+| Git Commits                       | `Leader + gc` |
+| Git Status                        | `Leader + gt` |
+| LSP Symbols                       | `Leader + ls` |
+| LSP Workspace Symbols             | `Leader + lG` |
+| LSP References                    | `Leader + lR` |
+| LSP Diagnostics                   | `Leader + lD` |
 
 ## Toggle Terminal Mappings
 
@@ -156,6 +162,7 @@ title: Default Mappings
 | Vertical Split Terminal   | `Leader + tv`                |
 | LazyGit                   | `Leader + tl`, `Leader + gg` |
 | Node                      | `Leader + tn`                |
+| Python                    | `Leader + tp`                |
 | GDU                       | `Leader + tu`                |
 | Btm                       | `Leader + tt`                |
 
@@ -186,6 +193,7 @@ title: Default Mappings
 | Change indent setting   | `Leader + ui` |
 | Toggle statusline       | `Leader + ul` |
 | Change line numbering   | `Leader + un` |
+| Toggle UI notifications | `Leader + uN` |
 | Toggle paste mode       | `Leader + up` |
 | Toggle spellcheck       | `Leader + us` |
 | Toggle conceal          | `Leader + uS` |
