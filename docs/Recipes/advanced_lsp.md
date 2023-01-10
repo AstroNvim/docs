@@ -221,19 +221,20 @@ return {
     skip_setup = { "tsserver" },
   },
   plugins = {
-    init = {
-      {
-        "jose-elias-alvarez/typescript.nvim",
-        after = "mason-lspconfig.nvim",
-        config = function()
-          require("typescript").setup {
-            server = astronvim.lsp.server_settings "tsserver",
-          }
-        end,
-      },
+    {
+      "jose-elias-alvarez/typescript.nvim",
+      after = "mason-lspconfig.nvim",
+      config = function()
+        require("typescript").setup {
+          server = astronvim.lsp.server_settings "tsserver",
+        }
+      end,
     },
-    ["mason-lspconfig"] = {
-      ensure_installed = { "tsserver" },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "tsserver" },
+      },
     },
   },
 }
@@ -247,19 +248,20 @@ return {
     skip_setup = { "denols" },
   },
   plugins = {
-    init = {
-      {
-        "sigmasd/deno-nvim",
-        after = "mason-lspconfig.nvim",
-        config = function()
-          require("deno-nvim").setup {
-            server = astronvim.lsp.server_settings "denols",
-          }
-        end
-      },
+    {
+      "sigmasd/deno-nvim",
+      after = "mason-lspconfig.nvim",
+      config = function()
+        require("deno-nvim").setup {
+          server = astronvim.lsp.server_settings "denols",
+        }
+      end
     },
-    ["mason-lspconfig"] = {
-      ensure_installed = { "denols" },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "denols" },
+      },
     },
   },
 }
@@ -294,33 +296,43 @@ For `null-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the
 
 ```lua
 return {
-  ["mason-null-ls"] = {
-    setup_handlers = {
-      prettier = function()
-        require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
-          condition = function(utils)
-            return utils.root_has_file("package.json") or utils.root_has_file(".prettierrc") or utils.root_has_file(".prettierrc.json") or utils.root_has_file(".prettierrc.js")
-          end
-        }))
+  plugins = {
+    {
+      "jay-babu/mason-null-ls.nvim",
+      config = function(plugin, opts)
+        plugin.default_config(opts) -- use the default configuration function
+        local null_ls = require "null-ls"
+        require("mason-null-ls").setup_handlers { -- setup custom handlers
+          prettier = function()
+            require("null-ls").register(require("null-ls").builtins.formatting.prettier.with {
+              condition = function(utils)
+                return utils.root_has_file "package.json"
+                  or utils.root_has_file ".prettierrc"
+                  or utils.root_has_file ".prettierrc.json"
+                  or utils.root_has_file ".prettierrc.js"
+              end,
+            })
+          end,
+          -- For prettierd:
+          -- prettierd = function()
+          --   require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+          --     condition = function(utils)
+          --       return utils.root_has_file("package.json") or utils.root_has_file(".prettierrc") or utils.root_has_file(".prettierrc.json") or utils.root_has_file(".prettierrc.js")
+          --     end
+          --   }))
+          -- end,
+          -- For eslint_d:
+          -- eslint_d = function()
+          --   require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+          --     condition = function(utils)
+          --       return utils.root_has_file("package.json") or utils.root_has_file(".eslintrc.json") or utils.root_has_file(".eslintrc.js")
+          --     end
+          --   }))
+          -- end,
+        }
       end,
-      -- For prettierd:
-      -- prettierd = function()
-      --   require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
-      --     condition = function(utils)
-      --       return utils.root_has_file("package.json") or utils.root_has_file(".prettierrc") or utils.root_has_file(".prettierrc.json") or utils.root_has_file(".prettierrc.js")
-      --     end
-      --   }))
-      -- end,
-      -- For eslint_d:
-      -- eslint_d = function()
-      --   require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
-      --     condition = function(utils)
-      --       return utils.root_has_file("package.json") or utils.root_has_file(".eslintrc.json") or utils.root_has_file(".eslintrc.js")
-      --     end
-      --   }))
-      -- end,
-    }
-  },
+    },
+  }
 }
 ```
 
@@ -339,19 +351,20 @@ return {
     },
   },
   plugins = {
-    init = {
-      {
-        "p00f/clangd_extensions.nvim",
-        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-        config = function()
-          require("clangd_extensions").setup {
-            server = astronvim.lsp.server_settings "clangd",
-          }
-        end,
-      },
+    {
+      "p00f/clangd_extensions.nvim",
+      after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+      config = function()
+        require("clangd_extensions").setup {
+          server = astronvim.lsp.server_settings "clangd",
+        }
+      end,
     },
-    ["mason-lspconfig"] = {
-      ensure_installed = { "clangd" },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "clangd" },
+      },
     },
   },
 }
@@ -377,20 +390,21 @@ return {
     },
   },
   plugins = {
-    init = {
-      {
-        "akinsho/flutter-tools.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-        config = function()
-          require("flutter-tools").setup {
-            lsp = astronvim.lsp.server_settings "dartls", -- get the server settings and built in capabilities/on_attach
-          }
-        end,
-      },
+    {
+      "akinsho/flutter-tools.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+      config = function()
+        require("flutter-tools").setup {
+          lsp = astronvim.lsp.server_settings "dartls", -- get the server settings and built in capabilities/on_attach
+        }
+      end,
     },
-    ["mason-lspconfig"] = {
-      ensure_installed = { "dartls" }, -- install dartls
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "dartls" },
+      },
     },
   },
 }
@@ -404,19 +418,20 @@ return {
     skip_setup = { "rust_analyzer" }, -- skip lsp setup because rust-tools will do it itself
   },
   plugins = {
-    init = {
-      {
-        "simrat39/rust-tools.nvim",
-        after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-        config = function()
-          require("rust-tools").setup {
-            server = astronvim.lsp.server_settings "rust_analyzer", -- get the server settings and built in capabilities/on_attach
-          }
-        end,
-      },
+    {
+      "simrat39/rust-tools.nvim",
+      after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+      config = function()
+        require("rust-tools").setup {
+          server = astronvim.lsp.server_settings "rust_analyzer", -- get the server settings and built in capabilities/on_attach
+        }
+      end,
     },
-    ["mason-lspconfig"] = {
-      ensure_installed = { "rust_analyzer" }, -- install rust_analyzer
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "dartls" },
+      },
     },
   },
 }
@@ -482,10 +497,13 @@ return {
     },
   },
   plugins = {
-    init = {
-      ["mfussenegger/nvim-jdtls"] = { module = "jdtls" }, -- load jdtls on module
+    "mfussenegger/nvim-jdtls", -- load jdtls on module
+    {
+      "williamboman/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = { "jdtls" },
+      },
     },
-    ["mason-lspconfig"] = { ensure_installed = { "jdtls" } }, -- install jdtls
   },
   polish = function()
     vim.api.nvim_create_autocmd("Filetype", {
