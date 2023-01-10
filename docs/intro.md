@@ -93,7 +93,6 @@ docker run -w /root -it --rm alpine:edge sh -uelic '
   git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
   # Uncomment the line below and replace the link with your user config repo to load a user config
   # git clone https://github.com/username/AstroNvim_user ~/.config/nvim/lua/user
-  nvim --headless -c "autocmd User PackerComplete quitall"
   nvim
 '
 ```
@@ -142,10 +141,12 @@ Run `:AstroReload` to reload the AstroNvim configuration and any new user config
 
 ## ✨ Features
 
+- Statusline, Winbar, and Tabline with [Heirline](https://github.com/rebelot/heirline.nvim)
+- Plugin management with [lazy.nvim](https://github.com/folke/lazy.nvim)
+- Package management with [mason.nvim](https://github.com/williamboman/mason.nvim)
 - File explorer with [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
 - Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-- Statusline with [Heirline](https://github.com/rebelot/heirline.nvim)
 - Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
 - Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 - Syntax highlighting with [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)

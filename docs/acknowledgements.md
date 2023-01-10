@@ -15,12 +15,10 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 
 | Plugin                      | Git Repository                                                 |
 | --------------------------- | -------------------------------------------------------------- |
-| Plugin Manager              | https://github.com/wbthomason/packer.nvim                      |
+| Plugin Manager              | https://github.com/folke/lazy.nvim                             |
 | Package Manager             | https://github.com/williamboman/mason.nvim                     |
 | Session Manager             | https://github.com/Shatur/neovim-session-manager               |
-| Optimiser                   | https://github.com/lewis6991/impatient.nvim                    |
 | Lua Functions               | https://github.com/nvim-lua/plenary.nvim                       |
-| Popup API                   | https://github.com/nvim-lua/popup.nvim                         |
 | Notifications               | https://github.com/rcarriga/nvim-notify                        |
 | Neovim UI Enhancer          | https://github.com/MunifTanjim/nui.nvim                        |
 | Automatic Indent Detection  | https://github.com/Darazaki/indent-o-matic                     |

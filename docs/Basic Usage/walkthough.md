@@ -70,9 +70,9 @@ You can use which key plugin to get a menu of some helpful key bindings by press
 
 ### Navigate buffers
 
-To switch to the left buffer you need to press `Shift` + `h`
+To switch to the left buffer you need to press `[b`
 
-To switch to the right buffer you need to press `Shift` + `l`
+To switch to the right buffer you need to press `]b`
 
 ### Navigate windows
 
