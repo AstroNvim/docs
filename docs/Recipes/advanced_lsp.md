@@ -167,7 +167,7 @@ return {
 }
 ```
 
-If the user wants to configure server specific settings and configurations then they can do this with the `lsp.server-settings` table as well. For example if the user wants to use `pyright` that is already available on their system and disable the single file support then can do the following:
+If the user wants to configure server specific settings and configurations then they can do this with the `lsp.config` table as well. For example if the user wants to use `pyright` that is already available on their system and disable the single file support then can do the following:
 
 ```lua
 return {
@@ -175,7 +175,7 @@ return {
     servers = {
       "pyright",
     },
-    ["server-settings"] = {
+    config = {
       pyright = {
         single_filesupport = false,
       },
@@ -186,7 +186,7 @@ return {
 
 ## Custom LSP Definition
 
-`nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can be done completely through `lsp.servers` and `lsp.server-settings` just like setting up servers that are supported by `lspconfig`! For these custom servers, the minimum requirement is setting up a `cmd` in `server-settings`, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
+`nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can be done completely through `lsp.servers` and `lsp.config` just like setting up servers that are supported by `lspconfig`! For these custom servers, the minimum requirement is setting up a `cmd` in the `lsp.config` entry, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
 
 ```lua
 return {
@@ -194,16 +194,18 @@ return {
     servers = {
       "prolog_lsp",
     },
-    ["server-settings"] = {
-      prolog_lsp = {
-        cmd = {"swipl",
-               "-g", "use_module(library(lsp_server)).",
-               "-g", "lsp_server:main",
-               "-t", "halt",
-               "--", "stdio"};
-        filetypes = {"prolog"};
-        root_dir = require("lspconfig.util").root_pattern("pack.pl");
-      }
+    config = {
+      prolog_lsp = function()
+        return {
+          cmd = {"swipl",
+                 "-g", "use_module(library(lsp_server)).",
+                 "-g", "lsp_server:main",
+                 "-t", "halt",
+                 "--", "stdio"};
+          filetypes = {"prolog"};
+          root_dir = require("lspconfig.util").root_pattern("pack.pl");
+        }
+      end,
     },
   },
 }
@@ -211,29 +213,24 @@ return {
 
 ## LSP Specific Plugins
 
-There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `lsp.skip_setup` table for specifying which language servers to guarantee AstroNvim will not automatically call the `lspconfig` setup for. We also provide a helper function for getting the AstroNvim default server configuration like our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.server-settings`. Here is a couple examples for some common LSP plugins:
+There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `lsp.setup_handlers` table for specifying how language servers should be setup such as using a language specific plugin. This function for each handler has two parameters, the first is the name of the server and the second is the options we would be passing to the `lspconfig` setup call. These options include things such as our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.config`. Here are a couple examples for some common LSP plugins:
 
 ### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
 
 ```lua
 return {
   lsp = {
-    skip_setup = { "tsserver" },
+    setup_handlers = {
+      -- add custom handler
+      tsserver = function(_, opts) require("typescript").setup { server = opts } end
+    }
   },
   plugins = {
-    {
-      "jose-elias-alvarez/typescript.nvim",
-      after = "mason-lspconfig.nvim",
-      config = function()
-        require("typescript").setup {
-          server = astronvim.lsp.server_settings "tsserver",
-        }
-      end,
-    },
+    "jose-elias-alvarez/typescript.nvim", -- add lsp plugin
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "tsserver" },
+        ensure_installed = { "tsserver" }, -- automatically install lsp
       },
     },
   },
@@ -245,22 +242,17 @@ return {
 ```lua
 return {
   lsp = {
-    skip_setup = { "denols" },
+    setup_handlers = {
+      -- add custom handler
+      denols = function(_, opts) require("deno-nvim").setup { server = opts } end
+    }
   },
   plugins = {
-    {
-      "sigmasd/deno-nvim",
-      after = "mason-lspconfig.nvim",
-      config = function()
-        require("deno-nvim").setup {
-          server = astronvim.lsp.server_settings "denols",
-        }
-      end
-    },
+    "sigmasd/deno-nvim", -- add lsp plugin
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "denols" },
+        ensure_installed = { "denols" }, -- automatically install lsp
       },
     },
   },
@@ -271,22 +263,25 @@ return {
 
 Since both `tsserver` and `denols` (and others such as `eslint` and `prettier`) attach to TypeScript/JavaScript files, some extra configuration may be required if both are installed.
 
-To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, add the following to `lsp.server-settings`:
+To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, add the following to `lsp.config`:
 
 ```lua
 return {
   lsp = {
-    ["server-settings"] = {
-      denols = {
-        root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
-      },
-      tsserver = {
-        root_dir = require("lspconfig.util").root_pattern("package.json"),
-      },
+    config = {
+      denols = function(opts)
+        opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+        return opts
+      end,
+      tsserver = function(opts)
+        opts.root_dir = require("lspconfig.util").root_pattern("package.json"),
+        return opts
+      end,
       -- For eslint:
-      -- eslint = {
-      --   root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js"),
-      -- },
+      -- eslint = function(opts)
+      --   opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js"),
+      --   return opts
+      -- end,
     },
   },
 }
@@ -341,8 +336,11 @@ return {
 ```lua
 return {
   lsp = {
-    skip_setup = { "clangd" },
-    ["server-settings"] = {
+    setup_handlers = {
+      -- add custom handler
+      clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end
+    }
+    config = {
       clangd = {
         capabilities = {
           offsetEncoding = "utf-8",
@@ -351,19 +349,11 @@ return {
     },
   },
   plugins = {
-    {
-      "p00f/clangd_extensions.nvim",
-      after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-      config = function()
-        require("clangd_extensions").setup {
-          server = astronvim.lsp.server_settings "clangd",
-        }
-      end,
-    },
+    "p00f/clangd_extensions.nvim", -- install lsp plugin
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "clangd" },
+        ensure_installed = { "clangd" }, -- automatically install lsp
       },
     },
   },
@@ -375,8 +365,11 @@ return {
 ```lua
 return {
   lsp = {
-    skip_setup = { "dartls" }, -- skip lsp setup because flutter-tools will do it itself
-    ["server-settings"] = {
+    setup_handlers = {
+      -- add custom handler
+      dartls = function(_, opts) require("flutter-tools").setup { lsp = opts } end
+    },
+    config = {
       dartls = {
         -- any changes you want to make to the LSP setup, for example
         color = {
@@ -390,16 +383,7 @@ return {
     },
   },
   plugins = {
-    {
-      "akinsho/flutter-tools.nvim",
-      requires = "nvim-lua/plenary.nvim",
-      after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-      config = function()
-        require("flutter-tools").setup {
-          lsp = astronvim.lsp.server_settings "dartls", -- get the server settings and built in capabilities/on_attach
-        }
-      end,
-    },
+    "akinsho/flutter-tools.nvim", -- add lsp plugin
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
@@ -415,22 +399,17 @@ return {
 ```lua
 return {
   lsp = {
-    skip_setup = { "rust_analyzer" }, -- skip lsp setup because rust-tools will do it itself
+    setup_handlers = {
+      -- add custom handler
+      rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end
+    },
   },
   plugins = {
-    {
-      "simrat39/rust-tools.nvim",
-      after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-      config = function()
-        require("rust-tools").setup {
-          server = astronvim.lsp.server_settings "rust_analyzer", -- get the server settings and built in capabilities/on_attach
-        }
-      end,
-    },
+    "simrat39/rust-tools.nvim", -- add lsp plugin
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = { "dartls" },
+        ensure_installed = { "rust_analyzer" },
       },
     },
   },
@@ -442,8 +421,18 @@ return {
 ```lua
 return {
   lsp = {
-    skip_setup = { "jdtls" },
-    ["server-settings"] = {
+    setup_handlers = {
+      -- add custom handler
+      jdtls = function(_, opts)
+        vim.api.nvim_create_autocmd("Filetype", {
+          pattern = "java", -- autocmd to start jdtls
+          callback = function()
+            if config.root_dir and config.root_dir ~= "" then require("jdtls").start_or_attach(opts) end
+          end,
+        })
+      end
+    },
+    config = {
       -- set jdtls server settings
       jdtls = function()
         -- use this function notation to build some variables
@@ -505,14 +494,5 @@ return {
       },
     },
   },
-  polish = function()
-    vim.api.nvim_create_autocmd("Filetype", {
-      pattern = "java", -- autocmd to start jdtls
-      callback = function()
-        local config = astronvim.lsp.server_settings "jdtls"
-        if config.root_dir and config.root_dir ~= "" then require("jdtls").start_or_attach(config) end
-      end,
-    })
-  end,
 }
 ```
