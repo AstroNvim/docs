@@ -75,22 +75,11 @@ user/
 ├── diagnostics.lua
 ├── lsp/
 │   ├── on_attach.lua
-│   ├── server_registration.lua
-│   └── server-settings/
+│   ├── setup_handlers.lua
+│   └── config/
 │       ├── texlab.lua
 │       └── yamlls.lua
-├── luasnip.lua
-├── plugins/
-|   ├── init.lua
-|   ├── null-ls.lua
-│   ├── bufferline.lua
-│   ├── which-key.lua
-|   ├── packer.lua
-|   ├── aerial.lua
-|   ├── telescope.lua
-|   ├── toggleterm.lua
-|   ├── treesitter.lua
-│   └── nvim-tree.lua
-└── which-key/
-    └── register_n_leader.lua
+├── mappings.lua
+└── plugins/
+    └── init.lua
 ```

@@ -17,26 +17,23 @@ own configuration changes to a default table. This is done by simply providing
 a new table and we merge the table with the default table where the user table
 takes precedence.
 
-For example, the `plugins.init` table can be used to add new plugins to be
+For example, the `plugins` table can be used to add new plugins to be
 installed along side the default plugins:
 
 ```lua
 plugins = {
-  init = {
-    { "andweeb/presence.nvim" }, -- each table entry is a plugin using the Packer syntax without the "use"
-    {
-      "ray-x/lsp_signature.nvim",
-      event = "BufRead",
-      config = function()
-        require("lsp_signature").setup()
-      end,
-    },
+  { "andweeb/presence.nvim" }, -- each table entry is a plugin using the Packer syntax without the "use"
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function()
+      require("lsp_signature").setup()
+    end,
   },
 },
 ```
 
-For adding new key mappings and updating which-key menu, `mapping` and
-`["which-key"]` table are used to extend existing configuration.
+For adding new key mappings and updating which-key menu, the `mapping` table is used to extend existing configuration.
 
 ```lua
 mappings = {
@@ -44,36 +41,19 @@ mappings = {
   -- desc setting is stored by vim.keymap.set() as a part of opts table in vim lua module
   n = {
     -- second key is the lefthand side of the map
-    -- BUffer
+    -- Buffer
     ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
     ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+    -- a table with the `name` key will register with which-key if it's available
+    -- this an easy way to add menu titles in which-key
+    ["<leader>b"] = { name = "Buffer" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
-  },
-},
--- Modify which-key registration (this is parsed after mapping)
-["which-key"] = {
-  -- Add bindings which show up as group name
-  -- 
-  -- Don't create settings for key mapping here.  Such mapping becomes usable
-  -- only via slow which-key interface (not usable via native fast vim key
-  -- mapping)
-  --
-  -- which-key will pick up defined vim key mappings, if defined with desc.
-  register_mappings = {
-    -- first key is the mode, n == normal mode
-    n = {
-      -- second key is the prefix, <leader> prefixes
-      ["<leader>"] = {
-        -- third key is the key to bring up next level and its displayed name in which-key top level
-        ["b"] = { name = "Buffer" },
-      },
-    },
   },
 },
 ```
