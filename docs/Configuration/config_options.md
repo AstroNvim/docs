@@ -3,7 +3,7 @@ id: config_options
 title: Available User Options
 ---
 
-| `init.lua` table key         | Expected Format            | Use Case                                                                                                                   | Alternate File Path (in `user/` folder) |
+| `user/init.lua` table key    | Expected Format            | Use Case                                                                                                                   | Alternate File Path (in `user/` folder) |
 | ---------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `astronvim_theme.colors`     | `table`, `function(table)` | Modify the default theme's color table                                                                                     | `astronvim_theme/colors.lua`            |
 | `astronvim_theme.highlights` | `table`, `function(table)` | Modify the default theme's highlight groups                                                                                | `astronvim_theme/highlights.lua`        |
@@ -25,7 +25,7 @@ title: Available User Options
 | `lsp.servers`                | `table`, `function(table)` | List of language servers to be set up that are already installed without `mason`                                           | `lsp/servers.lua`                       |
 | `lsp.setup_handlers`         | `table`, `function(table)` | Modify the `lspconfig` setup handler for a given language server, each key in the table should be a language server        | `lsp/setup_handlers.lua`                |
 | `options`                    | `table`, `function(table)` | The `vim.x.y` variables to be set                                                                                          | `options.lua`                           |
-| `plugins`                    | `table`, `function(table)` | Modify the `lazy.nvim` plugin specifications                                                                               | `plugins/<any_files>.lua`               |
+| `plugins`                    | `table`                    | Modify the `lazy.nvim` plugin specifications                                                                               | `plugins/<any_files>.lua`               |
 | `polish`                     | `function()`               | Lua function to be run last. Good place for setting vim options and adding mappings                                        | `polish.lua`                            |
 | `text_icons`                 | `table`, `function(table)` | Customize the text based icons used in the user interface when `vim.g.icons_enabled = false`                               | `text_icons.lua`                        |
 | `updater`                    | `table`, `function(table)` | The configuration for the AstroNvim updater                                                                                | `updater.lua`                           |
