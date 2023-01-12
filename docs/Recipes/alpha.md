@@ -5,13 +5,20 @@ title: Dashboard Customizations
 
 ### Customize Alpha Header
 
-If you want to customize your header on the dashboard you can do this easily in the `user/init.lua`:
+If you want to customize your header on the dashboard you can do this easily in the `user/init.lua` by overriding the `alpha` options:
 
 ```lua
 return {
-  header = {
-    "    My Custom ",
-    " Dashboard Header",
+  plugins = {
+    {
+      "goolord/alpha-nvim",
+      opts = function(_, opts) -- override the options using lazy.nvim
+        opts.section.header.val = { -- change the header section value
+          "    My Custom ",
+          " Dashboard Header",
+        }
+      end,
+    },
   },
 }
 ```
@@ -26,12 +33,12 @@ return {
     local function alpha_on_bye(cmd)
       local bufs = vim.fn.getbufinfo { buflisted = true }
       vim.cmd(cmd)
-      if require("core.utils").is_available "alpha-nvim" and not bufs[2] then
+      if astronvim.is_available "alpha-nvim" and not bufs[2] then
         require("alpha").start(true)
       end
     end
     vim.keymap.del("n", "<leader>c")
-    if require("core.utils").is_available "bufdelete.nvim" then
+    if astronvim.is_available "bufdelete.nvim" then
       vim.keymap.set("n", "<leader>c", function()
         alpha_on_bye "Bdelete!"
       end, { desc = "Close buffer" })

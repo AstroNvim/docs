@@ -142,6 +142,7 @@ title: Default Mappings
 | Notifications                     | `Leader + fn` |
 | Old Files                         | `Leader + fo` |
 | Registers                         | `Leader + fr` |
+| Themes                            | `Leader + ft` |
 | Live Grep                         | `Leader + fw` |
 | Live Grep (include hidden files)  | `Leader + fW` |
 | Git Branches                      | `Leader + gb` |
