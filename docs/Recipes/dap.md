@@ -19,30 +19,39 @@ Configuring `nvim-dap` can be very manual and require deep knowledge of the debu
 
 ## Installing Debuggers With Mason
 
-By default there are a few debuggers that can be automatically installed and configured just through Mason (with the help of [`mason-nvim-dap`](https://github.com/jay-babu/mason-nvim-dap.nvim)). This can be done using either the `:DapInnstall` command or through the Mason UI with `:Mason`. For details on configuring `mason-nvim-dap` as well as which debuggers are supported, please check their `README` and documentation. It provides a function for setting up custom handlers for when a recognizable debugger is installed, this can be configured with the `mason-nvim-dap.setup_handlers` table (or `user/mason-nvim-dap/setup_handlers.lua` file) like this:
+By default there are a few debuggers that can be automatically installed and configured just through Mason (with the help of [`mason-nvim-dap`](https://github.com/jay-babu/mason-nvim-dap.nvim)). This can be done using either the `:DapInstall` command or through the Mason UI with `:Mason`. For details on configuring `mason-nvim-dap` as well as which debuggers are supported, please check their `README` and documentation. It provides a function for setting up custom handlers for when a recognizable debugger is installed, this can be configured by extending the `config` function of the plugin:
 
 ```lua
 return {
-  ["mason-nvim-dap"] = {
-    setup_handlers = {
-      python = function(source_name)
-        local dap = require("dap")
-        dap.adapters.python = {
-          type = "executable",
-          command = "/usr/bin/python3",
-          args = {
-            "-m",
-            "debugpy.adapter",
-          },
-        }
+  plugins = {
+    {
+      "jay-babu/mason-nvim-dap.nvim",
+      config = function(self, opts)
+        self.default_config(opts) -- run default AstroNvim mason-nvim-dap config function
 
-        dap.configurations.python = {
-          {
-            type = "python",
-            request = "launch",
-            name = "Launch file",
-            program = "${file}", -- This configuration will launch the current file if used.
-          },
+        -- do more configuration as needed
+        local mason_nvim_dap = require "mason-nvim-dap"
+        mason_nvim_dap.setup_handlers {
+          python = function(source_name)
+            local dap = require "dap"
+            dap.adapters.python = {
+              type = "executable",
+              command = "/usr/bin/python3",
+              args = {
+                "-m",
+                "debugpy.adapter",
+              },
+            }
+
+            dap.configurations.python = {
+              {
+                type = "python",
+                request = "launch",
+                name = "Launch file",
+                program = "${file}", -- This configuration will launch the current file if used.
+              },
+            }
+          end,
         }
       end,
     },
@@ -52,13 +61,16 @@ return {
 
 ### Automatically Install Debuggers
 
-`mason-nvim-dap` also allows you to automatically install debuggers that you may want. This can be configured in the `plugins.mason-nvim-dap` table like this:
+`mason-nvim-dap` also allows you to automatically install debuggers that you may want. This can be configured by extending the `mason-nvim-dap` plugin options:
 
 ```lua
 return {
   plugins = {
-    ["mason-nvim-dap"] = {
-      ensure_installed = { "python" },
+    {
+      "jay-babu/mason-nvim-dap.nvim",
+      opts = {
+        ensure_installed = { "python" }
+      }
     },
   },
 }
@@ -116,31 +128,31 @@ By default, AstroNvim sets up event listeners with `nvim-dap` to automatically o
 ```lua
 return {
   plugins = {
-    dapui = function(config) -- parameter is the default setup config table
-      local dap = require "dap"
-      dap.listeners.after.event_initialized["dapui_config"] = nil
-      dap.listeners.before.event_terminated["dapui_config"] = nil
-      dap.listeners.before.event_exited["dapui_config"] = nil
+    {
+      "rcarriga/nvim-dap-ui",
+      config = function(self, opts)
+        -- run default AstroNvim nvim-dap-ui configuration function
+        self.default_config(opts)
 
-      -- modify config table if necessary to configure `nvim-dap-ui`
-      return config
-    end,
+        -- disable dap events that are created
+        local dap = require "dap"
+        dap.listeners.after.event_initialized["dapui_config"] = nil
+        dap.listeners.before.event_terminated["dapui_config"] = nil
+        dap.listeners.before.event_exited["dapui_config"] = nil
+      end,
+    },
   },
 }
 ```
 
 ## Enable Plugins on Windows
 
-This does not work out of the box and we cannot provide support for it at the moment, but if you want to enable the plugins on Windows then you can manually enable the `dap` related plugins in your user configuration. Here is an example in `user/init.lua`:
+This does not work out of the box and we cannot provide support for it at the moment, but if you want to enable the plugins on Windows then you can manually enable the `dap` plugin in your user configuration. Here is an example in `user/init.lua`:
 
 ```lua
 return {
   plugins = {
-    init = {
-      ["mfussenegger/nvim-dap"] = { disable = false },
-      ["rcarriga/nvim-dap-ui"] = { disable = false },
-      ["jayp0521/mason-nvim-dap.nvim"] = { disable = false },
-    },
+    { "mfussenegger/nvim-dap", enabled = true },
   },
 }
 ```
