@@ -7,6 +7,10 @@ By default AstroNvim enables the new global statusbar that comes with Neovim v0.
 
 ```lua
 return {
-  options = { opt = { laststatus = 2 } }
+  options = {
+    opt = {
+      laststatus = 2,
+    },
+  },
 }
 ```

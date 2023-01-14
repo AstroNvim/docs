@@ -8,12 +8,13 @@ By default AstroNvim enables the new winbar that comes with Neovim v0.8+. Some u
 ```lua
 return {
   plugins = {
-    heirline = function(config)
-      -- the first item is the statusline
-      -- the second item is the winbar
-      config[2] = nil
-      return config
-    end,
+    {
+      "rebelot/heirline.nvim",
+      opts = function(_, opts)
+        opts.winbar = nil
+        return opts
+      end
+    },
   },
 }
 ```

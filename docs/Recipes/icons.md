@@ -109,6 +109,7 @@ If you have the [`codicon.ttf` font](https://github.com/microsoft/vscode-codicon
 
 ```lua
 return {
+return {
   -- set up UI icons
   icons = {
     ActiveLSP = "",
@@ -145,24 +146,26 @@ return {
     NeovimClose = "",
   },
   plugins = {
-    -- lspkind controls LSP icons
-    lspkind = function(config)
-      -- use codicons preset
-      config.preset = "codicons"
-      -- set some missing symbol types
-      config.symbol_map = {
-        Array = "",
-        Boolean = "",
-        Key = "",
-        Namespace = "",
-        Null = "",
-        Number = "",
-        Object = "",
-        Package = "",
-        String = "",
-      }
-      return config
-    end,
+    {
+      "onsails/lspkind.nvim",
+      opts = function(_, opts)
+        -- use codicons preset
+        opts.preset = "codicons"
+        -- set some missing symbol types
+        opts.symbol_map = {
+          Array = "",
+          Boolean = "",
+          Key = "",
+          Namespace = "",
+          Null = "",
+          Number = "",
+          Object = "",
+          Package = "",
+          String = "",
+        }
+        return opts
+      end,
+    },
   },
 }
 ```

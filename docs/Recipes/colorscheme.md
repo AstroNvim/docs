@@ -12,40 +12,30 @@ return {
   colorscheme = "catppuccin",
 
   plugins = {
-    init = {
-      {
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function()
-          require("catppuccin").setup {}
-        end,
-      },
+    {
+      "catppuccin/nvim",
+      as = "catppuccin",
+      config = function()
+        require("catppuccin").setup {}
+      end,
     },
   },
 }
 ```
 
-:::tip
-
-There used to be a recommended trick to check for your colorscheme before setting it. We have improved the base installation to do this checking automatically. So no more need for user side checking.
-
-:::
-
 ## Using a Custom Colorscheme Configured with Global Variables
 
-Some colorscheme plugins are configured through global variables rather than Lua functions like `config()` so they require a slightly different setup in Packer to get them working correctly. For example if we want to use [Sonokai](https://github.com/sainnhe/sonokai):
+Some colorscheme plugins are configured through global variables rather than Lua functions like `config()` so they require a slightly different setup to get them working correctly. For example if we want to use [Sonokai](https://github.com/sainnhe/sonokai):
 
 ```lua
 return {
   colorscheme = "sonokai",
-  options = {
-    g = {
-      sonokai_style = "shusia"
-    }
-  },
   plugins = {
-    init = {
-      { "sainnhe/sonokai" },
+    {
+      "sainnhe/sonokai",
+      init = function() -- init function runs before the plugin is loaded
+        vim.g.sonokai_style = "shusia"
+      end,
     },
   },
 }
