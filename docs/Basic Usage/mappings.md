@@ -193,6 +193,7 @@ title: Default Mappings
 | Toggle signcolumn       | `Leader + ug` |
 | Change indent setting   | `Leader + ui` |
 | Toggle statusline       | `Leader + ul` |
+| Toggle CodeLens         | `Leader + uL` |
 | Change line numbering   | `Leader + un` |
 | Toggle UI notifications | `Leader + uN` |
 | Toggle paste mode       | `Leader + up` |
