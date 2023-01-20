@@ -109,7 +109,6 @@ If you have the [`codicon.ttf` font](https://github.com/microsoft/vscode-codicon
 
 ```lua
 return {
-return {
   -- set up UI icons
   icons = {
     ActiveLSP = "",
