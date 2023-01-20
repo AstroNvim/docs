@@ -31,7 +31,7 @@ By default we have Lazy.nvim enabling lazy loading for plugins. Because of this 
 "andweeb/presence.nvim",
 ```
 
-### Overriding Core Plugins
+## Overriding Core Plugins
 
 Lazy.nvim will automatically override previously defined plugins, For example, disabling a plugin, changing the default options, and adding onto the setup function. More details can be found in the [Lazy.nvim Documentation](https://github.com/folke/lazy.nvim). Here is a simple example disabling a core plugin such as `alpha`:
 
@@ -39,7 +39,7 @@ Lazy.nvim will automatically override previously defined plugins, For example, d
 { "goolord/alpha-nvim", enabled = false },
 ```
 
-#### Extending Core Plugin Config Functions
+### Extending Core Plugin Config Functions
 
 Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own `default_config` function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs`, add user snippets to `luasnip`, or add more extensions to `telescope` without having to rewrite our entire configuration function. Here is an example of adding the `media_files` Telescope extension:
 
@@ -62,7 +62,48 @@ Many of our core plugins have additional code that runs during setup which you m
 }
 ```
 
-### Full Example
+## Lazy Loading
+
+For maintaining a fast startup time, it is recommended to do lazy loading which is easily configurable in Packer. There are a few basic methods of lazy loading that can be easily added. The main keys here are `cmd`, `module`, `ft`, `keys`, `event`, `after`. More details of these and more options can be found in the [Packer Documentation](https://github.com/wbthomason/packer.nvim#specifying-plugins). Here are a few examples:
+
+```lua
+-- plugins are automatically lazy loaded and by default allow for loading based on module
+-- so this plugin will be unloaded on startup and will load when it is required with `require("smart-splits")`
+{ "mrjones2014/smart-splits.nvim" },
+
+-- this plugin will be loaded on the autocmd event "UIEnter"
+{ "rcarriga/nvim-notify", event = "UIEnter" },
+
+-- this plugin will be loaded when using `:Bdelete` and `:Bwipeout`
+{ "famiu/bufdelete.nvim", cmd = { "Bdelete", "Bwipeout" } },
+```
+
+### Lazy Load File Related Plugins
+
+AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. Because of this we have added some internal mechanisms to make it easy to add this specific type of lazy loading. To do this you simply use the `init` key to add the plugin name to the table `astronvim.file_plugins`. Here is a simple example:
+
+```lua
+{
+  "NvChad/nvim-colorizer.lua",
+  init = function() table.insert(astronvim.file_plugins, "nvim-colorizer.lua") end,
+},
+
+```
+
+This will tell AstroNvim that this plugin should be loaded with the other file related plugins on the opening of the first real file.
+
+### Lazy Load Git Plugins
+
+Similar to the file related plugins described above, we also have a similar hook for git related plugins. These shouldn't be loaded until a file is open that is in a git repository folder. We use this for stuff like the `gitsigns` plugin. This will check when a file is opened if it is in a git tracked folder and then load the plugin. You just need to use the `init` key to add the plugin name to the table `astronvim.git_plugins`. **This does require access to the `git` command in your `PATH`.**
+
+```lua
+{
+  "lewis6991/gitsigns.nvim",
+  init = function() table.insert(astronvim.git_plugins, "gitsigns.nvim") end,
+},
+```
+
+## Full Example
 
 Here is a simple `user/init.lua` file that just defines a plugin in the `plugins.init` table:
 
@@ -98,49 +139,4 @@ return {
     end,
   },
 }
-```
-
-## Lazy Loading
-
-For maintaining a fast startup time, it is recommended to do lazy loading which is easily configurable in Packer. There are a few basic methods of lazy loading that can be easily added. The main keys here are `cmd`, `module`, `ft`, `keys`, `event`, `after`. More details of these and more options can be found in the [Packer Documentation](https://github.com/wbthomason/packer.nvim#specifying-plugins). Here are a few examples:
-
-```lua
-return {
-  plugins = {
-    -- plugins are automatically lazy loaded and by default allow for loading based on module
-    -- so this plugin will be unloaded on startup and will load when it is required with `require("smart-splits")`
-    { "mrjones2014/smart-splits.nvim" },
-
-    -- this plugin will be loaded on the autocmd event "UIEnter"
-    { "rcarriga/nvim-notify", event = "UIEnter" },
-
-    -- this plugin will be loaded when using `:Bdelete` and `:Bwipeout`
-    { "famiu/bufdelete.nvim", cmd = { "Bdelete", "Bwipeout" } },
-  }
-}
-```
-
-### Lazy Load File Related Plugins
-
-AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. Because of this we have added some internal mechanisms to make it easy to add this specific type of lazy loading. To do this you simply use the `init` key to add the plugin name to the table `astronvim.file_plugins`. Here is a simple example:
-
-```lua
-{
-  "NvChad/nvim-colorizer.lua",
-  init = function() table.insert(astronvim.file_plugins, "nvim-colorizer.lua") end,
-},
-
-```
-
-This will tell AstroNvim that this plugin should be loaded with the other file related plugins on the opening of the first real file.
-
-### Lazy Load Git Plugins
-
-Similar to the file related plugins described above, we also have a similar hook for git related plugins. These shouldn't be loaded until a file is open that is in a git repository folder. We use this for stuff like the `gitsigns` plugin. This will check when a file is opened if it is in a git tracked folder and then load the plugin. You just need to use the `init` key to add the plugin name to the table `astronvim.git_plugins`. **This does require access to the `git` command in your `PATH`.**
-
-```lua
-{
-  "lewis6991/gitsigns.nvim",
-  init = function() table.insert(astronvim.git_plugins, "gitsigns.nvim") end,
-},
 ```
