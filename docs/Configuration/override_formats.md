@@ -37,19 +37,18 @@ mappings = {
   -- desc setting is stored by vim.keymap.set() as a part of opts table in vim lua module
   n = {
     -- second key is the lefthand side of the map
-    -- Buffer
-    ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-    ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
-    ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+    -- Tab Mappings
+    ["<leader>Tn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+    ["<leader>Tc"] = { "<cmd>tabclose<cr>", desc = "Close tab" },
     -- a table with the `name` key will register with which-key if it's available
     -- this an easy way to add menu titles in which-key
-    ["<leader>b"] = { name = "Buffer" },
+    ["<leader>T"] = { name = "Tab" },
     -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
   t = {
     -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
+    ["<esc>"] = false,
   },
 },
 ```
