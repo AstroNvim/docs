@@ -21,16 +21,13 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Lua Functions               | https://github.com/nvim-lua/plenary.nvim                       |
 | Notifications               | https://github.com/rcarriga/nvim-notify                        |
 | Neovim UI Enhancer          | https://github.com/MunifTanjim/nui.nvim                        |
-| Automatic Indent Detection  | https://github.com/Darazaki/indent-o-matic                     |
-| Curshold Fix                | https://github.com/antoinemadec/FixCursorHold.nvim             |
+| Automatic Indent Detection  | https://github.com/NMAC427/guess-indent.nvim                   |
 | Smarter Splits              | https://github.com/mrjones2014/smart-splits.nvim               |
-| Icons                       | https://github.com/ryanoasis/vim-devicons                      |
-| Bufferline                  | https://github.com/akinsho/bufferline.nvim                     |
+| Icons                       | https://github.com/nvim-tree/nvim-web-devicons                 |
 | Buffer Closing              | https://github.com/famiu/bufdelete.nvim                        |
 | File Explorer               | https://github.com/nvim-neo-tree/neo-tree.nvim                 |
 | Statusline                  | https://github.com/rebelot/heirline.nvim                       |
 | Syntax Highlighting         | https://github.com/nvim-treesitter/nvim-treesitter             |
-| Parenthesis Highlighting    | https://github.com/p00f/nvim-ts-rainbow                        |
 | Autoclose tags              | https://github.com/windwp/nvim-ts-autotag                      |
 | Context Commenting          | https://github.com/JoosepAlviste/nvim-ts-context-commentstring |
 | Snippet Engine              | https://github.com/L3MON4D3/LuaSnip                            |
@@ -38,7 +35,6 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Completion Engine           | https://github.com/hrsh7th/nvim-cmp                            |
 | Snippet Completion          | https://github.com/saadparwaiz1/cmp_luasnip                    |
 | Buffer Completion           | https://github.com/hrsh7th/cmp-buffer                          |
-| Command Line Completion     | https://github.com/hrsh7th/cmp-cmdline                         |
 | Path Completion             | https://github.com/hrsh7th/cmp-path                            |
 | LSP Completion              | https://github.com/hrsh7th/nvim-cmp                            |
 | Built-in LSP                | https://github.com/neovim/nvim-lspconfig                       |

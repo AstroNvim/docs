@@ -33,6 +33,12 @@ return function(client, bufnr)
 end
 ```
 
+:::tip
+
+A full example of a split up user configuration can be found on our GitHub at [AstroNvim/split_user_example](https://github.com/AstroNvim/split_user_example)
+
+:::
+
 ## Example File Tree
 
 A heavily modified AstroNvim setup that leverages these separate files could have a file structure as such:
