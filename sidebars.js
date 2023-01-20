@@ -21,7 +21,7 @@ module.exports = {
     {
       type: "link",
       label: "Core Lua API Documentation",
-      href: "https://astronvim.github.io/AstroNvim",
+      href: "https://api.astronvim.com",
     },
   ],
 };
