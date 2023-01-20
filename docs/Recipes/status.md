@@ -178,22 +178,6 @@ local component = astronvim.status.component.mode({
 })
 ```
 
-## Heirline Based Bufferline
-
-AstroNvim now has a Heirline based bufferline implementation that uses our `astronvim.status` API for creating a highly performant and customizable bufferline. This will be made default with AstroNvim v3 (whenever that ends up being), but in the mean time we have included an option that will allow users to opt into using this feature early. This can be easily toggled in the `options` table like this:
-
-```lua
-return {
-  options = {
-    g = {
-      heirline_bufferline = true
-    }
-  }
-}
-```
-
-After setting the `vim.g.heirline_bufferline` variable to `true`, you will need to restart and run `:PackerSync` to fully remove the `bufferline.nvim` plugin and start using the new and improved bufferline.
-
 ## Default Heirline Configuration
 
 This is a code block that redefines the default statusline and winbar that are used in AstroNvim inside of the user configuration file for reference and a starting point to make modifications:
@@ -250,55 +234,42 @@ return {
         }
 
         -- tabline
-        opts.tabline = {
+        opts.tabline = { -- tabline
           { -- file tree padding
             condition = function(self)
               self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
               return astronvim.status.condition.buffer_matches(
-                { filetype = { "neo%-tree", "NvimTree" } },
+                { filetype = { "aerial", "dapui_.", "neo%-tree", "NvimTree" } },
                 vim.api.nvim_win_get_buf(self.winid)
               )
             end,
-            provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid)) end,
+            provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid) + 1) end,
             hl = { bg = "tabline_bg" },
           },
-          -- Create a list of components for each buffer using the tabline_file_info component for each buffer
-          astronvim.status.heirline.make_buflist(astronvim.status.component.tabline_file_info()),
-          -- Fill the rest of the tabline with empty space
+          astronvim.status.heirline.make_buflist(astronvim.status.component.tabline_file_info()), -- component for each buffer tab
           astronvim.status.component.fill { hl = { bg = "tabline_bg" } }, -- fill the rest of the tabline with background color
-          -- tab list
-          { -- bufferline
-            { -- file tree padding
-              condition = function(self)
-                self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
-                return astronvim.status.condition.buffer_matches(
-                  { filetype = { "aerial", "dapui_.", "neo%-tree", "NvimTree" } },
-                  vim.api.nvim_win_get_buf(self.winid)
-                )
+          { -- tab list
+            condition = function() return #vim.api.nvim_list_tabpages() >= 2 end, -- only show tabs if there are more than one
+            astronvim.status.heirline.make_tablist { -- component for each tab
+              provider = astronvim.status.provider.tabnr(),
+              hl = function(self)
+                return astronvim.status.hl.get_attributes(astronvim.status.heirline.tab_type(self, "tab"), true)
               end,
-              provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid) + 1) end,
-              hl = { bg = "tabline_bg" },
             },
-            astronvim.status.heirline.make_buflist(astronvim.status.component.tabline_file_info()), -- component for each buffer tab
-            astronvim.status.component.fill { hl = { bg = "tabline_bg" } }, -- fill the rest of the tabline with background color
-            { -- tab list
-              condition = function() return #vim.api.nvim_list_tabpages() >= 2 end, -- only show tabs if there are more than one
-              astronvim.status.heirline.make_tablist { -- component for each tab
-                provider = astronvim.status.provider.tabnr(),
-                hl = function(self)
-                  return astronvim.status.hl.get_attributes(astronvim.status.heirline.tab_type(self, "tab"), true)
-                end,
-              },
-              { -- close button for current tab
-                provider = astronvim.status.provider.close_button {
-                  kind = "TabClose",
-                  padding = { left = 1, right = 1 },
-                },
-                hl = astronvim.status.hl.get_attributes("tab_close", true),
-                on_click = { callback = astronvim.close_tab, name = "heirline_tabline_close_tab_callback" },
-              },
+            { -- close button for current tab
+              provider = astronvim.status.provider.close_button { kind = "TabClose", padding = { left = 1, right = 1 } },
+              hl = astronvim.status.hl.get_attributes("tab_close", true),
+              on_click = { callback = astronvim.close_tab, name = "heirline_tabline_close_tab_callback" },
             },
           },
+        }
+
+
+        -- statuscolumn
+        opts.statuscolumn = { -- statuscolumn
+          astronvim.status.component.foldcolumn(),
+          astronvim.status.component.numbercolumn(),
+          astronvim.status.component.signcolumn(),
         }
 
         -- return the final configuration table
