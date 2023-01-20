@@ -270,11 +270,11 @@ return {
   lsp = {
     config = {
       denols = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+        opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
         return opts
       end,
       tsserver = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("package.json"),
+        opts.root_dir = require("lspconfig.util").root_pattern("package.json")
         return opts
       end,
       -- For eslint:
@@ -339,7 +339,7 @@ return {
     setup_handlers = {
       -- add custom handler
       clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end
-    }
+    },
     config = {
       clangd = {
         capabilities = {
@@ -362,12 +362,17 @@ return {
 
 ### Dart Flutter ([flutter-tools.nvim](https://github.com/akinsho/flutter-tools.nvim))
 
+Requires `dart` to be available on the system.
+
 ```lua
 return {
   lsp = {
+    servers = {
+      "dartls",
+    },
     setup_handlers = {
       -- add custom handler
-      dartls = function(_, opts) require("flutter-tools").setup { lsp = opts } end
+      dartls = function(_, opts) require("flutter-tools").setup { lsp = opts } end,
     },
     config = {
       dartls = {
@@ -384,12 +389,6 @@ return {
   },
   plugins = {
     "akinsho/flutter-tools.nvim", -- add lsp plugin
-    {
-      "williamboman/mason-lspconfig.nvim",
-      opts = {
-        ensure_installed = { "dartls" },
-      },
-    },
   },
 }
 ```
@@ -427,7 +426,7 @@ return {
         vim.api.nvim_create_autocmd("Filetype", {
           pattern = "java", -- autocmd to start jdtls
           callback = function()
-            if config.root_dir and config.root_dir ~= "" then require("jdtls").start_or_attach(opts) end
+            if opts.root_dir and opts.root_dir ~= "" then require("jdtls").start_or_attach(opts) end
           end,
         })
       end
