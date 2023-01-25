@@ -1,6 +1,6 @@
 ---
 id: snippets
-title: Custom VS Code Style Snippets
+title: Custom Snippets
 ---
 
 `user/init.lua`:
