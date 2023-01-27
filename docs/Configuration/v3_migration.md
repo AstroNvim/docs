@@ -54,4 +54,4 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
 
 - `header` option has been removed in favor of decreasing abstractions. Check the updated [Dashboard Customizations Documentation](../Recipes/alpha.md)
 
-- `<leader>s` has been unified with the `<leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<leader>f` or in the updated [Mappings Documentation](../Basic Usage/mappings.md)
+- `<leader>s` has been unified with the `<leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<leader>f` or in the updated [Mappings Documentation](../Basic%20Usage/mappings.md)
