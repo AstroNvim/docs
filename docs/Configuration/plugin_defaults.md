@@ -3,274 +3,122 @@ id: plugin_defaults
 title: Default Plugin Configurations
 ---
 
-This page documents the default options that are set by AstroNvim for each individual plugin. All of these options would go in the `plugins` table in the `user/init.lua` configuration file.
+This page documents the default options that are set by AstroNvim for each individual plugin. All of these options can be changed in the `plugins` table in the `user/init.lua` configuration file as described in the [Custom Plugins Documentation](../Recipes/custom_plugins.md).
 
-## Aerial
+## aerial.nvim
 
 ```lua
-aerial = {
-  close_behavior = "global",
-  backends = { "lsp", "treesitter", "markdown" },
-  min_width = 28,
-  show_guides = true,
-  filter_kind = {
-    "Array",
-    "Boolean",
-    "Class",
-    "Constant",
-    "Constructor",
-    "Enum",
-    "EnumMember",
-    "Event",
-    "Field",
-    "File",
-    "Function",
-    "Interface",
-    "Key",
-    "Method",
-    "Module",
-    "Namespace",
-    "Null",
-    "Number",
-    "Object",
-    "Operator",
-    "Package",
-    "Property",
-    "String",
-    "Struct",
-    "TypeParameter",
-    "Variable",
+opts = {
+  buftype_exclude = {
+    "nofile",
+    "terminal",
   },
-  icons = {
-    Array = "",
-    Boolean = "⊨",
-    Class = "",
-    Constant = "",
-    Constructor = "",
-    Key = "",
-    Function = "",
-    Method = "ƒ",
-    Namespace = "",
-    Null = "NULL",
-    Number = "#",
-    Object = "⦿",
-    Property = "",
-    TypeParameter = "𝙏",
-    Variable = "",
-    Enum = "ℰ",
-    Package = "",
-    EnumMember = "",
-    File = "",
-    Module = "",
-    Field = "",
-    Interface = "ﰮ",
-    String = "𝓐",
-    Struct = "𝓢",
-    Event = "",
-    Operator = "+",
+  filetype_exclude = {
+    "help",
+    "startify",
+    "aerial",
+    "alpha",
+    "dashboard",
+    "lazy",
+    "neogitstatus",
+    "NvimTree",
+    "neo-tree",
+    "Trouble",
   },
-  guides = {
-    mid_item = "├ ",
-    last_item = "└ ",
-    nested_top = "│ ",
-    whitespace = "  ",
+  context_patterns = {
+    "class",
+    "return",
+    "function",
+    "method",
+    "^if",
+    "^while",
+    "jsx_element",
+    "^for",
+    "^object",
+    "^table",
+    "block",
+    "arguments",
+    "if_statement",
+    "else_clause",
+    "jsx_element",
+    "jsx_self_closing_element",
+    "try_statement",
+    "catch_clause",
+    "import_statement",
+    "operation_type",
   },
-  on_attach = function(bufnr)
-    -- Jump forwards/backwards with '{' and '}'
-    vim.keymap.set("n", "{", "<cmd>AerialPrev<cr>", { buffer = bufnr, desc = "Jump backwards in Aerial" })
-    vim.keymap.set("n", "}", "<cmd>AerialNext<cr>", { buffer = bufnr, desc = "Jump forwards in Aerial" })
-    -- Jump up the tree with '[[' or ']]'
-    vim.keymap.set("n", "[[", "<cmd>AerialPrevUp<cr>", { buffer = bufnr, desc = "Jump up and backwards in Aerial" })
-    vim.keymap.set("n", "]]", "<cmd>AerialNextUp<cr>", { buffer = bufnr, desc = "Jump up and forwards in Aerial" })
-  end,
-},
+  show_trailing_blankline_indent = false,
+  use_treesitter = true,
+  char = "▏",
+  context_char = "▏",
+  show_current_context = true,
+}
 ```
 
-## Autopairs
+## alpha-nvim
 
 ```lua
-autopairs = {
-  check_ts = true,
-  ts_config = {
-    lua = { "string", "source" },
-    javascript = { "string", "template_string" },
-    java = false,
-  },
-  disable_filetype = { "TelescopePrompt", "spectre_panel" },
-  fast_wrap = {
-    map = "<M-e>",
-    chars = { "{", "[", "(", '"', "'" },
-    pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-    offset = 0,
-    end_key = "$",
-    keys = "qwertyuiopzxcvbnmasdfghjkl",
-    check_comma = true,
-    highlight = "PmenuSel",
-    highlight_grey = "LineNr",
-  },
-},
+opts = function()
+  local dashboard = require "alpha.themes.dashboard"
+  dashboard.section.header.val = {
+    " █████  ███████ ████████ ██████   ██████",
+    "██   ██ ██         ██    ██   ██ ██    ██",
+    "███████ ███████    ██    ██████  ██    ██",
+    "██   ██      ██    ██    ██   ██ ██    ██",
+    "██   ██ ███████    ██    ██   ██  ██████",
+    " ",
+    "    ███    ██ ██    ██ ██ ███    ███",
+    "    ████   ██ ██    ██ ██ ████  ████",
+    "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
+    "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
+    "    ██   ████   ████   ██ ██      ██",
+  }
+  dashboard.section.header.opts.hl = "DashboardHeader"
+
+  dashboard.section.buttons.val = {
+    astronvim.alpha_button("LDR n", "  New File  "),
+    astronvim.alpha_button("LDR f f", "  Find File  "),
+    astronvim.alpha_button("LDR f o", "  Recents  "),
+    astronvim.alpha_button("LDR f w", "  Find Word  "),
+    astronvim.alpha_button("LDR f '", "  Bookmarks  "),
+    astronvim.alpha_button("LDR S l", "  Last Session  "),
+  }
+
+  dashboard.section.footer.val =
+    { " ", " ", " ", "AstroNvim loaded " .. require("lazy").stats().count .. " plugins " }
+  dashboard.section.footer.opts.hl = "DashboardFooter"
+
+  dashboard.config.layout[1].val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) }
+  dashboard.config.layout[3].val = 5
+  dashboard.config.opts.noautocmd = true
+  return dashboard
+end
 ```
 
-## Better Escape
+## astrotheme
 
 ```lua
-better_escape = {},
+opts = { plugins = { ["dashboard-nvim"] = true } }
 ```
 
-## Bufferline
+## better-escape.nvim
 
 ```lua
-bufferline = {
-  options = {
-    offsets = {
-      { filetype = "NvimTree", text = "", padding = 1 },
-      { filetype = "neo-tree", text = "", padding = 1 },
-      { filetype = "Outline", text = "", padding = 1 },
-    },
-    buffer_close_icon = "",
-    modified_icon = "",
-    close_icon = "",
-    show_close_icon = true,
-    left_trunc_marker = "",
-    right_trunc_marker = "",
-    max_name_length = 14,
-    max_prefix_length = 13,
-    tab_size = 20,
-    show_tab_indicators = true,
-    enforce_regular_tabs = false,
-    view = "multiwindow",
-    show_buffer_close_icons = true,
-    separator_style = "thin",
-    always_show_bufferline = true,
-    diagnostics = false,
-  },
-},
+opts = { timeout = 300 }
 ```
 
-## cmp
+## Comment.nvim
 
 ```lua
-cmp = {
-  preselect = cmp.PreselectMode.None,
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(_, vim_item)
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      return vim_item
-    end,
-  },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  duplicates = {
-    nvim_lsp = 1,
-    luasnip = 1,
-    cmp_tabnine = 1,
-    buffer = 1,
-    path = 1,
-  },
-  confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
-  },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  },
-  experimental = {
-    ghost_text = false,
-  },
-  completion = {
-    keyword_length = 1,
-  },
-  mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable,
-    ["<C-e>"] = cmp.mapping {
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    },
-    ["<CR>"] = cmp.mapping.confirm { select = true },
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-  },
-},
+opts = function()
+  return { pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook() }
+end
 ```
 
-## Colorizer
+## dressing.nvim
 
 ```lua
-colorizer = {
-  { "*" },
-  {
-    RGB = true, -- #RGB hex codes
-    RRGGBB = true, -- #RRGGBB hex codes
-    names = false, -- "Name" codes like Blue
-    RRGGBBAA = false, -- #RRGGBBAA hex codes
-    rgb_fn = false, -- CSS rgb() and rgba() functions
-    hsl_fn = false, -- CSS hsl() and hsla() functions
-    css = false, -- Enable all css features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-    css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-    mode = "background", -- Set the display mode
-  },
-},
-```
-
-## Comment
-
-```lua
-comment = {
-  pre_hook = function(ctx)
-    local U = require "Comment.utils"
-
-    local location = nil
-    if ctx.ctype == U.ctype.block then
-      location = require("ts_context_commentstring.utils").get_cursor_location()
-    elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-      location = require("ts_context_commentstring.utils").get_visual_start_location()
-    end
-
-    return require("ts_context_commentstring.internal").calculate_commentstring {
-      key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
-      location = location,
-    }
-  end,
-},
-```
-
-## Dressing
-
-```lua
-dressing = {
+opts = {
   input = {
     default_prompt = "➤ ",
     win_options = { winhighlight = "Normal:Normal,NormalNC:Normal" },
@@ -282,688 +130,474 @@ dressing = {
 }
 ```
 
-## GitSigns
+## gitsigns.nvim
 
 ```lua
-gitsigns = {
+opts = {
   signs = {
-    add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-    change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    delete = { hl = "GitSignsDelete", text = "▎", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    topdelete = {
-      hl = "GitSignsDelete",
-      text = "契",
-      numhl = "GitSignsDeleteNr",
-      linehl = "GitSignsDeleteLn",
-    },
-    changedelete = {
-      hl = "GitSignsChange",
-      text = "▎",
-      numhl = "GitSignsChangeNr",
-      linehl = "GitSignsChangeLn",
-    },
+    add = { text = "▎" },
+    change = { text = "▎" },
+    delete = { text = "▎" },
+    topdelete = { text = "契" },
+    changedelete = { text = "▎" },
+    untracked = { text = "▎" },
   },
-  signcolumn = true,
-  numhl = false,
-  linehl = false,
-  word_diff = false,
-  watch_gitdir = {
-    interval = 1000,
-    follow_files = true,
-  },
-  attach_to_untracked = true,
-  current_line_blame = false,
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = "eol",
-    delay = 1000,
-    ignore_whitespace = false,
-  },
-  current_line_blame_formatter_opts = {
-    relative_time = false,
-  },
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil,
-  max_file_length = 40000,
-  preview_config = {
-    border = "single",
-    style = "minimal",
-    relative = "cursor",
-    row = 0,
-    col = 1,
-  },
-  yadm = {
-    enable = false,
-  },
-},
+}
 ```
 
-## Heirline
+## heirline.nvim
+
+See [Customizing Statusline](../Recipes/status.md)
+
+## indent-blankline.nvim
 
 ```lua
-heirline = {
-  { -- statusline
-    hl = { fg = "fg", bg = "bg" },
-    astronvim.status.component.mode(),
-    astronvim.status.component.git_branch(),
-    astronvim.status.component.file_info(
-      (astronvim.is_available "bufferline.nvim" or vim.g.heirline_bufferline)
-          and { filetype = {}, filename = false, file_modified = false }
-        or nil
-    ),
-    astronvim.status.component.git_diff(),
-    astronvim.status.component.diagnostics(),
-    astronvim.status.component.fill(),
-    astronvim.status.component.cmd_info(),
-    astronvim.status.component.fill(),
-    astronvim.status.component.lsp(),
-    astronvim.status.component.treesitter(),
-    astronvim.status.component.nav(),
-    astronvim.status.component.mode { surround = { separator = "right" } },
+opts = {
+  buftype_exclude = {
+    "nofile",
+    "terminal",
   },
-  { -- winbar
-    static = {
-      disabled = {
-        buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-        filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
-      },
-    },
-    init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
-    fallthrough = false,
-    { -- disable winbar for some buffer and file types
-      condition = function(self)
-        return vim.opt.diff:get() or astronvim.status.condition.buffer_matches(self.disabled or {})
-      end,
-      init = function() vim.opt_local.winbar = nil end,
-    },
-    -- inactive buffer winbar
-    astronvim.status.component.file_info {
-      condition = function() return not astronvim.status.condition.is_active() end,
-      unique_path = {},
-      file_icon = { hl = astronvim.status.hl.file_icon "winbar" },
-      file_modified = false,
-      file_read_only = false,
-      hl = astronvim.status.hl.get_attributes("winbarnc", true),
-      surround = false,
-      update = "BufEnter",
-    },
-    -- active buffer winbar
-    astronvim.status.component.breadcrumbs { hl = astronvim.status.hl.get_attributes("winbar", true) },
+  filetype_exclude = {
+    "help",
+    "startify",
+    "aerial",
+    "alpha",
+    "dashboard",
+    "lazy",
+    "neogitstatus",
+    "NvimTree",
+    "neo-tree",
+    "Trouble",
   },
-  { -- bufferline
-    { -- file tree padding
-      condition = function(self)
-        self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
-        return astronvim.status.condition.buffer_matches(
-          { filetype = { "neo%-tree", "NvimTree" } },
-          vim.api.nvim_win_get_buf(self.winid)
-        )
-      end,
-      provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid)) end,
-      hl = { bg = "tabline_bg" },
-    },
-    -- component for each buffer tab
-    astronvim.status.heirline.make_buflist(astronvim.status.component.tabline_file_info()),
-    -- fill the rest of the tabline with background color
-    astronvim.status.component.fill { hl = { bg = "tabline_bg" } },
-    -- tab list
-    {
-      -- only show tabs if there are more than one
-      condition = function() return #vim.api.nvim_list_tabpages() >= 2 end,
-      -- create components for each tab page
-      astronvim.status.heirline.make_tablist { -- component for each tab
-        provider = astronvim.status.provider.tabnr(),
-        hl = function(self)
-          return astronvim.status.hl.get_attributes(astronvim.status.heirline.tab_type(self, "tab"), true)
-        end,
-      },
-      -- close button for current tab
-      {
-        provider = astronvim.status.provider.close_button { kind = "TabClose", padding = { left = 1, right = 1 } },
-        hl = astronvim.status.hl.get_attributes("tab_close", true),
-        on_click = { callback = astronvim.close_tab, name = "heirline_tabline_close_tab_callback" },
-      },
-    },
+  context_patterns = {
+    "class",
+    "return",
+    "function",
+    "method",
+    "^if",
+    "^while",
+    "jsx_element",
+    "^for",
+    "^object",
+    "^table",
+    "block",
+    "arguments",
+    "if_statement",
+    "else_clause",
+    "jsx_element",
+    "jsx_self_closing_element",
+    "try_statement",
+    "catch_clause",
+    "import_statement",
+    "operation_type",
   },
-},
-```
-
-## Indent Blankline
-
-```lua
-indent_blankline = {
+  show_trailing_blankline_indent = false,
+  use_treesitter = true,
+  char = "▏",
+  context_char = "▏",
   show_current_context = true,
-  show_current_context_start = false,
-},
+}
 ```
 
-## Indent-o-Matic
+## lspkind.nvim
 
 ```lua
-["indent-o-matic"] = {
-  max_lines = 2048,
-  standard_widths = { 2, 4, 8 },
-},
+opts = {
+  mode = "symbol",
+  symbol_map = {
+    NONE = "",
+    Array = "",
+    Boolean = "⊨",
+    Class = "",
+    Constructor = "",
+    Key = "",
+    Namespace = "",
+    Null = "NULL",
+    Number = "#",
+    Object = "⦿",
+    Package = "",
+    Property = "",
+    Reference = "",
+    Snippet = "",
+    String = "𝓐",
+    TypeParameter = "",
+    Unit = "",
+  },
+}
 ```
 
-## Neo-Tree
+## mason-null-ls.nvim
 
 ```lua
-["neo-tree"] = {
-  close_if_last_window = true,
-  popup_border_style = "rounded",
-  enable_git_status = true,
-  enable_diagnostics = false,
-  default_component_configs = {
-    indent = {
-      indent_size = 2,
-      padding = 0,
-      with_markers = true,
-      indent_marker = "│",
-      last_indent_marker = "└",
-      highlight = "NeoTreeIndentMarker",
-      with_expanders = false,
-      expander_collapsed = "",
-      expander_expanded = "",
-      expander_highlight = "NeoTreeExpander",
-    },
-    icon = {
-      folder_closed = "",
-      folder_open = "",
-      folder_empty = "",
-      default = "",
-    },
-    name = {
-      trailing_slash = false,
-      use_git_status_colors = true,
-    },
-    git_status = {
-      symbols = {
-        added = "",
-        deleted = "",
-        modified = "",
-        renamed = "➜",
-        untracked = "★",
-        ignored = "◌",
-        unstaged = "✗",
-        staged = "✓",
-        conflict = "",
-      },
-    },
-  },
-  window = {
-    position = "left",
-    width = 25,
-    mappings = {
-      ["<2-LeftMouse>"] = "open",
-      ["<cr>"] = "open",
-      ["o"] = "open",
-      ["S"] = "open_split",
-      ["s"] = "open_vsplit",
-      ["C"] = "close_node",
-      ["<bs>"] = "navigate_up",
-      ["."] = "set_root",
-      ["H"] = "toggle_hidden",
-      ["R"] = "refresh",
-      ["/"] = "fuzzy_finder",
-      ["f"] = "filter_on_submit",
-      ["<c-x>"] = "clear_filter",
-      ["a"] = "add",
-      ["d"] = "delete",
-      ["r"] = "rename",
-      ["y"] = "copy_to_clipboard",
-      ["x"] = "cut_to_clipboard",
-      ["p"] = "paste_from_clipboard",
-      ["c"] = "copy",
-      ["m"] = "move",
-      ["q"] = "close_window",
-    },
-  },
-  nesting_rules = {},
-  filesystem = {
-    filtered_items = {
-      visible = false,
-      hide_dotfiles = true,
-      hide_gitignored = false,
-      hide_by_name = {
-        ".DS_Store",
-        "thumbs.db",
-        "node_modules",
-        "__pycache__",
-      },
-    },
-    follow_current_file = true,
-    hijack_netrw_behavior = "open_current",
-    use_libuv_file_watcher = true,
-  },
-  buffers = {
-    show_unloaded = true,
-    window = {
-      mappings = {
-        ["bd"] = "buffer_delete",
-      },
-    },
-  },
-  git_status = {
-    window = {
-      position = "float",
-      mappings = {
-        ["A"] = "git_add_all",
-        ["gu"] = "git_unstage_file",
-        ["ga"] = "git_add_file",
-        ["gr"] = "git_revert_file",
-        ["gc"] = "git_commit",
-        ["gp"] = "git_push",
-        ["gg"] = "git_commit_and_push",
-      },
-    },
-  },
-  event_handlers = {
-    {
-      event = "vim_buffer_enter",
-      handler = function(_)
-        if vim.bo.filetype == "neo-tree" then
-          vim.wo.signcolumn = "auto"
-        end
-      end,
-    },
-  },
-},
+opts = { automatic_setup = true }
 ```
 
-## Packer
+## mason-nvim-dap
 
 ```lua
-packer = {
-  compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+opts = { automatic_setup = true }
+```
+
+## mason.nvim
+
+```lua
+opts = {
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_uninstalled = "✗",
+      package_pending = "⟳",
+    },
+  },
+}
+```
+
+## neo-tree.nvim
+
+```lua
+opts = function()
+  local global_commands = {
+    system_open = function(state) astronvim.system_open(state.tree:get_node():get_id()) end,
+    parent_or_close = function(state)
+      local node = state.tree:get_node()
+      if (node.type == "directory" or node:has_children()) and node:is_expanded() then
+        state.commands.toggle_node(state)
+      else
+        require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+      end
     end,
-  },
-  profile = {
-    enable = true,
-    threshold = 0.0001,
-  },
-  git = {
-    clone_timeout = 300,
-    subcommands = {
-      update = "pull --ff-only --progress --rebase=true",
+    child_or_open = function(state)
+      local node = state.tree:get_node()
+      if node.type == "directory" or node:has_children() then
+        if not node:is_expanded() then -- if unexpanded, expand
+          state.commands.toggle_node(state)
+        else -- if expanded and has children, seleect the next child
+          require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
+        end
+      else -- if not a directory just open it
+        state.commands.open(state)
+      end
+    end,
+  }
+  return {
+    close_if_last_window = true,
+    enable_diagnostics = false,
+    source_selector = {
+      winbar = true,
+      content_layout = "center",
+      tab_labels = {
+        filesystem = astronvim.get_icon "FolderClosed" .. " File",
+        buffers = astronvim.get_icon "DefaultFile" .. " Bufs",
+        git_status = astronvim.get_icon "Git" .. " Git",
+        diagnostics = astronvim.get_icon "Diagnostic" .. " Diagnostic",
+      },
     },
-  },
-  auto_clean = true,
-  compile_on_sync = true,
-},
+    default_component_configs = {
+      indent = { padding = 0 },
+      icon = {
+        folder_closed = astronvim.get_icon "FolderClosed",
+        folder_open = astronvim.get_icon "FolderOpen",
+        folder_empty = astronvim.get_icon "FolderEmpty",
+        default = astronvim.get_icon "DefaultFile",
+      },
+      git_status = {
+        symbols = {
+          added = astronvim.get_icon "GitAdd",
+          deleted = astronvim.get_icon "GitDelete",
+          modified = astronvim.get_icon "GitChange",
+          renamed = astronvim.get_icon "GitRenamed",
+          untracked = astronvim.get_icon "GitUntracked",
+          ignored = astronvim.get_icon "GitIgnored",
+          unstaged = astronvim.get_icon "GitUnstaged",
+          staged = astronvim.get_icon "GitStaged",
+          conflict = astronvim.get_icon "GitConflict",
+        },
+      },
+    },
+    window = {
+      width = 30,
+      mappings = {
+        ["<space>"] = false, -- disable space until we figure out which-key disabling
+        ["[b"] = "prev_source",
+        ["]b"] = "next_source",
+        o = "open",
+        O = "system_open",
+        h = "parent_or_close",
+        l = "child_or_open",
+      },
+    },
+    filesystem = {
+      follow_current_file = true,
+      hijack_netrw_behavior = "open_current",
+      use_libuv_file_watcher = true,
+      commands = global_commands,
+    },
+    buffers = { commands = global_commands },
+    git_status = { commands = global_commands },
+    event_handlers = {
+      { event = "neo_tree_buffer_enter", handler = function(_) vim.opt_local.signcolumn = "auto" end },
+    },
+  }
+end
 ```
 
-## Telescope
+## neodev.nvim
 
 ```lua
-telescope = {
-  defaults = {
+opts = {
+  override = function(root_dir, library)
+    if root_dir:match(astronvim.install.config) then library.plugins = true end
+    vim.b.neodev_enabled = library.enabled
+  end,
+}
+```
 
-    prompt_prefix = " ",
-    selection_caret = "❯ ",
-    path_display = { "truncate" },
-    selection_strategy = "reset",
-    sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        prompt_position = "top",
-        preview_width = 0.55,
-        results_width = 0.8,
-      },
-      vertical = {
-        mirror = false,
-      },
-      width = 0.87,
-      height = 0.80,
-      preview_cutoff = 120,
+## null-ls.nvim
+
+```lua
+opts = { on_attach = astronvim.lsp.on_attach }
+```
+
+## nvim-autopairs
+
+```lua
+opts = {
+  check_ts = true,
+  ts_config = { java = false },
+  fast_wrap = {
+    map = "<M-e>",
+    chars = { "{", "[", "(", '"', "'" },
+    pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+    offset = 0,
+    end_key = "$",
+    keys = "qwertyuiopzxcvbnmasdfghjkl",
+    check_comma = true,
+    highlight = "PmenuSel",
+    highlight_grey = "LineNr",
+  },
+}
+```
+
+## nvim-cmp
+
+```lua
+opts = function()
+  local cmp = require "cmp"
+  local snip_status_ok, luasnip = pcall(require, "luasnip")
+  local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+  if not snip_status_ok then return end
+  local border_opts =
+    { border = "single", winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None" }
+
+  local function has_words_before()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  end
+
+  return {
+    enabled = function()
+      if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then return false end
+      return vim.g.cmp_enabled
+    end,
+    preselect = cmp.PreselectMode.None,
+    formatting = {
+      fields = { "kind", "abbr", "menu" },
+      format = lspkind_status_ok and lspkind.cmp_format(astronvim.lspkind) or nil,
     },
+    snippet = {
+      expand = function(args) luasnip.lsp_expand(args.body) end,
+    },
+    duplicates = {
+      nvim_lsp = 1,
+      luasnip = 1,
+      cmp_tabnine = 1,
+      buffer = 1,
+      path = 1,
+    },
+    confirm_opts = {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+    window = {
+      completion = cmp.config.window.bordered(border_opts),
+      documentation = cmp.config.window.bordered(border_opts),
+    },
+    mapping = {
+      ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+      ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+      ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+      ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+      ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+      ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+      ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+      ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<C-y>"] = cmp.config.disable,
+      ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
+      ["<CR>"] = cmp.mapping.confirm { select = false },
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+    },
+    sources = cmp.config.sources {
+      { name = "nvim_lsp", priority = 1000 },
+      { name = "luasnip", priority = 750 },
+      { name = "buffer", priority = 500 },
+      { name = "path", priority = 250 },
+    },
+  }
+end
+```
 
+## nvim-colorizer.lua
+
+```lua
+opts = { user_default_options = { names = false } }
+```
+
+## nvim-dap-ui
+
+```lua
+opts = { floating = { border = "rounded" } }
+```
+
+## nvim-notify
+
+```lua
+opts = { stages = "fade" }
+```
+
+## nvim-treesitter
+
+```lua
+opts = {
+  highlight = { enable = true },
+  incremental_selection = { enable = true },
+  autotag = { enable = true },
+  context_commentstring = { enable = true, enable_autocmd = false },
+}
+```
+
+## nvim-ufo
+
+```lua
+opts = {
+  preview = {
     mappings = {
-      i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
-
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-
-        ["<C-c>"] = actions.close,
-
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
-
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<C-l>"] = actions.complete_tag,
-      },
-
-      n = {
-        ["<esc>"] = actions.close,
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-        ["j"] = actions.move_selection_next,
-        ["k"] = actions.move_selection_previous,
-        ["H"] = actions.move_to_top,
-        ["M"] = actions.move_to_middle,
-        ["L"] = actions.move_to_bottom,
-
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-        ["gg"] = actions.move_to_top,
-        ["G"] = actions.move_to_bottom,
-
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
-      },
+      scrollB = "<C-b>",
+      scrollF = "<C-f>",
+      scrollU = "<C-u>",
+      scrollD = "<C-d>",
     },
   },
-  pickers = {},
-  extensions = {},
-},
+  provider_selector = function(_, filetype, buftype)
+    return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
+      or { "treesitter", "indent" } -- if file opened, try to use treesitter if available
+  end,
+}
 ```
 
-## ToggleTerm
+## nvim-web-devicons
 
 ```lua
-toggleterm = {
+opts = {
+  deb = { icon = "", name = "Deb" },
+  lock = { icon = "", name = "Lock" },
+  mp3 = { icon = "", name = "Mp3" },
+  mp4 = { icon = "", name = "Mp4" },
+  out = { icon = "", name = "Out" },
+  ["robots.txt"] = { icon = "ﮧ", name = "Robots" },
+  ttf = { icon = "", name = "TrueTypeFont" },
+  rpm = { icon = "", name = "Rpm" },
+  woff = { icon = "", name = "WebOpenFontFormat" },
+  woff2 = { icon = "", name = "WebOpenFontFormat2" },
+  xz = { icon = "", name = "Xz" },
+  zip = { icon = "", name = "Zip" },
+}
+```
+
+## nvim-window-picker
+
+```lua
+opts = { use_winbar = "smart" }
+```
+
+## smart-splits.nvim
+
+```lua
+opts = {
+  ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" },
+  ignored_buftypes = { "nofile" },
+}
+```
+
+## telescope.nvim
+
+```lua
+opts = function()
+  local actions = require "telescope.actions"
+  return {
+    defaults = {
+
+      prompt_prefix = string.format("%s ", astronvim.get_icon "Search"),
+      selection_caret = string.format("%s ", astronvim.get_icon "Selected"),
+      path_display = { "truncate" },
+      sorting_strategy = "ascending",
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.55,
+        },
+        vertical = {
+          mirror = false,
+        },
+        width = 0.87,
+        height = 0.80,
+        preview_cutoff = 120,
+      },
+
+      mappings = {
+        i = {
+          ["<C-n>"] = actions.cycle_history_next,
+          ["<C-p>"] = actions.cycle_history_prev,
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+        },
+        n = { ["q"] = actions.close },
+      },
+    },
+  }
+end
+```
+
+## toggleterm.nvim
+
+```lua
+opts{
   size = 10,
-  open_mapping = [[<c-\>]],
-  hide_numbers = true,
-  shade_filetypes = {},
-  shade_terminals = true,
+  open_mapping = [[<F7>]],
   shading_factor = 2,
-  start_in_insert = true,
-  insert_mappings = true,
-  persist_size = true,
   direction = "float",
-  close_on_exit = true,
-  shell = vim.o.shell,
   float_opts = {
     border = "curved",
-    winblend = 0,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    },
+    highlights = { border = "Normal", background = "Normal" },
   },
-},
-```
-
-## Treesitter
-
-```lua
-treesitter = {
-  ensure_installed = {},
-  sync_install = false,
-  ignore_install = {},
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
-  autopairs = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-  },
-  indent = {
-    enable = false,
-  },
-  rainbow = {
-    enable = true,
-    disable = { "html" },
-    extended_mode = false,
-    max_file_lines = nil,
-  },
-  autotag = {
-    enable = true,
-  },
-},
-```
-
-## Web Devicons
-
-```lua
-["nvim-web-devicons"] = {
-  c = {
-    icon = "",
-    color = colors.c,
-    name = "c",
-  },
-  css = {
-    icon = "",
-    color = colors.css,
-    name = "css",
-  },
-  deb = {
-    icon = "",
-    color = colors.deb,
-    name = "deb",
-  },
-  Dockerfile = {
-    icon = "",
-    color = colors.docker,
-    name = "Dockerfile",
-  },
-  html = {
-    icon = "",
-    color = colors.html,
-    name = "html",
-  },
-  js = {
-    icon = "",
-    color = colors.js,
-    name = "js",
-  },
-  kt = {
-    icon = "󱈙",
-    color = colors.kt,
-    name = "kt",
-  },
-  lock = {
-    icon = "",
-    color = colors.lock,
-    name = "lock",
-  },
-  lua = {
-    icon = "",
-    color = colors.lua,
-    name = "lua",
-  },
-  mp3 = {
-    icon = "",
-    color = colors.mp3,
-    name = "mp3",
-  },
-  mp4 = {
-    icon = "",
-    color = colors.mp4,
-    name = "mp4",
-  },
-  out = {
-    icon = "",
-    color = colors.out,
-    name = "out",
-  },
-  py = {
-    icon = "",
-    color = colors.py,
-    name = "py",
-  },
-  ["robots.txt"] = {
-    icon = "ﮧ",
-    color = colors.robot,
-    name = "robots",
-  },
-  toml = {
-    icon = "",
-    color = colors.toml,
-    name = "toml",
-  },
-  ts = {
-    icon = "",
-    color = colors.ts,
-    name = "ts",
-  },
-  ttf = {
-    icon = "",
-    color = colors.ttf,
-    name = "TrueTypeFont",
-  },
-  rb = {
-    icon = "",
-    color = colors.rb,
-    name = "rb",
-  },
-  rpm = {
-    icon = "",
-    color = colors.rpm,
-    name = "rpm",
-  },
-  vue = {
-    icon = "﵂",
-    color = colors.vue,
-    name = "vue",
-  },
-  woff = {
-    icon = "",
-    color = colors.woff,
-    name = "WebOpenFontFormat",
-  },
-  woff2 = {
-    icon = "",
-    color = colors.woff2,
-    name = "WebOpenFontFormat2",
-  },
-  xz = {
-    icon = "",
-    color = colors.zip,
-    name = "xz",
-  },
-  zip = {
-    icon = "",
-    color = colors.zip,
-    name = "zip",
-  },
-  jsx = {
-    icon = "ﰆ",
-    color = colors.jsx,
-    name = "jsx",
-  },
-  rust = {
-    icon = "",
-    color = colors.rs,
-    name = "rs",
-  },
-  jpg = {
-    icon = "",
-    color = colors.jpg,
-    name = "jpg",
-  },
-  png = {
-    icon = "",
-    color = colors.png,
-    name = "png",
-  },
-  jpeg = {
-    icon = "",
-    color = colors.jpeg,
-    name = "jpeg",
-  },
-},
-```
-
-## Which-Key
-
-```lua
-["which-key"] = {
-  plugins = {
-    marks = true,
-    registers = true,
-    spelling = {
-      enabled = true,
-      suggestions = 20,
-    },
-    presets = {
-      operators = false,
-      motions = true,
-      text_objects = true,
-      windows = true,
-      nav = true,
-      z = true,
-      g = true,
-    },
-  },
-  key_labels = {},
-  icons = {
-    breadcrumb = "»",
-    separator = "➜",
-    group = "+",
-  },
-  popup_mappings = {
-    scroll_down = "<c-d>",
-    scroll_up = "<c-u>",
-  },
-  window = {
-    border = "rounded",
-    position = "bottom",
-    margin = { 1, 0, 1, 0 },
-    padding = { 2, 2, 2, 2 },
-    winblend = 0,
-  },
-  layout = {
-    height = { min = 4, max = 25 },
-    width = { min = 20, max = 50 },
-    spacing = 3,
-    align = "left",
-  },
-  ignore_missing = true,
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-  show_help = true,
-  triggers = "auto",
-  triggers_blacklist = {
-    i = { "j", "k" },
-    v = { "j", "k" },
-  },
-},
-```
-
-## Window Picker
-
-```lua
-{
-  other_win_hl_color = colors.grey_4
 }
 ```
