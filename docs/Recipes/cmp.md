@@ -130,7 +130,7 @@ return {
 
 ### Advanced Setup For Filetype and Cmdline
 
-You can also use the `config` function and the provided `default_config` function for each plugin to extend the configuration and setup of `cmp` like adding `cmp-cmdline`:
+You can also use the `config` function and the provided default configuration function for each plugin to extend the configuration and setup of `cmp` like adding `cmp-cmdline`:
 
 ```lua
 return {
@@ -142,9 +142,9 @@ return {
         dependencies = {
           "hrsh7th/cmp-cmdline", -- add cmp-cmdline as dependency of cmp
         },
-        config = function(self, opts)
+        config = function(plugin, opts)
           -- run AstroNvim default cmp config function
-          self.default_config(opts)
+          require "plugins.configs.cmp"(plugin, opts)
 
           -- configure `cmp-cmdline` as described in their repo: https://github.com/hrsh7th/cmp-cmdline#setup
           local cmp = require "cmp"
