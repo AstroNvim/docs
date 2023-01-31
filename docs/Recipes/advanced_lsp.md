@@ -295,7 +295,7 @@ return {
     {
       "jay-babu/mason-null-ls.nvim",
       config = function(plugin, opts)
-        plugin.default_config(opts) -- use the default configuration function
+        require "plugins.configs.mason-null-ls"(plugin, opts) -- use the default configuration function
         local null_ls = require "null-ls"
         require("mason-null-ls").setup_handlers { -- setup custom handlers
           prettier = function()

@@ -26,8 +26,8 @@ return {
   plugins = {
     {
       "jay-babu/mason-nvim-dap.nvim",
-      config = function(self, opts)
-        self.default_config(opts) -- run default AstroNvim mason-nvim-dap config function
+      config = function(plugin, opts)
+        require "plugins.configs.mason-nvim-dap"(plugin, opts) -- run default AstroNvim mason-nvim-dap config function
 
         -- do more configuration as needed
         local mason_nvim_dap = require "mason-nvim-dap"
@@ -130,9 +130,9 @@ return {
   plugins = {
     {
       "rcarriga/nvim-dap-ui",
-      config = function(self, opts)
+      config = function(plugin, opts)
         -- run default AstroNvim nvim-dap-ui configuration function
-        self.default_config(opts)
+        require "plugins.configs.nvim-dap-ui"(plugin, opts)
 
         -- disable dap events that are created
         local dap = require "dap"

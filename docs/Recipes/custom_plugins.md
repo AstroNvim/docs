@@ -41,7 +41,7 @@ Lazy.nvim will automatically override previously defined plugins, For example, d
 
 ### Extending Core Plugin Config Functions
 
-Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own `default_config` function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs`, add user snippets to `luasnip`, or add more extensions to `telescope` without having to rewrite our entire configuration function. Here is an example of adding the `media_files` Telescope extension:
+Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own modules in `require("plugins.configs.X")` (replacing `X` with the plugin `require` string) that returns the AstroNvim default config function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs`, add user snippets to `luasnip`, or add more extensions to `telescope` without having to rewrite our entire configuration function. Here is an example of adding the `media_files` Telescope extension:
 
 ```lua
 {
@@ -53,7 +53,7 @@ Many of our core plugins have additional code that runs during setup which you m
   -- the second is the table of options as set up in Lazy with the `opts` key
   config = function(plugin, opts)
     -- run the core AstroNvim configuration function with the options table
-    plugin.default_config(opts)
+    require("plugins.configs.telescope")(plugin, opts)
 
     -- require telescope and load extensions as necessary
     local telescope = require "telescope"
