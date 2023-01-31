@@ -28,7 +28,7 @@ The `stable` update channel is meant to provide tracking of officially tagged re
 
 **Nightly**
 
-The `nightly` update channel is meant for people who want more regular updates and follow the latest and greatest features real time. This also by default does not track pinned plugin versions and the core plugins are able to update freely with `:PackerSync`.
+The `nightly` update channel is meant for people who want more regular updates and follow the latest and greatest features real time. This also by default does not track pinned plugin versions and the core plugins are able to update freely with the package manager.
 
 ## Configuration
 

@@ -78,7 +78,7 @@ title: Default Mappings
 | AstroNvim Version         | `Leader + pv` |
 | Mason Installer           | `Leader + pm` |
 | Mason Updater             | `Leader + pM` |
-| Packer Install            | `Leader + pi` |
+| Plugins Install           | `Leader + pi` |
 | Plugins Status            | `Leader + ps` |
 | Plugins Sync              | `Leader + pS` |
 | Plugins Check for Updates | `Leader + pu` |
