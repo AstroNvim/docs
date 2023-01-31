@@ -123,9 +123,13 @@ Enter `:DapInstall` followed by the name of the debugger you want to install
 
 #### Manage plugins
 
-Run `:PackerClean` to remove any disabled or unused plugins
+Run `:Lazy check` to check for plugin updates
 
-Run `:PackerSync` to update and clean plugins
+Run `:Lazy update` to apply any pending plugin updates
+
+Run `:Lazy clean` to remove any disabled or unused plugins
+
+Run `:Lazy sync` to update and clean plugins
 
 #### Update AstroNvim
 
@@ -133,7 +137,7 @@ Run `:AstroUpdate` (`<leader>pA`) to get the latest updates from the repository
 
 #### Update AstroNvim Packages
 
-Run `:AstroUpdatePackages` (`<leader>pa`) to update both Packer plugins and Mason packages
+Run `:AstroUpdatePackages` (`<leader>pa`) to update both Neovim plugins and Mason packages
 
 #### Reload AstroNvim (_EXPERIMENTAL_)
 

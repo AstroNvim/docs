@@ -5,7 +5,7 @@ title: Customize Icons
 
 ### Disable Icons
 
-Some users may want to disable icons across the entire user interface because they don't like icons or simply because they are using a machine that is unable to install a nerd font for whatever reason. To assist with this use case we have added a new option variable `vim.g.icons_enabled` (default: `true`) that lets you disable the icons entirely and just have a text based user interface. To opt into this text based UI, it does require a user configuration setting the appropriate option. Here is a minimal `user/init.lua` file that just disables the icons. _Note:_ This does require the user to restart and run `:PackerSync` to remove the icon plugins as well:
+Some users may want to disable icons across the entire user interface because they don't like icons or simply because they are using a machine that is unable to install a nerd font for whatever reason. To assist with this use case we have added a new option variable `vim.g.icons_enabled` (default: `true`) that lets you disable the icons entirely and just have a text based user interface. To opt into this text based UI, it does require a user configuration setting the appropriate option. Here is a minimal `user/init.lua` file that just disables the icons:
 
 ```lua
 return {

@@ -64,7 +64,7 @@ Many of our core plugins have additional code that runs during setup which you m
 
 ## Lazy Loading
 
-For maintaining a fast startup time, it is recommended to do lazy loading which is easily configurable in Packer. There are a few basic methods of lazy loading that can be easily added. The main keys here are `cmd`, `module`, `ft`, `keys`, `event`, `after`. More details of these and more options can be found in the [Packer Documentation](https://github.com/wbthomason/packer.nvim#specifying-plugins). Here are a few examples:
+By default AstroNvim enables lazy loading automatically with Lazy.nvim. This requires new plugins to either have lazy loading explicitly disabled or correctly configured. There are a few basic methods of lazy loading that can be easily added. The main keys here are `cmd`, `module`, `ft`, `keys`, `event`, `after`. More details of these and more options can be found in the [Lazy Documentation](https://github.com/folke/lazy.nvim#-plugin-spec). Here are a few examples:
 
 ```lua
 -- plugins are automatically lazy loaded and by default allow for loading based on module
@@ -76,6 +76,9 @@ For maintaining a fast startup time, it is recommended to do lazy loading which 
 
 -- this plugin will be loaded when using `:Bdelete` and `:Bwipeout`
 { "famiu/bufdelete.nvim", cmd = { "Bdelete", "Bwipeout" } },
+
+-- this plugin will be not be lazy loaded
+{ "famiu/bufdelete.nvim", lazy = false },
 ```
 
 ### Lazy Load File Related Plugins
