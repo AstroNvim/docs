@@ -12,7 +12,7 @@ One of the best parts of separating the user configuration of AstroNvim away fro
 2. Clone AstroNvim (normal installation instructions)
 
 ```sh
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 ```
 
 3. Clone your empty new repository to your `~/.config/nvim/lua` folder
@@ -48,7 +48,7 @@ If you have already created your user configuration and have it tracked in a rep
 1. Clone AstroNvim (normal installation instructions)
 
 ```sh
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 ```
 
 2. Clone your empty new repository to your `~/.config/nvim/lua` folder
