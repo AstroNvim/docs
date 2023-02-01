@@ -143,11 +143,11 @@ return {
           "hrsh7th/cmp-cmdline", -- add cmp-cmdline as dependency of cmp
         },
         config = function(plugin, opts)
-          -- run AstroNvim default cmp config function
-          require "plugins.configs.cmp"(plugin, opts)
+          local cmp = require "cmp"
+          -- run cmp setup
+          cmp.setup(opts)
 
           -- configure `cmp-cmdline` as described in their repo: https://github.com/hrsh7th/cmp-cmdline#setup
-          local cmp = require "cmp"
           cmp.setup.cmdline("/", {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
