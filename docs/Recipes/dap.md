@@ -27,10 +27,9 @@ return {
     {
       "jay-babu/mason-nvim-dap.nvim",
       config = function(plugin, opts)
-        require "plugins.configs.mason-nvim-dap"(plugin, opts) -- run default AstroNvim mason-nvim-dap config function
-
-        -- do more configuration as needed
         local mason_nvim_dap = require "mason-nvim-dap"
+        mason_nvim_dap.setup(opts) -- run setup
+        -- do more configuration as needed
         mason_nvim_dap.setup_handlers {
           python = function(source_name)
             local dap = require "dap"
