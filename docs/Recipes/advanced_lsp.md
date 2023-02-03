@@ -301,7 +301,7 @@ return {
         mason_null_ls.setup(opts) -- run setup
         mason_null_ls.setup_handlers { -- setup custom handlers
           prettier = function()
-            require("null-ls").register(require("null-ls").builtins.formatting.prettier.with {
+            null_ls.register(null_ls.builtins.formatting.prettier.with {
               condition = function(utils)
                 return utils.root_has_file "package.json"
                   or utils.root_has_file ".prettierrc"
@@ -312,7 +312,7 @@ return {
           end,
           -- For prettierd:
           -- prettierd = function()
-          --   require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
+          --   null_ls.register(null_ls.builtins.formatting.prettierd.with({
           --     condition = function(utils)
           --       return utils.root_has_file("package.json") or utils.root_has_file(".prettierrc") or utils.root_has_file(".prettierrc.json") or utils.root_has_file(".prettierrc.js")
           --     end
@@ -320,7 +320,7 @@ return {
           -- end,
           -- For eslint_d:
           -- eslint_d = function()
-          --   require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+          --   null_ls.register(null_ls.builtins.diagnostics.eslint_d.with({
           --     condition = function(utils)
           --       return utils.root_has_file("package.json") or utils.root_has_file(".eslintrc.json") or utils.root_has_file(".eslintrc.js")
           --     end
