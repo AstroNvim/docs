@@ -1,0 +1,65 @@
+---
+id: autocmds
+title: Exposed Autocommands
+---
+
+AstroNvim has man internally built features to help ease both user experience
+and configuration. Some of these features work asynchronously, so we provide a
+few `User` autocommand events that can be accessed by the user. All of the
+autocommand events that we provide are in the `User` autocommand space and the
+patterns begin with `Astro`. Here is a complete list of all of the events that
+we provide as well as descriptions on when they happen. For a list of the core
+Neovim autocmd events, check the help page with `:h autocmd-events`.
+
+- `AstroBufsUpdated`: AstroNvim uses a vim-tab local variable for managing
+  buffers displayed in our custom `tabline`. This is stored in `vim.t.bufs`.
+  `AstroBufsUpdated` is triggered every time we update this `vim.t.bufs`
+  variable internally.
+
+- `AstroColorScheme`: The `highlights` configuration option in the user
+  configuration provides an easy to use API for customizing highlight groups
+  for all themes or specific themes even if the theme plugins do not provide
+  good configuration APIs. `AstroColorScheme` is triggered after we finish
+  applying these custom highlights when a new colorscheme is applied.
+
+- `AstroLspSetup`: AstroNvim has a lot of internal tooling surrounding setting
+  up handlers for the interal LSP mechanisms. `AstroLspSetup` is triggered when
+  we have finished setting up these handlers and configuring `lspconfig`.
+
+- `AstroMasonUpdateCompleted`: AstroNvim provides a custom command for easily
+  updating all packages that are currently installed with Mason using
+  `:MasonUpdateAll`. `AstroMasonUpdateCompleted` is triggered after all of the
+  available updates have been applied.
+
+- `AstroUpdateComplete`: This is triggered once the AstroNvim updater has
+  completed the update process. This could be useful for automatically quitting
+  the editor after an update to quickly relaunch.
+
+### Example Autocommand Usage
+
+Just to demonstrate the usage of `User` autocommand events in Neovim here is an
+example `autocmd` that disables the `tabline` if there is only a single buffer
+and a single tab available. The following can be placed in the `polish`
+function in a user configuration:
+
+```lua
+-- create an augroup to easily manage autocommands
+vim.api.nvim_create_augroup("autohidetabline", { clear = true })
+-- create a new autocmd on the "User" event
+vim.api.nvim_create_autocmd("User", {
+  desc = "Hide tabline when only one buffer and one tab", -- nice description
+  -- triggered when vim.t.bufs is updated
+  pattern = "AstroBufsUpdated", -- the pattern si the name of our User autocommand events
+  group = "autohidetabline", -- add the autocmd to the newly created augroup
+  callback = function()
+    -- if there is more than one buffer in the tab, show the tabline
+    -- if there are 0 or 1 buffers in the tab, only show the tabline if there is more than one vim tab
+    local new_showtabline = #vim.t.bufs > 1 and 2 or 1
+    -- check if the new value is the same as the current value
+    if new_showtabline ~= vim.opt.showtabline:get() then
+      -- if it is different, then set the new `showtabline` value
+      vim.opt.showtabline = new_showtabline
+    end
+  end,
+})
+```
