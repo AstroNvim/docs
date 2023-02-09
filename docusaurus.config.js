@@ -100,7 +100,7 @@ const config = {
   title: "AstroNvim",
   tagline:
     "An aesthetic and feature-rich neovim config that is extensible and easy to use with a great set of plugins",
-  url: "https://astronvim.github.io",
+  url: "https://astronvim.com",
   baseUrl: "/",
   trailingSlash: false,
   onBrokenLinks: "throw",
