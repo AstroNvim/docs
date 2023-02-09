@@ -110,7 +110,7 @@ AstroNvim provides a module loaded as `astronvim.status` for building components
 
 :::info
 
-For the complete documentation on this API checkout the [AstroNvim Lua API docs](https://astronvim.github.io/AstroNvim/modules/core.utils.status.html)
+For the complete documentation on this API checkout the [AstroNvim Lua API docs](https://api.astronvim.com/modules/core.utils.status.html)
 
 :::
 
