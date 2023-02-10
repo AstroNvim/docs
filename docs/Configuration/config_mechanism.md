@@ -45,7 +45,7 @@ works for user settings.
     - If the `user.MODULE` module returns a table, then AstroNvim assigns the
       returned table to the `MODULE` variable, and generates settings by
       calling the `vim.tbl_deep_extend("force", DEFAULT, MODULE)` function
-      extending the `DEFAULT` table the `MODULE` table.
+      extending the `DEFAULT` table by the `MODULE` table.
     - If the `user.MODULE` module returns a function, then AstroNvim assigns
       the returned function to the `MODULE` variable, and generates custom
       extended settings by calling the `MODULE` function with the `DEFAULT` as
