@@ -47,11 +47,11 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
 
 - The debugging menu has been moved from `<leader>D` to `<leader>d` for quicker and more comfortable usage.
 
-- `H` and `L` have been changed to `[b` and `]b` respectively for changing tabs in the UI. This is for both switching buffers as well as neo-tree sources in the explorer. This can be changed in the your user configuration by adding the following entries to your `mappings.n` table (This uses an internal `nav_buf` function that follows the tab positioning and also allows for using a number to move by multiple tabs at once):
+- `H` and `L` have been changed to `[b` and `]b` respectively for changing tabs in the UI. This is for both switching buffers as well as neo-tree sources in the explorer. This can be changed in the your user configuration by adding the following entries to your `mappings.n` table (This uses an internal `core.utils.buffer` function that follows the tab positioning and also allows for using a number to move by multiple tabs at once):
 
 ```lua
-    L = { function() require("core.utils.buffer").nav_buf(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
-    H = { function() require("core.utils.buffer").nav_buf(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
+    L = { function() require("core.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
+    H = { function() require("core.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
 ```
 
 - `header` option has been removed in favor of decreasing abstractions. Check the updated [Dashboard Customizations Documentation](../Recipes/alpha.md)
