@@ -16,12 +16,13 @@ return {
     -- use a function override to let us use lua to retrieve colors from highlight group
     -- there is no default table so we don't need to put a parameter for this function
     init = function()
+      local get_hlgroup = require("core.utils").get_hlgroup
       -- get highlights from highlight groups
-      local normal = astronvim.get_hlgroup "Normal"
+      local normal = get_hlgroup "Normal"
       local fg, bg = normal.fg, normal.bg
-      local bg_alt = astronvim.get_hlgroup("Visual").bg
-      local green = astronvim.get_hlgroup("String").fg
-      local red = astronvim.get_hlgroup("Error").fg
+      local bg_alt = get_hlgroup("Visual").bg
+      local green = get_hlgroup("String").fg
+      local red = get_hlgroup("Error").fg
       -- return a table of highlights for telescope based on colors gotten from highlight groups
       return {
         TelescopeBorder = { fg = bg_alt, bg = bg },

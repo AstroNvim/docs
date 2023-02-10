@@ -34,8 +34,8 @@ return {
       ["<leader>c"] = {
         function()
           local bufs = vim.fn.getbufinfo { buflisted = true }
-          astronvim.close_buf(0)
-          if astronvim.is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
+          require("core.utils.buffer").close_buf(0)
+          if require("core.utils").is_available "alpha-nvim" and not bufs[2] then require("alpha").start(true) end
         end,
         desc = "Close buffer",
       },

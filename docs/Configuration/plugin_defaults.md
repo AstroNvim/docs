@@ -75,13 +75,14 @@ opts = function()
   }
   dashboard.section.header.opts.hl = "DashboardHeader"
 
+  local button = require("core.utils").alpha_button
   dashboard.section.buttons.val = {
-    astronvim.alpha_button("LDR n", "  New File  "),
-    astronvim.alpha_button("LDR f f", "  Find File  "),
-    astronvim.alpha_button("LDR f o", "  Recents  "),
-    astronvim.alpha_button("LDR f w", "  Find Word  "),
-    astronvim.alpha_button("LDR f '", "  Bookmarks  "),
-    astronvim.alpha_button("LDR S l", "  Last Session  "),
+    button("LDR n", "  New File  "),
+    button("LDR f f", "  Find File  "),
+    button("LDR f o", "  Recents  "),
+    button("LDR f w", "  Find Word  "),
+    button("LDR f '", "  Bookmarks  "),
+    button("LDR S l", "  Last Session  "),
   }
 
   dashboard.section.footer.val =
@@ -257,7 +258,7 @@ opts = {
 ```lua
 opts = function()
   local global_commands = {
-    system_open = function(state) astronvim.system_open(state.tree:get_node():get_id()) end,
+    system_open = function(state) require("core.utils").system_open(state.tree:get_node():get_id()) end,
     parent_or_close = function(state)
       local node = state.tree:get_node()
       if (node.type == "directory" or node:has_children()) and node:is_expanded() then
@@ -279,38 +280,39 @@ opts = function()
       end
     end,
   }
+  local get_icon = require("core.utils").get_icon
   return {
     close_if_last_window = true,
-    enable_diagnostics = false,
     source_selector = {
       winbar = true,
       content_layout = "center",
       tab_labels = {
-        filesystem = astronvim.get_icon "FolderClosed" .. " File",
-        buffers = astronvim.get_icon "DefaultFile" .. " Bufs",
-        git_status = astronvim.get_icon "Git" .. " Git",
-        diagnostics = astronvim.get_icon "Diagnostic" .. " Diagnostic",
+        filesystem = get_icon "FolderClosed" .. " File",
+        buffers = get_icon "DefaultFile" .. " Bufs",
+        git_status = get_icon "Git" .. " Git",
+        diagnostics = get_icon "Diagnostic" .. " Diagnostic",
       },
     },
     default_component_configs = {
       indent = { padding = 0 },
       icon = {
-        folder_closed = astronvim.get_icon "FolderClosed",
-        folder_open = astronvim.get_icon "FolderOpen",
-        folder_empty = astronvim.get_icon "FolderEmpty",
-        default = astronvim.get_icon "DefaultFile",
+        folder_closed = get_icon "FolderClosed",
+        folder_open = get_icon "FolderOpen",
+        folder_empty = get_icon "FolderEmpty",
+        default = get_icon "DefaultFile",
       },
+      modified = { symbol = get_icon "FileModified" },
       git_status = {
         symbols = {
-          added = astronvim.get_icon "GitAdd",
-          deleted = astronvim.get_icon "GitDelete",
-          modified = astronvim.get_icon "GitChange",
-          renamed = astronvim.get_icon "GitRenamed",
-          untracked = astronvim.get_icon "GitUntracked",
-          ignored = astronvim.get_icon "GitIgnored",
-          unstaged = astronvim.get_icon "GitUnstaged",
-          staged = astronvim.get_icon "GitStaged",
-          conflict = astronvim.get_icon "GitConflict",
+          added = get_icon "GitAdd",
+          deleted = get_icon "GitDelete",
+          modified = get_icon "GitChange",
+          renamed = get_icon "GitRenamed",
+          untracked = get_icon "GitUntracked",
+          ignored = get_icon "GitIgnored",
+          unstaged = get_icon "GitUnstaged",
+          staged = get_icon "GitStaged",
+          conflict = get_icon "GitConflict",
         },
       },
     },
@@ -355,7 +357,7 @@ opts = {
 ## null-ls.nvim
 
 ```lua
-opts = { on_attach = astronvim.lsp.on_attach }
+opts = function() return { on_attach = require("core.utils.lsp").on_attach } end
 ```
 
 ## nvim-autopairs
@@ -553,11 +555,11 @@ opts = {
 ```lua
 opts = function()
   local actions = require "telescope.actions"
+  local get_icon = require("core.utils").get_icon
   return {
     defaults = {
-
-      prompt_prefix = string.format("%s ", astronvim.get_icon "Search"),
-      selection_caret = string.format("%s ", astronvim.get_icon "Selected"),
+      prompt_prefix = string.format("%s ", get_icon "Search"),
+      selection_caret = string.format("%s ", get_icon "Selected"),
       path_display = { "truncate" },
       sorting_strategy = "ascending",
       layout_config = {
