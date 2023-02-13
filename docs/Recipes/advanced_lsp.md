@@ -68,8 +68,8 @@ return {
   lsp = {
     formatting = {
       filter = function(client)
-        -- disable formatting for sumneko_lua
-        if client.name == "sumneko_lua" then
+        -- disable formatting for lua_ls
+        if client.name == "lua_ls" then
           return false
         end
 
@@ -95,7 +95,7 @@ return {
   lsp = {
     formatting = {
       disabled = {
-        "sumneko_lua",
+        "lua_ls",
         "rust_analyzer",
       },
     },
@@ -105,13 +105,13 @@ return {
 
 ### Using both filter function and disabled list
 
-When using the options together, a client listed in the `disabled` list will always be disabled and then all other clients will then be passed into the `filter` function. For example, we can simplify our previous `filter` function by just disabling the `sumneko_lua` client in the `disabled` table:
+When using the options together, a client listed in the `disabled` list will always be disabled and then all other clients will then be passed into the `filter` function. For example, we can simplify our previous `filter` function by just disabling the `lua_ls` client in the `disabled` table:
 
 ```lua
 return {
   lsp = {
     formatting = {
-      disabled = { "sumneko_lua" },
+      disabled = { "lua_ls" },
       filter = function(client)
         -- only enable null-ls for javascript files
         if vim.bo.filetype == "javascript" then
@@ -138,7 +138,7 @@ return {
     formatting = {
       format_on_save = true, -- enable or disable automatic formatting on save
       timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
-      disabled = { "sumneko_lua" },
+      disabled = { "lua_ls" },
       filter = function(client)
         -- only enable null-ls for javascript files
         if vim.bo.filetype == "javascript" then
