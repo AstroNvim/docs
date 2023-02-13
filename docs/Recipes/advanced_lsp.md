@@ -53,7 +53,7 @@ return {
 }
 ```
 
-With the formatting on save enabled, we have also provided the mapping `<leader>uf` to toggle the auto formatting temporarily along with the variable `vim.g.autoformat_enabled` which allows you to control whether the auto formatter runs on startup initially (_Note:_ Format on save must be enabled in the `lsp.formatting` table for this option and keybinding to do anything).
+With the formatting on save enabled, we have also provided the mapping `<leader>uf` and `<leader>uF` to toggle the auto formatting temporarily for either the current buffer or globally, along with the variable `vim.g.autoformat_enabled` which allows you to control whether the auto formatter runs on startup initially (_Note:_ Format on save must be enabled in the `lsp.formatting` table for this option and keybinding to do anything).
 
 ## Controlling Formatting
 
