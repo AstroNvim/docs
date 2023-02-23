@@ -17,13 +17,16 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
   - **Note:** The default options for lazy sets `lazy = true` for each plugin. This means plugins should either be configured appropriately for lazy loading or use `lazy = false` if you do not want a plugin to be lazy loaded
   - The `user/plugins/` folder is added to the Lazy plugin specifications to be imported. This allows you to add lists of plugins to any files in the `user/plugins/` folder and they will be used appropriately. This will allow you to organize your plugins in any way you would prefer.
 
-- A large restructuring of our internal utilities has taken place. Most utility functions in the global `astronvim` variable have been separated into specific modules and can be accessed with require such as: `require("core.utils")`. Commonly used changes are: `astronvim.lsp` is now `require("core.utils.lsp")`, `astronvim.status` is now `require("core.utils.status")`, and most of the various utilities are now just in `require("core.utils")`. Please check out the updated API documnetation here for specific details and finding specific functions: [api.astronvim.com](https://api.astronvim.com).
+- A large restructuring of our internal utilities has taken place.
 
-- We have removed Bufferline and are now using Heirline and `core.utils.status` (previously was in `astronvim.status` but is now accessed with `require("core.utils.status")`) for our own performant and custom tabline.
+  - Our `core` module has been renamed to `astronvim` so anywhere you use `require("core...")` this will need to be replaced with `require("astronvim...")`
+  - Most utility functions in the global `astronvim` variable have been separated into specific modules and can be accessed with require such as: `require("astronvim.utils")`. Commonly used changes are: `astronvim.lsp` is now `require("astronvim.utils.lsp")`, `astronvim.status` is now `require("astronvim.utils.status")`, and most of the various utilities are now just in `require("astronvim.utils")`. Please check out the updated API documnetation here for specific details and finding specific functions: [api.astronvim.com](https://api.astronvim.com).
+
+- We have removed Bufferline and are now using Heirline and `astronvim.utils.status` (previously was in `astronvim.status` but is now accessed with `require("astronvim.utils.status")`) for our own performant and custom tabline.
 
 - `:AstroReload` has been removed. There are a couple reasons for this, it was never very reliable and hard to maintain and lazy.nvim strictly does not support hot reloading neovim configurations.
 
-- The `require("core.utils.status").component.macro_recording` status component has been removed. Please use the improved `require("core.utils.status").component.cmd_info` component.
+- The `require("astronvim.utils.status").component.macro_recording` status component has been removed. Please use the improved `require("astronvim.utils.status").component.cmd_info` component.
 
 - `lsp.server-settings` has been renamed to `lsp.config`. If you have the `["server-settings"]` table in your `user/init.lua` file, just rename it to `config`. If you have the folder `user/lsp/server-settings`, just rename the folder to `user/lsp/config`.
 
@@ -47,11 +50,11 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
 
 - The debugging menu has been moved from `<leader>D` to `<leader>d` for quicker and more comfortable usage.
 
-- `H` and `L` have been changed to `[b` and `]b` respectively for changing tabs in the UI. This is for both switching buffers as well as neo-tree sources in the explorer. This can be changed in the your user configuration by adding the following entries to your `mappings.n` table (This uses an internal `core.utils.buffer` function that follows the tab positioning and also allows for using a number to move by multiple tabs at once):
+- `H` and `L` have been changed to `[b` and `]b` respectively for changing tabs in the UI. This is for both switching buffers as well as neo-tree sources in the explorer. This can be changed in the your user configuration by adding the following entries to your `mappings.n` table (This uses an internal `astronvim.utils.buffer` function that follows the tab positioning and also allows for using a number to move by multiple tabs at once):
 
 ```lua
-    L = { function() require("core.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
-    H = { function() require("core.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
+    L = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
+    H = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
 ```
 
 - `header` option has been removed in favor of decreasing abstractions. Check the updated [Dashboard Customizations Documentation](../Recipes/alpha.md)
@@ -62,4 +65,4 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
 
 - `lsp.skip_setup` option has been removed as the new and improved `lsp.setup_handlers` option makes this easy. If you are using this option for LSP specific plugins, check up the updated [Advanced LSP Setup Documentation](../Recipes/advanced_lsp.md#lsp-specific-plugins). This page also includes the new format for setting these plugins up with Lazy.nvim.
 
-- The `default_tbl(override_tbl, default_tbl)` internal function has been removed and replaced with `extend_tbl(default_tbl, override_tbl)`. If you use the original function anywhere in your config, remember to rename it and change the order of the parameters. Also note that this now lives in `core.utils` rather than the global `astronvim` table. This can be accessed with `require("core.utils").extend_tbl(default_tbl, override_tbl)`.
+- The `default_tbl(override_tbl, default_tbl)` internal function has been removed and replaced with `extend_tbl(default_tbl, override_tbl)`. If you use the original function anywhere in your config, remember to rename it and change the order of the parameters. Also note that this now lives in `astronvim.utils` rather than the global `astronvim` table. This can be accessed with `require("astronvim.utils").extend_tbl(default_tbl, override_tbl)`.

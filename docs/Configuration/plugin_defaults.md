@@ -75,7 +75,7 @@ opts = function()
   }
   dashboard.section.header.opts.hl = "DashboardHeader"
 
-  local button = require("core.utils").alpha_button
+  local button = require("astronvim.utils").alpha_button
   dashboard.section.buttons.val = {
     button("LDR n", "  New File  "),
     button("LDR f f", "  Find File  "),
@@ -258,7 +258,7 @@ opts = {
 ```lua
 opts = function()
   local global_commands = {
-    system_open = function(state) require("core.utils").system_open(state.tree:get_node():get_id()) end,
+    system_open = function(state) require("astronvim.utils").system_open(state.tree:get_node():get_id()) end,
     parent_or_close = function(state)
       local node = state.tree:get_node()
       if (node.type == "directory" or node:has_children()) and node:is_expanded() then
@@ -280,7 +280,7 @@ opts = function()
       end
     end,
   }
-  local get_icon = require("core.utils").get_icon
+  local get_icon = require("astronvim.utils").get_icon
   return {
     close_if_last_window = true,
     source_selector = {
@@ -357,7 +357,7 @@ opts = {
 ## null-ls.nvim
 
 ```lua
-opts = function() return { on_attach = require("core.utils.lsp").on_attach } end
+opts = function() return { on_attach = require("astronvim.utils.lsp").on_attach } end
 ```
 
 ## nvim-autopairs
@@ -555,7 +555,7 @@ opts = {
 ```lua
 opts = function()
   local actions = require "telescope.actions"
-  local get_icon = require("core.utils").get_icon
+  local get_icon = require("astronvim.utils").get_icon
   return {
     defaults = {
       prompt_prefix = string.format("%s ", get_icon "Search"),

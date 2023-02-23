@@ -93,6 +93,6 @@ For the definition of `vim.tbl_deep_extend`, see `:help tbl_deep_extend`.
 :::tip
 
 For the actual definition of `user_opts` and related functions, see
-their definition in `lua/core/utils/init.lua`.
+their definition in `lua/astronvim/utils/init.lua`.
 
 :::
