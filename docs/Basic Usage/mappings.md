@@ -171,12 +171,13 @@ title: Default Mappings
 
 | Action        | Mappings      |
 | ------------- | ------------- |
-| Next Hunk     | `Leader + gj` |
-| Previous Hunk | `Leader + gk` |
+| Next Hunk     | `]g`          |
+| Previous Hunk | `[g`          |
 | Blame Line    | `Leader + gl` |
 | Preview Hunk  | `Leader + gp` |
 | Reset Hunk    | `Leader + gr` |
 | Stage Hunk    | `Leader + gs` |
+| Stage Buffer  | `Leader + gS` |
 | Unstage Hunk  | `Leader + gu` |
 | Git Diff      | `Leader + gd` |
 
