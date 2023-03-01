@@ -19,8 +19,8 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
 
 - A large restructuring of our internal utilities has taken place.
 
-  - Our `core` module has been renamed to `astronvim` so anywhere you use `require("core...")` this will need to be replaced with `require("astronvim...")`
-  - Most utility functions in the global `astronvim` variable have been separated into specific modules and can be accessed with require such as: `require("astronvim.utils")`. Commonly used changes are: `astronvim.lsp` is now `require("astronvim.utils.lsp")`, `astronvim.status` is now `require("astronvim.utils.status")`, and most of the various utilities are now just in `require("astronvim.utils")`. Please check out the updated API documnetation here for specific details and finding specific functions: [api.astronvim.com](https://api.astronvim.com).
+  - Our `core` module has been renamed to `astronvim` so anywhere you use `require("core...")` will need to be replaced with `require("astronvim...")`
+  - Most utility functions in the global `astronvim` variable have been separated into specific modules and can be accessed with require such as: `require("astronvim.utils")`. Commonly used changes are: `astronvim.lsp` is now `require("astronvim.utils.lsp")`, `astronvim.status` is now `require("astronvim.utils.status")`, and most of the various utilities are now just in `require("astronvim.utils")`. Please check out the updated API documentation here for specific details and finding specific functions: [api.astronvim.com](https://api.astronvim.com).
 
 - We have removed Bufferline and are now using Heirline and `astronvim.utils.status` (previously was in `astronvim.status` but is now accessed with `require("astronvim.utils.status")`) for our own performant and custom tabline.
 
@@ -38,13 +38,13 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
 
 - `cmp` options table has been removed. Please see the updated [Customize cmp Completion Documentation](../Recipes/cmp.md) for the new way to extend the default configuration of cmp and running more `cmp` setup functions.
 
-- `mason-lspconfig`, `mason-null-ls`, and `mason-nvim-dap` has been removed, please use the new plugin notation for extending these options like adding custom setup handlers. This is described in the [Extending Core Plugin Config Functions Documentation](../Recipes/custom_plugins.md#extending-core-plugin-config-functions).
+- `mason-lspconfig`, `mason-null-ls`, and `mason-nvim-dap` options tables have been removed, please use the new plugin notation for extending these options like adding custom setup handlers. This is described in the [Extending Core Plugin Config Functions Documentation](../Recipes/custom_plugins.md#extending-core-plugin-config-functions).
 
 - `default_theme` has been migrated to a dedicated plugin that can be used outside of AstroNvim as well at [AstroNvim/astrotheme](https://github.com/AstroNvim/astrotheme). This can be customized and configured the same as any other plugin, check the README for details on the `setup` function.
 
-- The bindings in `cmp` to scroll the preview window for a completion item has moved to `<c-u>` and `<c-d>`
+- The bindings in `cmp` to scroll the preview window for a completion item have moved to `<c-u>` and `<c-d>`
 
-- `<leader>p` mappings for package and plugin management have been cleaned up to follow a common format amonst each other. `<leader>ps` is now for checking Plugin Status and `<leader>pS` is for syncing plugins. Mason mappings have been moved to `<leader>pm` and `<leader>pM` for Mason Status and Mason Update respectively.
+- `<leader>p` mappings for package and plugin management have been cleaned up to follow a common format amongst each other. `<leader>ps` is now for checking Plugin Status and `<leader>pS` is for syncing plugins. Mason mappings have been moved to `<leader>pm` and `<leader>pM` for Mason Status and Mason Update respectively.
 
 - The dashboard mapping has been changed from `<leader>d` to `<leader>h` for the "Home Screen"
 
