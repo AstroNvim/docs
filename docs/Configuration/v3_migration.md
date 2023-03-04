@@ -17,6 +17,8 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
   - **Note:** The default options for lazy sets `lazy = true` for each plugin. This means plugins should either be configured appropriately for lazy loading or use `lazy = false` if you do not want a plugin to be lazy loaded
   - The `user/plugins/` folder is added to the Lazy plugin specifications to be imported. This allows you to add lists of plugins to any files in the `user/plugins/` folder and they will be used appropriately. This will allow you to organize your plugins in any way you would prefer.
 
+- `astronvim.file_plugins` and `astronvim.git_plugins` tables have been removed in favor of a `User` `autocmd` model. Wherever you are using `astronvim.file_plugins` or `astronvim.git_plugins` to lazy load your plugins, please switch to lazy loading on the user events `User AstroFile` and `User AstroGitFile`. More details for these can be found in the updated [Customizing Plugins Documentation](../Recipes/custom_plugins.md).
+
 - A large restructuring of our internal utilities has taken place.
 
   - Our `core` module has been renamed to `astronvim` so anywhere you use `require("core...")` will need to be replaced with `require("astronvim...")`

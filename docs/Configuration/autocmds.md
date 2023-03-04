@@ -22,6 +22,14 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
   good configuration APIs. `AstroColorScheme` is triggered after we finish
   applying these custom highlights when a new colorscheme is applied.
 
+- `AstroFile`: AstroNvim uses this autocmd event for lazy loading plugins
+  on the first real file opened for editing. This can also be used by the user.
+  This event fires every time a file is opened with a non-empty filename.
+
+- `AstroGitFile`: AstroNvim uses this autocmd event for lazy loading git related
+  plugins. This event fires every time a file is opened that is in a git tracked
+  directory.
+
 - `AstroLspSetup`: AstroNvim has a lot of internal tooling surrounding setting
   up handlers for the interal LSP mechanisms. `AstroLspSetup` is triggered when
   we have finished setting up these handlers and configuring `lspconfig`.

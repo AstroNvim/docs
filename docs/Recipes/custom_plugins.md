@@ -83,26 +83,26 @@ By default AstroNvim enables lazy loading automatically with Lazy.nvim. This req
 
 ### Lazy Load File Related Plugins
 
-AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. Because of this we have added some internal mechanisms to make it easy to add this specific type of lazy loading. To do this you simply use the `init` key to add the plugin name to the table `astronvim.file_plugins`. Here is a simple example:
+AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. We achieve this by creating a custom `User` `autocmd` event called `AstroFile`. This can also be used by users for lazy loading plugins on the first real file that is opened:
 
 ```lua
 {
   "NvChad/nvim-colorizer.lua",
-  init = function() table.insert(astronvim.file_plugins, "nvim-colorizer.lua") end,
+  event = "User AstroFile",
 },
 
 ```
 
-This will tell AstroNvim that this plugin should be loaded with the other file related plugins on the opening of the first real file.
+This will tell AstroNvim that this plugin should be loaded whenever the `User` autocmd event `AstroFile` is fired.
 
 ### Lazy Load Git Plugins
 
-Similar to the file related plugins described above, we also have a similar hook for git related plugins. These shouldn't be loaded until a file is open that is in a git repository folder. We use this for stuff like the `gitsigns` plugin. This will check when a file is opened if it is in a git tracked folder and then load the plugin. You just need to use the `init` key to add the plugin name to the table `astronvim.git_plugins`. **This does require access to the `git` command in your `PATH`.**
+Similar to the file related plugins described above, we also have a similar hook for git related plugins. These shouldn't be loaded until a file is open that is in a git repository folder. We use this for stuff like the `gitsigns` plugin. This will check when a file is opened if it is in a git tracked folder and then load the plugin. This `User` `autocmd` event is `AstroGitFile`. **This does require access to the `git` command in your `PATH`.**
 
 ```lua
 {
   "lewis6991/gitsigns.nvim",
-  init = function() table.insert(astronvim.git_plugins, "gitsigns.nvim") end,
+  event = "User AstroGitFile",
 },
 ```
 
