@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
   - [go DiskUsage()](https://github.com/dundee/gdu) - disk usage toggle terminal (`<leader>tu`)
   - [bottom](https://github.com/ClementTsang/bottom) - process viewer toggle terminal (`<leader>tt`)
   - [Python](https://www.python.org/) - python repl toggle terminal (`<leader>tp`)
-  - [Node](https://nodejs.org/en/) - node repl toggle terminal (`<leader>tn`)
+  - [Node](https://nodejs.org/en/) - Node is needed for a lot of the LSPs, and for the node repl toggle terminal (`<leader>tn`)
 
 :::info
 
