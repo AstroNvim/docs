@@ -9,7 +9,7 @@ Plugins can be added in your user configuration either in `user/init.lua` in the
 
 To see all available options in Lazy.nvim please refer to the [Lazy.nvim Plugin Spec](https://github.com/folke/lazy.nvim#-plugin-spec)
 
-We use the direct Lazy.nvim syntax. So anything in the `plugins` table will be passed into the setup of `lazy`. If there is a `user/plugin/` folder available then that will be used as the specification source using Lazy's out of the box plugin structuring feature ([Lazy.nvim Plugin Structuring Documentation](https://github.com/folke/lazy.nvim#-structuring-your-plugins)). This allows you to easily override any plugins that we have set up as well as adding new plugins.
+We use the direct Lazy.nvim syntax. So anything in the `plugins` table will be passed into the setup of `lazy`. If there is a `user/plugins/` folder available then that will be used as the specification source using Lazy's out of the box plugin structuring feature ([Lazy.nvim Plugin Structuring Documentation](https://github.com/folke/lazy.nvim#-structuring-your-plugins)). This allows you to easily override any plugins that we have set up as well as adding new plugins.
 
 :::caution
 
