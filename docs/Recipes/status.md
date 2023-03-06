@@ -271,6 +271,7 @@ return {
         -- statuscolumn
         opts.statuscolumn = { -- statuscolumn
           status.component.foldcolumn(),
+          status.component.fill(),
           status.component.numbercolumn(),
           status.component.signcolumn(),
         }
