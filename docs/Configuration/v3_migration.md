@@ -11,6 +11,17 @@ AstroNvim requires the migration to Neovim v0.9 to use the new APIs and features
 
 :::
 
+## Upgrading to v3.0
+
+AstroNvim v3.0 is losing support for Neovim v0.8 and gaining support for Neovim v0.9. This can make it seem confusing on how to do the upgrade smoothly. It won't matter which order you do the upgrade in the end. If you upgrade in Neovim v0.8 then when you restart into AstroNvim v3.0 you will get errors because the version is no longer supported, which is when you would want to upgrade your Neovim installation to Neovim v0.9. A more seamless upgrade path which we would recommend is to install Neovim v0.9 first and then do the upgrade:
+
+1. Update Neovim to v0.9
+2. Open AstroNvim (you will get a warning that your Neovim version is unsupported, this is alright)
+3. Run `:AstroUpdate` and get the new v3.0 stable release
+4. Restart Neovim
+
+## Migrating User Configuration
+
 - **Plugin Manager Change:** With v3 we have moved away from Packer and to the new [lazy.nvim](https://github.com/folke/lazy.nvim). The options for lazy can be configured with the `lazy` user option. We have also removed all abstraction away from the plugin specifications. So the lazy.nvim docs can be referred to for the format of adding new plugins. You can also check the updated [Customizing Plugins Documentation](../Recipes/custom_plugins.md) for defining new plugins as well as overriding core plugins.
 
   - Lazy also handles overriding options and setup functions automatically so we have removed all of the `plugins.X` user options for overriding the setup tables for the core provided plugins. These can be set up, extended, and configured similar to any other plugin that you are adding.
