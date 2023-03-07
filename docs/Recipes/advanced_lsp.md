@@ -213,20 +213,23 @@ return {
 
 ## LSP Specific Plugins
 
-There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `lsp.setup_handlers` table for specifying how language servers should be setup such as using a language specific plugin. This function for each handler has two parameters, the first is the name of the server and the second is the options we would be passing to the `lspconfig` setup call. These options include things such as our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.config`. Here are a couple examples for some common LSP plugins:
+There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `lsp.skip_setup` table for specifying which language servers to guarantee AstroNvim will not automatically call the `lspconfig` setup for. We also provide a helper function for getting the AstroNvim default server configuration like our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.config`. Here is a couple examples for some common LSP plugins:
 
 ### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
 
 ```lua
 return {
   lsp = {
-    setup_handlers = {
-      -- add custom handler
-      tsserver = function(_, opts) require("typescript").setup { server = opts } end
-    }
+    -- tell AstroNvim to skip setting up tsserver
+    skip_setup = { "tsserver" },
   },
   plugins = {
-    "jose-elias-alvarez/typescript.nvim", -- add lsp plugin
+    -- add lsp plugins
+    {
+      "jose-elias-alvarez/typescript.nvim",
+      event = "User AstroLspSetup",
+      opts = function() return { server = require("astronvim.utils.lsp").config "tsserver" } end,
+    },
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
@@ -242,13 +245,16 @@ return {
 ```lua
 return {
   lsp = {
-    setup_handlers = {
-      -- add custom handler
-      denols = function(_, opts) require("deno-nvim").setup { server = opts } end
-    }
+    -- tell AstroNvim to skip setting up denols
+    skip_setup = { "denols" },
   },
   plugins = {
-    "sigmasd/deno-nvim", -- add lsp plugin
+    -- add lsp plugins
+    {
+      "sigmasd/deno-nvim",
+      event = "User AstroLspSetup",
+      opts = function() return { server = require("astronvim.utils.lsp").config "denols" } end,
+    },
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
@@ -338,10 +344,8 @@ return {
 ```lua
 return {
   lsp = {
-    setup_handlers = {
-      -- add custom handler
-      clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end
-    },
+    -- tell AstroNvim to skip setting up clnagd
+    skip_setup = { "clangd" },
     config = {
       clangd = {
         capabilities = {
@@ -351,7 +355,11 @@ return {
     },
   },
   plugins = {
-    "p00f/clangd_extensions.nvim", -- install lsp plugin
+    {
+      "p00f/clangd_extensions.nvim",
+      event = "User AstroLspSetup",
+      opts = function() return { server = require("astronvim.utils.lsp").config "clangd" } end,
+    },
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
@@ -369,13 +377,8 @@ Requires `dart` to be available on the system.
 ```lua
 return {
   lsp = {
-    servers = {
-      "dartls",
-    },
-    setup_handlers = {
-      -- add custom handler
-      dartls = function(_, opts) require("flutter-tools").setup { lsp = opts } end,
-    },
+    -- tell AstroNvim to skip setting up dartls
+    skip_setup = { "dartls" },
     config = {
       dartls = {
         -- any changes you want to make to the LSP setup, for example
@@ -390,7 +393,12 @@ return {
     },
   },
   plugins = {
-    "akinsho/flutter-tools.nvim", -- add lsp plugin
+    -- add lsp plugin
+    {
+      "akinsho/flutter-tools.nvim",
+      event = "User AstroLspSetup"
+      opts = function() return { lsp = require("astronvim.utils.lsp").config "dartls" } end
+    }
   },
 }
 ```
@@ -400,13 +408,16 @@ return {
 ```lua
 return {
   lsp = {
-    setup_handlers = {
-      -- add custom handler
-      rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end
-    },
+    -- tell AstroNvim to skip setting up rust_analyzer
+    skip_setup = { "rust_analyzer" },
   },
   plugins = {
-    "simrat39/rust-tools.nvim", -- add lsp plugin
+    -- add LSP plugin
+    {
+      "simrat39/rust-tools.nvim",
+      event = "User AstroLspSetup"
+      opts = function() return { server = require("astronvim.utils.lsp").config "rust_analyzer" } end
+    },
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
@@ -422,17 +433,8 @@ return {
 ```lua
 return {
   lsp = {
-    setup_handlers = {
-      -- add custom handler
-      jdtls = function(_, opts)
-        vim.api.nvim_create_autocmd("Filetype", {
-          pattern = "java", -- autocmd to start jdtls
-          callback = function()
-            if opts.root_dir and opts.root_dir ~= "" then require("jdtls").start_or_attach(opts) end
-          end,
-        })
-      end
-    },
+    -- tell AstroNvim to skip setting up jdtls
+    skip_setup = { "jdtls" },
     config = {
       -- set jdtls server settings
       jdtls = function()
@@ -487,7 +489,19 @@ return {
     },
   },
   plugins = {
-    "mfussenegger/nvim-jdtls", -- load jdtls on module
+    {
+      "mfussenegger/nvim-jdtls", -- load jdtls on module
+      init = function()
+        vim.api.nvim_create_autocmd("Filetype", {
+          pattern = "java", -- autocmd to start jdtls
+          callback = function()
+            if opts.root_dir and opts.root_dir ~= "" then
+              require("jdtls").start_or_attach(require("astronvim.utils.lsp").config "jdtls")
+              end
+          end,
+        })
+      end
+    },
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
