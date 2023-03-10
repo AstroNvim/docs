@@ -159,14 +159,10 @@ Run `:AstroReload` to reload the AstroNvim configuration and any new user config
 
 ## ⚙️ Configuration
 
-To begin making custom user configurations you must create a `user/` folder. The provided example can be created with (please note the trailing slashes after the directory names)
+To begin making custom user configurations you must create a `user/` folder. We have created a template repository for easily making a user configuration file: [Astronvim/user_example](https://github.com/AstroNvim/user_example)
+
+The provided template repo can be used to create a new user configuration repository on your GitHub account or cloned directly. After creating a new repository from the template you can run:
 
 ```sh
-cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
+git clone https://github.com/<username>/<config_repo ~/.config/nvim/lua/user
 ```
-
-The provided example
-[user_example](https://github.com/AstroNvim/AstroNvim/blob/main/lua/user_example)
-contains an `init.lua` file which can be used for all user configuration. After
-running the `cp` command above this file can be found in
-`~/.config/nvim/lua/user/init.lua`.

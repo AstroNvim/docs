@@ -35,7 +35,7 @@ end
 
 :::tip
 
-A full example of a split up user configuration can be found on our GitHub at [AstroNvim/split_user_example](https://github.com/AstroNvim/split_user_example)
+A full example of a split up user configuration can be found on our GitHub at [AstroNvim/user_example](https://github.com/AstroNvim/user_example)
 
 :::
 

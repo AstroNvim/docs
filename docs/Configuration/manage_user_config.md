@@ -8,7 +8,7 @@ One of the best parts of separating the user configuration of AstroNvim away fro
 
 ## Setting up a user configuration
 
-1. Create a new repository using whatever version control system you would like. For these steps we will assume you are using `git` with the repo `username/astronvim_config`
+1. Use our [AstroNvim/user_example](https://github.com/AstroNvim/user_example) GitHub template to make a new personal user configuration repository. For these steps we will assume your repo is `username/astronvim_config`
 2. Clone AstroNvim (normal installation instructions)
 
 ```sh
@@ -26,12 +26,6 @@ git clone https://github.com/username/astronvim_config.git ~/.config/nvim/lua/us
 If you want to keep your user configuration completely separate from the cloned repository, you can also put this folder in `$XDG_CONFIG_HOME/astronvim/lua/user`. AstroNvim adds the folder `$XDG_CONFIG_HOME/astronvim` to the `runtimepath` so any `vimscript` or `lua` files in there can be sourced.
 
 :::
-
-4. Copy the example `init.lua` file provided with AstroNvim to your user directory:
-
-```sh
-cp -r ~/.config/nvim/lua/user_example/ ~/.config/nvim/lua/user/
-```
 
 5. Initlialize AstroNvim (this example is using the unattended installation as described above)
 
