@@ -396,7 +396,7 @@ return {
     -- add lsp plugin
     {
       "akinsho/flutter-tools.nvim",
-      event = "User AstroLspSetup"
+      event = "User AstroLspSetup",
       opts = function() return { lsp = require("astronvim.utils.lsp").config "dartls" } end
     }
   },
@@ -415,7 +415,7 @@ return {
     -- add LSP plugin
     {
       "simrat39/rust-tools.nvim",
-      event = "User AstroLspSetup"
+      event = "User AstroLspSetup",
       opts = function() return { server = require("astronvim.utils.lsp").config "rust_analyzer" } end
     },
     {
