@@ -30,6 +30,9 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build website
         run: yarn build
+      - name: Set CNAME
+        run: |
+          echo "astronvim.com" > build/CNAME
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
