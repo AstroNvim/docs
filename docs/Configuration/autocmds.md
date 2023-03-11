@@ -30,8 +30,8 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
   plugins. This event fires every time a file is opened that is in a git tracked
   directory.
 
-- `AstroLspSetup`: AstroNvim has a lot of internal tooling surrounding setting
-  up handlers for the interal LSP mechanisms. `AstroLspSetup` is triggered when
+- `AstroMasonLspSetup`: AstroNvim has a lot of internal tooling surrounding setting
+  up handlers for the interal LSP mechanisms. `AstroMasonLspSetup` is triggered when
   we have finished setting up these handlers and configuring `lspconfig`.
 
 - `AstroMasonUpdateCompleted`: AstroNvim provides a custom command for easily

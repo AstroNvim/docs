@@ -227,7 +227,7 @@ return {
     -- add lsp plugins
     {
       "jose-elias-alvarez/typescript.nvim",
-      event = "User AstroLspSetup",
+      event = "User AstroMasonLspSetup",
       opts = function() return { server = require("astronvim.utils.lsp").config "tsserver" } end,
     },
     {
@@ -252,7 +252,7 @@ return {
     -- add lsp plugins
     {
       "sigmasd/deno-nvim",
-      event = "User AstroLspSetup",
+      event = "User AstroMasonLspSetup",
       opts = function() return { server = require("astronvim.utils.lsp").config "denols" } end,
     },
     {
@@ -357,7 +357,7 @@ return {
   plugins = {
     {
       "p00f/clangd_extensions.nvim",
-      event = "User AstroLspSetup",
+      event = "User AstroMasonLspSetup",
       opts = function() return { server = require("astronvim.utils.lsp").config "clangd" } end,
     },
     {
@@ -396,7 +396,7 @@ return {
     -- add lsp plugin
     {
       "akinsho/flutter-tools.nvim",
-      event = "User AstroLspSetup",
+      event = "User AstroMasonLspSetup",
       opts = function() return { lsp = require("astronvim.utils.lsp").config "dartls" } end
     }
   },
@@ -415,7 +415,7 @@ return {
     -- add LSP plugin
     {
       "simrat39/rust-tools.nvim",
-      event = "User AstroLspSetup",
+      event = "User AstroMasonLspSetup",
       opts = function() return { server = require("astronvim.utils.lsp").config "rust_analyzer" } end
     },
     {
