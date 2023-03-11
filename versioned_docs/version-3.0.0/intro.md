@@ -20,7 +20,7 @@ If you are on AstroNvim v2.0 and are upgrading to AstroNvim v3.0 please see the
 ## ⚡ Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) (_Optional with manual intervention:_ See [Recipes/Customizing Icons](Recipes/icons#disable-icons))
-- [Neovim 0.9 (_Not_ including nightly)](https://github.com/neovim/neovim/releases/tag/v0.9.0)
+- [Neovim v0.8+ (_Not_ including nightly)](https://github.com/neovim/neovim/releases/tag/stable)
 - [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) (_Note:_ This is only necessary if you want to use `auto_install` feature with Treesitter)
 - A clipboard tool is necessary for the integration with the system clipboard (see [`:help clipboard-tool`](https://neovim.io/doc/user/provider.html#clipboard-tool) for supported solutions)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using)
