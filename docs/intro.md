@@ -17,6 +17,8 @@ If you are on AstroNvim v2.0 and are upgrading to AstroNvim v3.0 please see the
 
 ![AstroNvim Screenshot](/img/overview.png)
 
+AstroNvim is an aesthetic and feature-rich neovim config that is extensible and easy to use with a great set of plugins
+
 ## ⚡ Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) (_Optional with manual intervention:_ See [Recipes/Customizing Icons](Recipes/icons#disable-icons))
