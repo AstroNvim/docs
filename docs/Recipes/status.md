@@ -191,6 +191,7 @@ return {
       "rebelot/heirline.nvim",
       opts = function(_, opts)
         local status = require("astronvim.utils.status")
+
         opts.statusline = { -- statusline
           hl = { fg = "fg", bg = "bg" },
           status.component.mode(),
@@ -207,36 +208,26 @@ return {
           status.component.mode { surround = { separator = "right" } },
         }
 
-        -- winbar
         opts.winbar = { -- winbar
-          static = {
-            disabled = {
-              buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-              filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
-            },
-          },
           init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
           fallthrough = false,
-          {
-            condition = function(self)
-              return vim.opt.diff:get() or status.condition.buffer_matches(self.disabled or {})
-            end,
-            init = function() vim.opt_local.winbar = nil end,
-          },
-          status.component.file_info {
+          { -- inactive winbar
             condition = function() return not status.condition.is_active() end,
-            unique_path = {},
-            file_icon = { hl = status.hl.file_icon "winbar" },
-            file_modified = false,
-            file_read_only = false,
-            hl = status.hl.get_attributes("winbarnc", true),
-            surround = false,
-            update = "BufEnter",
+            status.component.separated_path(),
+            status.component.file_info {
+              file_icon = { hl = status.hl.file_icon "winbar", padding = { left = 0 } },
+              file_modified = false,
+              file_read_only = false,
+              hl = status.hl.get_attributes("winbarnc", true),
+              surround = false,
+              update = "BufEnter",
+            },
           },
-          status.component.breadcrumbs { hl = status.hl.get_attributes("winbar", true) },
-        }
+          { -- active winbar
+            status.component.breadcrumbs { hl = status.hl.get_attributes("winbar", true) },
+          },
+        },
 
-        -- tabline
         opts.tabline = { -- tabline
           { -- file tree padding
             condition = function(self)
@@ -267,8 +258,6 @@ return {
           },
         }
 
-
-        -- statuscolumn
         opts.statuscolumn = { -- statuscolumn
           status.component.foldcolumn(),
           status.component.fill(),
@@ -509,22 +498,11 @@ return {
         local status = require "astronvim.utils.status"
 
         opts.winbar = { -- create custom winbar
-          static = {
-            disabled = { -- set buffer and file types to disable winbar
-              buftype = { "terminal", "prompt", "nofile", "help", "quickfix" },
-              filetype = { "NvimTree", "neo%-tree", "dashboard", "Outline", "aerial" },
-            },
-          },
           -- store the current buffer number
           init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
           fallthrough = false, -- pick the correct winbar based on condition
-          { -- disabled buffer/file winbar
-            condition = function(self)
-              return vim.opt.diff:get() or status.condition.buffer_matches(self.disabled or {})
-            end,
-            init = function() vim.opt_local.winbar = nil end,
-          },
-          { -- inactive winbar
+          -- inactive winbar
+          {
             condition = function() return not status.condition.is_active() end,
             -- show the path to the file relative to the working directory
             status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } },
@@ -538,7 +516,8 @@ return {
               update = "BufEnter",
             },
           },
-          { -- active winbar
+          -- active winbar
+          {
             -- show the path to the file relative to the working directory
             status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } },
             -- add the file name and icon
