@@ -7,7 +7,7 @@ Instead of running `nvim` to initialize AstroNvim you can run the
 following command to do a fully headless initialization:
 
 ```sh
-nvim  --headless -c 'autocmd User LazyDone quitall'
+nvim  --headless -c 'quitall'
 ```
 
 Full Steps:
