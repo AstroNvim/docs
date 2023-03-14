@@ -53,6 +53,25 @@ return {
 }
 ```
 
+If you would rather use a whitelist of filetypes for formatting on save rather than a blacklist type model, you can do that as well with the `allow_filetypes` table. If you have `allow_filetypes` it will take presidence over `ignore_filetypes`. So please only use one of these options at a time. Here is an example:
+For even more control, you can provide a filter function with the key `filter`. This function takes a single parameter of the current buffer number and returns a boolean value of whether you want to format on save or not (`true` means format, `false` means do not format). This function will run on each save to calculate if it should format.
+
+```lua
+return {
+  lsp = {
+    formatting = {
+      format_on_save = {
+        enabled = true, -- enable format on save
+        filter = function(bufnr)
+          -- any lua logic...
+          return true -- return boolean whether or not to format
+        end
+      }
+    }
+  }
+}
+```
+
 With the formatting on save enabled, we have also provided the mapping `<leader>uf` and `<leader>uF` to toggle the auto formatting temporarily for either the current buffer or globally, along with the variable `vim.g.autoformat_enabled` which allows you to control whether the auto formatter runs on startup initially (_Note:_ Format on save must be enabled in the `lsp.formatting` table for this option and keybinding to do anything).
 
 ## Controlling Formatting
