@@ -35,7 +35,7 @@ Similarly to customizing mappings, you can customize and configure your `cmp` so
 ```lua
 return {
   plugins = {
-    { -- override nvim-autopairs plugin
+    { -- override nvim-cmp plugin
       "hrsh7th/nvim-cmp",
       -- override the options table that is used in the `require("cmp").setup()` call
       opts = function(_, opts)
@@ -65,7 +65,7 @@ You can use this `cmp` override to also customize the options of the sources:
 ```lua
 return {
   plugins = {
-    { -- override nvim-autopairs plugin
+    { -- override nvim-cmp plugin
       "hrsh7th/nvim-cmp",
       -- override the options table that is used in the `require("cmp").setup()` call
       opts = function(_, opts)
@@ -101,7 +101,7 @@ To add more sources than the default, you can add other `cmp` source plugins as 
 ```lua
 return {
   plugins = {
-    { -- override nvim-autopairs plugin
+    { -- override nvim-cmp plugin
       "hrsh7th/nvim-cmp",
       dependencies = {
         "hrsh7th/cmp-emoji", -- add cmp source as dependency of cmp
@@ -136,7 +136,7 @@ You can also use the `config` function and the provided default configuration fu
 return {
   plugins = {
     {
-      { -- override nvim-autopairs plugin
+      { -- override nvim-cmp plugin
         "hrsh7th/nvim-cmp",
         keys = { ":", "/", "?" }, -- lazy load cmp on more keys along with insert mode
         dependencies = {
