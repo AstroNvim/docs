@@ -306,19 +306,16 @@ return {
 }
 ```
 
-For `null-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the following to `mason-null-ls.setup_handlers`:
+For `null-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the following to handlers in the `mason-null-ls` options:
 
 ```lua
 return {
   plugins = {
     {
       "jay-babu/mason-null-ls.nvim",
-      config = function(plugin, opts)
-        local mason_null_ls = require("mason-null-ls")
+      opts = function(plugin, opts)
         local null_ls = require "null-ls"
-
-        mason_null_ls.setup(opts) -- run setup
-        mason_null_ls.setup_handlers { -- setup custom handlers
+        opts.handlers = {
           prettier = function()
             null_ls.register(null_ls.builtins.formatting.prettier.with {
               condition = function(utils)
@@ -348,7 +345,7 @@ return {
         }
       end,
     },
-  }
+  },
 }
 ```
 
