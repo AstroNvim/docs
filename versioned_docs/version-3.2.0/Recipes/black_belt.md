@@ -8,6 +8,7 @@ This is a collection of advanced fully complete AstroNvim user configurations fo
 
 - [mehalter](https://code.mehalter.com/AstroNvim_user)
 - [kabinspace](https://github.com/kabinspace/AstroNvim_user)
+- [Juniar-Rakhman](https://github.com/Juniar-Rakhman/astronvim_config/tree/3.2.0)
 - [datamonsterr](https://github.com/datamonsterr/astronvim_config)
 - [hunger](https://github.com/hunger/AstroVim/tree/my_config/lua/user)
 - [thieung](https://github.com/thieung/dotfiles/tree/main/config/nvim)
