@@ -26,11 +26,8 @@ return {
   plugins = {
     {
       "jay-babu/mason-nvim-dap.nvim",
-      config = function(plugin, opts)
-        local mason_nvim_dap = require "mason-nvim-dap"
-        mason_nvim_dap.setup(opts) -- run setup
-        -- do more configuration as needed
-        mason_nvim_dap.setup_handlers {
+      opts = {
+        handlers = {
           python = function(source_name)
             local dap = require "dap"
             dap.adapters.python = {
@@ -51,8 +48,8 @@ return {
               },
             }
           end,
-        }
-      end,
+        },
+      },
     },
   },
 }
