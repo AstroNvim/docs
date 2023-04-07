@@ -10,5 +10,4 @@ This is a collection of advanced fully complete AstroNvim user configurations fo
 - [kabinspace](https://github.com/kabinspace/AstroNvim_user)
 - [datamonsterr](https://github.com/datamonsterr/astronvim_config)
 - [hunger](https://github.com/hunger/AstroVim/tree/my_config/lua/user)
-- [thieung](https://github.com/thieung/dotfiles/tree/main/config/nvim)
 - [A-Lamia](https://github.com/A-Lamia/AstroNvim-conf)
