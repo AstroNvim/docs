@@ -14,7 +14,7 @@ return {
   plugins = {
     {
       "catppuccin/nvim",
-      as = "catppuccin",
+      name = "catppuccin",
       config = function()
         require("catppuccin").setup {}
       end,

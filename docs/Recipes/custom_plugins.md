@@ -115,7 +115,7 @@ return {
   plugins = {
     {
       "catppuccin/nvim",
-      as = "catppuccin",
+      name = "catppuccin",
       config = function()
         require("catppuccin").setup {}
       end,
@@ -136,7 +136,7 @@ With Lazy.nvim the name of the file in the `plugins/` folder can be anything, so
 return {
   {
     "catppuccin/nvim",
-    as = "catppuccin",
+    name = "catppuccin",
     config = function()
       require("catppuccin").setup {}
     end,
