@@ -5,7 +5,7 @@ title: Default Plugin Configurations
 
 This page documents the default options that are set by AstroNvim for each individual plugin. All of these options can be changed in the `plugins` table in the `user/init.lua` configuration file as described in the [Custom Plugins Documentation](../Recipes/custom_plugins.md).
 
-## aerial.nvim
+## [aerial.nvim](https://github.com/stevearc/aerial.nvim)
 
 ```lua
 opts = {
@@ -55,7 +55,7 @@ opts = {
 }
 ```
 
-## alpha-nvim
+## [alpha-nvim](https://github.com/goolord/alpha-nvim)
 
 ```lua
 opts = function()
@@ -96,19 +96,19 @@ opts = function()
 end
 ```
 
-## astrotheme
+## [astrotheme](https://github.com/AstroNvim/astrotheme)
 
 ```lua
 opts = { plugins = { ["dashboard-nvim"] = true } }
 ```
 
-## better-escape.nvim
+## [better-escape.nvim](https://github.com/max397574/better-escape.nvim)
 
 ```lua
 opts = { timeout = 300 }
 ```
 
-## Comment.nvim
+## [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
 ```lua
 opts = function()
@@ -116,7 +116,7 @@ opts = function()
 end
 ```
 
-## dressing.nvim
+## [dressing.nvim](https://github.com/stevearc/dressing.nvim)
 
 ```lua
 opts = {
@@ -131,7 +131,7 @@ opts = {
 }
 ```
 
-## gitsigns.nvim
+## [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 
 ```lua
 opts = {
@@ -146,11 +146,11 @@ opts = {
 }
 ```
 
-## heirline.nvim
+## [heirline.nvim](https://github.com/rebelot/heirline.nvim)
 
 See [Customizing Statusline](../Recipes/status.md)
 
-## indent-blankline.nvim
+## [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 
 ```lua
 opts = {
@@ -200,7 +200,7 @@ opts = {
 }
 ```
 
-## lspkind.nvim
+## [lspkind.nvim](https://github.com/onsails/lspkind.nvim)
 
 ```lua
 opts = {
@@ -227,19 +227,19 @@ opts = {
 }
 ```
 
-## mason-null-ls.nvim
+## [mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim)
 
 ```lua
 opts = { automatic_setup = true }
 ```
 
-## mason-nvim-dap
+## [mason-nvim-dap](https://github.com/jay-babu/mason-nvim-dap.nvim)
 
 ```lua
 opts = { automatic_setup = true }
 ```
 
-## mason.nvim
+## [mason.nvim](https://github.com/williamboman/mason.nvim)
 
 ```lua
 opts = {
@@ -253,7 +253,7 @@ opts = {
 }
 ```
 
-## neo-tree.nvim
+## [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 
 ```lua
 opts = function()
@@ -343,7 +343,7 @@ opts = function()
 end
 ```
 
-## neodev.nvim
+## [neodev.nvim](https://github.com/folke/neodev.nvim)
 
 ```lua
 opts = {
@@ -354,13 +354,13 @@ opts = {
 }
 ```
 
-## null-ls.nvim
+## [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 
 ```lua
 opts = function() return { on_attach = require("astronvim.utils.lsp").on_attach } end
 ```
 
-## nvim-autopairs
+## [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 
 ```lua
 opts = {
@@ -380,7 +380,7 @@ opts = {
 }
 ```
 
-## nvim-cmp
+## [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 ```lua
 opts = function()
@@ -468,25 +468,25 @@ opts = function()
 end
 ```
 
-## nvim-colorizer.lua
+## [nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
 
 ```lua
 opts = { user_default_options = { names = false } }
 ```
 
-## nvim-dap-ui
+## [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 
 ```lua
 opts = { floating = { border = "rounded" } }
 ```
 
-## nvim-notify
+## [nvim-notify](https://github.com/rcarriga/nvim-notify)
 
 ```lua
 opts = { stages = "fade" }
 ```
 
-## nvim-treesitter
+## [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 ```lua
 opts = {
@@ -497,7 +497,7 @@ opts = {
 }
 ```
 
-## nvim-ufo
+## [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
 
 ```lua
 opts = {
@@ -516,7 +516,7 @@ opts = {
 }
 ```
 
-## nvim-web-devicons
+## [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 
 ```lua
 opts = {
@@ -535,13 +535,13 @@ opts = {
 }
 ```
 
-## nvim-window-picker
+## [nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker)
 
 ```lua
 opts = { use_winbar = "smart" }
 ```
 
-## smart-splits.nvim
+## [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
 
 ```lua
 opts = {
@@ -550,7 +550,7 @@ opts = {
 }
 ```
 
-## telescope.nvim
+## [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
 ```lua
 opts = function()
@@ -589,7 +589,7 @@ opts = function()
 end
 ```
 
-## toggleterm.nvim
+## [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 
 ```lua
 opts = {
