@@ -31,7 +31,7 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
   directory.
 
 - `AstroLspSetup`: AstroNvim has a lot of internal tooling surrounding setting
-  up handlers for the interal LSP mechanisms. `AstroLspSetup` is triggered when
+  up handlers for the internal LSP mechanisms. `AstroLspSetup` is triggered when
   we have finished setting up these handlers and configuring `lspconfig`.
 
 - `AstroMasonUpdateCompleted`: AstroNvim provides a custom command for easily
