@@ -9,7 +9,7 @@ will update to to maintain compatibility. These versions will not be receiving
 new updates but with our pinned plugin commits, will guarantee that the old
 version of AstroNvim will start using new plugin versions that have breaking
 changes. Put these setting in your `user/init.lua` file in the `updater` table
-as described in the [Updater Documnetation](./updater.md):
+as described in the [Updater Documentation](./updater.md):
 
 ## Neovim v0.7
 

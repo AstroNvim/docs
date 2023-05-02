@@ -31,7 +31,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Autoclose tags              | https://github.com/windwp/nvim-ts-autotag                      |
 | Context Commenting          | https://github.com/JoosepAlviste/nvim-ts-context-commentstring |
 | Snippet Engine              | https://github.com/L3MON4D3/LuaSnip                            |
-| Snnipet Collections         | https://github.com/rafamadriz/friendly-snippets                |
+| Snippet Collections         | https://github.com/rafamadriz/friendly-snippets                |
 | Completion Engine           | https://github.com/hrsh7th/nvim-cmp                            |
 | Snippet Completion          | https://github.com/saadparwaiz1/cmp_luasnip                    |
 | Buffer Completion           | https://github.com/hrsh7th/cmp-buffer                          |
