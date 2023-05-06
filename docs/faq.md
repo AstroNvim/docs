@@ -16,7 +16,11 @@ Please follow the Installation guide. Make sure that you're using nvim version 0
 
 ## Why are my icons missing/broken?
 
-The font that in your terminal requires the correct glyphs (icons) so AstroNvim can display them. For that you can use a pre-patched font from [Nerd Fonts](https://www.nerdfonts.com/). If you're already using a Nerd Font and face this issue it's very likely that your Nerd Font is outdated. Please verify that your Font is of Version 2.3+ and that you chose it in your terminal. If your icons appear too small it's because you're using a Mono font. If a font ends with `mono` the icons will also be mono-spaced. [Video recommendation](https://youtu.be/mQdB_kHyZn8) on how to install a Nerd Font for a handful of popular terminals.
+The font that in your terminal requires the correct glyphs (icons) so AstroNvim can display them. For that you can use a pre-patched font from [Nerd Fonts](https://www.nerdfonts.com/).
+
+If you're already using a Nerd Font and face this issue it's very likely that your Nerd Font is outdated. Please verify that your Font is of Version 2.3+ and that you chose it in your terminal.
+
+If your icons appear too small it's because you're using a Mono font. If a font ends with `mono` the icons will also be mono-spaced. [Video recommendation](https://youtu.be/mQdB_kHyZn8) on how to install a Nerd Font for a handful of popular terminals.
 
 ## How do I customize AstroNvim?
 
