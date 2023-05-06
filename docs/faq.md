@@ -1,14 +1,7 @@
-# FAQ
-
-<!--toc:start-->
-
-- [Why does AstroNvim not work?](#why-does-astronvim-not-work)
-- [Why are my icons missing/broken?](#why-are-my-icons-missingbroken)
-- [How do I customize AstroNvim?](#how-do-i-customize-astronvim)
-- [How do I add plugin X to my configuration?](#how-do-i-add-plugin-x-to-my-configuration)
-- [What if I require further assistance with the customization of AstroNvim?](#what-if-i-require-further-assistance-with-the-customization-of-astronvim)
-
-<!--toc:end-->
+---
+id: faq
+title: Frequently Asked Questions
+---
 
 ## Why does AstroNvim not work?
 
