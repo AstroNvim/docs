@@ -115,13 +115,16 @@ title: Default Mappings
 | Start/Continue Debugger | `Leader + dc` or `<F5>`    |
 | Pause Debugger          | `Leader + dp` or `<F6>`    |
 | Restart Debugger        | `Leader + dr` or `<C-F5>`  |
+| Run Debugger to Cursor  | `Leader + ds`              |
 | Close Debugger Session  | `Leader + dq`              |
 | Terminate Debugger      | `Leader + dQ` or `<S-F5>`  |
 | Toggle Breakpoint       | `Leader + db` or `<F9>`    |
+| Conditional Breakpoint  | `Leader + dC` or `<S-F9>`  |
 | Clear Breakpoints       | `Leader + dB`              |
 | Step Over               | `Leader + do` or `<F10>`   |
 | Step Into               | `Leader + di` or `<F11>`   |
 | Step Out                | `Leader + dO` or `<S-F11>` |
+| Evaluate Expression     | `Leader + dE`              |
 | Toggle REPL             | `Leader + dR`              |
 | Toggle Debugger UI      | `Leader + du`              |
 | Debugger Hover          | `Leader + dh`              |

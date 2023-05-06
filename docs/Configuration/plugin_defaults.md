@@ -79,15 +79,11 @@ opts = function()
   dashboard.section.buttons.val = {
     button("LDR n", "  New File  "),
     button("LDR f f", "  Find File  "),
-    button("LDR f o", "  Recents  "),
-    button("LDR f w", "  Find Word  "),
+    button("LDR f o", "󰈙  Recents  "),
+    button("LDR f w", "󰈭  Find Word  "),
     button("LDR f '", "  Bookmarks  "),
     button("LDR S l", "  Last Session  "),
   }
-
-  dashboard.section.footer.val =
-    { " ", " ", " ", "AstroNvim loaded " .. require("lazy").stats().count .. " plugins " }
-  dashboard.section.footer.opts.hl = "DashboardFooter"
 
   dashboard.config.layout[1].val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) }
   dashboard.config.layout[3].val = 5
@@ -256,8 +252,44 @@ opts = {
 ## [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 
 ```lua
-opts = function()
-  local global_commands = {
+local get_icon = require("astronvim.utils").get_icon
+opts = {
+  auto_clean_after_session_restore = true,
+  close_if_last_window = true,
+  source_selector = {
+    winbar = true,
+    content_layout = "center",
+    sources = {
+      { source = "filesystem", display_name = get_icon "FolderClosed" .. " File" },
+      { source = "buffers", display_name = get_icon "DefaultFile" .. " Bufs" },
+      { source = "git_status", display_name = get_icon "Git" .. " Git" },
+      { source = "diagnostics", display_name = get_icon "Diagnostic" .. " Diagnostic" },
+    },
+  },
+  default_component_configs = {
+    indent = { padding = 0, indent_size = 1 },
+    icon = {
+      folder_closed = get_icon "FolderClosed",
+      folder_open = get_icon "FolderOpen",
+      folder_empty = get_icon "FolderEmpty",
+      default = get_icon "DefaultFile",
+    },
+    modified = { symbol = get_icon "FileModified" },
+    git_status = {
+      symbols = {
+        added = get_icon "GitAdd",
+        deleted = get_icon "GitDelete",
+        modified = get_icon "GitChange",
+        renamed = get_icon "GitRenamed",
+        untracked = get_icon "GitUntracked",
+        ignored = get_icon "GitIgnored",
+        unstaged = get_icon "GitUnstaged",
+        staged = get_icon "GitStaged",
+        conflict = get_icon "GitConflict",
+      },
+    },
+  },
+  commands = {
     system_open = function(state) require("astronvim.utils").system_open(state.tree:get_node():get_id()) end,
     parent_or_close = function(state)
       local node = state.tree:get_node()
@@ -279,68 +311,67 @@ opts = function()
         state.commands.open(state)
       end
     end,
-  }
-  local get_icon = require("astronvim.utils").get_icon
-  return {
-    close_if_last_window = true,
-    source_selector = {
-      winbar = true,
-      content_layout = "center",
-      tab_labels = {
-        filesystem = get_icon "FolderClosed" .. " File",
-        buffers = get_icon "DefaultFile" .. " Bufs",
-        git_status = get_icon "Git" .. " Git",
-        diagnostics = get_icon "Diagnostic" .. " Diagnostic",
-      },
+    copy_selector = function(state)
+      local node = state.tree:get_node()
+      local filepath = node:get_id()
+      local filename = node.name
+      local modify = vim.fn.fnamemodify
+
+      local results = {
+        e = { val = modify(filename, ":e"), msg = "Extension only" },
+        f = { val = filename, msg = "Filename" },
+        F = { val = modify(filename, ":r"), msg = "Filename w/o extension" },
+        h = { val = modify(filepath, ":~"), msg = "Path relative to Home" },
+        p = { val = modify(filepath, ":."), msg = "Path relative to CWD" },
+        P = { val = filepath, msg = "Absolute path" },
+      }
+
+      local messages = {
+        { "\nChoose to copy to clipboard:\n", "Normal" },
+      }
+      for i, result in pairs(results) do
+        if result.val and result.val ~= "" then
+          vim.list_extend(messages, {
+            { ("%s."):format(i), "Identifier" },
+            { (" %s: "):format(result.msg) },
+            { result.val, "String" },
+            { "\n" },
+          })
+        end
+      end
+      vim.api.nvim_echo(messages, false, {})
+      local result = results[vim.fn.getcharstr()]
+      if result and result.val and result.val ~= "" then
+        vim.notify("Copied: " .. result.val)
+        vim.fn.setreg("+", result.val)
+      end
+    end,
+  },
+  window = {
+    width = 30,
+    mappings = {
+      ["<space>"] = false, -- disable space until we figure out which-key disabling
+      ["[b"] = "prev_source",
+      ["]b"] = "next_source",
+      o = "open",
+      O = "system_open",
+      h = "parent_or_close",
+      l = "child_or_open",
+      Y = "copy_selector",
     },
-    default_component_configs = {
-      indent = { padding = 0 },
-      icon = {
-        folder_closed = get_icon "FolderClosed",
-        folder_open = get_icon "FolderOpen",
-        folder_empty = get_icon "FolderEmpty",
-        default = get_icon "DefaultFile",
-      },
-      modified = { symbol = get_icon "FileModified" },
-      git_status = {
-        symbols = {
-          added = get_icon "GitAdd",
-          deleted = get_icon "GitDelete",
-          modified = get_icon "GitChange",
-          renamed = get_icon "GitRenamed",
-          untracked = get_icon "GitUntracked",
-          ignored = get_icon "GitIgnored",
-          unstaged = get_icon "GitUnstaged",
-          staged = get_icon "GitStaged",
-          conflict = get_icon "GitConflict",
-        },
-      },
+  },
+  filesystem = {
+    follow_current_file = true,
+    hijack_netrw_behavior = "open_current",
+    use_libuv_file_watcher = true,
+  },
+  event_handlers = {
+    {
+      event = "neo_tree_buffer_enter",
+      handler = function(_) vim.opt_local.signcolumn = "auto" end,
     },
-    window = {
-      width = 30,
-      mappings = {
-        ["<space>"] = false, -- disable space until we figure out which-key disabling
-        ["[b"] = "prev_source",
-        ["]b"] = "next_source",
-        o = "open",
-        O = "system_open",
-        h = "parent_or_close",
-        l = "child_or_open",
-      },
-    },
-    filesystem = {
-      follow_current_file = true,
-      hijack_netrw_behavior = "open_current",
-      use_libuv_file_watcher = true,
-      commands = global_commands,
-    },
-    buffers = { commands = global_commands },
-    git_status = { commands = global_commands },
-    event_handlers = {
-      { event = "neo_tree_buffer_enter", handler = function(_) vim.opt_local.signcolumn = "auto" end },
-    },
-  }
-end
+  },
+}
 ```
 
 ## [neodev.nvim](https://github.com/folke/neodev.nvim)
@@ -490,8 +521,12 @@ opts = { stages = "fade" }
 
 ```lua
 opts = {
-  highlight = { enable = true },
+  highlight = {
+    enable = true,
+    disable = function(_, bufnr) return vim.api.nvim_buf_line_count(bufnr) > 10000 end,
+  },
   incremental_selection = { enable = true },
+  indent = { enable = true },
   autotag = { enable = true },
   context_commentstring = { enable = true, enable_autocmd = false },
 }
@@ -520,18 +555,21 @@ opts = {
 
 ```lua
 opts = {
-  deb = { icon = "", name = "Deb" },
-  lock = { icon = "", name = "Lock" },
-  mp3 = { icon = "", name = "Mp3" },
-  mp4 = { icon = "", name = "Mp4" },
-  out = { icon = "", name = "Out" },
-  ["robots.txt"] = { icon = "ﮧ", name = "Robots" },
-  ttf = { icon = "", name = "TrueTypeFont" },
-  rpm = { icon = "", name = "Rpm" },
-  woff = { icon = "", name = "WebOpenFontFormat" },
-  woff2 = { icon = "", name = "WebOpenFontFormat2" },
-  xz = { icon = "", name = "Xz" },
-  zip = { icon = "", name = "Zip" },
+  override = {
+    default_icon = { icon = require("astronvim.utils").get_icon "DefaultFile" },
+    deb = { icon = "", name = "Deb" },
+    lock = { icon = "󰌾", name = "Lock" },
+    mp3 = { icon = "󰎆", name = "Mp3" },
+    mp4 = { icon = "", name = "Mp4" },
+    out = { icon = "", name = "Out" },
+    ["robots.txt"] = { icon = "󰚩", name = "Robots" },
+    ttf = { icon = "", name = "TrueTypeFont" },
+    rpm = { icon = "", name = "Rpm" },
+    woff = { icon = "", name = "WebOpenFontFormat" },
+    woff2 = { icon = "", name = "WebOpenFontFormat2" },
+    xz = { icon = "", name = "Xz" },
+    zip = { icon = "", name = "Zip" },
+  },
 }
 ```
 

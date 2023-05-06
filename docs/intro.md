@@ -148,6 +148,10 @@ Run `:AstroUpdate` (`<leader>pA`) to get the latest updates from the repository
 
 Run `:AstroUpdatePackages` (`<leader>pa`) to update both Neovim plugins and Mason packages
 
+#### Reload AstroNvim (_EXPERIMENTAL_)
+
+Run `:AstroReload` to reload the AstroNvim configuration and any new user configuration changes without restarting. This is currently an experimental feature and may lead to instability until the next restart.
+
 ## ✨ Features
 
 - Statusline, Winbar, and Tabline with [Heirline](https://github.com/rebelot/heirline.nvim)
