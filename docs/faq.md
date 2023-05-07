@@ -9,7 +9,7 @@ Please follow the [Installation Guide](./#%EF%B8%8F-installation). Make sure tha
 
 ## Why are my icons missing/broken?
 
-The font that in your terminal requires the correct glyphs (icons) so AstroNvim can display them. For that you can use a pre-patched font from [Nerd Fonts](https://www.nerdfonts.com/).
+The font in your terminal requires the correct glyphs (icons) so AstroNvim can display them. For that you can use a pre-patched font from [Nerd Fonts](https://www.nerdfonts.com/).
 
 If you're already using a Nerd Font and face this issue it's very likely that your Nerd Font is outdated. Please verify that your Font is of Version 2.3+ and that you chose it in your terminal.
 
