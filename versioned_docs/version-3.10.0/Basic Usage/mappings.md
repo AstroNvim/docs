@@ -157,7 +157,7 @@ title: Default Mappings
 
 | Action                    | Mappings                     |
 | ------------------------- | ---------------------------- |
-| Toggle Terminal           | `F7`                         |
+| Toggle Terminal           | `F7`, `Ctrl + '`             |
 | Floating Terminal         | `Leader + tf`                |
 | Horizontal Split Terminal | `Leader + th`                |
 | Vertical Split Terminal   | `Leader + tv`                |

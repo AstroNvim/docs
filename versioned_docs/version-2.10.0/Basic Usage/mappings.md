@@ -149,7 +149,7 @@ title: Default Mappings
 
 | Action                    | Mappings                   |
 | ------------------------- | -------------------------- |
-| Toggle Terminal           | `F7`                       |
+| Toggle Terminal           | `F7`, `Ctrl + '`           |
 | Floating Terminal         | `Space + tf`               |
 | Horizontal Split Terminal | `Space + th`               |
 | Vertical Split Terminal   | `Space + tv`               |
