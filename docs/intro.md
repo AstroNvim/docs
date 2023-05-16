@@ -173,5 +173,5 @@ To begin making custom user configurations you must create a `user/` folder. We 
 The provided template repo can be used to create a new user configuration repository on your GitHub account or cloned directly. After creating a new repository from the template you can run:
 
 ```sh
-git clone https://github.com/<username>/<config_repo ~/.config/nvim/lua/user
+git clone https://github.com/<username>/<config_repo> ~/.config/nvim/lua/user
 ```
