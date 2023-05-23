@@ -175,3 +175,27 @@ The provided template repo can be used to create a new user configuration reposi
 ```sh
 git clone https://github.com/<username>/<config_repo> ~/.config/nvim/lua/user
 ```
+
+## 📦 Community plugins
+
+To avoid duplication of effort, you can use community-provided setups from the [astrocommunity repo](https://github.com/AstroNvim/astrocommunity). For example, to enable language tools (LSP and DAP etc.) for Rust and Python, your `plugins/community.lua` file can look like the following.
+
+**Disclaimer: These setups might not always work. Think of them as VSCode extensions or AUR build scripts, separate from the main AstroNvim project. Report any issues to the [astrocommunity](https://github.com/AstroNvim/astrocommunity) maintainers, not the AstroNvim maintainers.**
+
+```lua
+return {
+  -- Add the community repository of plugin specifications
+  "AstroNvim/astrocommunity",
+  -- example of imporing a plugin, comment out to use it or add your own
+  -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
+  -- { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.python" },
+}
+```
+
+## ❗️ General tips
+
+For more information on the organization of config files and general usage of AstroNvim, be sure to check out the excellent [youtube tutorial](https://www.youtube.com/watch?v=GEHPiZ10gOk).
+
+More advanced LSP setups can also be found in [Recipes](Recipes/advanced_lsp.md). Note that whenever you see `plugins = { <inner_code_block> }`, you can also put the `<inner_code_block>` into `plugins/user.lua` or `plugins/*.lua` (they will all be merged into the final plugins spec, and the lua code `plugins = {...}` acts like the directory structure `plugins/...`).
