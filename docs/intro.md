@@ -176,11 +176,11 @@ The provided template repo can be used to create a new user configuration reposi
 git clone https://github.com/<username>/<config_repo> ~/.config/nvim/lua/user
 ```
 
-## 📦 Community plugins
+## 📦 Community Plugin Configurations
 
-To avoid duplication of effort, you can use community-provided setups from the [astrocommunity repo](https://github.com/AstroNvim/astrocommunity). For example, to enable language tools (LSP and DAP etc.) for Rust and Python, your `plugins/community.lua` file can look like the following.
+To avoid duplication of effort, you can use community-provided setups from the [AstroCommunity repository](https://github.com/AstroNvim/astrocommunity). For example, to enable language tools (LSP and DAP etc.) for Rust and Python, your `plugins/community.lua` file can look like the following.
 
-**Disclaimer: These setups might not always work. Think of them as VSCode extensions or AUR build scripts, separate from the main AstroNvim project. Report any issues to the [astrocommunity](https://github.com/AstroNvim/astrocommunity) maintainers, not the AstroNvim maintainers.**
+**Disclaimer: These setups might not always work. Think of them as VSCode extensions or AUR build scripts, separate from the main AstroNvim project. Report any issues to the [AstroCommunity](https://github.com/AstroNvim/astrocommunity) maintainers, not the AstroNvim maintainers.**
 
 ```lua
 return {
