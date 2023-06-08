@@ -112,20 +112,21 @@ AstroNvim provides a module that can be loaded with `require("astronvim.utils.st
 
 :::info
 
-For the complete documentation on this API checkout the [AstroNvim Lua API docs](https://api.astronvim.com/modules/astronvim.utils.status.html)
+For the complete documentation on this API checkout the [AstroNvim Lua API docs](https://api.astronvim.com/)
 
 :::
 
 | Module                                        | Description                                                                                                                                   |
 | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `require("astronvim.utils.status").component` | A collection of methods to assist in building entire components. This is the main piece to interact with when building custom statuslines     |
-| `require("astronvim.utils.status").hl`        | A collection of methods to assist in setting the color of a component                                                                         |
-| `require("astronvim.utils.status").provider`  | A collection of methods that can be set as Heirline providers                                                                                 |
-| `require("astronvim.utils.status").condition` | A collection of methods that can be use as Heirline conditions for controlling when components are enabled                                    |
-| `require("astronvim.utils.status").init`      | A collection of methods that can be set as Heirline init functions for building components with dynamic subcomponents such as LSP breadcrumbs |
-| `require("astronvim.utils.status").utils`     | A collection of miscellaneous helper functions that `astronvim.utils.status` uses such as surroundig components and getting buffers           |
-| `require("astronvim.utils.status").env`       | A place to store globally accessible variables such as separators, mode text, etc.                                                            |
-| `require("astronvim.utils.status").heirline`  | A collection of tools specific for Heirline as well as a few aliases for easily interfacing with Heirline utilities                           |
+| `require("astronvim.utils.status")`           | Easily import all of the below modules                                                                                                        |
+| `require("astronvim.utils.status.component")` | A collection of methods to assist in building entire components. This is the main piece to interact with when building custom statuslines     |
+| `require("astronvim.utils.status.hl")`        | A collection of methods to assist in setting the color of a component                                                                         |
+| `require("astronvim.utils.status.provider")`  | A collection of methods that can be set as Heirline providers                                                                                 |
+| `require("astronvim.utils.status.condition")` | A collection of methods that can be use as Heirline conditions for controlling when components are enabled                                    |
+| `require("astronvim.utils.status.init")`      | A collection of methods that can be set as Heirline init functions for building components with dynamic subcomponents such as LSP breadcrumbs |
+| `require("astronvim.utils.status.utils")`     | A collection of miscellaneous helper functions that `astronvim.utils.status` uses such as surroundig components and getting buffers           |
+| `require("astronvim.utils.status.env")`       | A place to store globally accessible variables such as separators, mode text, etc.                                                            |
+| `require("astronvim.utils.status.heirline")`  | A collection of tools specific for Heirline as well as a few aliases for easily interfacing with Heirline utilities                           |
 
 Heirline is built through building up components in a nested way, where each component either has it's own sub components or a provider to tell what content should be displayed. For a detailed description on the basic concepts of configuring Heirline, please check out their extremely well written [cookbook](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md).
 
