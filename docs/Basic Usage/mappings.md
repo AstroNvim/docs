@@ -8,6 +8,7 @@ title: Default Mappings
 | Action                      | Mappings            |
 | --------------------------- | ------------------- |
 | Leader key                  | `Space`             |
+| Local Leader key            | `,`                 |
 | Resize up                   | `Ctrl + Up`         |
 | Resize Down                 | `Ctrl + Down`       |
 | Resize Left                 | `Ctrl + Left`       |
@@ -196,25 +197,28 @@ title: Default Mappings
 
 ## UI Mappings
 
-| Action                        | Mappings      |
-| ----------------------------- | ------------- |
-| Toggle autopairs              | `Leader + ua` |
-| Toggle background             | `Leader + ub` |
-| Toggle autocompletion         | `Leader + uc` |
-| Toggle color highlights       | `Leader + uC` |
-| Toggle diagnostics            | `Leader + ud` |
-| Toggle buffer auto formatting | `Leader + uf` |
-| Toggle global auto formatting | `Leader + uF` |
-| Toggle signcolumn             | `Leader + ug` |
-| Change indent setting         | `Leader + ui` |
-| Toggle statusline             | `Leader + ul` |
-| Toggle CodeLens               | `Leader + uL` |
-| Change line numbering         | `Leader + un` |
-| Toggle UI notifications       | `Leader + uN` |
-| Toggle paste mode             | `Leader + up` |
-| Toggle spellcheck             | `Leader + us` |
-| Toggle conceal                | `Leader + uS` |
-| Toggle tabline                | `Leader + ut` |
-| Toggle URL highlight          | `Leader + uu` |
-| Toggle wrap                   | `Leader + uw` |
-| Toggle syntax highlight       | `Leader + uy` |
+| Action                           | Mappings      |
+| -------------------------------- | ------------- |
+| Toggle autopairs                 | `Leader + ua` |
+| Toggle background                | `Leader + ub` |
+| Toggle autocompletion            | `Leader + uc` |
+| Toggle color highlights          | `Leader + uC` |
+| Toggle diagnostics               | `Leader + ud` |
+| Toggle buffer auto formatting    | `Leader + uf` |
+| Toggle global auto formatting    | `Leader + uF` |
+| Toggle signcolumn                | `Leader + ug` |
+| Toggle foldcolumn                | `Leader + uh` |
+| Toggle LSP inlay hints           | `Leader + uH` |
+| Change indent setting            | `Leader + ui` |
+| Toggle statusline                | `Leader + ul` |
+| Toggle CodeLens                  | `Leader + uL` |
+| Change line numbering            | `Leader + un` |
+| Toggle UI notifications          | `Leader + uN` |
+| Toggle paste mode                | `Leader + up` |
+| Toggle spellcheck                | `Leader + us` |
+| Toggle conceal                   | `Leader + uS` |
+| Toggle tabline                   | `Leader + ut` |
+| Toggle URL highlighting          | `Leader + uu` |
+| Toggle wrap                      | `Leader + uw` |
+| Toggle syntax highlighting       | `Leader + uy` |
+| Toggle LSP semantic highlighting | `Leader + uY` |

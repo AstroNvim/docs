@@ -28,6 +28,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | File Explorer               | https://github.com/nvim-neo-tree/neo-tree.nvim                 |
 | Statusline                  | https://github.com/rebelot/heirline.nvim                       |
 | Syntax Highlighting         | https://github.com/nvim-treesitter/nvim-treesitter             |
+| Syntax Text Objects         | https://github.com/nvim-treesitter/nvim-treesitter-textobjects |
 | Autoclose tags              | https://github.com/windwp/nvim-ts-autotag                      |
 | Context Commenting          | https://github.com/JoosepAlviste/nvim-ts-context-commentstring |
 | Snippet Engine              | https://github.com/L3MON4D3/LuaSnip                            |
@@ -35,11 +36,13 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Completion Engine           | https://github.com/hrsh7th/nvim-cmp                            |
 | Snippet Completion          | https://github.com/saadparwaiz1/cmp_luasnip                    |
 | Buffer Completion           | https://github.com/hrsh7th/cmp-buffer                          |
+| DAP Completion              | https://github.com/rcarriga/cmp-dap                            |
 | Path Completion             | https://github.com/hrsh7th/cmp-path                            |
 | LSP Completion              | https://github.com/hrsh7th/nvim-cmp                            |
 | Built-in LSP                | https://github.com/neovim/nvim-lspconfig                       |
 | Mason LSP Configuration     | https://github.com/williamboman/mason-lspconfig.nvim           |
 | LSP Symbols                 | https://github.com/stevearc/aerial.nvim                        |
+| LSP Local Configuration     | https://github.com/folke/neoconf.nvim                          |
 | Formatting & Linting        | https://github.com/jose-elias-alvarez/null-ls.nvim             |
 | Mason Null-ls Configuration | https://github.com/jay-babu/mason-null-ls.nvim                 |
 | Debugger                    | https://github.com/mfussenegger/nvim-dap                       |
