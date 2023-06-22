@@ -35,7 +35,17 @@ title: Default Mappings
 | Move Buffer Right                                                   | `>b`                          |
 | Move Buffer Left                                                    | `<b`                          |
 | Navigate to buffer tab with interactive picker                      | `Leader + bb`                 |
+| Close all buffers except the current                                | `Leader + bc`                 |
+| Close all buffers                                                   | `Leader + bC`                 |
 | Delete a buffer tab with interactive picker                         | `Leader + bd`                 |
+| Close all buffers to the left of the current                        | `Leader + bl`                 |
+| Go to the previous buffer                                           | `Leader + bp`                 |
+| Close all buffers to the right of the current                       | `Leader + br`                 |
+| Sort buffers by extension                                           | `Leader + bse`                |
+| Sort buffers by buffer number                                       | `Leader + bsi`                |
+| Sort buffers by last modification                                   | `Leader + bsm`                |
+| Sort buffers by full path                                           | `Leader + bsp`                |
+| Sort buffers by relative path                                       | `Leader + bsr`                |
 | Open a buffer tab in a new horizontal split with interactive picker | `Leader + b\`                 |
 | Open a buffer tab in a new vertical split with interactive picker   | <code>Leader + b&#124;</code> |
 
