@@ -24,7 +24,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Automatic Indent Detection  | https://github.com/NMAC427/guess-indent.nvim                   |
 | Smarter Splits              | https://github.com/mrjones2014/smart-splits.nvim               |
 | Icons                       | https://github.com/nvim-tree/nvim-web-devicons                 |
-| Buffer Closing              | https://github.com/famiu/bufdelete.nvim                        |
+| Buffer Closing              | https://github.com/echasnovski/mini.bufremove                  |
 | File Explorer               | https://github.com/nvim-neo-tree/neo-tree.nvim                 |
 | Statusline                  | https://github.com/rebelot/heirline.nvim                       |
 | Syntax Highlighting         | https://github.com/nvim-treesitter/nvim-treesitter             |

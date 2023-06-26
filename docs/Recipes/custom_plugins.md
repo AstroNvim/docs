@@ -74,11 +74,11 @@ By default AstroNvim enables lazy loading automatically with Lazy.nvim. This req
 -- this plugin will be loaded on the autocmd event "UIEnter"
 { "rcarriga/nvim-notify", event = "UIEnter" },
 
--- this plugin will be loaded when using `:Bdelete` and `:Bwipeout`
-{ "famiu/bufdelete.nvim", cmd = { "Bdelete", "Bwipeout" } },
+-- this plugin will be loaded when using `:ZenMode`
+{ "folke/zen-mode.nvim", cmd = "ZenMode" },
 
 -- this plugin will be not be lazy loaded
-{ "famiu/bufdelete.nvim", lazy = false },
+{ "folke/tokyonight.nvim", lazy = false },
 ```
 
 ### Lazy Load File Related Plugins
