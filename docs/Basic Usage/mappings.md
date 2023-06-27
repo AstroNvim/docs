@@ -117,7 +117,7 @@ title: Default Mappings
 | Type Definition      | `gT`                |
 | Definition           | `gd`                |
 | Implementation       | `gI`                |
-| References           | `gr`                |
+| References           | `gr`, `Leader + lR` |
 
 ## Debugger Mappings
 
