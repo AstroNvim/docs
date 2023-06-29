@@ -232,6 +232,8 @@ return {
 
 ## LSP Specific Plugins
 
+**Note**: Many of these can be found pre-configured in the [Astgronvim Community Repository](https://github.com/AstroNvim/astrocommunity/), typically in the `pack` folder, where these plugins usually end up being combined with other language-specific plugins.
+
 There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `lsp.setup_handlers` table for specifying how language servers should be setup such as using a language specific plugin. This function for each handler has two parameters, the first is the name of the server and the second is the options we would be passing to the `lspconfig` setup call. These options include things such as our built in `capabilities`, `on_attach`, as well as the user defined options in `lsp.config`. Here are a couple examples for some common LSP plugins:
 
 ### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
