@@ -28,7 +28,7 @@ return {
 }
 ```
 
-Depending on the location of your [configuration](docs/configuration/manage_user_config), create a subdirectory named `snippets` under `lua/user`.
+Depending on the location of your [configuration](/docs/Configuration/manage_user_config.md), create a subdirectory named `snippets` under `lua/user`.
 Custom snippets will be added to this `snippets` directory. They will follow the vscode style as described in the [documentation](https://github.com/l3mon4d3/luasnip/blob/master/doc.md#vscode-snippets-loader)
 
 This example Vue snippet is added as `snippets/vue.json`:
