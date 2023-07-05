@@ -46,7 +46,7 @@ To use code actions you need to press `Space` + `la`
 
 ### Debugging
 
-To use the debugger you can press `Space` + `D` to see the available bindings and options
+To use the debugger you can press `Space` + `d` to see the available bindings and options
 
 ### Telescope search
 
