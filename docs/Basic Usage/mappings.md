@@ -160,7 +160,8 @@ title: Default Mappings
 | Live Grep                         | `Leader + fw` |
 | Live Grep (include hidden files)  | `Leader + fW` |
 | Git Branches                      | `Leader + gb` |
-| Git Commits                       | `Leader + gc` |
+| Git Commits (repository)          | `Leader + gc` |
+| Git Commits (current file)        | `Leader + gC` |
 | Git Status                        | `Leader + gt` |
 | LSP Symbols                       | `Leader + ls` |
 | LSP Workspace Symbols             | `Leader + lG` |
