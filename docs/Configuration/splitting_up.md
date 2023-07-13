@@ -46,6 +46,7 @@ A heavily modified AstroNvim setup that leverages these separate files could hav
 ```
 user/
 ├── init.lua
+├── options.lua
 ├── highlights/
 │   └── init.lua
 ├── diagnostics.lua
