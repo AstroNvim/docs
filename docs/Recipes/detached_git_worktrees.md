@@ -13,16 +13,16 @@ For example, if you have a bare git repo located at `~/.dotfiles` with its worki
 
 ```lua
 return {
-    options = {
-        g = {
-            git_worktrees = {
-                {
-                    toplevel = vim.env.HOME,
-                    gitdir = vim.env.HOME .. "/.dotfiles"
-                }
-            },
-        }
-    }
+  options = {
+    g = {
+      git_worktrees = {
+        {
+          toplevel = vim.env.HOME,
+          gitdir = vim.env.HOME .. "/.dotfiles"
+        },
+      },
+    },
+  },
 }
 ```
 
