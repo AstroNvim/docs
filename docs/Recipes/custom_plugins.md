@@ -108,7 +108,7 @@ Similar to the file related plugins described above, we also have a similar hook
 
 ## Full Example
 
-Here is a simple `user/init.lua` file that just defines a plugin in the `plugins.init` table:
+Here is a simple `user/init.lua` file that just defines a plugin in the `plugins.init` table (note this only works if a `user/plugins/` directory does _not_ exist):
 
 ```lua
 return {
@@ -124,7 +124,7 @@ return {
 }
 ```
 
-Here is the same plugin being added to `user/plugins/init.lua` file if you prefer separating out your configuration files:
+Here is the same plugin being added to `user/plugins/core.lua` file if you prefer separating out your configuration files:
 
 :::tip
 
