@@ -108,7 +108,7 @@ Similar to the file related plugins described above, we also have a similar hook
 
 ## Full Example
 
-Here is a simple `user/init.lua` file that just defines a plugin in the `plugins.init` table (note this only works if a `user/plugins/` directory does _not_exist):
+Here is a simple `user/init.lua` file that just defines a plugin in the `plugins.init` table (note this only works if a `user/plugins/` directory does _not_ exist):
 
 ```lua
 return {
