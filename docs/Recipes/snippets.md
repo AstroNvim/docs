@@ -3,15 +3,13 @@ id: snippets
 title: Custom Snippets
 ---
 
-`user/init.lua`:
+`user/plugins/user.lua`:
 
 Be sure to read the comments in order to understand how to use this code for your environment.
 
 ```lua
 return {
-  plugins = {
-    {
-      "L3MON4D3/LuaSnip",
+    "L3MON4D3/LuaSnip",
       config = function(plugin, opts)
         -- include the default astronvim config that calls the setup call
         require "plugins.configs.luasnip"(plugin, opts)
@@ -20,11 +18,9 @@ return {
           -- this can be used if your configuration lives in ~/.config/nvim
           -- if your configuration lives in ~/.config/astronvim, the full path
           -- must be specified in the next line
-          paths = { "./lua/user/snippets" }
+          paths = { "~/.config/nvim/lua/user/snippets" }
         }
       end,
-    },
-  },
 }
 ```
 
