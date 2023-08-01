@@ -155,6 +155,59 @@ const config = {
           ...socials,
         ],
       },
+      footer: {
+        style: "dark",
+        copyright: `© The AstroNvim team. This site is powered by <a href="https://www.netlify.com/">Netlify</a> and <a href="https://docusaurus.io/">Docusaurus</a>`,
+        links: [
+          {
+            title: "Docs",
+            items: [
+              {
+                label: "Stable Documentation",
+                to: "/",
+              },
+              {
+                label: "Lua API Documentation",
+                to: "https://api.astronvim.com/",
+              },
+            ],
+          },
+          {
+            title: "Community",
+            items: [
+              {
+                label: "GitHub",
+                href: "https://github.com/AstroNvim",
+              },
+              {
+                label: "Discord",
+                href: "https://discord.gg/astronvim",
+              },
+              {
+                label: "Mastodon",
+                href: "https://hachyderm.io/@AstroNvim",
+              },
+              {
+                label: "Twitter",
+                href: "https://twitter.com/AstroNvim",
+              },
+            ],
+          },
+          {
+            title: "More",
+            items: [
+              {
+                label: "Code of Conduct",
+                href: "/code_of_conduct",
+              },
+              {
+                label: "Contribution Guidelines",
+                href: "https://github.com/AstroNvim/AstroNvim/blob/main/.github/CONTRIBUTING.md",
+              },
+            ],
+          },
+        ],
+      },
       prism: {
         theme: oneDarkTheme,
         darkTheme: oneDarkTheme,
