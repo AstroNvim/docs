@@ -124,7 +124,7 @@ For the complete documentation on this API checkout the [AstroNvim Lua API docs]
 | `require("astronvim.utils.status.provider")`  | A collection of methods that can be set as Heirline providers                                                                                 |
 | `require("astronvim.utils.status.condition")` | A collection of methods that can be use as Heirline conditions for controlling when components are enabled                                    |
 | `require("astronvim.utils.status.init")`      | A collection of methods that can be set as Heirline init functions for building components with dynamic subcomponents such as LSP breadcrumbs |
-| `require("astronvim.utils.status.utils")`     | A collection of miscellaneous helper functions that `astronvim.utils.status` uses such as surroundig components and getting buffers           |
+| `require("astronvim.utils.status.utils")`     | A collection of miscellaneous helper functions that `astronvim.utils.status` uses such as surrounding components and getting buffers          |
 | `require("astronvim.utils.status.env")`       | A place to store globally accessible variables such as separators, mode text, etc.                                                            |
 | `require("astronvim.utils.status.heirline")`  | A collection of tools specific for Heirline as well as a few aliases for easily interfacing with Heirline utilities                           |
 

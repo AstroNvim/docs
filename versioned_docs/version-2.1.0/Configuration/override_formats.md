@@ -44,7 +44,7 @@ mappings = {
   -- desc setting is stored by vim.keymap.set() as a part of opts table in vim lua module
   n = {
     -- second key is the lefthand side of the map
-    -- BUffer
+    -- Buffer
     ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
     ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },

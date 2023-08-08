@@ -121,7 +121,7 @@ For the complete documentation on this API checkout the [AstroNvim Lua API docs]
 | `astronvim.status.provider`  | A collection of methods that can be set as Heirline providers                                                                                 |
 | `astronvim.status.condition` | A collection of methods that can be use as Heirline conditions for controlling when components are enabled                                    |
 | `astronvim.status.init`      | A collection of methods that can be set as Heirline init functions for building components with dynamic subcomponents such as LSP breadcrumbs |
-| `astronvim.status.utils`     | A collection of miscellaneous helper functions that `astronvim.status` uses such as surroundig components and getting buffers                 |
+| `astronvim.status.utils`     | A collection of miscellaneous helper functions that `astronvim.status` uses such as surrounding components and getting buffers                 |
 | `astronvim.status.env`       | A place to store globally accessible variables such as separators, mode text, etc.                                                            |
 | `astronvim.status.heirline`  | A collection of tools specific for Heirline as well as a few aliases for easily interfacing with Heirline utilities                           |
 
@@ -501,7 +501,7 @@ return {
       -- by only providing a single element we will only override the statusline
       -- and use the default winbar in AstroNvim
 
-      -- return the final confiuration table
+      -- return the final configuration table
       return config
     end,
   },

@@ -131,7 +131,7 @@ local config = {
   plugins = {
     -- Add plugins, the packer syntax without the "use"
     init = {
-      -- ["goolord/alpha-nvim"] = { disable = true }, -- New method for disbaling a default plugin
+      -- ["goolord/alpha-nvim"] = { disable = true }, -- New method for disabling a default plugin
       -- { "andweeb/presence.nvim" },
       -- {
       --   "ray-x/lsp_signature.nvim",
