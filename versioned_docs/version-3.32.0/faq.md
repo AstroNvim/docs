@@ -31,7 +31,7 @@ If a plugin is missing feel free to contribute it using a pull request. Please j
 
 ## What if I require further assistance with the customization of AstroNvim?
 
-Feel free to join our [official community Discord server!](https://discord.gg/astronvim) Before asking questions please make sure go through the following steps:
+Feel free to join our [official community Discord server!](https://discord.astronvim.com) Before asking questions please make sure go through the following steps:
 
 1. Read the server rules in the rules channel
 2. Make sure to have read the documentation ([RTFM!](https://www.urbandictionary.com/define.php?term=RTFM))

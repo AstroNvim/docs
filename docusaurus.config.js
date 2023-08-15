@@ -181,7 +181,7 @@ const config = {
               },
               {
                 label: "Discord",
-                href: "https://discord.gg/astronvim",
+                href: "https://discord.astronvim.com",
               },
               {
                 label: "Mastodon",
