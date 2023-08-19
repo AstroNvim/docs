@@ -71,7 +71,7 @@ For example with the `options` table, you may want to use the function notation 
 options = function(local_vim) -- parameter is the default table to be overridden
   -- nil is the same as a key not being set, so you cannot use nil reliably
   -- when using the table override notation
-  local_vim.clipboard = nil -- set a value to nil to remove it from the table
+  local_vim.opt.clipboard = nil -- set a value to nil to remove it from the table
   -- return modified table
   return local_vim
 end,
