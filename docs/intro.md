@@ -42,7 +42,7 @@ AstroNvim is an aesthetic and feature-rich neovim config that is extensible and 
 
 :::info
 
-<sup id="2">[2]</sup> When using default theme: For MacOS, the default terminal does not have true color support. You will need to use [iTerm2](https://iterm2.com/), [Kitty](https://sw.kovidgoyal.net/kitty/), [WezTerm](https://wezfurlong.org/wezterm/), or another [terminal emulator](https://gist.github.com/XVilka/8346728#terminal-emulators) that has true color support.
+<sup id="2">[2]</sup> When using default theme: For MacOS, the default terminal does not have true color support. You will need to use <a href="https://iterm2.com/">iTerm2</a>, <a href="https://sw.kovidgoyal.net/kitty/">Kitty</a>, <a href="https://wezfurlong.org/wezterm/">WezTerm</a>, or another <a href="https://github.com/termstandard/colors">terminal emulator</a> that has true color support.
 
 :::
 
