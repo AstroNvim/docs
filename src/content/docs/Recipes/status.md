@@ -5,7 +5,7 @@ title: Customizing Statusline
 
 AstroNvim uses [`Heirline.nvim`](https://github.com/rebelot/heirline.nvim) for both the custom statusline and winbar. Heirline is an extremely minimal statusline plugin that does not come with any preconfigured elements but focuses on speed and extensibility. To build our statusline, we have built an internal lua module of statusline elements that we use to build our own statusline, but can in turn be used in your user configuration to customize the statusline.
 
-:::info
+:::note
 
 Customizing the statusline can be very manual and require a lot of knowledge of the API that we have provided. It is **highly** recommended to only do this if you are comfortable with programming Lua and reading the source code of AstroNvim.
 
@@ -110,7 +110,7 @@ heirline = {
 
 AstroNvim provides a module that can be loaded with `require("astronvim.utils.status")` for building components in Heirline for both the statusline and winbar. It has several submodules:
 
-:::info
+:::note
 
 For the complete documentation on this API checkout the [AstroNvim Lua API docs](https://api.astronvim.com/)
 
