@@ -58,11 +58,11 @@ export default defineConfig({
         "./src/tailwind.css",
       ],
       social: {
-        github: "https://github.com/AstroNvim/AstroNvim",
-        // reddit: "https://www.reddit.com/r/AstroNvim/",
-        discord: "https://discord.astronvim.com",
-        twitter: "https://twitter.com/AstroNvim",
         mastodon: "https://hachyderm.io/@AstroNvim",
+        "x.com": "https://x.com/AstroNvim",
+        discord: "https://discord.astronvim.com",
+        github: "https://git.astronvim.com/AstroNvim",
+        // reddit: "https://www.reddit.com/r/AstroNvim",
       },
       sidebar: [
         {
