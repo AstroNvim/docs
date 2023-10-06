@@ -278,7 +278,7 @@ return {
 
 Some users want to be able to add the mode text to their statusline easily, AstroNvim's new `astronvim.utils.status` lua module as well as Heirline make that very easy to do in their user configuration file.
 
-![Screenshot of the statusline with mode text](../../../img//recipes/mode_text_statusline.png)
+![Screenshot of the statusline with mode text](../../../assets/recipes/mode_text_statusline.png)
 
 Minimal `user/init.lua` that adds the mode text to the statusline:
 
@@ -317,7 +317,7 @@ return {
 
 NvChad comes with a very specific statusline configuration that a lot of people like, so we figured it would be a nice exercise of the extensibility of our `astronvim.utils.status` API to show how to build that statusline in AstroNvim. _Warning:_ This is a fairly complicated example and is meant to be used by people who want it and to demonstrate how much you can customize the statusline.
 
-![Screenshot of the NvChad style statusline](../../../img/recipes/nvchad_statusline.png)
+![Screenshot of the NvChad style statusline](../../../assets/recipes/nvchad_statusline.png)
 
 Minimal `user/init.lua` that recreates the NvChad statusline in AstroNvim:
 
@@ -486,7 +486,7 @@ return {
 
 Visual Studio Code has a default bar at the top of files that many users may prefer to AstroNvim's default. Their `winbar` shows the path to the current file (relative to the working directory) along with the LSP provided breadcrumbs. This is achievable through our status API as well!
 
-![Screenshot of the Visual Studio Code style winbar](../../../img/recipes/vscode_winbar.png)
+![Screenshot of the Visual Studio Code style winbar](../../../assets/recipes/vscode_winbar.png)
 
 Minimal `user/init.lua` that recreates the winbar in Visual Studio Code:
 
