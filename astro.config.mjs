@@ -9,6 +9,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "AstroNvim",
+      description: "The documentation website for AstroNvim.",
       favicon: "/astronvim.svg",
       head: [
         {
@@ -117,6 +118,7 @@ export default defineConfig({
           lang: "en",
         },
       },
+      lastUpdated: true,
     }),
     tailwind({
       // Disable the default base styles:
