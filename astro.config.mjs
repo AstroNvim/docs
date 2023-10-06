@@ -9,8 +9,49 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "AstroNvim",
+      favicon: "/astronvim.svg",
+      head: [
+        {
+          tag: "link",
+          attrs: {
+            rel: "icon",
+            href: "https://astronvim.com/logo/astronvim.svg",
+            size: "image/svg+xml",
+          },
+        },
+        {
+          tag: "link",
+          attrs: {
+            rel: "icon",
+            href: "https://astronvim.com/logo/favicon.ico",
+            size: "any",
+          },
+        },
+        {
+          tag: "link",
+          attrs: {
+            rel: "apple-touch-icon",
+            href: "https://astronvim.com/logo/apple-touch-icon.png",
+          },
+        },
+        {
+          tag: "link",
+          attrs: {
+            rel: "manifest",
+            href: "/manifest.webmanifest",
+          },
+        },
+        {
+          tag: "script",
+          attrs: {
+            src: "https://plausible.mehalter.com/js/script.js",
+            defer: true,
+            "data-domain": "docs.astronvim.com",
+          },
+        },
+      ],
       logo: {
-        src: "./src/assets/logo/astronvim.svg",
+        src: "./src/assets/astronvim.svg",
       },
       customCss: [
         // Path to your Tailwind base styles:
