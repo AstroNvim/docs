@@ -111,6 +111,12 @@ export default defineConfig({
           link: "https://api.astronvim.com",
         },
       ],
+      locales: {
+        root: {
+          label: "English",
+          lang: "en",
+        },
+      },
     }),
     tailwind({
       // Disable the default base styles:
