@@ -232,7 +232,7 @@ return {
 
 ## LSP Specific Plugins
 
-::: tip
+:::tip
 
 Many of these can be found pre-configured in the [AstroNvim Community Repository](https://github.com/AstroNvim/astrocommunity/), typically in the [`pack`](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack) folder, where these plugins usually end up being combined with other language-specific plugins.
 
