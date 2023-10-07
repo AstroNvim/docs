@@ -5,7 +5,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astrodocs-v2.vercel.app",
+  site: "https://docs.astronvim.com",
   integrations: [
     starlight({
       title: "AstroNvim",
