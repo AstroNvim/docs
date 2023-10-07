@@ -97,11 +97,11 @@ const socials = require("./socials");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "AstroNvim",
+  title: "AstroNvim v2",
   tagline:
     "An aesthetic and feature-rich neovim config that is extensible and easy to use with a great set of plugins",
-  url: "https://astronvim.github.io",
-  baseUrl: "/",
+  url: "https://docs.astronvim.com",
+  baseUrl: "/v2/",
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -119,9 +119,6 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
-          versions: {
-            current: { label: "nightly", path: "nightly" },
-          },
         },
         blog: false,
         theme: {
@@ -142,18 +139,12 @@ const config = {
         },
       ],
       navbar: {
-        title: "AstroNvim",
+        title: "AstroNvim v2",
         logo: {
           alt: "AstroNvim Logo",
           src: "img/logo/astronvim.svg",
         },
-        items: [
-          {
-            type: "docsVersionDropdown",
-            position: "left",
-          },
-          ...socials,
-        ],
+        items: [...socials],
       },
       prism: {
         theme: oneDarkTheme,
