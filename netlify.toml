@@ -8,3 +8,14 @@ for = "/assets/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
+[[redirects]]
+from = "/v1/*"
+to = "https://luxury-sorbet-1e94f3.netlify.app/:splat"
+status = 200
+force = true                                           # COMMENT: ensure that we always redirect
+
+[[redirects]]
+from = "/v2/*"
+to = "https://magenta-malasada-aac0c8.netlify.app/:splat"
+status = 200
+force = true                                              # COMMENT: ensure that we always redirect
