@@ -8,7 +8,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 :::caution
 
 If you are on AstroNvim v2.0 and are upgrading to AstroNvim v3.0 please see the
-[Migration to v3.0 Page](Configuration/v3_migration.md)!
+[Migration to v3.0 Page](configuration/v3_migration)!
 
 :::
 
@@ -204,4 +204,4 @@ return {
 
 For more information on the organization of config files and general usage of AstroNvim, be sure to check out the excellent [youtube tutorial](https://www.youtube.com/watch?v=GEHPiZ10gOk).
 
-More advanced LSP setups can also be found in [Recipes](Recipes/advanced_lsp.md). Note that whenever you see `plugins = { <inner_code_block> }`, you can also put the `<inner_code_block>` into `plugins/user.lua` or `plugins/*.lua` (they will all be merged into the final plugins spec, and the lua code `plugins = {...}` acts like the directory structure `plugins/...`).
+More advanced LSP setups can also be found in [Recipes](recipes/advanced_lsp). Note that whenever you see `plugins = { <inner_code_block> }`, you can also put the `<inner_code_block>` into `plugins/user.lua` or `plugins/*.lua` (they will all be merged into the final plugins spec, and the lua code `plugins = {...}` acts like the directory structure `plugins/...`).
