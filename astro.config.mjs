@@ -112,25 +112,19 @@ export default defineConfig({
         {
           label: "Basic Usage",
           collapsed: true,
-          autogenerate: {
-            directory: "basic-usage",
-          },
+          autogenerate: { directory: "basic-usage" },
           translations: {},
         },
         {
           label: "Configuration",
           collapsed: true,
-          autogenerate: {
-            directory: "Configuration",
-          },
+          autogenerate: { directory: "configuration" },
           translations: {},
         },
         {
           label: "Recipes",
           collapsed: true,
-          autogenerate: {
-            directory: "Recipes",
-          },
+          autogenerate: { directory: "recipes" },
           translations: {},
         },
         {
