@@ -147,7 +147,7 @@ export default defineConfig({
           translations: {},
         },
         {
-          label: "Frequently asked questions",
+          label: "Frequently Asked Questions",
           collapsed: true,
           link: "/faq",
           translations: {},
