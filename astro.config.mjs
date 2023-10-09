@@ -3,9 +3,18 @@ import starlight from "@astrojs/starlight";
 
 import tailwind from "@astrojs/tailwind";
 
+const locales = {
+  root: {
+    label: "English",
+    lang: "en", // lang is required for root locales
+  },
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://docs.astronvim.com",
+  defaultLocale: "root",
+  locales,
   integrations: [
     starlight({
       title: "AstroNvim",
@@ -70,6 +79,7 @@ export default defineConfig({
           label: "Getting started",
           link: "/",
           collapsed: true,
+          translations: {},
         },
         {
           label: "Basic Usage",
@@ -77,6 +87,7 @@ export default defineConfig({
           autogenerate: {
             directory: "basic-usage",
           },
+          translations: {},
         },
         {
           label: "Configuration",
@@ -84,6 +95,7 @@ export default defineConfig({
           autogenerate: {
             directory: "Configuration",
           },
+          translations: {},
         },
         {
           label: "Recipes",
@@ -91,33 +103,33 @@ export default defineConfig({
           autogenerate: {
             directory: "Recipes",
           },
+          translations: {},
         },
         {
           label: "Acknowledgements",
           link: "/acknowledgements",
           collapsed: true,
+
+          translations: {},
         },
         {
           label: "Code of Conduct",
           collapsed: true,
           link: "/code_of_conduct",
+          translations: {},
         },
         {
           label: "Frequently asked questions",
           collapsed: true,
           link: "/faq",
+          translations: {},
         },
         {
           label: "Core Lua API Documentation",
           link: "https://api.astronvim.com",
+          translations: {},
         },
       ],
-      locales: {
-        root: {
-          label: "English",
-          lang: "en",
-        },
-      },
       lastUpdated: true,
     }),
     tailwind({
