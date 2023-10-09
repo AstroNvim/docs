@@ -22,6 +22,34 @@ export default defineConfig({
       favicon: "/astronvim.svg",
       head: [
         {
+          tag: "meta",
+          attrs: {
+            property: "og:image",
+            content: "https://astronvim.com/logo/banner.png",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:site",
+            content: "@AstroNvim",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:creator",
+            content: "@AstroNvim",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "twitter:image",
+            content: "https://astronvim.com/logo/banner.png",
+          },
+        },
+        {
           tag: "link",
           attrs: {
             rel: "icon",
