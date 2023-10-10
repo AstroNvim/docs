@@ -24,6 +24,22 @@ export default defineConfig({
         {
           tag: "meta",
           attrs: {
+            name: "theme-color",
+            content: "#feeeee",
+            media: "(prefers-color-scheme: light)",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            name: "theme-color",
+            content: "#1a1d23",
+            media: "(prefers-color-scheme: dark)",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
             property: "og:image",
             content: "https://astronvim.com/logo/banner.png",
           },

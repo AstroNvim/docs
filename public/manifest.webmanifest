@@ -1,4 +1,10 @@
 {
+  "name": "AstroNvim Documentation",
+  "start_url": "https://docs.astronvim.com",
+  "description": "Documentation for the AstroNvim Neovim configuration.",
+  "display": "minimal-ui",
+  "background_color": "#1a1d23",
+  "theme_color": "#1a1d23",
   "icons": [
     {
       "src": "https://astronvim.com/logo/android-chrome-192x192.png",
@@ -6,9 +12,21 @@
       "sizes": "192x192"
     },
     {
+      "src": "https://astronvim.com/logo/maskable_icon_x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
       "src": "https://astronvim.com/logo/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "https://astronvim.com/logo/maskable_icon_x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ]
 }
