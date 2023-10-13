@@ -1,6 +1,8 @@
 ---
 id: intro
 title: Getting Started
+tableOfContents:
+  maxHeadingLevel: 2
 ---
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
@@ -51,7 +53,7 @@ AstroNvim is an aesthetic and feature-rich neovim config that is extensible and 
 
 <TabItem value="nix" label="Linux/Mac OS (Unix)" default>
 
-#### Make a backup of your current nvim folder
+### Make a backup of your current nvim folder
 
 ```sh
 mv ~/.config/nvim ~/.config/nvim.bak
@@ -65,7 +67,7 @@ mv ~/.local/state/nvim ~/.local/state/nvim.bak
 mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 
-#### Clone the repository
+### Clone the repository
 
 ```sh
 git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
@@ -76,19 +78,19 @@ nvim
 
 <TabItem value="windoze" label="Windows (PowerShell)" default>
 
-#### Make a backup of your current nvim folder
+### Make a backup of your current nvim folder
 
 ```powershell
 Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 ```
 
-#### Clean old plugins (Optional but recommended)
+### Clean old plugins (Optional but recommended)
 
 ```powershell
 Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ```
 
-#### Clone the repository
+### Clone the repository
 
 ```powershell
 git clone --depth 1 https://github.com/AstroNvim/AstroNvim $env:LOCALAPPDATA\nvim
@@ -117,25 +119,25 @@ docker run -w /root -it --rm alpine:edge sh -uelic '
 
 ## 📦 Setup
 
-#### Install LSP
+### Install LSP
 
 Enter `:LspInstall` followed by the name of the server you want to install
 
 > Example: `:LspInstall pyright`
 
-#### Install language parser
+### Install language parser
 
 Enter `:TSInstall` followed by the name of the language you want to install
 
 > Example: `:TSInstall python`
 
-#### Install Debugger
+### Install Debugger
 
 Enter `:DapInstall` followed by the name of the debugger you want to install
 
 > Example: `:DapInstall python`
 
-#### Manage plugins
+### Manage plugins
 
 Run `:Lazy check` to check for plugin updates
 
@@ -145,15 +147,15 @@ Run `:Lazy clean` to remove any disabled or unused plugins
 
 Run `:Lazy sync` to update and clean plugins
 
-#### Update AstroNvim
+### Update AstroNvim
 
 Run `:AstroUpdate` (`<leader>pA`) to get the latest updates from the repository
 
-#### Update AstroNvim Packages
+### Update AstroNvim Packages
 
 Run `:AstroUpdatePackages` (`<leader>pa`) to update both Neovim plugins and Mason packages
 
-#### Reload AstroNvim (_EXPERIMENTAL_)
+### Reload AstroNvim (_EXPERIMENTAL_)
 
 Run `:AstroReload` to reload the AstroNvim configuration and any new user configuration changes without restarting. This is currently an experimental feature and may lead to instability until the next restart.
 
