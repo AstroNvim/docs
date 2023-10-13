@@ -8,6 +8,15 @@ for = "/assets/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
+[[plugins]]
+package = "@netlify/plugin-lighthouse"
+[[plugins]]
+package = "netlify-plugin-checklinks"
+[[plugins]]
+package = "netlify-plugin-submit-sitemap"
+[plugins.inputs]
+sitemapPath = "/sitemap-0.xml"
+
 # Old versions
 
 [[redirects]]
