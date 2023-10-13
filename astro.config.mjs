@@ -115,8 +115,8 @@ export default defineConfig({
         mastodon: "https://hachyderm.io/@AstroNvim",
         "x.com": "https://x.com/AstroNvim",
         discord: "https://discord.astronvim.com",
+        reddit: "https://www.reddit.com/r/AstroNvim",
         github: "https://git.astronvim.com/AstroNvim",
-        // reddit: "https://www.reddit.com/r/AstroNvim",
       },
       sidebar: [
         {

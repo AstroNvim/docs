@@ -9,11 +9,11 @@ dependencies:
     specifier: ^1.1.2
     version: 1.1.2(astro@3.3.0)
   '@astrojs/starlight':
-    specifier: ^0.11.0
-    version: 0.11.0(astro@3.3.0)
+    specifier: ^0.11.1
+    version: 0.11.1(astro@3.3.0)
   '@astrojs/starlight-tailwind':
     specifier: ^2.0.0
-    version: 2.0.0(@astrojs/starlight@0.11.0)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.3)
+    version: 2.0.0(@astrojs/starlight@0.11.1)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.3)
   '@astrojs/tailwind':
     specifier: ^5.0.2
     version: 5.0.2(astro@3.3.0)(tailwindcss@3.3.3)
@@ -125,20 +125,20 @@ packages:
       zod: 3.21.1
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.0(@astrojs/starlight@0.11.0)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.3):
+  /@astrojs/starlight-tailwind@2.0.0(@astrojs/starlight@0.11.1)(@astrojs/tailwind@5.0.2)(tailwindcss@3.3.3):
     resolution: {integrity: sha512-4nMAYpjygQAOHIEXqRCFqjxpqTiCt8vFVlfr+glrJL7JCFYaKod/KQQoY/ykPy1Ez/QTPp424vmNfDJXxZoBRw==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.11.0(astro@3.3.0)
+      '@astrojs/starlight': 0.11.1(astro@3.3.0)
       '@astrojs/tailwind': 5.0.2(astro@3.3.0)(tailwindcss@3.3.3)
       tailwindcss: 3.3.3
     dev: false
 
-  /@astrojs/starlight@0.11.0(astro@3.3.0):
-    resolution: {integrity: sha512-ZnYB1AHetRujy25fSW4uvJTn2ry8nFspMCySWkeB1VT7QzTTgol9y19o1HTWVessViJhlavayHAjd42Pru1rww==}
+  /@astrojs/starlight@0.11.1(astro@3.3.0):
+    resolution: {integrity: sha512-R1kBYnAOqPznsXCPLpSrbFQlKAy7jl7VIw+IY0s4tLfK5A9X6/nuX3Asm/kay6GJ035e9PHTljM5qFcAdJnPDw==}
     peerDependencies:
       astro: ^3.2.0
     dependencies:
@@ -148,7 +148,7 @@ packages:
       '@types/mdast': 3.0.13
       astro: 3.3.0
       bcp-47: 2.1.0
-      execa: 7.2.0
+      execa: 8.0.1
       hast-util-select: 5.0.5
       hastscript: 7.2.0
       pagefind: 1.0.3
@@ -1157,6 +1157,7 @@ packages:
     resolution: {integrity: sha512-SPlobFgbidfIeOYlzXiEjSYeIJiOCthv+9tSQVpvk4PAdIIc+2SmjNVzWXk9t0Y7dl73Zdf+OgXKHX9XtkqUpw==}
     dependencies:
       undici-types: 5.25.3
+    dev: true
 
   /@types/normalize-package-data@2.4.2:
     resolution: {integrity: sha512-lqa4UEhhv/2sjjIQgjX8B+RBjj47eo0mzGasklVJ78UKGQY1r0VpB9XHDaZZO9qzEFDdy4MrXLuEaSmPrPSe/A==}
@@ -1169,7 +1170,7 @@ packages:
   /@types/sax@1.2.5:
     resolution: {integrity: sha512-9jWta97bBVC027/MShr3gLab8gPhKy4l6qpb+UJLF5pDm3501NvA7uvqVCW+REFtx00oTi6Cq9JzLwgq6evVgw==}
     dependencies:
-      '@types/node': 20.8.5
+      '@types/node': 17.0.45
     dev: false
 
   /@types/unist@2.0.8:
@@ -2779,21 +2780,6 @@ packages:
     resolution: {integrity: sha512-inRWzRY7nG+aXZxBzEqYKB3HPgwflZRopAjDCHv0whhRx+MTUr1ei0ICZUypdyE0HRm4L2d5VEcIqLD6yl+BFA==}
     dev: true
 
-  /execa@7.2.0:
-    resolution: {integrity: sha512-UduyVP7TLB5IcAQl+OzLyLcS/l32W/GLg+AhHJ+ow40FOk2U3SAllPwR44v4vmdFwIWqpdwxxpQbF1n5ta9seA==}
-    engines: {node: ^14.18.0 || ^16.14.0 || >=18.0.0}
-    dependencies:
-      cross-spawn: 7.0.3
-      get-stream: 6.0.1
-      human-signals: 4.3.1
-      is-stream: 3.0.0
-      merge-stream: 2.0.0
-      npm-run-path: 5.1.0
-      onetime: 6.0.0
-      signal-exit: 3.0.7
-      strip-final-newline: 3.0.0
-    dev: false
-
   /execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
@@ -3101,11 +3087,6 @@ packages:
     dependencies:
       pump: 3.0.0
     dev: true
-
-  /get-stream@6.0.1:
-    resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
-    engines: {node: '>=10'}
-    dev: false
 
   /get-stream@8.0.1:
     resolution: {integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==}
@@ -3587,11 +3568,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /human-signals@4.3.1:
-    resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
-    engines: {node: '>=14.18.0'}
-    dev: false
 
   /human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
@@ -7207,6 +7183,7 @@ packages:
 
   /undici-types@5.25.3:
     resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
+    dev: true
 
   /unherit@3.0.1:
     resolution: {integrity: sha512-akOOQ/Yln8a2sgcLj4U0Jmx0R5jpIg2IUyRrWOzmEbjBtGzBdHtSeFKgoEcoH4KYIG/Pb8GQ/BwtYm0GCq1Sqg==}
