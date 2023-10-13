@@ -17,7 +17,7 @@ skipPatterns = ["dist/404", "id=\"%EF%B8%8F-installation\""]
 [[plugins]]
 package = "netlify-plugin-submit-sitemap"
 [plugins.inputs]
-sitemapPath = "/sitemap-0.xml"
+sitemapPath = "/sitemap-index.xml"
 
 # Old versions
 
