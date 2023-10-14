@@ -96,6 +96,14 @@ export default defineConfig({
           },
         },
         {
+          tag: "link",
+          attrs: {
+            rel: "preconnect",
+            href: "https://JXZNTZ86UN-dsn.algolia.net",
+            crossorigin: true,
+          },
+        },
+        {
           tag: "script",
           attrs: {
             src: "https://plausible.mehalter.com/js/script.js",
@@ -106,6 +114,9 @@ export default defineConfig({
       ],
       logo: {
         src: "./src/assets/astronvim.svg",
+      },
+      components: {
+        Search: "./src/components/Search.astro",
       },
       customCss: [
         // Path to your Tailwind base styles:
