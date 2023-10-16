@@ -169,6 +169,9 @@ export default defineConfig({
         },
       ],
       lastUpdated: true,
+      editLink: {
+		    baseUrl: 'https://github.com/AstroNvim/docs/edit/main/'
+      },
     }),
     tailwind({
       // Disable the default base styles:
