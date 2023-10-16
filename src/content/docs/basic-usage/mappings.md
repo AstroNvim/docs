@@ -107,7 +107,7 @@ sidebar:
 | -------------------- | ------------------- |
 | LSP Info             | `Leader + li`       |
 | Null-ls Info         | `Leader + lI`       |
-| Hover Document       | `Shift + k`         |
+| Hover Document       | `K`                 |
 | Format Document      | `Leader + lf`       |
 | Symbols Outline      | `Leader + lS`       |
 | Line Diagnostics     | `gl`, `Leader + ld` |
