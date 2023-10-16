@@ -170,7 +170,7 @@ export default defineConfig({
       ],
       lastUpdated: true,
       editLink: {
-		    baseUrl: 'https://github.com/AstroNvim/docs/edit/main/'
+        baseUrl: 'https://github.com/AstroNvim/docs/edit/main/'
       },
     }),
     tailwind({
