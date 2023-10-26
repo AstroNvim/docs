@@ -3,6 +3,12 @@ id: config_options
 title: Available User Options
 ---
 
+::::danger
+
+This page should be migrated to a page regarding core plugins from the AstroNvim team: AstroCore, AstroUI, and AstroLSP
+
+::::
+
 | `user/init.lua` table key  | Expected Format            | Use Case                                                                                                                   | Alternate File Path (in `user/` folder) |
 | -------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `colorscheme`              | `string`                   | The colorscheme to be set                                                                                                  | `colorscheme.lua`                       |
