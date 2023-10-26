@@ -5,6 +5,7 @@ title: Available User Options
 
 ::::danger
 
+UNVALIDATED: NEED UPDATING FOR V4
 This page should be migrated to a page regarding core plugins from the AstroNvim team: AstroCore, AstroUI, and AstroLSP
 
 ::::

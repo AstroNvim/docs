@@ -4,6 +4,12 @@ title: Managing User Configuration
 sidebar_position: 1
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 One of the best parts of separating the user configuration of AstroNvim away from modifying the system files is the ability to manage and track your own user configuration while maintaining the ability to still get AstroNvim updates. The easiest process to do this would be as follows:
 
 ## Setting up a user configuration
