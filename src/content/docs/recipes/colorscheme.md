@@ -14,7 +14,7 @@ There are only 2 simple steps to change colorscheme of your editor:
 
 ### Step 1 - Adding a plugin
 
-You can either add a colorscheme plugin directly to your `plugins` as described in the [Custom Plugins Page](../custom_plugins), for example if you wanted to add [Catppuccin](https://github.com/catppuccin/nvim) you would add the following to your `plugins`:
+You can either add a colorscheme plugin directly to your `plugins` as described in the [Custom Plugins Page](../../configuration/custom_plugins), for example if you wanted to add [Catppuccin](https://github.com/catppuccin/nvim) you would add the following to your `plugins`:
 
 ```lua
 {
@@ -35,16 +35,26 @@ Or you can install it using [AstroCommunity](https://github.com/AstroNvim/astroc
 
 ### Step 2 - Specifying colorscheme
 
-Open your `user/init.lua` (usually it's `~/.config/nvim/lua/user/init.lua`), find the line where `colorsheme` property is being set:
+The default colorscheme for AstroNvim can be configured through the [AstroCore](https://github.com/AstroNvim/astrocore) plugin with the `colorscheme` option. This can be added to your user configuration's plugins:
 
 ```lua
-colorscheme = "astrodark"
+{
+  "AstroNvim/astrocore",
+  opts = {
+    colorscheme = "astrodark"
+  }
+}
 ```
 
 Then change it to the name of the theme you've installed in the step 1:
 
 ```lua
-colorscheme = "catppuccin"
+{
+  "AstroNvim/astrocore",
+  opts = {
+    colorscheme = "catppuccin"
+  }
+}
 ```
 
 ## Using a Custom Colorscheme Configured with Global Variables
@@ -52,16 +62,19 @@ colorscheme = "catppuccin"
 Some colorscheme plugins are configured through global variables rather than Lua functions like `setup()` so they require a slightly different setup to get them working correctly. For example if we want to use [Sonokai](https://github.com/sainnhe/sonokai):
 
 ```lua
-return {
-  colorscheme = "sonokai",
-  plugins = {
-    {
-      "sainnhe/sonokai",
-      init = function() -- init function runs before the plugin is loaded
-        vim.g.sonokai_style = "shusia"
-      end,
-    },
+{
+  {
+    "AstroNvim/astrocore",
+    opts = {
+      colorscheme = "sonokai"
+    }
   },
+  {
+    "sainnhe/sonokai",
+    init = function() -- init function runs before the plugin is loaded
+      vim.g.sonokai_style = "shusia"
+    end,
+  }
 }
 ```
 

@@ -155,6 +155,12 @@ export default defineConfig({
           translations: {},
         },
         {
+          label: "Reference",
+          collapsed: true,
+          autogenerate: { directory: "reference" },
+          translations: {},
+        },
+        {
           label: "Acknowledgements",
           link: "/acknowledgements",
           collapsed: true,
@@ -173,15 +179,10 @@ export default defineConfig({
           link: "/faq",
           translations: {},
         },
-        {
-          label: "Core Lua API Documentation",
-          link: "https://api.astronvim.com",
-          translations: {},
-        },
       ],
       lastUpdated: true,
       editLink: {
-        baseUrl: 'https://github.com/AstroNvim/docs/edit/main/'
+        baseUrl: "https://github.com/AstroNvim/docs/edit/main/",
       },
     }),
     tailwind({
