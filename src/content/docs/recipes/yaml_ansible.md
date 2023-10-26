@@ -3,6 +3,12 @@ id: yaml_ansible
 title: YAML (Ansible)
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 When installed, `ansible-language-server` is invoked on .yaml files where `filetype=yaml.ansible`. Rather than setting this manually each time,
 we can leverage our polish function to set the filetype based on standard Ansible filesystem patterns.
 
