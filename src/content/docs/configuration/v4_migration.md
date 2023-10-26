@@ -1,17 +1,23 @@
 ---
-id: v3_migration
-title: Migration to v3.0
+id: v4_migration
+title: Migration to v4.0
 ---
+
+::::danger
+
+Currently this is the old v3 migration guide, this should be updated to migrating to v4
+
+::::
 
 ## Migrating User Configuration
 
-- **Plugin Manager Change:** With v3 we have moved away from Packer and to the new [lazy.nvim](https://github.com/folke/lazy.nvim). The options for lazy can be configured with the `lazy` user option. We have also removed all abstraction away from the plugin specifications. So the lazy.nvim docs can be referred to for the format of adding new plugins. You can also check the updated [Customizing Plugins Documentation](../../recipes/custom_plugins) for defining new plugins as well as overriding core plugins.
+- **Plugin Manager Change:** With v3 we have moved away from Packer and to the new [lazy.nvim](https://github.com/folke/lazy.nvim). The options for lazy can be configured with the `lazy` user option. We have also removed all abstraction away from the plugin specifications. So the lazy.nvim docs can be referred to for the format of adding new plugins. You can also check the updated [Customizing Plugins Documentation](../custom_plugins) for defining new plugins as well as overriding core plugins.
 
   - Lazy also handles overriding options and setup functions automatically so we have removed all of the `plugins.X` user options for overriding the setup tables for the core provided plugins. These can be set up, extended, and configured similar to any other plugin that you are adding.
   - **Note:** The default options for lazy sets `lazy = true` for each plugin. This means plugins should either be configured appropriately for lazy loading or use `lazy = false` if you do not want a plugin to be lazy loaded
   - The `user/plugins/` folder is added to the Lazy plugin specifications to be imported. This allows you to add lists of plugins to any files in the `user/plugins/` folder and they will be used appropriately. This will allow you to organize your plugins in any way you would prefer.
 
-- `astronvim.file_plugins` and `astronvim.git_plugins` tables have been removed in favor of a `User` `autocmd` model. Wherever you are using `astronvim.file_plugins` or `astronvim.git_plugins` to lazy load your plugins, please switch to lazy loading on the user events `User AstroFile` and `User AstroGitFile`. More details for these can be found in the updated [Customizing Plugins Documentation](../../recipes/custom_plugins).
+- `astronvim.file_plugins` and `astronvim.git_plugins` tables have been removed in favor of a `User` `autocmd` model. Wherever you are using `astronvim.file_plugins` or `astronvim.git_plugins` to lazy load your plugins, please switch to lazy loading on the user events `User AstroFile` and `User AstroGitFile`. More details for these can be found in the updated [Customizing Plugins Documentation](../custom_plugins).
 
 - A large restructuring of our internal utilities has taken place.
 
@@ -34,7 +40,7 @@ title: Migration to v3.0
 
 - `cmp` options table has been removed. Please see the updated [Customize cmp Completion Documentation](../../recipes/cmp) for the new way to extend the default configuration of cmp and running more `cmp` setup functions.
 
-- `mason-lspconfig`, `mason-null-ls`, and `mason-nvim-dap` options tables have been removed, please use the new plugin notation for extending these options like adding custom setup handlers. This is described in the [Extending Core Plugin Config Functions Documentation](../../recipes/custom_plugins#extending-core-plugin-config-functions).
+- `mason-lspconfig`, `mason-null-ls`, and `mason-nvim-dap` options tables have been removed, please use the new plugin notation for extending these options like adding custom setup handlers. This is described in the [Extending Core Plugin Config Functions Documentation](../custom_plugins#extending-core-plugin-config-functions).
 
 - `default_theme` has been migrated to a dedicated plugin that can be used outside of AstroNvim as well at [AstroNvim/astrotheme](https://github.com/AstroNvim/astrotheme). This can be customized and configured the same as any other plugin, check the README for details on the `setup` function.
 
@@ -57,7 +63,7 @@ title: Migration to v3.0
 
 - `<leader>s` has been unified with the `<leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<leader>f` or in the updated [Mappings Documentation](../../basic-usage/mappings)
 
-- Heirline has moved to a more sustainable configuration format for their `setup` call. Before it was configured with `require("heirline").setup(statusline, winbar, tabline)`, this has moved to a new format with a single table like `require("heirline").setup({ statusline = statusline, winbar = winbar, tabline = tabline, statuscolumn = statuscolumn })`. If you have a custom Heirline configuration please check out the updated [Customizing Statusline Documentation](../../recipes/status) as well as the updated [Heirline Documentation](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md). (_Note:_ also that along with all of the other core plugin setups, the abstractions have been removed and you will need to update to the new Lazy syntax described in the [Custom Plugins Documentation](../../recipes/custom_plugins#overriding-core-plugins))
+- Heirline has moved to a more sustainable configuration format for their `setup` call. Before it was configured with `require("heirline").setup(statusline, winbar, tabline)`, this has moved to a new format with a single table like `require("heirline").setup({ statusline = statusline, winbar = winbar, tabline = tabline, statuscolumn = statuscolumn })`. If you have a custom Heirline configuration please check out the updated [Customizing Statusline Documentation](../../recipes/status) as well as the updated [Heirline Documentation](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md). (_Note:_ also that along with all of the other core plugin setups, the abstractions have been removed and you will need to update to the new Lazy syntax described in the [Custom Plugins Documentation](../custom_plugins#overriding-core-plugins))
 
 - `lsp.skip_setup` option has been removed as the new and improved `lsp.setup_handlers` option makes this easy. If you are using this option for LSP specific plugins, check up the updated [Advanced LSP Setup Documentation](../../recipes/advanced_lsp#lsp-specific-plugins). This page also includes the new format for setting these plugins up with Lazy.nvim.
 
