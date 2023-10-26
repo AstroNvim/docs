@@ -3,6 +3,12 @@ id: custom_plugins
 title: Custom Plugins
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 ## Defining Plugins
 
 Plugins can be added in your user configuration either in `user/init.lua` in the `plugins` table or if you are separating your configuration in `user/plugins/` folder.

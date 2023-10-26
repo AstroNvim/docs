@@ -3,6 +3,12 @@ id: plugin_defaults
 title: Default Plugin Configurations
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 This page documents the default options that are set by AstroNvim for each individual plugin. All of these options can be changed in the `plugins` table in the `user/init.lua` configuration file as described in the [Custom Plugins Documentation](../custom_plugins).
 
 ## [aerial.nvim](https://github.com/stevearc/aerial.nvim)

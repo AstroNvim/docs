@@ -3,6 +3,12 @@ id: autocmds
 title: Exposed Autocommands
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 AstroNvim has many internally built features to help ease both user experience
 and configuration. Some of these features work asynchronously, so we provide a
 few `User` autocommand events that can be accessed by the user. All of the

@@ -3,6 +3,12 @@ id: unattended_install
 title: Unattended Installation
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 Instead of running `nvim` to initialize AstroNvim you can run the
 following command to do a fully headless initialization:
 

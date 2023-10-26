@@ -3,6 +3,12 @@ id: mappings
 title: Customize Mappings
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 ### Add Custom Mappings
 
 Mappings can be added in one of two locations in your `user/init.lua` file. Either the `mappings` table or the `lsp.mappings` table (`user/mappings.lua` and `user/lsp/mappings.lua` files respectively in a split user configuration). The only difference between these two tables is that the `mappings` table is set globally and `lsp.mappings` get set only in buffers that a language server is being attached to. These tables are a direct conversion to the `vim.keymap.set({mode}, {lhs}, {rhs}, {opts})` Lua API. The first key into the table is the `{mode}`, the second key into the table is the `{lhs}`, and the element there is the `{opts}` table with the `{rhs}` in the first key. Here is a simple example `user/init.lua` file:
