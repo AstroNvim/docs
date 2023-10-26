@@ -3,6 +3,12 @@ id: snippets
 title: Custom Snippets
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 `user/init.lua`:
 
 Be sure to read the comments in order to understand how to use this code for your environment.

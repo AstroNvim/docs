@@ -3,6 +3,12 @@ id: telescope_theme
 title: NvChad Telescope Theme
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 This code snippet makes the default theme telescope look like the default NvChad telescope theme:
 
 ![Screenshot of telescope theme](../../../assets/recipes/telescope_theme.png)

@@ -4,6 +4,12 @@ title: Basic Walkthrough
 sidebar_position: 1
 ---
 
+::::danger
+
+UNVALIDATED: NEED UPDATING FOR V4
+
+::::
+
 ### Opening file explorer
 
 To toggle file explorer you need to press `Space` + `e`
