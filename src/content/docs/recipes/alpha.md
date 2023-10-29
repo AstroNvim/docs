@@ -5,7 +5,7 @@ title: Dashboard Customizations
 
 ### Customize Alpha Header
 
-If you want to customize your header on the dashboard you can do this easily in the `user/init.lua` by overriding the `alpha` options:
+If you want to customize your header on the dashboard/home screen you can do this easily in the `user/init.lua` by overriding the `alpha` options:
 
 ```lua
 return {
@@ -25,7 +25,7 @@ return {
 
 ### Open Alpha Automatically When No More Buffers
 
-If you want to make the Alpha dashboard open automatically when you close the last buffer in your session you can add the following in your `user/init.lua` in your `mappings` table:
+If you want to make the Alpha dashboard/home screen open automatically when you close the last buffer in your session you can add the following in your `user/init.lua` in your `mappings` table:
 
 ```lua
 return {
