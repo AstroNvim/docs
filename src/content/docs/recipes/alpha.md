@@ -5,7 +5,7 @@ title: Dashboard Customizations
 
 ### Customize Alpha Header
 
-If you want to customize your header on the dashboard you can do this easily by overriding the `alpha` options in your plugins:
+If you want to customize your header on the dashboard/home screen you can do this easily by overriding the `alpha` options in your plugins:
 
 ```lua
 {
@@ -40,7 +40,7 @@ return {
 
 ### Open Alpha Automatically When No More Buffers
 
-If you want to make the Alpha dashboard open automatically when you close the last buffer in your session you can add the following to your AstroCore mappings configuration:
+If you want to make the Alpha dashboard/home screen open automatically when you close the last buffer in your session you can add the following to your AstroCore mappings configuration:
 
 ```lua
 {
