@@ -324,6 +324,7 @@ Plugin specification that recreates the NvChad statusline in AstroNvim:
 {
   {
     "AstroNvim/astroui",
+    ---@type AstroUIOpts
     opts = {
       -- add new user interface icon
       icons = {
