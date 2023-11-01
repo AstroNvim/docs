@@ -3,6 +3,8 @@ id: icons
 title: Customize Icons
 ---
 
+AstroNvim aims to provide a unified and cohesive user experience which includes utilizing a common core set of icons which power the user interface. Here are some approaches to customize the user interface to fit your needs.
+
 ### Disable Icons
 
 Some users may want to disable icons across the entire user interface because they don't like icons or simply because they are using a machine that is unable to install a nerd font for whatever reason. To assist with this use case we have added a new option variable `vim.g.icons_enabled` (default: `true`) that lets you disable the icons entirely and just have a text based user interface. To opt into this text based UI, it does require a user configuration setting the appropriate option. You want to add this to your vim options:

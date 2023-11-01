@@ -3,9 +3,11 @@ id: alpha
 title: Dashboard Customizations
 ---
 
+AstroNvim comes with [alpha-nvim](https://github.com/goolord/alpha-nvim) by default for providing a dashboard/home screen. This page provides a few common customization options.
+
 ### Customize Alpha Header
 
-If you want to customize your header on the dashboard/home screen you can do this easily by overriding the `alpha` options in your plugins:
+If you want to customize your header on the dashboard you can do this easily by overriding the `alpha` options in your plugins:
 
 ```lua
 {
