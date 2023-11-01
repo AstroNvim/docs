@@ -76,7 +76,7 @@ For even more control, you can provide a filter function with the key `filter`. 
 }
 ```
 
-With the formatting on save enabled, we have also provided the mapping `<leader>uf` and `<leader>uF` to toggle the auto formatting temporarily for either the current buffer or globally (_Note:_ Format on save must be enabled in the AstroLSP `formatting` options for this option and keybinding to do anything).
+With the formatting on save enabled, we have also provided the mapping `<Leader>uf` and `<Leader>uF` to toggle the auto formatting temporarily for either the current buffer or globally (_Note:_ Format on save must be enabled in the AstroLSP `formatting` options for this option and keybinding to do anything).
 
 ## Controlling Formatting
 
@@ -84,7 +84,7 @@ Since Neovim v0.8 there have been improvements to how language servers are used 
 
 ### Disabling formatting for a filter function
 
-Using the `filter` option you can supply filter function to be run on each client that has formatting capabilities and if it returns `true` then it will be used for formatting and if it returns `false` then it will not be used. This applies to whenever you format your code either on save, with `<leader>lf`, or with `:Format`.
+Using the `filter` option you can supply filter function to be run on each client that has formatting capabilities and if it returns `true` then it will be used for formatting and if it returns `false` then it will not be used. This applies to whenever you format your code either on save, with `<Leader>lf`, or with `:Format`.
 
 ```lua
 {
@@ -112,7 +112,7 @@ Using the `filter` option you can supply filter function to be run on each clien
 
 ### Disabling formatting for a list of language servers
 
-using the `disabled` option you can supply an array like list of language server client names and those clients will be disabled with you format your code either on save, with `<leader>lf`, or with `:Format`.
+using the `disabled` option you can supply an array like list of language server client names and those clients will be disabled with you format your code either on save, with `<Leader>lf`, or with `:Format`.
 
 ```lua
 {
