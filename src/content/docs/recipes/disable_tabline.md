@@ -9,6 +9,8 @@ By default AstroNvim uses Heirline for generating the tabline for displaying buf
 vim.opt.showtabline = 0
 ```
 
+## Fully disable `tabline`
+
 If you want to fully remove the `tabline` definition from Heirline as well as the `<Leader>b` functionality as well and not allow you to ever toggle the tabline on, you will also want to include the following in your plugins:
 
 ```lua

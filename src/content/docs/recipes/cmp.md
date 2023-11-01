@@ -3,6 +3,8 @@ id: cmp
 title: Customize cmp Completion
 ---
 
+AstroNvim comes with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) for powering completion out of the box. This page documents common configuration options such as custom keybindings or adding more sources.
+
 ### Customize Keybindings
 
 Some overrides require access to the plugin itself that you are overriding. This comes up a lot in things adding custom mappings to `cmp`. This can be achieved with the following plugin spec:
