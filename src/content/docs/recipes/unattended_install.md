@@ -3,12 +3,6 @@ id: unattended_install
 title: Unattended Installation
 ---
 
-::::danger
-
-UNVALIDATED: NEED UPDATING FOR V4
-
-::::
-
 Instead of running `nvim` to initialize AstroNvim you can run the
 following command to do a fully headless initialization:
 
@@ -16,8 +10,16 @@ following command to do a fully headless initialization:
 nvim --headless +q
 ```
 
-Full Steps:
+## Headless Installation
 
-1. `git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim`
-2. (Optional) `git clone`/copy over user configuration to `~/.config/nvim/user`
-3. `nvim --headless +q`
+1. Clone your configuration to `~/.config/nvim` (For the example template:
+
+   ```sh
+   git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim`
+   ```
+
+2. Run the headless installation
+
+   ```sh
+   nvim --headless +q
+   ```

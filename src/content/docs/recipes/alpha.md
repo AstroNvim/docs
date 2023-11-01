@@ -48,7 +48,7 @@ If you want to make the Alpha dashboard/home screen open automatically when you 
   opts = {
     mappings = {
       n = {
-        ["<leader>c"] = {
+        ["<Leader>c"] = {
           function()
             local bufs = vim.fn.getbufinfo { buflisted = true }
             require("astrocore.buffer").close(0)

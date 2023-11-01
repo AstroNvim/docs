@@ -34,7 +34,7 @@ Currently this is the old v3 migration guide, this should be updated to migratin
 
 - `luasnip` options table has been removed. Please see the updated [Custom Snippets Documentation](../../recipes/snippets) for the new way to extend the default configuration of LuaSnip to add new loaders.
 
-- `which-key` options table has been removed. Which-key menu titles can now be easily added into the `mappings` table by setting a binding to a table with the `name` property set and it will be passed to `which-key`. For example, you can add the following to the `mappings` table: `["<leader>b"] = { name = "Buffer" }`.
+- `which-key` options table has been removed. Which-key menu titles can now be easily added into the `mappings` table by setting a binding to a table with the `name` property set and it will be passed to `which-key`. For example, you can add the following to the `mappings` table: `["<Leader>b"] = { name = "Buffer" }`.
 
 - `nvim-autopairs` options table has been removed. Please see the updated [Customize Autopairs Documentation](../../recipes/autopairs) for the new way to extend the default configuration of autopairs and adding more rules.
 
@@ -46,11 +46,11 @@ Currently this is the old v3 migration guide, this should be updated to migratin
 
 - The bindings in `cmp` to scroll the preview window for a completion item have moved to `<c-u>` and `<c-d>`
 
-- `<leader>p` mappings for package and plugin management have been cleaned up to follow a common format amongst each other. `<leader>ps` is now for checking Plugin Status and `<leader>pS` is for syncing plugins. Mason mappings have been moved to `<leader>pm` and `<leader>pM` for Mason Status and Mason Update respectively.
+- `<Leader>p` mappings for package and plugin management have been cleaned up to follow a common format amongst each other. `<Leader>ps` is now for checking Plugin Status and `<Leader>pS` is for syncing plugins. Mason mappings have been moved to `<Leader>pm` and `<Leader>pM` for Mason Status and Mason Update respectively.
 
-- The dashboard mapping has been changed from `<leader>d` to `<leader>h` for the "Home Screen"
+- The dashboard mapping has been changed from `<Leader>d` to `<Leader>h` for the "Home Screen"
 
-- The debugging menu has been moved from `<leader>D` to `<leader>d` for quicker and more comfortable usage.
+- The debugging menu has been moved from `<Leader>D` to `<Leader>d` for quicker and more comfortable usage.
 
 - `H` and `L` have been changed to `[b` and `]b` respectively for changing tabs in the UI. This is for both switching buffers as well as neo-tree sources in the explorer. This can be changed in the your user configuration by adding the following entries to your `mappings.n` table (This uses an internal `astronvim.utils.buffer` function that follows the tab positioning and also allows for using a number to move by multiple tabs at once):
 
@@ -61,7 +61,7 @@ Currently this is the old v3 migration guide, this should be updated to migratin
 
 - `header` option has been removed in favor of decreasing abstractions. Check the updated [Dashboard Customizations Documentation](../../recipes/alpha)
 
-- `<leader>s` has been unified with the `<leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<leader>f` or in the updated [Mappings Documentation](../../basic-usage/mappings)
+- `<Leader>s` has been unified with the `<Leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<Leader>f` or in the updated [Mappings Documentation](../../basic-usage/mappings)
 
 - Heirline has moved to a more sustainable configuration format for their `setup` call. Before it was configured with `require("heirline").setup(statusline, winbar, tabline)`, this has moved to a new format with a single table like `require("heirline").setup({ statusline = statusline, winbar = winbar, tabline = tabline, statuscolumn = statuscolumn })`. If you have a custom Heirline configuration please check out the updated [Customizing Statusline Documentation](../../recipes/status) as well as the updated [Heirline Documentation](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md). (_Note:_ also that along with all of the other core plugin setups, the abstractions have been removed and you will need to update to the new Lazy syntax described in the [Custom Plugins Documentation](../custom_plugins#overriding-core-plugins))
 
