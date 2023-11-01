@@ -3,6 +3,8 @@ id: autopairs
 title: Customize Autopairs
 ---
 
+AstroNvim comes with [nvim-autopairs](https://github.com/windwp/nvim-autopairs) for automatically inserting pair characters such as closing quotes or parentheses. This page documents common configuration options.
+
 ### Add Custom Rules to `nvim-autopairs`
 
 You can easily add rules and further configure `nvim-autopairs` in your user configuration by overriding the configuration function of the `nvim-autopairs` plugin. Here is a example `lazy.nvim` plugin spec:

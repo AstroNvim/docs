@@ -9,7 +9,9 @@ AstroNvim provides an easy way to enable git integration when editing files with
 
 This functionality is opt-in. To enable it, configure AstroCore and set the `git_worktrees` option to an array-like table, where each entry represents a separate worktree with entries `toplevel` and `gitdir` specifying paths on your system.
 
-For example, if you have a bare git repo located at `~/.dotfiles` with its working tree set to the home directory, you can enable git integration for it by adding the following plugin specification to your configuration:
+## Example
+
+If you have a bare git repo located at `~/.dotfiles` with its working tree set to the home directory, you can enable git integration for it by adding the following plugin specification to your configuration:
 
 ```lua
 {

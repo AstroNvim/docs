@@ -7,6 +7,8 @@ This plugin specification makes the default theme telescope look like the defaul
 
 ![Screenshot of telescope theme](../../../assets/recipes/telescope_theme.png)
 
+## Plugin Specification
+
 ```lua
 {
   "AstroNvim/astroui",
