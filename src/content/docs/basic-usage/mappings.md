@@ -9,12 +9,6 @@ sidebar:
   # Add a badge to the link
 ---
 
-::::danger
-
-UNVALIDATED: NEED UPDATING FOR V4
-
-::::
-
 ## General Mappings
 
 | Action                      | Mappings            |
@@ -95,13 +89,10 @@ UNVALIDATED: NEED UPDATING FOR V4
 
 | Action                    | Mappings      |
 | ------------------------- | ------------- |
-| AstroNvim Packages Update | `Leader + pa` |
-| AstroNvim Updater         | `Leader + pA` |
-| AstroNvim Changelog       | `Leader + pl` |
-| AstroNvim Version         | `Leader + pv` |
+| Update Lazy and Mason     | `Leader + pa` |
+| Plugins Install           | `Leader + pi` |
 | Mason Installer           | `Leader + pm` |
 | Mason Updater             | `Leader + pM` |
-| Plugins Install           | `Leader + pi` |
 | Plugins Status            | `Leader + ps` |
 | Plugins Sync              | `Leader + pS` |
 | Plugins Check for Updates | `Leader + pu` |
@@ -112,7 +103,7 @@ UNVALIDATED: NEED UPDATING FOR V4
 | Action               | Mappings            |
 | -------------------- | ------------------- |
 | LSP Info             | `Leader + li`       |
-| Null-ls Info         | `Leader + lI`       |
+| None-ls Info         | `Leader + lI`       |
 | Hover Document       | `K`                 |
 | Format Document      | `Leader + lf`       |
 | Symbols Outline      | `Leader + lS`       |

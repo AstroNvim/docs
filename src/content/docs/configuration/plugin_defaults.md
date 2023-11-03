@@ -376,7 +376,7 @@ opts = {
 }
 ```
 
-## [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
+## [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 
 ```lua
 opts = function() return { on_attach = require("astronvim.utils.lsp").on_attach } end
