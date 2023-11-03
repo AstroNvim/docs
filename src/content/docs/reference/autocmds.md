@@ -3,12 +3,6 @@ id: autocmds
 title: Exposed Autocommands
 ---
 
-::::danger
-
-UNVALIDATED: NEED UPDATING FOR V4
-
-::::
-
 AstroNvim has many internally built features to help ease both user experience
 and configuration. Some of these features work asynchronously, so we provide a
 few `User` autocommand events that can be accessed by the user. All of the
@@ -42,38 +36,45 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
 
 - `AstroMasonUpdateCompleted`: AstroNvim provides a custom command for easily
   updating all packages that are currently installed with Mason using
-  `:MasonUpdateAll`. `AstroMasonUpdateCompleted` is triggered after all of the
+  `:AstroMasonUpdateAll`. `AstroMasonUpdateCompleted` is triggered after all of the
   available updates have been applied.
-
-- `AstroUpdateComplete`: This is triggered once the AstroNvim updater has
-  completed the update process. This could be useful for automatically quitting
-  the editor after an update to quickly relaunch.
 
 ### Example Autocommand Usage
 
 Just to demonstrate the usage of `User` autocommand events in Neovim here is an
 example `autocmd` that disables the `tabline` if there is only a single buffer
-and a single tab available. The following can be placed in the `polish`
-function in a user configuration:
+and a single tab available. The following plugin specification adds a new
+autocommand with AstroCore and can be added to your own plugins in your
+configuration:
 
 ```lua
--- create an augroup to easily manage autocommands
-vim.api.nvim_create_augroup("autohidetabline", { clear = true })
--- create a new autocmd on the "User" event
-vim.api.nvim_create_autocmd("User", {
-  desc = "Hide tabline when only one buffer and one tab", -- nice description
-  -- triggered when vim.t.bufs is updated
-  pattern = "AstroBufsUpdated", -- the pattern is the name of our User autocommand events
-  group = "autohidetabline", -- add the autocmd to the newly created augroup
-  callback = function()
-    -- if there is more than one buffer in the tab, show the tabline
-    -- if there are 0 or 1 buffers in the tab, only show the tabline if there is more than one vim tab
-    local new_showtabline = #vim.t.bufs > 1 and 2 or 1
-    -- check if the new value is the same as the current value
-    if new_showtabline ~= vim.opt.showtabline:get() then
-      -- if it is different, then set the new `showtabline` value
-      vim.opt.showtabline = new_showtabline
-    end
-  end,
-})
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    autocmds = {
+      -- autocommands are organized into augroups for easy management
+      autohidetabline = {
+        {
+          -- create a new autocmd on the "User" event
+          event = "User",
+          desc = "Hide tabline when only one buffer and one tab", -- nice description
+          -- triggered when vim.t.bufs is updated
+          pattern = "AstroBufsUpdated", -- the pattern is the name of our User autocommand events
+          group = "autohidetabline", -- add the autocmd to the newly created augroup
+          callback = function()
+            -- if there is more than one buffer in the tab, show the tabline
+            -- if there are 0 or 1 buffers in the tab, only show the tabline if there is more than one vim tab
+            local new_showtabline = #vim.t.bufs > 1 and 2 or 1
+            -- check if the new value is the same as the current value
+            if new_showtabline ~= vim.opt.showtabline:get() then
+              -- if it is different, then set the new `showtabline` value
+              vim.opt.showtabline = new_showtabline
+            end
+          end,
+        },
+      },
+    },
+  },
+}
 ```
