@@ -10,7 +10,7 @@ AstroNvim comes with [alpha-nvim](https://github.com/goolord/alpha-nvim) by defa
 If you want to customize your header on the dashboard you can do this easily by overriding the `alpha` options in your plugins:
 
 ```lua
-{
+return {
   "goolord/alpha-nvim",
   opts = function(_, opts) -- override the options using lazy.nvim
     opts.section.header.val = { -- change the header section value
@@ -45,16 +45,18 @@ return {
 If you want to make the Alpha dashboard/home screen open automatically when you close the last buffer in your session you can add the following to your AstroCore mappings configuration:
 
 ```lua
-{
+return {
   "AstroNvim/astrocore",
   opts = {
     mappings = {
       n = {
         ["<Leader>c"] = {
           function()
-            local bufs = vim.fn.getbufinfo { buflisted = true }
+            local bufs = vim.fn.getbufinfo({ buflisted = true })
             require("astrocore.buffer").close(0)
-            if require("astrocore").is_available "alpha-nvim" and not bufs[2] then
+            if
+              require("astrocore").is_available("alpha-nvim") and not bufs[2]
+            then
               require("alpha").start(true)
             end
           end,

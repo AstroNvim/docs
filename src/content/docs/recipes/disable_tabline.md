@@ -14,13 +14,15 @@ vim.opt.showtabline = 0
 If you want to fully remove the `tabline` definition from Heirline as well as the `<Leader>b` functionality as well and not allow you to ever toggle the tabline on, you will also want to include the following in your plugins:
 
 ```lua
-{
+return {
   {
     "AstroNvim/astrocore",
     ---@param opts AstroCoreOpts
     opts = function(_, opts)
       for k, _ in pairs(opts.mappings.n) do
-        if k:find "^<Leader>b" then opts.mappings.n[k] = false end
+        if k:find("^<Leader>b") then
+          opts.mappings.n[k] = false
+        end
       end
     end,
   },

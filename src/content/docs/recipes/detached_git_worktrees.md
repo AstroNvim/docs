@@ -14,7 +14,7 @@ This functionality is opt-in. To enable it, configure AstroCore and set the `git
 If you have a bare git repo located at `~/.dotfiles` with its working tree set to the home directory, you can enable git integration for it by adding the following plugin specification to your configuration:
 
 ```lua
-{
+return {
   "AstroNvim/astrocore",
   opts = {
     git_worktrees = {

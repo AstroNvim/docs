@@ -6,15 +6,15 @@ title: Custom Snippets
 Here is an example plugin specification to go inside your plugins folder which adds a custom path for it to load from. Be sure to read the comments in order to understand how to use this code for your environment.
 
 ```lua
-{
+return {
   "L3MON4D3/LuaSnip",
   config = function(plugin, opts)
     -- include the default astronvim config that calls the setup call
-    require "plugins.configs.luasnip"(plugin, opts)
+    require("plugins.configs.luasnip")(plugin, opts)
     -- load snippets paths
-    require("luasnip.loaders.from_vscode").lazy_load {
-      paths = { vim.fn.stdpath "data" .. "/lua/snippets" }
-    }
+    require("luasnip.loaders.from_vscode").lazy_load({
+      paths = { vim.fn.stdpath("data") .. "/lua/snippets" },
+    })
   end,
 }
 ```

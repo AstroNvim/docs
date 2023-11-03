@@ -10,7 +10,7 @@ LSP configuration is mostly done through the help of [AstroLSP](https://github.c
 AstroNvim has made formatting on save part of the default functionality out of the box. If you don't want your code to get auto formatted on save, you can disable it in the AstroLSP configuration:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
@@ -23,7 +23,7 @@ AstroNvim has made formatting on save part of the default functionality out of t
 We have also added an extension to just `true` or `false` for this option to give more the user the ability to disable the auto formatting for specific filetypes. For example:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
@@ -32,7 +32,7 @@ We have also added an extension to just `true` or `false` for this option to giv
         ignore_filetypes = { -- disable format on save for specified filetypes
           "markdown",
           "python",
-        }
+        },
       },
     },
   },
@@ -42,7 +42,7 @@ We have also added an extension to just `true` or `false` for this option to giv
 If you would rather use a whitelist of filetypes for formatting on save rather than a blacklist type model, you can do that as well with the `allow_filetypes` table. If you have `allow_filetypes` it will take precedence over `ignore_filetypes`. So please only use one of these options at a time. Here is an example:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
@@ -51,7 +51,7 @@ If you would rather use a whitelist of filetypes for formatting on save rather t
         allow_filetypes = { -- only allow formatting on save for these filetypes
           "lua",
           "python",
-        }
+        },
       },
     },
   },
@@ -61,18 +61,17 @@ If you would rather use a whitelist of filetypes for formatting on save rather t
 For even more control, you can provide a filter function with the key `filter`. This function takes a single parameter of the current buffer number and returns a boolean value of whether you want to format on save or not (`true` means format, `false` means do not format). This function will run on each save to calculate if it should format.
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
-        enabled = true, -- enable format on save
-        filter = function(bufnr)
-          -- any lua logic...
-          return true -- return boolean whether or not to format
-        end
-      }
-    }
-  }
+      enabled = true, -- enable format on save
+      filter = function(bufnr)
+        -- any lua logic...
+        return true -- return boolean whether or not to format
+      end,
+    },
+  },
 }
 ```
 
@@ -87,7 +86,7 @@ Since Neovim v0.8 there have been improvements to how language servers are used 
 Using the `filter` option you can supply filter function to be run on each client that has formatting capabilities and if it returns `true` then it will be used for formatting and if it returns `false` then it will not be used. This applies to whenever you format your code either on save, with `<Leader>lf`, or with `:Format`.
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
@@ -104,7 +103,7 @@ Using the `filter` option you can supply filter function to be run on each clien
 
         -- enable all other clients
         return true
-      end
+      end,
     },
   },
 }
@@ -112,10 +111,10 @@ Using the `filter` option you can supply filter function to be run on each clien
 
 ### Disabling formatting for a list of language servers
 
-using the `disabled` option you can supply an array like list of language server client names and those clients will be disabled with you format your code either on save, with `<Leader>lf`, or with `:Format`.
+Using the `disabled` option you can supply an array like list of language server client names and those clients will be disabled with you format your code either on save, with `<Leader>lf`, or with `:Format`.
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
@@ -133,7 +132,7 @@ using the `disabled` option you can supply an array like list of language server
 When using the options together, a client listed in the `disabled` list will always be disabled and then all other clients will then be passed into the `filter` function. For example, we can simplify our previous `filter` function by just disabling the `lua_ls` client in the `disabled` table:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
@@ -157,7 +156,7 @@ When using the options together, a client listed in the `disabled` list will alw
 The `formatting` options also allows you to specify other parameters for the `vim.lsp.buf.format()` call. Any of the other formatting options are allowed to be used here to be used as the default options. This means being able to easily adjust the default `timeout_ms` for formatting in AstroNvim or making asynchronous formatting the default. For example you can do the following to increase the formatting timeout along with adjust the filtering:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     formatting = {
@@ -183,7 +182,7 @@ The `formatting` options also allows you to specify other parameters for the `vi
 AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     servers = {
@@ -196,7 +195,7 @@ AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lsp
 If the user wants to configure server specific settings and configurations then they can do this with the `config` table as well. For example if the user wants to use `pyright` that is already available on their system and disable the single file support then can do the following:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     servers = {
@@ -216,7 +215,7 @@ If the user wants to configure server specific settings and configurations then 
 `nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can be done completely through `servers` and `config` tables just like setting up servers that are supported by `lspconfig`! For these custom servers, the minimum requirement is setting up a `cmd` in the `config` entry, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     servers = {
@@ -225,13 +224,19 @@ If the user wants to configure server specific settings and configurations then 
     config = {
       prolog_lsp = function()
         return {
-          cmd = {"swipl",
-                 "-g", "use_module(library(lsp_server)).",
-                 "-g", "lsp_server:main",
-                 "-t", "halt",
-                 "--", "stdio"};
-          filetypes = {"prolog"};
-          root_dir = require("lspconfig.util").root_pattern("pack.pl");
+          cmd = {
+            "swipl",
+            "-g",
+            "use_module(library(lsp_server)).",
+            "-g",
+            "lsp_server:main",
+            "-t",
+            "halt",
+            "--",
+            "stdio",
+          },
+          filetypes = { "prolog" },
+          root_dir = require("lspconfig.util").root_pattern("pack.pl"),
         }
       end,
     },
@@ -252,15 +257,17 @@ There are some plugins available for doing advanced setup of language servers th
 ### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
 
 ```lua
-{
+return {
   { "jose-elias-alvarez/typescript.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
     opts = {
       setup_handlers = {
         -- add custom handler
-        tsserver = function(_, opts) require("typescript").setup { server = opts } end
-      }
+        tsserver = function(_, opts)
+          require("typescript").setup({ server = opts })
+        end,
+      },
     },
   },
   {
@@ -275,15 +282,17 @@ There are some plugins available for doing advanced setup of language servers th
 ### Deno ([deno-nvim](https://github.com/sigmaSd/deno-nvim))
 
 ```lua
-{
+return {
   { "sigmasd/deno-nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
     opts = {
       setup_handlers = {
         -- add custom handler
-        denols = function(_, opts) require("deno-nvim").setup { server = opts } end
-      }
+        denols = function(_, opts)
+          require("deno-nvim").setup({ server = opts })
+        end,
+      },
     },
   },
   {
@@ -302,13 +311,14 @@ Since both `tsserver` and `denols` (and others such as `eslint` and `prettier`) 
 To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, add the following plugin specs:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   opts = {
     setup_handlers = {
       -- add custom handler
       denols = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+        opts.root_dir =
+          require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
         return opts
       end,
       tsserver = function(opts)
@@ -328,41 +338,47 @@ To conditionally enable `tsserver`/`denols` based on the presence of `package.js
 For `none-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the following to handlers in the `mason-null-ls` options:
 
 ```lua
-{
+return {
   "jay-babu/mason-null-ls.nvim",
   opts = {
     handlers = {
       -- for prettier
       prettier = function()
-        require("null-ls").register(require("null-ls").builtins.formatting.prettier.with {
-          condition = function(utils)
-            return utils.root_has_file "package.json"
-              or utils.root_has_file ".prettierrc"
-              or utils.root_has_file ".prettierrc.json"
-              or utils.root_has_file ".prettierrc.js"
-          end,
-        })
+        require("null-ls").register(
+          require("null-ls").builtins.formatting.prettier.with({
+            condition = function(utils)
+              return utils.root_has_file("package.json")
+                or utils.root_has_file(".prettierrc")
+                or utils.root_has_file(".prettierrc.json")
+                or utils.root_has_file(".prettierrc.js")
+            end,
+          })
+        )
       end,
       -- for prettierd
       prettierd = function()
-        require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with {
-          condition = function(utils)
-            return utils.root_has_file "package.json"
-              or utils.root_has_file ".prettierrc"
-              or utils.root_has_file ".prettierrc.json"
-              or utils.root_has_file ".prettierrc.js"
-          end,
-        })
+        require("null-ls").register(
+          require("null-ls").builtins.formatting.prettierd.with({
+            condition = function(utils)
+              return utils.root_has_file("package.json")
+                or utils.root_has_file(".prettierrc")
+                or utils.root_has_file(".prettierrc.json")
+                or utils.root_has_file(".prettierrc.js")
+            end,
+          })
+        )
       end,
       -- For eslint_d:
       eslint_d = function()
-        require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with {
-          condition = function(utils)
-            return utils.root_has_file "package.json"
-              or utils.root_has_file ".eslintrc.json"
-              or utils.root_has_file ".eslintrc.js"
-          end,
-        })
+        require("null-ls").register(
+          require("null-ls").builtins.diagnostics.eslint_d.with({
+            condition = function(utils)
+              return utils.root_has_file("package.json")
+                or utils.root_has_file(".eslintrc.json")
+                or utils.root_has_file(".eslintrc.js")
+            end,
+          })
+        )
       end,
     },
   },
@@ -372,7 +388,7 @@ For `none-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the
 ### C/C++ ([clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim))
 
 ```lua
-{
+return {
   {
     "AstroNvim/astrolsp",
     opts = {
@@ -382,7 +398,7 @@ For `none-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the
             offsetEncoding = "utf-8",
           },
         },
-      }
+      },
     },
   },
   {
@@ -390,13 +406,17 @@ For `none-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the
     lazy = true,
     init = function()
       -- load clangd extensions when clangd attaches
-      local augroup = vim.api.nvim_create_augroup("clangd_extensions", { clear = true })
+      local augroup =
+        vim.api.nvim_create_augroup("clangd_extensions", { clear = true })
       vim.api.nvim_create_autocmd("LspAttach", {
         group = augroup,
         desc = "Load clangd_extensions with clangd",
         callback = function(args)
-          if assert(vim.lsp.get_client_by_id(args.data.client_id)).name == "clangd" then
-            require "clangd_extensions"
+          if
+            assert(vim.lsp.get_client_by_id(args.data.client_id)).name
+            == "clangd"
+          then
+            require("clangd_extensions")
             -- add more `clangd` setup here as needed such as loading autocmds
             vim.api.nvim_del_augroup_by_id(augroup) -- delete auto command since it only needs to happen once
           end
@@ -411,7 +431,6 @@ For `none-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the
     },
   },
 }
-
 ```
 
 ### Dart Flutter ([flutter-tools.nvim](https://github.com/akinsho/flutter-tools.nvim))
@@ -419,15 +438,17 @@ For `none-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the
 Requires `dart` to be available on the system.
 
 ```lua
-{
+return {
   { "akinsho/flutter-tools.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
     opts = {
-      servers = { "dartls" }
+      servers = { "dartls" },
       setup_handlers = {
         -- add custom handler
-        dartls = function(_, opts) require("flutter-tools").setup { lsp = opts } end,
+        dartls = function(_, opts)
+          require("flutter-tools").setup({ lsp = opts })
+        end,
       },
       config = {
         dartls = {
@@ -438,26 +459,28 @@ Requires `dart` to be available on the system.
           settings = {
             showTodos = true,
             completeFunctionCalls = true,
-          }
-        }
-      }
-    }
-  }
+          },
+        },
+      },
+    },
+  },
 }
 ```
 
 ### Rust ([rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim))
 
 ```lua
-{
+return {
   { "simrat39/rust-tools.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
     opts = {
       setup_handlers = {
         -- add custom handler
-        rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end
-      }
+        rust_analyzer = function(_, opts)
+          require("rust-tools").setup({ server = opts })
+        end,
+      },
     },
   },
   {
@@ -472,7 +495,7 @@ Requires `dart` to be available on the system.
 ### Java ([nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls))
 
 ```lua
-{
+return {
   { "mfussenegger/nvim-jdtls", lazy = true }, -- load jdtls on module
   {
     "AstroNvim/astrolsp",
@@ -483,7 +506,9 @@ Requires `dart` to be available on the system.
           vim.api.nvim_create_autocmd("Filetype", {
             pattern = "java", -- autocmd to start jdtls
             callback = function()
-              if opts.root_dir and opts.root_dir ~= "" then require("jdtls").start_or_attach(opts) end
+              if opts.root_dir and opts.root_dir ~= "" then
+                require("jdtls").start_or_attach(opts)
+              end
             end,
           })
         end,
@@ -492,22 +517,26 @@ Requires `dart` to be available on the system.
         -- set jdtls server settings
         jdtls = function()
           -- use this function notation to build some variables
-          local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+          local root_markers =
+            { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
           local root_dir = require("jdtls.setup").find_root(root_markers)
 
           -- calculate workspace dir
           local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-          local workspace_dir = vim.fn.stdpath "data" .. "/site/java/workspace-root/" .. project_name
+          local workspace_dir = vim.fn.stdpath("data")
+            .. "/site/java/workspace-root/"
+            .. project_name
           os.execute("mkdir " .. workspace_dir)
 
           -- get the mason install path
-          local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
+          local install_path =
+            require("mason-registry").get_package("jdtls"):get_install_path()
 
           -- get the current OS
           local os
-          if vim.fn.has "macunix" then
+          if vim.fn.has("macunix") then
             os = "mac"
-          elseif vim.fn.has "win32" then
+          elseif vim.fn.has("win32") then
             os = "win"
           else
             os = "linux"
@@ -530,7 +559,9 @@ Requires `dart` to be available on the system.
               "--add-opens",
               "java.base/java.lang=ALL-UNNAMED",
               "-jar",
-              vim.fn.glob(install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+              vim.fn.glob(
+                install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"
+              ),
               "-configuration",
               install_path .. "/config_" .. os,
               "-data",
