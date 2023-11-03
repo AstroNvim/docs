@@ -6,20 +6,12 @@ tableOfContents:
 ---
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-::::danger
-
-UNVALIDATED: NEED UPDATING FOR V4
-
-::::
-
-
 :::tip
 
 When getting started, please be sure to check out the
 [Frequently Asked Questions](/faq)!
 
 :::
-
 
 ![AstroNvim Screenshot](../../assets/themes/overview.png)
 
@@ -28,7 +20,7 @@ AstroNvim is an aesthetic and feature-rich neovim config that is extensible and 
 ## ⚡ Requirements
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) (_Optional with manual intervention:_ See [Recipes/Customizing Icons](/recipes/icons#disable-icons)) <sup>[[1]](#1)</sup>
-- [Neovim v0.8+ (_Not_ including nightly)](https://github.com/neovim/neovim/releases/tag/stable)
+- [Neovim v0.9+ (_Not_ including nightly)](https://github.com/neovim/neovim/releases/tag/stable)
 - [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) (_Note:_ This is only necessary if you want to use `auto_install` feature with Treesitter)
 - A clipboard tool is necessary for the integration with the system clipboard (see [`:help clipboard-tool`](https://neovim.io/doc/user/provider.html#clipboard-tool) for supported solutions)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using) <sup>[[2]](#2)</sup>
@@ -39,7 +31,6 @@ AstroNvim is an aesthetic and feature-rich neovim config that is extensible and 
   - [bottom](https://github.com/ClementTsang/bottom) - process viewer toggle terminal (`<Leader>tt`)
   - [Python](https://www.python.org/) - python repl toggle terminal (`<Leader>tp`)
   - [Node](https://nodejs.org/en/) - Node is needed for a lot of the LSPs, and for the node repl toggle terminal (`<Leader>tn`)
-
 
 :::note
 
@@ -76,7 +67,9 @@ mv ~/.cache/nvim ~/.cache/nvim.bak
 ### Clone the repository
 
 ```sh
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
+# remove template's git connection to set up your own later
+rm -rf ~/.config/nvim/.git
 nvim
 ```
 
@@ -99,7 +92,9 @@ Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ### Clone the repository
 
 ```powershell
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim $env:LOCALAPPDATA\nvim
+git clone --depth 1 https://github.com/AstroNvim/template $env:LOCALAPPDATA\nvim
+# remove template's git connection to set up your own later
+Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 nvim
 ```
 
@@ -112,9 +107,8 @@ If you want to try AstroNvim before installing you can use the following Docker 
 ```sh
 docker run -w /root -it --rm alpine:edge sh -uelic '
   apk add bash git lua nodejs npm lazygit bottom python3 go neovim ripgrep alpine-sdk --update
-  git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-  # Uncomment the line below and replace the link with your user config repo to load a user config
-  # git clone https://github.com/username/AstroNvim_user ~/.config/nvim/lua/user
+  # Replace with your own configuration repository to load a user configuration
+  git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
   nvim
 '
 ```
@@ -173,18 +167,12 @@ Run `:AstroReload` to reload the AstroNvim configuration and any new user config
 - Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
 - Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 - Syntax highlighting with [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- Formatting and linting with [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim)
+- Formatting and linting with [none-ls](https://github.com/nvimtools/none-ls.nvim)
 - Language Server Protocol with [Native LSP](https://github.com/neovim/nvim-lspconfig)
 
 ## ⚙️ Configuration
 
-To begin making custom user configurations you must create a `user/` folder. We have created a template repository for easily making a user configuration file: [Astronvim/user_example](https://github.com/AstroNvim/user_example)
-
-The provided template repo can be used to create a new user configuration repository on your GitHub account or cloned directly. After creating a new repository from the template you can run:
-
-```sh
-git clone https://github.com/<username>/<config_repo> ~/.config/nvim/lua/user
-```
+To begin making customizations simply treat your `nvim` folder as your own Neovim configuration! This can be synced to a git repository to backup as well. AstroNvim is simply a plugin managed by the Lazy package manager that provides it's own collection of plugins and their configurations.
 
 ## 📦 Community Plugin Configurations
 
@@ -203,9 +191,3 @@ return {
   { import = "astrocommunity.pack.python" },
 }
 ```
-
-## ❗️ General tips
-
-For more information on the organization of config files and general usage of AstroNvim, be sure to check out the excellent [youtube tutorial](https://www.youtube.com/watch?v=GEHPiZ10gOk).
-
-More advanced LSP setups can also be found in [Recipes](/recipes/advanced_lsp). Note that whenever you see `plugins = { <inner_code_block> }`, you can also put the `<inner_code_block>` into `plugins/user.lua` or `plugins/*.lua` (they will all be merged into the final plugins spec, and the lua code `plugins = {...}` acts like the directory structure `plugins/...`).

@@ -49,7 +49,7 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Mason LSP Configuration     | https://github.com/williamboman/mason-lspconfig.nvim           |
 | LSP Symbols                 | https://github.com/stevearc/aerial.nvim                        |
 | LSP Local Configuration     | https://github.com/folke/neoconf.nvim                          |
-| Formatting & Linting        | https://github.com/jose-elias-alvarez/null-ls.nvim             |
+| Formatting & Linting        | https://github.com/nvimtools/none-ls.nvim                      |
 | Mason Null-ls Configuration | https://github.com/jay-babu/mason-null-ls.nvim                 |
 | Debugger                    | https://github.com/mfussenegger/nvim-dap                       |
 | Mason DAP Configuration     | https://github.com/jay-babu/mason-nvim-dap.nvim                |
@@ -65,9 +65,3 @@ Sincere appreciation to the following repositories, plugin authors and the entir
 | Indentation                 | https://github.com/lukas-reineke/indent-blankline.nvim         |
 | Keymaps Popup               | https://github.com/folke/which-key.nvim                        |
 | Smooth Escaping             | https://github.com/max397574/better-escape.nvim                |
-
-<div align="center" id="madewithlua">
-
-[![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](https://lua.org)
-
-</div>
