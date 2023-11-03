@@ -18,7 +18,7 @@ vim.g.icons_enabled = false
 AstroNvim uses a large set of icons across the entire user interface to maintain continuity between plugins and places where we display the same types of information. Because of this centralized icon management, we are able to allow the user to completely customize the user interface easily and let them change the icons in the `icons` table in the configuration of the AstroUI plugin. Here is an example plugin specification that sets all of the available user interface icons to what is currently the default in AstroNvim:
 
 ```lua
-{
+return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
@@ -79,7 +79,7 @@ AstroNvim uses a large set of icons across the entire user interface to maintain
 If you have `vim.g.icons_enabled = false`, you can still customize the text based icons, but make modifications to the `text_icons` table similar to the `icons` described above:
 
 ```lua
-{
+return {
   "AstroNvim/astroui",
   opts = {
     text_icons = {
@@ -131,7 +131,7 @@ If you have `vim.g.icons_enabled = false`, you can still customize the text base
 Recent versions of NERD fonts have added the VS Code icons which can be easily configured through AstroUI to achieve a similar interface to VS Code. Here is an example plugin specification that can be added to your user configuration:
 
 ```lua
-{
+return {
   {
     "AstroNvim/astroui",
     opts = {

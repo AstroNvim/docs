@@ -10,13 +10,13 @@ AstroNvim comes with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) for powerin
 Some overrides require access to the plugin itself that you are overriding. This comes up a lot in things adding custom mappings to `cmp`. This can be achieved with the following plugin spec:
 
 ```lua
-{ -- override nvim-cmp plugin
+return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   -- override the options table that is used in the `require("cmp").setup()` call
   opts = function(_, opts)
     -- opts parameter is the default options table
     -- the function is lazy loaded so cmp is able to be required
-    local cmp = require "cmp"
+    local cmp = require("cmp")
     -- modify the mapping part of the table
     opts.mapping["<C-x>"] = cmp.mapping.select_next_item()
 
@@ -31,20 +31,20 @@ Some overrides require access to the plugin itself that you are overriding. This
 Similarly to customizing mappings, you can customize and configure your `cmp` sources as well:
 
 ```lua
-{ -- override nvim-cmp plugin
+return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   -- override the options table that is used in the `require("cmp").setup()` call
   opts = function(_, opts)
     -- opts parameter is the default options table
     -- the function is lazy loaded so cmp is able to be required
-    local cmp = require "cmp"
+    local cmp = require("cmp")
     -- modify the sources part of the options table
-    opts.sources = cmp.config.sources {
+    opts.sources = cmp.config.sources({
       { name = "nvim_lsp", priority = 1000 },
       { name = "luasnip", priority = 750 },
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
-    }
+    })
 
     -- return the new table to be used
     return opts
@@ -57,26 +57,28 @@ Similarly to customizing mappings, you can customize and configure your `cmp` so
 You can use this `cmp` override to also customize the options of the sources:
 
 ```lua
-{ -- override nvim-cmp plugin
+return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   -- override the options table that is used in the `require("cmp").setup()` call
   opts = function(_, opts)
     -- opts parameter is the default options table
     -- the function is lazy loaded so cmp is able to be required
-    local cmp = require "cmp"
+    local cmp = require("cmp")
     -- modify the sources part of the options table
-    opts.sources = cmp.config.sources {
+    opts.sources = cmp.config.sources({
       { name = "nvim_lsp", priority = 1000 },
       { name = "luasnip", priority = 750 },
       {
         name = "buffer",
         priority = 500,
         option = {
-          get_bufnrs = function() return vim.api.nvim_list_bufs() end,
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end,
         },
       },
       { name = "path", priority = 250 },
-    }
+    })
 
     -- return the new table to be used
     return opts
@@ -89,7 +91,7 @@ You can use this `cmp` override to also customize the options of the sources:
 To add more sources than the default, you can add other `cmp` source plugins as dependencies, and then add the new source in the `opts`:
 
 ```lua
-{ -- override nvim-cmp plugin
+return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-emoji", -- add cmp source as dependency of cmp
@@ -98,15 +100,15 @@ To add more sources than the default, you can add other `cmp` source plugins as 
   opts = function(_, opts)
     -- opts parameter is the default options table
     -- the function is lazy loaded so cmp is able to be required
-    local cmp = require "cmp"
+    local cmp = require("cmp")
     -- modify the sources part of the options table
-    opts.sources = cmp.config.sources {
+    opts.sources = cmp.config.sources({
       { name = "nvim_lsp", priority = 1000 },
       { name = "luasnip", priority = 750 },
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
       { name = "emoji", priority = 700 }, -- add new source
-    }
+    })
 
     -- return the new table to be used
     return opts
@@ -119,14 +121,14 @@ To add more sources than the default, you can add other `cmp` source plugins as 
 You can also use the `config` function and the provided default configuration function for each plugin to extend the configuration and setup of `cmp` like adding `cmp-cmdline`:
 
 ```lua
-{ -- override nvim-cmp plugin
+return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   keys = { ":", "/", "?" }, -- lazy load cmp on more keys along with insert mode
   dependencies = {
     "hrsh7th/cmp-cmdline", -- add cmp-cmdline as dependency of cmp
   },
   config = function(plugin, opts)
-    local cmp = require "cmp"
+    local cmp = require("cmp")
     -- run cmp setup
     cmp.setup(opts)
 
