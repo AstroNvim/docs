@@ -10,7 +10,7 @@ This plugin specification makes the default theme telescope look like the defaul
 ## Plugin Specification
 
 ```lua
-{
+return {
   "AstroNvim/astroui",
   opts = {
     highlights = {
@@ -21,7 +21,7 @@ This plugin specification makes the default theme telescope look like the defaul
       init = function()
         local get_hlgroup = require("astrocore").get_hlgroup
         -- get highlights from highlight groups
-        local normal = get_hlgroup "Normal"
+        local normal = get_hlgroup("Normal")
         local fg, bg = normal.fg, normal.bg
         local bg_alt = get_hlgroup("Visual").bg
         local green = get_hlgroup("String").fg

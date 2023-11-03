@@ -10,7 +10,7 @@ Mappings can be customized through [AstroCore](https://github.com/AstroNvim/astr
 These tables are a direct conversion to the `vim.keymap.set({mode}, {lhs}, {rhs}, {opts})` Lua API. The first key into the table is the `{mode}`, the second key into the table is the `{lhs}`, and the element there is the `{opts}` table with the `{rhs}` in the first key. Also AstroLSP supports adding a `cond` key which can dictate when the mapping should be attached (this is described in detail in the [AstroLSP plugin configuration documentation](https://github.com/AstroNvim/astrolsp#%EF%B8%8F-configuration)) Here is a simple plugin specification example of setting both core and LSP mappings:
 
 ```lua
-{
+return {
   {
     "AstroNvim/astrocore",
     ---@type AstroCoreOpts
@@ -24,7 +24,9 @@ These tables are a direct conversion to the `vim.keymap.set({mode}, {lhs}, {rhs}
           ["<Leader>bD"] = {
             function()
               require("astronvim.utils.status").heirline.buffer_picker(
-                function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+                function(bufnr)
+                  require("astronvim.utils.buffer").close(bufnr)
+                end
               )
             end,
             desc = "Pick to close",
@@ -49,10 +51,17 @@ These tables are a direct conversion to the `vim.keymap.set({mode}, {lhs}, {rhs}
       mappings = {
         n = {
           -- this mapping will only be set in buffers with an LSP attached
-          K = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details" },
+          K = {
+            function()
+              vim.lsp.buf.hover()
+            end,
+            desc = "Hover symbol details",
+          },
           -- condition for only server with declaration capabilities
           gD = {
-            function() vim.lsp.buf.declaration() end,
+            function()
+              vim.lsp.buf.declaration()
+            end,
             desc = "Declaration of current symbol",
             cond = "textDocument/declaration",
           },
@@ -68,16 +77,28 @@ These tables are a direct conversion to the `vim.keymap.set({mode}, {lhs}, {rhs}
 We use Telescope for some of the LSP mappings, but this can be easily disabled through AstroLSP. Here is an example specification that can be added to your plugins:
 
 ```lua
-{
+return {
   "AstroNvim/astrolsp",
   ---@param opts AstroLSPOpts
   opts = function(_, opts)
-    opts.mappings.n.gd[1] = function() vim.lsp.buf.definition() end
-    opts.mappings.n.gI[1] = function() vim.lsp.buf.implementation() end
-    opts.mappings.n.gr[1] = function() vim.lsp.buf.references() end
-    opts.mappings.n.gT[1] = function() vim.lsp.buf.type_definition() end
-    opts.mappings.n["<Leader>lG"][1] = function() vim.lsp.buf.workspace_symbol() end
-    opts.mappings.n["<Leader>lR"][1] = function() vim.lsp.buf.references() end
+    opts.mappings.n.gd[1] = function()
+      vim.lsp.buf.definition()
+    end
+    opts.mappings.n.gI[1] = function()
+      vim.lsp.buf.implementation()
+    end
+    opts.mappings.n.gr[1] = function()
+      vim.lsp.buf.references()
+    end
+    opts.mappings.n.gT[1] = function()
+      vim.lsp.buf.type_definition()
+    end
+    opts.mappings.n["<Leader>lG"][1] = function()
+      vim.lsp.buf.workspace_symbol()
+    end
+    opts.mappings.n["<Leader>lR"][1] = function()
+      vim.lsp.buf.references()
+    end
   end,
 }
 ```
