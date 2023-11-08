@@ -1,0 +1,38 @@
+---
+id: uninstall
+title: Uninstall AstroNvim
+tableOfContents:
+  maxHeadingLevel: 2
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+AstroNvim can be uninstalled in the same fashion of removing any Neovim
+configuration from your system. The main step is that you remove the Neovim
+configuration directory. The important next step is that you also remove the
+state and cache folders so that there are no lingering files from AstroNvim
+that Neovim might still try to load.
+
+<Tabs>
+
+<TabItem value="nix" label="Linux/Mac OS (Unix)" default>
+
+```sh
+rm -rf ~/.config/nvim \
+  ~/.local/share/nvim \
+  ~/.local/state/nvim \
+  ~/.cache/nvim
+```
+
+</TabItem>
+
+<TabItem value="windoze" label="Windows (PowerShell)" default>
+
+```powershell
+Remove-Item $env:LOCALAPPDATA\nvim
+Remove-Item $env:LOCALAPPDATA\nvim-data
+```
+
+</TabItem>
+
+</Tabs>
