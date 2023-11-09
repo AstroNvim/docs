@@ -81,6 +81,7 @@ If you have `vim.g.icons_enabled = false`, you can still customize the text base
 ```lua
 return {
   "AstroNvim/astroui",
+  ---@type AstroUIOpts
   opts = {
     text_icons = {
       ActiveLSP = "LSP:",
@@ -134,6 +135,7 @@ Recent versions of NERD fonts have added the VS Code icons which can be easily c
 return {
   {
     "AstroNvim/astroui",
+    ---@type AstroUIOpts
     opts = {
       icons = {
         ActiveLSP = "",

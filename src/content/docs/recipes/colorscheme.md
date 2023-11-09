@@ -42,6 +42,7 @@ The default colorscheme for AstroNvim can be configured through the [AstroCore](
 ```lua
 return {
   "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
   opts = {
     colorscheme = "astrodark",
   },
@@ -53,6 +54,7 @@ Then change it to the name of the theme you've installed in the step 1:
 ```lua
 return {
   "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
   opts = {
     colorscheme = "catppuccin",
   },
@@ -67,6 +69,7 @@ Some colorscheme plugins are configured through global variables rather than Lua
 return {
   {
     "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
     opts = {
       colorscheme = "sonokai",
     },

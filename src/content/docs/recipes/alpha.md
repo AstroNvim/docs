@@ -47,6 +47,7 @@ If you want to make the Alpha dashboard/home screen open automatically when you 
 ```lua
 return {
   "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
   opts = {
     mappings = {
       n = {
