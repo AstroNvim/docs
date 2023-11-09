@@ -137,6 +137,12 @@ export default defineConfig({
           translations: {},
         },
         {
+          label: "Using these docs",
+          link: "/using_the_docs",
+          collapsed: true,
+          translations: {},
+        },
+        {
           label: "Basic Usage",
           collapsed: true,
           autogenerate: { directory: "basic-usage" },
