@@ -5,6 +5,90 @@ title: Advanced LSP Setup
 
 LSP configuration is mostly done through the help of [AstroLSP](https://github.com/AstroNvim/astrolsp), the AstroNvim language server configuration engine plugin. This provides a simple to use interface for configuration while handling the complex integration between the AstroNvim features, [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), [mason.nvim](https://github.com/williamboman/mason.nvim) and mason related tooling, and [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim). For full documentation on how to use and configure this plugin you can check out the [plugin's README](https://github.com/AstroNvim/astrolsp/tree/main#%EF%B8%8F-configuration) or run `:h astrolsp` in AstroNvim. All of the following recipes are provided through `lazy.nvim` plugin specifications and can be added to your own plugins.
 
+## Configuring Language Servers
+
+Our main tool for configuring and setting up language servers is with the [nvim-lspconfig plugin](https://github.com/neovim/nvim-lspconfig). This plugin provides configurations for many common language servers (A full list can be found in [nvim-lspconfig server configurations documentation](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)). These baseline configuration options are not always sufficient to meet everyone's needs, and are typically configured by calling `require("lspconfig")[<server_name>].setup(opts)` where `opts` is a table of options. For the complete set of options that can be used in the `nvim-lspconfig` setup check out `:h lspcofnig-setup` in your editor.
+
+AstroLSP automatically calls these `setup` functions for language servers installed through Mason and for servers specified manually (See [LSP Setup Without Installer](#lsp-setup-without-installer)). AstroLSP also provides a simple `config` table in the plugin's options for extending the built in server configurations provided by `nvim-lspconfig`.
+
+```lua
+return {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    config = {
+      -- the key is the server name to configure
+      -- the value is the configuration table
+      clangd = {
+        capabilities = {
+          offsetEncoding = "utf-8",
+        },
+      },
+    },
+  },
+}
+```
+
+### Custom LSP Definition
+
+`nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can also be done completely through `servers` and `config` tables similar to configuring servers that are supported by `nvim-lspconfig`! For these custom servers, the minimum requirement is defining a `cmd` in the `config` entry, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
+
+```lua
+return {
+  "AstroNvim/astrolsp",
+  -- we need to use the function notation to get access to the `lspconfig` module
+  ---@param opts AstroLSPOpts
+  opts = function(plugin, opts)
+    -- insert "prolog_lsp" into our list of servers
+    opts.servers = opts.servers or {}
+    table.insert(opts.servers, "prolog_lsp")
+
+    -- extend our configuration table to have our new prolog server
+    opts.config = require("astrocore").extend_tbl(opts.config or {}, {
+      -- this must be a function to get access to the `lspconfig` module
+      prolog_lsp = {
+        -- the command for starting the server
+        cmd = {
+          "swipl",
+          "-g",
+          "use_module(library(lsp_server)).",
+          "-g",
+          "lsp_server:main",
+          "-t",
+          "halt",
+          "--",
+          "stdio",
+        },
+        -- the filetypes to attach the server to
+        filetypes = { "prolog" },
+        -- root directory detection for detecting the project root
+        root_dir = require("lspconfig.util").root_pattern("pack.pl"),
+      },
+    })
+  end,
+}
+```
+
+### LSP Setup Without Installer
+
+AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
+
+```lua
+return {
+  "AstroNvim/astrolsp",
+  -- we must use the function override because table merging
+  -- does not play nicely with list-like tables
+  ---@param opts AstroLSPOpts
+  opts = function(plugin, opts)
+    -- safely extend the servers list
+    opts.servers = opts.servers or {}
+    vim.list_extend(opts.servers, {
+      "pyright",
+    })
+  end,
+}
+```
+
 ## Customizing auto-format on save
 
 AstroNvim has made formatting on save part of the default functionality out of the box. If you don't want your code to get auto formatted on save, you can disable it in the AstroLSP configuration:
@@ -179,76 +263,6 @@ return {
 
         -- enable all other clients
         return true
-      end,
-    },
-  },
-}
-```
-
-## LSP Setup Without Installer
-
-AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
-
-```lua
-return {
-  "AstroNvim/astrolsp",
-  ---@type AstroLSPOpts
-  opts = {
-    servers = {
-      "pyright",
-    },
-  },
-}
-```
-
-If the user wants to configure server specific settings and configurations then they can do this with the `config` table as well. For example if the user wants to use `pyright` that is already available on their system and disable the single file support then can do the following:
-
-```lua
-return {
-  "AstroNvim/astrolsp",
-  ---@type AstroLSPOpts
-  opts = {
-    servers = {
-      "pyright",
-    },
-    config = {
-      pyright = {
-        single_filesupport = false,
-      },
-    },
-  },
-}
-```
-
-## Custom LSP Definition
-
-`nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can be done completely through `servers` and `config` tables just like setting up servers that are supported by `lspconfig`! For these custom servers, the minimum requirement is setting up a `cmd` in the `config` entry, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
-
-```lua
-return {
-  "AstroNvim/astrolsp",
-  ---@type AstroLSPOpts
-  opts = {
-    servers = {
-      "prolog_lsp",
-    },
-    config = {
-      prolog_lsp = function()
-        return {
-          cmd = {
-            "swipl",
-            "-g",
-            "use_module(library(lsp_server)).",
-            "-g",
-            "lsp_server:main",
-            "-t",
-            "halt",
-            "--",
-            "stdio",
-          },
-          filetypes = { "prolog" },
-          root_dir = require("lspconfig.util").root_pattern("pack.pl"),
-        }
       end,
     },
   },
@@ -457,28 +471,32 @@ return {
   { "akinsho/flutter-tools.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
-    ---@type AstroLSPOpts
-    opts = {
-      servers = { "dartls" },
-      setup_handlers = {
-        -- add custom handler
-        dartls = function(_, opts)
-          require("flutter-tools").setup({ lsp = opts })
-        end,
-      },
-      config = {
-        dartls = {
-          -- any changes you want to make to the LSP setup, for example
-          color = {
-            enabled = true,
-          },
-          settings = {
-            showTodos = true,
-            completeFunctionCalls = true,
+    ---@param opts AstroLSPOpts
+    opts = function(plugin, opts)
+      opts.servers = opts.servers or {}
+      table.insert(opts.servers, "dartls")
+
+      opts = require("astrocore").extend_tbl(opts, {
+        setup_handlers = {
+          -- add custom handler
+          dartls = function(_, dartls_opts)
+            require("flutter-tools").setup({ lsp = dartls_opts })
+          end,
+        },
+        config = {
+          dartls = {
+            -- any changes you want to make to the LSP setup, for example
+            color = {
+              enabled = true,
+            },
+            settings = {
+              showTodos = true,
+              completeFunctionCalls = true,
+            },
           },
         },
-      },
-    },
+      })
+    end,
   },
 }
 ```
