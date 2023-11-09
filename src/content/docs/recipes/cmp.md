@@ -19,9 +19,6 @@ return { -- override nvim-cmp plugin
     local cmp = require("cmp")
     -- modify the mapping part of the table
     opts.mapping["<C-x>"] = cmp.mapping.select_next_item()
-
-    -- return the new table to be used
-    return opts
   end,
 }
 ```
@@ -45,9 +42,6 @@ return { -- override nvim-cmp plugin
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
     })
-
-    -- return the new table to be used
-    return opts
   end,
 }
 ```
@@ -79,9 +73,6 @@ return { -- override nvim-cmp plugin
       },
       { name = "path", priority = 250 },
     })
-
-    -- return the new table to be used
-    return opts
   end,
 }
 ```
@@ -109,9 +100,6 @@ return { -- override nvim-cmp plugin
       { name = "path", priority = 250 },
       { name = "emoji", priority = 700 }, -- add new source
     })
-
-    -- return the new table to be used
-    return opts
   end,
 }
 ```

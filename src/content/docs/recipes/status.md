@@ -300,9 +300,6 @@ return {
       status.component.numbercolumn(),
       status.component.signcolumn(),
     }
-
-    -- return the final configuration table
-    return opts
   end,
 }
 ```
@@ -342,9 +339,6 @@ return {
       status.component.nav(),
       -- remove the 2nd mode indicator on the right
     }
-
-    -- return the final configuration table
-    return opts
   end,
 }
 ```
@@ -542,9 +536,6 @@ return {
           }),
         },
       }
-
-      -- return the final options table
-      return opts
     end,
   },
 }
@@ -616,8 +607,6 @@ return {
         }),
       },
     }
-
-    return opts
   end,
 }
 ```

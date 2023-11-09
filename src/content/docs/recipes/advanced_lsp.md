@@ -340,26 +340,25 @@ To conditionally enable `tsserver`/`denols` based on the presence of `package.js
 ```lua
 return {
   "AstroNvim/astrolsp",
-  ---@type AstroLSPOpts
-  opts = {
-    setup_handlers = {
-      -- add custom handler
-      denols = function(opts)
-        opts.root_dir =
-          require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-        return opts
-      end,
-      tsserver = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("package.json")
-        return opts
-      end,
-      -- For eslint:
-      -- eslint = function(opts)
-      --   opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js"),
-      --   return opts
-      -- end,
-    },
-  },
+  ---@param opts AstroLSPOpts
+  opts = function(plugin, opts)
+    require("astrocore").extend_tbl(opts, {
+      config = {
+        denols = {
+          root_dir = require("lspconfig.util").root_pattern(
+            "deno.json",
+            "deno.jsonc"
+          ),
+        },
+        tsserver = {
+          root_dir = require("lspconfig.util").root_pattern("package.json"),
+        },
+        -- eslint = {
+        --   root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js"),
+        -- },
+      },
+    })
+  end,
 }
 ```
 
