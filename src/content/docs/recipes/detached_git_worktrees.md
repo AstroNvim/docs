@@ -16,6 +16,7 @@ If you have a bare git repo located at `~/.dotfiles` with its working tree set t
 ```lua
 return {
   "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
   opts = {
     git_worktrees = {
       {
