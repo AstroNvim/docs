@@ -12,6 +12,7 @@ This plugin specification makes the default theme telescope look like the defaul
 ```lua
 return {
   "AstroNvim/astroui",
+  ---@type AstroUIOpts
   opts = {
     highlights = {
       -- set highlights for all themes

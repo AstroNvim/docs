@@ -12,6 +12,7 @@ AstroNvim has made formatting on save part of the default functionality out of t
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       format_on_save = false, -- enable or disable automatic formatting on save
@@ -25,6 +26,7 @@ We have also added an extension to just `true` or `false` for this option to giv
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       format_on_save = {
@@ -44,6 +46,7 @@ If you would rather use a whitelist of filetypes for formatting on save rather t
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       format_on_save = {
@@ -63,6 +66,7 @@ For even more control, you can provide a filter function with the key `filter`. 
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       enabled = true, -- enable format on save
@@ -88,6 +92,7 @@ Using the `filter` option you can supply filter function to be run on each clien
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       filter = function(client)
@@ -116,6 +121,7 @@ Using the `disabled` option you can supply an array like list of language server
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       disabled = {
@@ -134,6 +140,7 @@ When using the options together, a client listed in the `disabled` list will alw
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       disabled = { "lua_ls" },
@@ -158,6 +165,7 @@ The `formatting` options also allows you to specify other parameters for the `vi
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     formatting = {
       format_on_save = true, -- enable or disable automatic formatting on save
@@ -184,6 +192,7 @@ AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lsp
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     servers = {
       "pyright",
@@ -197,6 +206,7 @@ If the user wants to configure server specific settings and configurations then 
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     servers = {
       "pyright",
@@ -217,6 +227,7 @@ return {
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     servers = {
       "prolog_lsp",
@@ -261,6 +272,7 @@ return {
   { "jose-elias-alvarez/typescript.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       setup_handlers = {
         -- add custom handler
@@ -286,6 +298,7 @@ return {
   { "sigmasd/deno-nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       setup_handlers = {
         -- add custom handler
@@ -313,6 +326,7 @@ To conditionally enable `tsserver`/`denols` based on the presence of `package.js
 ```lua
 return {
   "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
   opts = {
     setup_handlers = {
       -- add custom handler
@@ -391,6 +405,7 @@ return {
 return {
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       config = {
         clangd = {
@@ -442,6 +457,7 @@ return {
   { "akinsho/flutter-tools.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       servers = { "dartls" },
       setup_handlers = {
@@ -474,6 +490,7 @@ return {
   { "simrat39/rust-tools.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       setup_handlers = {
         -- add custom handler
@@ -499,6 +516,7 @@ return {
   { "mfussenegger/nvim-jdtls", lazy = true }, -- load jdtls on module
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       setup_handlers = {
         -- add custom handler
