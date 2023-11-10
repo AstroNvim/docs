@@ -28,7 +28,7 @@ nvim --headless +q
 
 ## Isolated Installation
 
-Neovim v0.9 introduced a great new environment variable called `NVIM_APPNAME` which allows the user to easily use configuration directories separate from the standard location. This is very useful if you want to install or try out AstroNvim without overwriting an existing Neovim configuration. The full details on the environmnet variable usage can be found in the Neovim documentation [`:h NVIM_APPNAME`](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME). Here is an example where we set it up using `NVIM_APPNAME=astronvim`:
+Neovim v0.9 introduced a great new environment variable called `NVIM_APPNAME` which allows the user to easily use configuration directories separate from the standard location. This is very useful if you want to install or try out AstroNvim without overwriting an existing Neovim configuration. The full details on the environment variable usage can be found in the Neovim documentation [`:h NVIM_APPNAME`](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME). Here is an example where we set it up using `NVIM_APPNAME=astronvim`:
 
 1. Clone your configuration to `~/.config/astronvim`, example using the AstroNvim template:
 
