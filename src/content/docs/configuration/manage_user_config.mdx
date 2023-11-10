@@ -1,0 +1,52 @@
+---
+id: manage_user_config
+title: Managing User Configuration
+sidebar_position: 1
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+AstroNvim is installed with the `lazy.nvim` plugin manager just like any other plugin in Neovim. The template provided in the installation instructions is simply a minimal Neovim configuration with the lazy.nvim plugin manager that adds AstroNvim along with some example code. This makes it easy to back the configuration the configuration to a git repository.
+
+## Setting up a user configuration
+
+<Tabs>
+
+<TabItem value="getting_started" label="Followed Getting Started" default>
+
+1. Follow the [Getting Started Guide Installation](/#%EF%B8%8F-installation)
+2. Create a new empty repository on Github (in this example we will assume your repo is `username/astronvim_config`). Then from your `~/.config/nvim` repository where you cloned the repo:
+
+```sh
+git init
+git add --all
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/username/astronvim_config.git
+git push -u origin main
+```
+
+</TabItem>
+
+<TabItem value="fresh" label="Fresh Installation">
+
+1. Use our [AstroNvim/template](https://github.com/AstroNvim/template) GitHub template to make a new personal user configuration repository. For these steps we will assume your repo is `username/astronvim_config`
+2. Clone your empty new repository to your `~/.config/nvim/lua` folder
+
+```sh
+git clone https://github.com/username/astronvim_config.git ~/.config/nvim
+```
+
+</TabItem>
+
+</Tabs>
+## Installing a user configuration
+If you have already created your user configuration and have it tracked in a repository, then the process of getting it installed on a new system is very easy!
+1. Clone your repository
+```sh
+git clone https://github.com/username/astronvim_config ~/.config/nvim
+```
+3. Initialize AstroNvim
+```sh
+nvim --headless -c 'quitall'
+```
