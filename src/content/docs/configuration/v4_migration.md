@@ -61,7 +61,7 @@ Currently this is the old v3 migration guide, this should be updated to migratin
 
 - `header` option has been removed in favor of decreasing abstractions. Check the updated [Dashboard Customizations Documentation](../../recipes/alpha)
 
-- `<Leader>s` has been unified with the `<Leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<Leader>f` or in the updated [Mappings Documentation](../../basic-usage/mappings)
+- `<Leader>s` has been unified with the `<Leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<Leader>f` or in the updated [Mappings Documentation](/mappings)
 
 - Heirline has moved to a more sustainable configuration format for their `setup` call. Before it was configured with `require("heirline").setup(statusline, winbar, tabline)`, this has moved to a new format with a single table like `require("heirline").setup({ statusline = statusline, winbar = winbar, tabline = tabline, statuscolumn = statuscolumn })`. If you have a custom Heirline configuration please check out the updated [Customizing Statusline Documentation](../../recipes/status) as well as the updated [Heirline Documentation](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md). (_Note:_ also that along with all of the other core plugin setups, the abstractions have been removed and you will need to update to the new Lazy syntax described in the [Custom Plugins Documentation](../custom_plugins#overriding-core-plugins))
 

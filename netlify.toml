@@ -32,10 +32,3 @@ from = "/v2/*"
 to = "https://magenta-malasada-aac0c8.netlify.app/:splat"
 status = 200
 force = true                                              # COMMENT: ensure that we always redirect
-
-# Old paths
-
-[[redirects]]
-from = "/Basic%20Usage/*"
-to = "/basic-usage/:splat"
-status = 301
