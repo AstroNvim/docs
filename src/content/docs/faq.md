@@ -3,11 +3,7 @@ id: faq
 title: Frequently Asked Questions
 ---
 
-::::danger
-
-UNVALIDATED: NEED UPDATING FOR V4
-
-::::
+Here are some common questions that users have and their answers!
 
 ## How do I add plugin X to my configuration?
 
@@ -19,7 +15,7 @@ If a plugin is missing feel free to contribute it using a pull request. Please j
 
 AstroNvim offers the addition of plugin specs with zero abstraction thanks to the [`lazy.nvim`](https://www.github.com/folke/lazy.nvim) plugin manager. Please go through the entire `README.md` for `lazy.nvim` as this will help to build a general understanding for the configuration mechanisms, the available properties, and how to lazily load plugins. More details on customizing plugins in AstroNvim can be found on the [Custom Plugins page](/configuration/custom_plugins).
 
-You can get a starter configuration from [here!](https://github.com/AstroNvim/user_example) This should provide a solid starting point on which you can build your customized environment. You have two options on where to place your user configuration: Either clone the user directory to `~/.config/nvim/lua` or `~/.config/astronvim/lua`. You can clone the user template like that: `git clone --depth 1 git@github.com:AstroNvim/user_example.git ~/.config/astronvim/lua/user`
+You can get a template configuration from [here!](https://github.com/AstroNvim/template) This should provide a solid starting point on which you can build your customized environment. Check out the pages for [Using these docs](/using_the_docs) and [Manageing User Configuration](/configuration/manage_user_config).
 
 Lastly, please go through the rest of the documentation as most of the common customizations are already thoroughly explained.
 
