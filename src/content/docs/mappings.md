@@ -1,13 +1,9 @@
 ---
 id: mappings
-title: Default Mappings
-sidebar:
-  # Set a custom label for the link
-  label: Mappings
-  # Set a custom order for the link (lower numbers are displayed higher up)
-  order: 0
-  # Add a badge to the link
+title: Mappings
 ---
+
+AstroNvim generally relies on `<Leader>` driven mappings, which is default set to `<Space>`. For information on what the `<Leader>`, check out the [`:h mapleader`](https://neovim.io/doc/user/map.html#mapleader). [`which-key.nvim`](https://github.com/folke/which-key.nvim) is also used to provide help for discovering and remembering these mappings. Simply press a key like `<Space>` and a help menu will pop up with labelled menus and options.
 
 ## General Mappings
 
