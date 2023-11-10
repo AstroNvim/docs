@@ -3,7 +3,7 @@ id: colorscheme
 title: Custom Colorscheme/Theme
 ---
 
-This page goes over how to install and configure a custom color scheme or theme in your AstroNvim configuration. By default AstroNvim ships with it's own custom color scheme, [AstroTheme](https://github.com/AstroNvim/astrotheme), but there are many others to choose from to fit your needs. When choosing a colorscheme/theme, make sure to check what plugins they support and compare that with the list of [Plugins used in AstroNvim](https://docs.astronvim.com/acknowledgements/#-plugins-used-in-astronvim). Not every plugin requires custom highlights, but having good support for common plugins helps unify the user interface and keep things looking nice.
+This page goes over how to install and configure a custom color scheme or theme in your AstroNvim configuration. By default AstroNvim ships with it's own custom color scheme, [AstroTheme](https://github.com/AstroNvim/astrotheme), but there are many others to choose from to fit your needs. When choosing a colorscheme/theme, make sure to check what plugins they support and compare that with the list of [Plugins used in AstroNvim](/reference/default_plugins). Not every plugin requires custom highlights, but having good support for common plugins helps unify the user interface and keep things looking nice.
 
 ## Using a Custom Colorscheme
 
