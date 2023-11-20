@@ -193,7 +193,7 @@ local component = status.component.mode({
 
 This is a code block that redefines the default statusline and winbar that are used in AstroNvim inside of the user configuration file for reference and a starting point to make modifications:
 
-```lua
+```lua title="lua/plugins/heirline.lua"
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
@@ -312,7 +312,7 @@ Some users want to be able to add the mode text to their statusline easily, Astr
 
 Heirline plugin specification that adds the mode text to the statusline:
 
-```lua
+```lua title="lua/plugins/heirline.lua"
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
@@ -351,7 +351,7 @@ NvChad comes with a very specific statusline configuration that a lot of people 
 
 Plugin specification that recreates the NvChad statusline in AstroNvim:
 
-```lua
+```lua title="lua/plugins/nvchad_statusline.lua"
 return {
   {
     "AstroNvim/astroui",
@@ -549,7 +549,7 @@ Visual Studio Code has a default bar at the top of files that many users may pre
 
 Plugin specification that recreates the winbar in Visual Studio Code:
 
-```lua
+```lua title="lua/plugins/vscode_winbar.lua"
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)

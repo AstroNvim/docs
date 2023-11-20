@@ -5,7 +5,7 @@ title: Custom Snippets
 
 Here is an example plugin specification to go inside your plugins folder which adds a custom path for it to load from. Be sure to read the comments in order to understand how to use this code for your environment.
 
-```lua
+```lua title="lua/plugins/luasnip.lua"
 return {
   "L3MON4D3/LuaSnip",
   config = function(plugin, opts)
@@ -24,7 +24,7 @@ Custom snippets will be added to this `snippets` directory. They will follow the
 
 This example Vue snippet is added as `snippets/vue.json`:
 
-```json
+```json title="snippets/vue.json"
 {
   "setup": {
     "prefix": ["setup", "template"],
@@ -49,7 +49,7 @@ This example Vue snippet is added as `snippets/vue.json`:
 
 In order for Luasnip to see the newly added snippet, it must be cataloged in `snippets/package.json`:
 
-```json
+```json title="snippets/package.json"
 {
   "name": "user snippets",
   "engines": {

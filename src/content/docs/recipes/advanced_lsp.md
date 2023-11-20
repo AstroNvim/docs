@@ -11,7 +11,7 @@ Our main tool for configuring and setting up language servers is with the [nvim-
 
 AstroLSP automatically calls these `setup` functions for language servers installed through Mason and for servers specified manually (See [LSP Setup Without Installer](#lsp-setup-without-installer)). AstroLSP also provides a simple `config` table in the plugin's options for extending the built in server configurations provided by `nvim-lspconfig`.
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -33,7 +33,7 @@ return {
 
 `nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can also be done completely through `servers` and `config` tables similar to configuring servers that are supported by `nvim-lspconfig`! For these custom servers, the minimum requirement is defining a `cmd` in the `config` entry, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   -- we need to use the function notation to get access to the `lspconfig` module
@@ -73,7 +73,7 @@ return {
 
 AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   -- we must use the function override because table merging
@@ -93,7 +93,7 @@ return {
 
 AstroNvim has made formatting on save part of the default functionality out of the box. If you don't want your code to get auto formatted on save, you can disable it in the AstroLSP configuration:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -107,7 +107,7 @@ return {
 
 We have also added an extension to just `true` or `false` for this option to give more the user the ability to disable the auto formatting for specific filetypes. For example:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -127,7 +127,7 @@ return {
 
 If you would rather use a whitelist of filetypes for formatting on save rather than a blacklist type model, you can do that as well with the `allow_filetypes` table. If you have `allow_filetypes` it will take precedence over `ignore_filetypes`. So please only use one of these options at a time. Here is an example:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -147,7 +147,7 @@ return {
 
 For even more control, you can provide a filter function with the key `filter`. This function takes a single parameter of the current buffer number and returns a boolean value of whether you want to format on save or not (`true` means format, `false` means do not format). This function will run on each save to calculate if it should format.
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -173,7 +173,7 @@ Since Neovim v0.8 there have been improvements to how language servers are used 
 
 Using the `filter` option you can supply filter function to be run on each client that has formatting capabilities and if it returns `true` then it will be used for formatting and if it returns `false` then it will not be used. This applies to whenever you format your code either on save, with `<Leader>lf`, or with `:Format`.
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -202,7 +202,7 @@ return {
 
 Using the `disabled` option you can supply an array like list of language server client names and those clients will be disabled with you format your code either on save, with `<Leader>lf`, or with `:Format`.
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -221,7 +221,7 @@ return {
 
 When using the options together, a client listed in the `disabled` list will always be disabled and then all other clients will then be passed into the `filter` function. For example, we can simplify our previous `filter` function by just disabling the `lua_ls` client in the `disabled` table:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -246,7 +246,7 @@ return {
 
 The `formatting` options also allows you to specify other parameters for the `vim.lsp.buf.format()` call. Any of the other formatting options are allowed to be used here to be used as the default options. This means being able to easily adjust the default `timeout_ms` for formatting in AstroNvim or making asynchronous formatting the default. For example you can do the following to increase the formatting timeout along with adjust the filtering:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -281,7 +281,7 @@ There are some plugins available for doing advanced setup of language servers th
 
 ### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
 
-```lua
+```lua title="lua/plugins/typescript.lua"
 return {
   { "jose-elias-alvarez/typescript.nvim", lazy = true }, -- add lsp plugin
   {
@@ -307,7 +307,7 @@ return {
 
 ### Deno ([deno-nvim](https://github.com/sigmaSd/deno-nvim))
 
-```lua
+```lua title="lua/plugins/deno.lua"
 return {
   { "sigmasd/deno-nvim", lazy = true }, -- add lsp plugin
   {
@@ -337,7 +337,7 @@ Since both `tsserver` and `denols` (and others such as `eslint` and `prettier`) 
 
 To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, add the following plugin specs:
 
-```lua
+```lua title="lua/plugins/typescript_deno.lua"
 return {
   "AstroNvim/astrolsp",
   ---@param opts AstroLSPOpts
@@ -364,7 +364,7 @@ return {
 
 For `none-ls` packages (such as `prettier`, `prettierd`, or `eslint_d`), set the following to handlers in the `mason-null-ls` options:
 
-```lua
+```lua title="lua/plugins/typescript_deno_null_ls.lua"
 return {
   "jay-babu/mason-null-ls.nvim",
   opts = {
@@ -414,7 +414,7 @@ return {
 
 ### C/C++ ([clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim))
 
-```lua
+```lua title="lua/plugins/clangd.lua"
 return {
   {
     "AstroNvim/astrolsp",
@@ -465,7 +465,7 @@ return {
 
 Requires `dart` to be available on the system.
 
-```lua
+```lua title="lua/plugins/flutter-tools.lua"
 return {
   { "akinsho/flutter-tools.nvim", lazy = true }, -- add lsp plugin
   {
@@ -502,7 +502,7 @@ return {
 
 ### Rust ([rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim))
 
-```lua
+```lua title="lua/plugins/rust-tools.lua"
 return {
   { "simrat39/rust-tools.nvim", lazy = true }, -- add lsp plugin
   {
@@ -528,7 +528,7 @@ return {
 
 ### Java ([nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls))
 
-```lua
+```lua title="lua/plugins/jdtls.lua"
 return {
   { "mfussenegger/nvim-jdtls", lazy = true }, -- load jdtls on module
   {

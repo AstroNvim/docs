@@ -17,7 +17,7 @@ In `lazy.nvim` there are a couple formats that the `opts` can be specified in, e
 
 Most commonly, the `opts` will be specified as a simple table. This is useful if you simply want to extend the table without any special logic. For this case, you simply have to specify the type of the table above it.
 
-```lua
+```lua title="lua/plugins/astrocore.lua"
 return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
@@ -37,7 +37,7 @@ AstroLSP allows for language server configuration completion by utilizing types 
 
 before the `config` table. Here is an example:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
@@ -56,7 +56,7 @@ return {
 
 Other times a function may be required if you want to include any sort of special logic for calculating the table or for handling cases that table merging doesn't deal with properly such as list-like tables. Here you need to specify the type of the parameter in the function.
 
-```lua
+```lua title="lua/plugins/astrocore.lua"
 return {
   "AstroNvim/astrocore",
   ---@param opts AstroCoreOpts
