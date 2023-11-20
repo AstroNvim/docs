@@ -27,6 +27,31 @@ return {
 }
 ```
 
+::::tip
+
+AstroLSP allows for language server configuration completion by utilizing types exposed by the `nvim-lspconfig` plugin. One downside is the type does complain that "fields are missing" even though they are not actually required. To work around this, it can be useful and less noisy if you add
+
+```
+---@diagnostic disable: missing-fields
+```
+
+before the `config` table. Here is an example:
+
+```lua
+return {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    ---@diagnostic disable: missing-fields
+    config = {
+      -- LSP options and server configuration go here...
+    },
+  },
+}
+```
+
+::::
+
 ### `opts` Function
 
 Other times a function may be required if you want to include any sort of special logic for calculating the table or for handling cases that table merging doesn't deal with properly such as list-like tables. Here you need to specify the type of the parameter in the function.
