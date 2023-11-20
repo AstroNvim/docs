@@ -9,7 +9,7 @@ Mappings can be customized through [AstroCore](https://github.com/AstroNvim/astr
 
 These tables are a direct conversion to the `vim.keymap.set({mode}, {lhs}, {rhs}, {opts})` Lua API. The first key into the table is the `{mode}`, the second key into the table is the `{lhs}`, and the element there is the `{opts}` table with the `{rhs}` in the first key. Also AstroLSP supports adding a `cond` key which can dictate when the mapping should be attached (this is described in detail in the [AstroLSP plugin configuration documentation](https://github.com/AstroNvim/astrolsp#%EF%B8%8F-configuration)) Here is a simple plugin specification example of setting both core and LSP mappings:
 
-```lua
+```lua title="lua/plugins/mappings.lua"
 return {
   {
     "AstroNvim/astrocore",
@@ -76,7 +76,7 @@ return {
 
 We use Telescope for some of the LSP mappings, but this can be easily disabled through AstroLSP. Here is an example specification that can be added to your plugins:
 
-```lua
+```lua title="lua/plugins/astrolsp.lua"
 return {
   "AstroNvim/astrolsp",
   ---@param opts AstroLSPOpts

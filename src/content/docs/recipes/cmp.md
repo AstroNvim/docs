@@ -9,7 +9,7 @@ AstroNvim comes with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) for powerin
 
 Some overrides require access to the plugin itself that you are overriding. This comes up a lot in things adding custom mappings to `cmp`. This can be achieved with the following plugin spec:
 
-```lua
+```lua title="lua/plugins/cmp.lua"
 return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   -- override the options table that is used in the `require("cmp").setup()` call
@@ -27,7 +27,7 @@ return { -- override nvim-cmp plugin
 
 Similarly to customizing mappings, you can customize and configure your `cmp` sources as well:
 
-```lua
+```lua title="lua/plugins/cmp.lua"
 return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   -- override the options table that is used in the `require("cmp").setup()` call
@@ -50,7 +50,7 @@ return { -- override nvim-cmp plugin
 
 You can use this `cmp` override to also customize the options of the sources:
 
-```lua
+```lua title="lua/plugins/cmp.lua"
 return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   -- override the options table that is used in the `require("cmp").setup()` call
@@ -81,7 +81,7 @@ return { -- override nvim-cmp plugin
 
 To add more sources than the default, you can add other `cmp` source plugins as dependencies, and then add the new source in the `opts`:
 
-```lua
+```lua title="lua/plugins/cmp.lua"
 return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -108,7 +108,7 @@ return { -- override nvim-cmp plugin
 
 You can also use the `config` function and the provided default configuration function for each plugin to extend the configuration and setup of `cmp` like adding `cmp-cmdline`:
 
-```lua
+```lua title="lua/plugins/cmp.lua"
 return { -- override nvim-cmp plugin
   "hrsh7th/nvim-cmp",
   keys = { ":", "/", "?" }, -- lazy load cmp on more keys along with insert mode

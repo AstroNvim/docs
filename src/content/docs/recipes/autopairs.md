@@ -9,7 +9,7 @@ AstroNvim comes with [nvim-autopairs](https://github.com/windwp/nvim-autopairs) 
 
 You can easily add rules and further configure `nvim-autopairs` in your user configuration by overriding the configuration function of the `nvim-autopairs` plugin. Here is a example `lazy.nvim` plugin spec:
 
-```lua
+```lua title="lua/plugins/nvim-autopairs.lua"
 return { -- override nvim-autopairs plugin
   "windwp/nvim-autopairs",
   config = function(plugin, opts)
