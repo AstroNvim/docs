@@ -47,7 +47,7 @@ and a single tab available. The following plugin specification adds a new
 autocommand with AstroCore and can be added to your own plugins in your
 configuration:
 
-```lua
+```lua title="lua/plugins/astrocore.lua"
 return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts

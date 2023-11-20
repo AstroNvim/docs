@@ -9,7 +9,7 @@ AstroNvim aims to provide a unified and cohesive user experience which includes 
 
 Some users may want to disable icons across the entire user interface because they don't like icons or simply because they are using a machine that is unable to install a nerd font for whatever reason. To assist with this use case we have added a new option variable `vim.g.icons_enabled` (default: `true`) that lets you disable the icons entirely and just have a text based user interface. To opt into this text based UI, it does require a user configuration setting the appropriate option. You want to add this to your vim options:
 
-```lua
+```lua title="lua/config/options.lua"
 vim.g.icons_enabled = false
 ```
 
@@ -17,7 +17,7 @@ vim.g.icons_enabled = false
 
 AstroNvim uses a large set of icons across the entire user interface to maintain continuity between plugins and places where we display the same types of information. Because of this centralized icon management, we are able to allow the user to completely customize the user interface easily and let them change the icons in the `icons` table in the configuration of the AstroUI plugin. Here is an example plugin specification that sets all of the available user interface icons to what is currently the default in AstroNvim:
 
-```lua
+```lua title="lua/plugins/astroui.lua"
 return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
@@ -78,7 +78,7 @@ return {
 
 If you have `vim.g.icons_enabled = false`, you can still customize the text based icons, but make modifications to the `text_icons` table similar to the `icons` described above:
 
-```lua
+```lua title="lua/plugins/astroui.lua"
 return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
@@ -131,7 +131,7 @@ return {
 
 Recent versions of NERD fonts have added the VS Code icons which can be easily configured through AstroUI to achieve a similar interface to VS Code. Here is an example plugin specification that can be added to your user configuration:
 
-```lua
+```lua title="lua/plugins/vscode_icons.lua"
 return {
   {
     "AstroNvim/astroui",
