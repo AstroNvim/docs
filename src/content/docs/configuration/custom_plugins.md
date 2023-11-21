@@ -33,7 +33,7 @@ Overriding plugins are as simple as adding a plugin specification for that plugi
 
 Here are some examples of overwriting some plugins:
 
-```lua title="lua/plugins/overrided.lua"
+```lua title="lua/plugins/overrided.lua" {5-10} {17-23}
 return {
   {
     "AstroNvim/AstroLSP",
@@ -71,7 +71,7 @@ Not all plugins have custom `config` functions and will not have an `astronvim.p
 
 ::::
 
-```lua title="lua/plugins/extended_config.lua"
+```lua title="lua/plugins/extended_config.lua" {10-11}
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -95,7 +95,7 @@ return {
 
 Plugins can be easily disabled by simply setting the `enabled` option to `false`. Here is an example of disabling the core dashboard plugin, `alpha`:
 
-```lua title="lua/plugins/disabled.lua"
+```lua title="lua/plugins/disabled.lua" "enabled = false"
 return {
   { "goolord/alpha-nvim", enabled = false },
 }
@@ -103,11 +103,11 @@ return {
 
 ## Lazy Loading
 
-Lazy loading can be used to delay plugin loading to speed up start up time. There are a few basic methods of lazy loading that can be easily added. The main keys here are `cmd`, `module`, `ft`, `keys`, `event`, `after`. More details of these and more options can be found in the [Lazy Documentation](https://github.com/folke/lazy.nvim#-plugin-spec). Here are a few examples:
+Lazy loading can be used to delay plugin loading to speed up start up time. There are a few basic methods of lazy loading that can be easily added. The main keys here are `lazy`, `cmd`, `ft`, `keys`, and `event`. More details of these and more options can be found in the [Lazy Documentation](https://github.com/folke/lazy.nvim#-plugin-spec). Here are a few examples:
 
-```lua title="lua/plugins/lazy_loaded.lua"
+```lua title="lua/plugins/lazy_loaded.lua" /((lazy|event|cmd|ft|keys) = (\S+|{.*}))/
 return {
-  -- by setting `lazy = true` the plugin will automatically be lazy loaded
+  -- by enabling the lazy option, the plugin will automatically be lazy loaded
   -- until it's module is called for example require("tokyonight")
   { "folke/tokyonight.nvim", lazy = true },
 
@@ -116,6 +116,12 @@ return {
 
   -- this plugin will be loaded when using `:ZenMode`
   { "folke/zen-mode.nvim", cmd = "ZenMode" },
+
+  -- this plugin will be loaded when using `:ZenMode`
+  { "folke/zen-mode.nvim", cmd = "ZenMode" },
+
+  -- this plugin will be loaded when opening a "markdown" file
+  { "lukas-reineke/headlines.nvim", ft = "markdown" },
 }
 ```
 
@@ -123,7 +129,7 @@ return {
 
 AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. We achieve this by creating a custom `User` `autocmd` event called `AstroFile`. This can also be used by users for lazy loading plugins on the first real file that is opened:
 
-```lua title="lua/plugins/nvim-colorizer.lua"
+```lua title="lua/plugins/nvim-colorizer.lua" {4}
 return {
   {
     "NvChad/nvim-colorizer.lua",
@@ -138,7 +144,7 @@ This will tell AstroNvim that this plugin should be loaded whenever the `User` a
 
 Similar to the file related plugins described above, we also have a similar hook for git related plugins. These shouldn't be loaded until a file is open that is in a git repository folder. We use this for stuff like the `gitsigns` plugin. This will check when a file is opened if it is in a git tracked folder and then load the plugin. This `User` `autocmd` event is `AstroGitFile`. **This does require access to the `git` command in your `PATH`.**
 
-```lua title="lua/plugins/gitsigns.lua"
+```lua title="lua/plugins/gitsigns.lua" {4}
 return {
   {
     "lewis6991/gitsigns.nvim",
