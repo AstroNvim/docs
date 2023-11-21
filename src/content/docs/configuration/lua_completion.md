@@ -27,7 +27,7 @@ return {
 }
 ```
 
-::::tip
+:::tip
 
 AstroLSP allows for language server configuration completion by utilizing types exposed by the `nvim-lspconfig` plugin. One downside is the type does complain that "fields are missing" even though they are not actually required. To work around this, it can be useful and less noisy if you add
 
@@ -50,7 +50,7 @@ return {
 }
 ```
 
-::::
+:::
 
 ### `opts` Function
 
