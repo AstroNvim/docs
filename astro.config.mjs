@@ -131,7 +131,7 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Getting started",
+          label: "Getting Started",
           link: "/",
           collapsed: true,
           translations: {},
@@ -143,7 +143,7 @@ export default defineConfig({
           translations: {},
         },
         {
-          label: "Using these docs",
+          label: "Using These Docs",
           link: "/using_the_docs",
           collapsed: true,
           translations: {},
