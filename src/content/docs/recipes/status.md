@@ -138,7 +138,7 @@ To build a component from the ground up, we can first start by selecting a `prov
 
 Using these options we can start building our component:
 
-```lua
+```lua {2-4}
 local status = require("astroui.status")
 local component = {
   provider = status.provider.mode_text({ padding = { left = 1, right = 1 } }),
@@ -147,23 +147,24 @@ local component = {
 
 This will give us a component where the text will be the current mode displayed as text. But now we want to be able to have the background of the mode to change colors along with the mode. This is where the `require("astronvim.utils.status").hl` module comes into play. There is a method there for getting the highlight for a mode with `require("astronvim.utils.status").hl.mode`. Each of these `hl` methods are designed to be passed in by name instead of resolving the function to the `hl` field in a Heirline component. For example, we can add the mode highlighting to our component as such:
 
-```lua
+```diff lang="lua"
 local status = require("astroui.status")
 local component = {
   provider = status.provider.mode_text({ padding = { left = 1, right = 1 } }),
-  hl = status.hl.mode,
++  hl = status.hl.mode,
 }
 ```
 
 This will give us a simple component where the background changes colors with each mode and displays the text of the current mode. If we want to make this component a bit prettier and add surrounding characters, we can use the `require("astronvim.utils.status").utils.surround` function with our component to do this. This surround method also handles setting the highlight group so we no longer need to set that inside of our component. An example of this would be:
 
-```lua
+```diff lang="lua"
 local status = require("astroui.status")
 local component = {
   provider = status.provider.mode_text({ padding = { left = 1, right = 1 } }),
+-  hl = status.hl.mode,
 }
-local surrounded_component =
-  status.utils.surround({ "", " " }, status.hl.mode_bg, component)
++local surrounded_component =
++  status.utils.surround({ "", " " }, status.hl.mode_bg, component)
 ```
 
 This function takes three parameters: the first parameter (left and right side respectively), the second parameter is the function for setting the color for the background of the component and the foreground of the separators, and the third parameter is the component that should be surrounded. In turn it gives us our final component that can be used inside of Heirline.
@@ -172,7 +173,7 @@ This function takes three parameters: the first parameter (left and right side r
 
 Building components from scratch is a powerful method that gives users complete control, but for the most part it's nice to have fully built components without having to think as much about what's going on internally. For this we have created several out of the box component building functions for things such as the mode, file details, git information, etc. With these, it becomes much easier to build components that you would want in your statusline. For example, to recreate our previous mode text component we can do this:
 
-```lua
+```lua {2-4}
 local status = require("astroui.status")
 local component = status.component.mode({
   mode_text = { padding = { left = 1, right = 1 } },
@@ -181,11 +182,11 @@ local component = status.component.mode({
 
 This will automatically set up the surrounding and colors that we want and defaults to it being a left aligned component. If you are going to place the component on the right side and want it to have the right side separators instead, you can do this:
 
-```lua
+```diff lang="lua"
 local status = require("astroui.status")
 local component = status.component.mode({
   mode_text = { padding = { left = 1, right = 1 } },
-  surround = { separator = "right" },
++  surround = { separator = "right" },
 })
 ```
 
