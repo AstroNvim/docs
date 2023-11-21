@@ -14,7 +14,7 @@ There are only 2 simple steps to change colorscheme of your editor:
 
 ### Step 1 - Adding a plugin
 
-You can either add a colorscheme plugin directly to your `plugins` as described in the [Custom Plugins Page](../../configuration/custom_plugins), for example if you wanted to add [Catppuccin](https://github.com/catppuccin/nvim) you would add the following to your `plugins`:
+You can either add a colorscheme plugin directly to your `plugins` as described in the [Custom Plugins Page](/configuration/custom_plugins), for example if you wanted to add [Catppuccin](https://github.com/catppuccin/nvim) you would add the following to your `plugins`:
 
 ```lua title="lua/plugins/catppuccin.lua"
 return {

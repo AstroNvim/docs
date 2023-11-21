@@ -49,8 +49,8 @@ return {
 
 Consolidating plugin specifications can help make your configuration more manageable in some ways while having things more separated can make it easier to enable/disable features and play around with things. It is fully up to you to decide which methods fit your needs.
 
-::::caution
+:::caution
 
 Some plugin specifications may require more or less knowledge of the Lua programming language to effectively consolidate. Some recipes use a function notation to get more control over the `opts` table rather than simply specifying a list. It will take some Lua knowledge and programming skills to correctly consolidate these two formats together. Or you can just keep the snippets in separate files and they will all be applied in an isolated manner.
 
-::::
+:::

@@ -3,11 +3,11 @@ id: v4_migration
 title: Migration to v4.0
 ---
 
-::::danger
+:::danger
 
 Currently this is the old v3 migration guide, this should be updated to migrating to v4
 
-::::
+:::
 
 MAKE SURE TO ADD A DESCRIPTION BEFORE THE FIRST HEADER
 

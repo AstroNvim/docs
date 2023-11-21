@@ -28,8 +28,8 @@ return {
 }
 ```
 
-::::note
+:::note
 
 This mirrors a similar configuration option in gitsigns (https://github.com/lewis6991/gitsigns.nvim/pull/600).
 
-::::
+:::

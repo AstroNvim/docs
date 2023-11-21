@@ -65,11 +65,11 @@ return {
 
 Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own modules in `require("astronvim.plugins.configs.X")` (replacing `X` with the plugin `require` string) that returns the AstroNvim default config function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs`, add user snippets to `luasnip`, or add more extensions to `telescope` without having to rewrite our entire configuration function. Here is an example of adding the `media_files` Telescope extension:
 
-::::note
+:::note
 
 Not all plugins have custom `config` functions and will not have an `astronvim.plugins.configs.X` module. The Lua language server provides autocompletion that is useful for identifying which plugins have a core `config` function.
 
-::::
+:::
 
 ```lua title="lua/plugins/extended_config.lua" {10-11}
 return {
