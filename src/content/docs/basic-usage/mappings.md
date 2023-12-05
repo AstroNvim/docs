@@ -171,3 +171,15 @@ sidebar:
 | Git Status                        | `Leader + gt` |
 | LSP Symbols                       | `Leader + ls` |
 | LSP Workspace Symbols             | `Leader + lG` |
+
+## Terminal Mappings
+
+| Action                   | Mappings                |
+| ------------------------ | ----------------------- |
+| Open Floating Terminal   | `Leader + tf` or `<F7>` |
+| Open Horizontal Terminal | `Leader + th`           |
+| Open Vertical Terminal   | `Leader + tv`           |
+| Open Toggle Lazygit      | `Leader + tl`           |
+| Open Toggle node         | `Leader + tn`           |
+| Open Toggle Python       | `Leader + tp`           |
+| Open Toggle btm          | `Leader + tt`           |
