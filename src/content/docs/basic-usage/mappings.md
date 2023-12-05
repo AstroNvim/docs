@@ -175,7 +175,7 @@ sidebar:
 ## Terminal Mappings
 | Action                            | Mappings               |
 | --------------------------------- | ---------------------- |
-| Open Floating Terminal            | `Leader + tf` or `<F7` |
+| Open Floating Terminal            | `Leader + tf` or `<F7>` |
 | Open Horizontal Terminal          | `Leader + th`          |
 | Open Vertical Terminal            | `Leader + tv`          |
 | Open Toggle Lazygit               | `Leader + tl`          |
