@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
+import starlightDocSearch from "@astrojs/starlight-docsearch";
 import tailwind from "@astrojs/tailwind";
 
 const locales = {
@@ -115,9 +115,13 @@ export default defineConfig({
       logo: {
         src: "./src/assets/astronvim.svg",
       },
-      components: {
-        Search: "./src/components/Search.astro",
-      },
+      plugins: [
+        starlightDocSearch({
+          appId: "JXZNTZ86UN",
+          apiKey: "96faee2ebdaf4a8a66d0f810c635bfec",
+          indexName: "astronvim",
+        }),
+      ],
       customCss: [
         // Path to your Tailwind base styles:
         "./src/tailwind.css",
