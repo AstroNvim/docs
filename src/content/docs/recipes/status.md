@@ -204,11 +204,7 @@ return {
       hl = { fg = "fg", bg = "bg" },
       status.component.mode(),
       status.component.git_branch(),
-      status.component.file_info({
-        filetype = {},
-        filename = false,
-        file_modified = false,
-      }),
+      status.component.file_info(),
       status.component.git_diff(),
       status.component.diagnostics(),
       status.component.fill(),
@@ -236,7 +232,8 @@ return {
             hl = status.hl.file_icon("winbar"),
             padding = { left = 0 },
           },
-          file_modified = false,
+          filename = {},
+          filetype = false,
           file_read_only = false,
           hl = status.hl.get_attributes("winbarnc", true),
           surround = false,
@@ -324,11 +321,7 @@ return {
         mode_text = { padding = { left = 1, right = 1 } },
       }), -- add the mode text
       status.component.git_branch(),
-      status.component.file_info({
-        filetype = {},
-        filename = false,
-        file_modified = false,
-      }),
+      status.component.file_info(),
       status.component.git_diff(),
       status.component.diagnostics(),
       status.component.fill(),
@@ -362,7 +355,7 @@ return {
       icons = {
         VimIcon = "",
         ScrollText = "",
-        GitBranch = "",
+        GitBranch = "",
         GitAdd = "",
         GitChange = "",
         GitDelete = "",
@@ -371,7 +364,7 @@ return {
       status = {
         -- define the separators between each section
         separators = {
-          left = { "", " " }, -- separator for the left side of the statusline
+          left = { "", "" }, -- separator for the left side of the statusline
           right = { " ", "" }, -- separator for the right side of the statusline
           tab = { "", "" },
         },
@@ -440,15 +433,20 @@ return {
         -- add a section for the currently opened file information
         status.component.file_info({
           -- enable the file_icon and disable the highlighting based on filetype
-          file_icon = { padding = { left = 0 } },
           filename = { fallback = "Empty" },
+          -- disable some of the info
+          filetype = false,
+          file_read_only = false,
           -- add padding
           padding = { right = 1 },
           -- define the section separator
           surround = { separator = "left", condition = false },
         }),
         -- add a component for the current git branch if it exists and use no separator for the sections
-        status.component.git_branch({ surround = { separator = "none" } }),
+        status.component.git_branch({
+          git_branch = { padding = { left = 1 } },
+          surround = { separator = "none" },
+        }),
         -- add a component for the current git diff if it exists and use no separator for the sections
         status.component.git_diff({
           padding = { left = 1 },
@@ -497,6 +495,7 @@ return {
               padding = { left = 1 },
             },
             -- disable all other elements of the file_info component
+            filetype = false,
             file_icon = false,
             file_modified = false,
             file_read_only = false,
@@ -577,6 +576,8 @@ return {
             hl = status.hl.file_icon("winbar"),
             padding = { left = 0 },
           },
+          filename = {},
+          filetype = false,
           file_modified = false,
           file_read_only = false,
           hl = status.hl.get_attributes("winbarnc", true),
@@ -593,6 +594,8 @@ return {
         -- add the file name and icon
         status.component.file_info({ -- add file_info to breadcrumbs
           file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
+          filename = {},
+          filetype = false,
           file_modified = false,
           file_read_only = false,
           hl = status.hl.get_attributes("winbar", true),
