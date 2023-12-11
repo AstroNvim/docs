@@ -3,13 +3,43 @@ id: v4_migration
 title: Migration to v4.0
 ---
 
+The largest change between AstroNvim v3 and v4 is the transition towards shipping AstroNvim as a pack of plugins which can be distributed, updated, and configured entirely through the [`lazy.nvim` plugin manager](https://github.com/folke/lazy.nvim). Rather than cloning AstroNvim and then configuring everything through a `user/` folder inside a configuration you download, you simply set up your own Neovim configuration with `lazy.nvim`, add AstroNvim, and then import it's plugins. Nearly all of the configuration after that is done through the configuration of plugins with `lazy.nvim`. This page will help guide you through migrating your user configuration from your previous `user/` folder to your own neovim configuration that utilizes AstroNvim v4.
+
+## Setting Up a Migration Environment
+
+With upgrading requiring dealing with breaking changes to your text editor configuration, we recommend setting up an isolated environment to safely migrate over your configuration at whatever pace you need. On the Alternative Installation reference page we have a section for setting up an [Isolated Installation](/reference/alt_install/#isolated-installation) which we would highly recommend using to do the migration from AstroNvim v3 to v4 so it does not interrupt your editor workflow and allows you to take your time. Here are some example steps to get started with a migration:
+
+1. Clone the new AstroNvim v4 template to a new configuration location:
+
+   ```sh
+   git clone https://github.com/AstroNvim/template ~/.config/astronvim_v4
+   rm -rf ~/.config/astronvim_v4/.git
+   ```
+
+2. Run the new environment:
+
+   ```sh
+   NVIM_APPNAME=astronvim_v4 nvim
+   ```
+
+3. Migrate your AstroNvim v3 configuration to your new AstroNvim v4 environment at `~/.config/astronvim_v4`. You can use your AstroNvim v3 setup to do the editing and then continue running the command in Step 2 to test the new installation.
+
+4. Once you have your configuration set up how you like it, simply move it over to the default neovim configuration location:
+
+   ```sh
+   mv ~/.config/nvim ~/.config/nvim.bak # backup old config
+   mv ~/.config/astronvim_v4 ~/.config/nvim # move new config
+   ```
+
+5. Run your new v4 environment simply with `nvim`
+
+## Migration Guide
+
 :::danger
 
 Currently this is the old v3 migration guide, this should be updated to migrating to v4
 
 :::
-
-MAKE SURE TO ADD A DESCRIPTION BEFORE THE FIRST HEADER
 
 ## Old Configuration Options
 
