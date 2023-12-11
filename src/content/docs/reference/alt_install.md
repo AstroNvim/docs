@@ -17,7 +17,7 @@ nvim --headless +q
 1. Clone your configuration to `~/.config/nvim`, example using the AstroNvim template:
 
    ```sh
-   git https://github.com/AstroNvim/template ~/.config/nvim`
+   git clone https://github.com/AstroNvim/template ~/.config/nvim`
    ```
 
 2. Run the headless installation
@@ -33,7 +33,7 @@ Neovim v0.9 introduced a great new environment variable called `NVIM_APPNAME` wh
 1. Clone your configuration to `~/.config/astronvim`, example using the AstroNvim template:
 
    ```sh
-   git https://github.com/AstroNvim/template ~/.config/astronvim`
+   git clone https://github.com/AstroNvim/template ~/.config/astronvim`
    ```
 
 2. Start the editor with `NVIM_APPNAME` environment variable set to `astronvim`
