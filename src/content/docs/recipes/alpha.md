@@ -23,6 +23,25 @@ return {
 }
 ```
 
+### Customize Buttons
+
+In order to customize buttons presented on the dashboard, you can modify `alpha` options:
+
+```lua
+return {
+  plugins = {
+    {
+      "goolord/alpha-nvim",
+      opts = function(_, opts) -- override the options using lazy.nvim
+        opts.section.buttons.val = {
+          opts.button( "h", "  Say Hi" , ":echo Hello World!"),
+        }
+      end,
+    },
+  },
+}
+```
+
 ### Open Alpha Automatically When No More Buffers
 
 If you want to make the Alpha dashboard open automatically when you close the last buffer in your session you can add the following in your `user/init.lua` in your `mappings` table:
