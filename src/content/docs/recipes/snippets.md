@@ -10,16 +10,16 @@ return {
   "L3MON4D3/LuaSnip",
   config = function(plugin, opts)
     -- include the default astronvim config that calls the setup call
-    require("plugins.configs.luasnip")(plugin, opts)
+    require("astronvim.plugins.configs.luasnip")(plugin, opts)
     -- load snippets paths
     require("luasnip.loaders.from_vscode").lazy_load({
-      paths = { vim.fn.stdpath("data") .. "/lua/snippets" },
+      paths = { vim.fn.stdpath("config") .. "/snippets" },
     })
   end,
 }
 ```
 
-Depending on the location of your configuration (typically `~/.config/nvim`), create a subdirectory named `snippets` in your `lua/` folder.
+Depending on the location of your configuration (typically `~/.config/nvim`), create a subdirectory named `snippets`.
 Custom snippets will be added to this `snippets` directory. They will follow the vscode style as described in the [documentation](https://github.com/l3mon4d3/luasnip/blob/master/doc.md#vscode-snippets-loader)
 
 This example Vue snippet is added as `snippets/vue.json`:
@@ -51,7 +51,7 @@ In order for Luasnip to see the newly added snippet, it must be cataloged in `sn
 
 ```json title="snippets/package.json"
 {
-  "name": "user snippets",
+  "name": "user_snippets",
   "engines": {
     "vscode": "^1.11.0"
   },
