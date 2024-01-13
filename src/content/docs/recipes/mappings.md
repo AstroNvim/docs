@@ -23,9 +23,9 @@ return {
           ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
           ["<Leader>bD"] = {
             function()
-              require("astronvim.utils.status").heirline.buffer_picker(
+              require("astroui.status").heirline.buffer_picker(
                 function(bufnr)
-                  require("astronvim.utils.buffer").close(bufnr)
+                  require("astrocore.buffer").close(bufnr)
                 end
               )
             end,
