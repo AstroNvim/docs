@@ -145,7 +145,7 @@ local component = {
 }
 ```
 
-This will give us a component where the text will be the current mode displayed as text. But now we want to be able to have the background of the mode to change colors along with the mode. This is where the `require("astronvim.utils.status").hl` module comes into play. There is a method there for getting the highlight for a mode with `require("astronvim.utils.status").hl.mode`. Each of these `hl` methods are designed to be passed in by name instead of resolving the function to the `hl` field in a Heirline component. For example, we can add the mode highlighting to our component as such:
+This will give us a component where the text will be the current mode displayed as text. But now we want to be able to have the background of the mode to change colors along with the mode. This is where the `require("astroui.status").hl` module comes into play. There is a method there for getting the highlight for a mode with `require("astroui.status").hl.mode`. Each of these `hl` methods are designed to be passed in by name instead of resolving the function to the `hl` field in a Heirline component. For example, we can add the mode highlighting to our component as such:
 
 ```diff lang="lua"
 local status = require("astroui.status")
@@ -155,7 +155,7 @@ local component = {
 }
 ```
 
-This will give us a simple component where the background changes colors with each mode and displays the text of the current mode. If we want to make this component a bit prettier and add surrounding characters, we can use the `require("astronvim.utils.status").utils.surround` function with our component to do this. This surround method also handles setting the highlight group so we no longer need to set that inside of our component. An example of this would be:
+This will give us a simple component where the background changes colors with each mode and displays the text of the current mode. If we want to make this component a bit prettier and add surrounding characters, we can use the `require("astroui.status").utils.surround` function with our component to do this. This surround method also handles setting the highlight group so we no longer need to set that inside of our component. An example of this would be:
 
 ```diff lang="lua"
 local status = require("astroui.status")
