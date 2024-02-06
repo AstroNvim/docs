@@ -9,14 +9,14 @@ dependencies:
     specifier: ^2.1.1
     version: 2.1.1(astro@4.3.2)
   '@astrojs/starlight':
-    specifier: ^0.17.2
-    version: 0.17.2(astro@4.3.2)
+    specifier: ^0.17.3
+    version: 0.17.3(astro@4.3.2)
   '@astrojs/starlight-docsearch':
     specifier: ^0.1.0
-    version: 0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.17.2)(search-insights@2.13.0)
+    version: 0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.17.3)(search-insights@2.13.0)
   '@astrojs/starlight-tailwind':
     specifier: ^2.0.1
-    version: 2.0.1(@astrojs/starlight@0.17.2)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1)
+    version: 2.0.1(@astrojs/starlight@0.17.3)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1)
   '@astrojs/tailwind':
     specifier: ^5.1.0
     version: 5.1.0(astro@4.3.2)(tailwindcss@3.4.1)
@@ -272,12 +272,12 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/starlight-docsearch@0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.17.2)(search-insights@2.13.0):
+  /@astrojs/starlight-docsearch@0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.17.3)(search-insights@2.13.0):
     resolution: {integrity: sha512-XQP+D6VmDvwCL+3IWW+fGccP8gGRsvSPD3pHZFO3ugDFPMAaIijOd51RlBISHb5qIvAWGf22x9npzddGYLlCLQ==}
     peerDependencies:
       '@astrojs/starlight': '>=0.14.0'
     dependencies:
-      '@astrojs/starlight': 0.17.2(astro@4.3.2)
+      '@astrojs/starlight': 0.17.3(astro@4.3.2)
       '@docsearch/css': 3.5.2
       '@docsearch/js': 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
     transitivePeerDependencies:
@@ -288,20 +288,20 @@ packages:
       - search-insights
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.17.2)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1):
+  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.17.3)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-niMgFcR7NHcsBVy8UAN3F2gqhmoN5v83st5Hu4YzvUL+6SNwjQmIipXppXdN9+iVneRjPr6PLGzDfI+wnjSBWQ==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.17.2(astro@4.3.2)
+      '@astrojs/starlight': 0.17.3(astro@4.3.2)
       '@astrojs/tailwind': 5.1.0(astro@4.3.2)(tailwindcss@3.4.1)
       tailwindcss: 3.4.1
     dev: false
 
-  /@astrojs/starlight@0.17.2(astro@4.3.2):
-    resolution: {integrity: sha512-2Zme8DobPaocbALX6LqkR8thDxa0RK3qikNccvwzowuYjGMzGvldt524RimFaVB0zTNrtrw2Sp1jamF1KJae8w==}
+  /@astrojs/starlight@0.17.3(astro@4.3.2):
+    resolution: {integrity: sha512-TEI34d0N9Q2YXOGMS6wYEwv1rLsSkbCMa1JWnJ67UWIZ+bWfcM+kwHLnenwEHs9fQ5e0HvS2GWQxvRBb/mwYkw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
