@@ -30,6 +30,11 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
   plugins. This event fires every time a file is opened that is in a git tracked
   directory.
 
+- `AstroLargeBuf`: AstroNvim uses this autocmd event for disabling features when
+  a large file is loaded into a buffer. The limits for this are configured through
+  AstroCore. This event fires if a file is read into a buffer that exceeds these
+  limits.
+
 - `AstroLspSetup`: AstroNvim has a lot of internal tooling surrounding setting
   up handlers for the internal LSP mechanisms. `AstroLspSetup` is triggered when
   we have finished setting up these handlers and configuring `lspconfig`.
