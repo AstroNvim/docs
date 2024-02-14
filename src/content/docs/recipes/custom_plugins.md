@@ -77,7 +77,7 @@ By default AstroNvim enables lazy loading automatically with Lazy.nvim. This req
 -- this plugin will be loaded when using `:ZenMode`
 { "folke/zen-mode.nvim", cmd = "ZenMode" },
 
--- this plugin will be not be lazy loaded
+-- this plugin will not be lazy loaded
 { "folke/tokyonight.nvim", lazy = false },
 ```
 
