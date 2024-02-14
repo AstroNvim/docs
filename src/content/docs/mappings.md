@@ -78,6 +78,7 @@ AstroNvim generally relies on `<Leader>` driven mappings, which is default set t
 | Save Session                   | `Leader + Ss` |
 | Last Session                   | `Leader + Sl` |
 | Delete Session                 | `Leader + Sd` |
+| Delete Directory Session       | `Leader + SD` |
 | Search Sessions                | `Leader + Sf` |
 | Search Directory Sessions      | `Leader + SF` |
 | Load Current Directory Session | `Leader + S.` |
