@@ -67,7 +67,6 @@ The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4
 If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum are active and friendly! Like all humans, sometimes they are grumpy, so be nice to them! The best place to post is most likely the `#help-forum`, but poke around a few of the other channels, you never know what you will find that is useful.
 
 ### Migrating to AstroCore
-
 🔗 [AstroCore example configuration](https://github.com/AstroNvim/astrocore/tree/main#%EF%B8%8F-configuration)
 📖 `:help astrocore`
 
@@ -83,8 +82,8 @@ Additional non version 3 keys configured in the `lua/plugins/astrocore.lua` file
 - `on_keys`
 - `rooter`
 - `sessions`
-### Migrating to AstroLSP
 
+### Migrating to AstroLSP
 🔗 [AstroLSP example configuration](https://github.com/AstroNvim/astrolsp/tree/main#%EF%B8%8F-configuration)
 📖 `:help astrolsp`
 
@@ -99,11 +98,11 @@ The following version 3 `user/init.lua` configuration keys move to the same keys
 - `lsp.setup_handlers`?? Where does this go?
 - `lsp.skip_setup` ?? Where does this go?
 - `diagnostics` - Correct?
+
 ### Migrating to AstroUI
 
 🔗 [AstroUI example configuration](https://github.com/AstroNvim/astroui/tree/main#%EF%B8%8F-configuration)
 📖 `:help astroui`
-
 The following version 3 `user/init.lua` configuration keys move to the same keys in the version 4 `lua/plugins/astroui.lua` template file:
 - `colorscheme`
 - `highlights.init`
@@ -113,6 +112,7 @@ The following version 3 `user/init.lua` configuration keys move to the same keys
 Additional non version 3 keys configured in the `lua/plugins/astroui.lua` file are:
 - `text_icons` (Same as `icons` except when NerdFont is not installed)
 - `status` (Config for lines and bars built with the `status` API)
+
 ### Heirline
 
 Read [Customizing Statusline](/recipes/status) page for how to move the following v3 keys: (?? TODO: do we want to have an heirline.lua file in the template??)

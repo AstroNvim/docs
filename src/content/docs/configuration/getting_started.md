@@ -5,9 +5,12 @@ title: Getting started with AstroNvim
 # Get Started with AstroNvim
 
 TODO: some preamble text here.
+
 ## A Starter Template
 
-A [configuration template](https://github.com/AstroNvim/template) is an easy way to going with AstroNvim. The template provides a simple directory structure with the required files in place, and within the files some indication (through commented out code) of how to configure the feature.
+A [configuration template](https://github.com/AstroNvim/template) is an easy way to going with AstroNvim. The template provides a directory structure with the required files in place. Within the files some indication, through commented out code, of how to configure the feature.
+
+The template structure:
 
 ```txt
 astronvim_v4/
@@ -23,27 +26,34 @@ astronvim_v4/
     │   ├── mason.lua
     │   ├── none-ls.lua
     │   ├── treesitter.lua
-    │   └── user.lua
+    │   ├── user.lua
+    │   └── vim-sandwich.lua
     └── polish.lua
 ```
 
-At the top level is `init.lua`. This code bootstraps the configuration by installing `lazy.nvim` if it is not already installed and then calling `lua/lazy_setup.lua` to install (if not installed) and configure the AstroNvim and user plugins.
+::: note
 
-Looking a bit deeper, the `plugins` directory is where all, except AstroCommunity, plugins are setup. The first three plugins are for the AstroNvim configuration. The remaining plugins either modify the configuration of a plugin that is part of AstroNvim (e.g.: `treesitter.lua`) or specify the installation and configuration a plugin that you have chosen to install (i.e.: plugins that are not a part of AstroNvim).
+The list of files in the template may change over time, so the files above may be slightly different from the actual template.
 
-Each file in the plugins directory can specify the installation and configuration of one or more plugins. The template generally installs and configures a single plugin per `lua` file. Further, the name of the file generally matches the name of the plugin. The one exception is `user.lua` which has multiple plugins in it - but they can be split into separate file if you wish!
+:::
 
-There is nothing special about the template! It's merely a quick way to get started, and, well recommended to get you up and running quicker. Once you have everything working you can start to move things around as you desire.
+At the top level is `init.lua`. This code bootstraps the configuration by installing `lazy.nvim` if it is not already installed and then calling `lua/lazy_setup.lua` to install and configure the AstroNvim and user plugins.
+
+Looking a bit deeper, the `plugins` directory is where all, except AstroCommunity, plugins are setup. The first three plugins are for the AstroNvim configuration. The next four plugins modify the configuration of a plugin that is part of AstroNvim (e.g.: `treesitter.lua`). The last file is not a part of the template. `vim-sandwich` specifies the installation and configuration a plugin of a user specified (i.e.: one that is not a part of AstroNvim distribution).
+
+Each file in the plugins directory can specify the installation and configuration of one or more plugins. The template generally installs and configures a single plugin per `lua` file. Further, the name of the file generally matches the name of the plugin. The one exception is `user.lua` which has multiple plugins in it - but they could be split into separate files if you wish!
+
+There is nothing special about the template! It's merely a quick way to get started, and, well, recommended to get you up and running quicker. Once you have a working configuration that may be the time when you start to move things around.
 
 ## `lazy.nvim`
 
 `lazy.nvim` (referred to as just *Lazy* from now on) is a plugin manager. A plugin manager helps to manage the installation and configuration of plugins. AstroNvim is built around plugins, and hence around Lazy.
 
-The power of AstroNvim is that it selects the "best" plugins that help to make `nvim` a great development environment (editor instead of dev environment??), and, more importantly configures those plugins with reasonable defaults.
+The power of AstroNvim is that it selects the "best" plugins that help to make `nvim` a great environment for editing, and, more importantly configures those plugins with "reasonable" defaults.
 
-There is great value is the plugins being selected and configured for you. It encapsulates much of the complexity there is configuration a plugin, the interactions among plugins, the interactions with `nvim`, and provides sane defaults. The bigger win is that you are not locked in to the plugins that are part of AstronNvim. Many, but not all, of the plugins can be disabled if they are not to your liking. Additional plugins can be added if they suit your needs. And, all of the plugins can have their configuration tuned to your liking.
+Many people find great value in having the plugins selected and configured for you. AstroNvim encapsulates the complexity of plugin configuration, the interactions among plugins, the interactions with `nvim`, and provides sane defaults. The bigger win is that you are not locked in to the plugins that are part of AstronNvim. Many, but not all, of the plugins can be disabled if they are not to your liking. Additional plugins can be added if they suit your needs better. Finally, all of the plugins can have their configuration tuned to your liking.
 
-Lazy is particularly feature rich in that it helps with much of the life cycle of plugin management. A few of the life cycle features Lazy offers are:
+Lazy is particularly feature rich in that it helps with plugin life cycle management. A few of the life cycle features are:
 - Installation of plugins from different sources, such as from GitHub or from a local directory.
 - Uninstalling plugins when they are no longer referenced in your configuration.
 - Lazily loading plugins, which is where it's name comes from. Lazily means that plugins can be loaded only when needed, for example on some editor event happening. This benefits `nvim` startup time.
@@ -138,7 +148,9 @@ Your modified configuration, like any plugin specification, can be any valid fil
 
 Here is a link to all of the AstroNvim [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4/lua%2Fastronvim%2Fplugins). This is useful to see all the plugins installed by AstroNvim and see their default configuration.
 
-One last bit. If you want to disable a plugin, it is also done with a plugin specification. Here is an example of disabling two plugins:
+### Disabling a Plugin
+
+If you want to disable a plugin, it is also done with a plugin specification. Here is an example of disabling two plugins:
 
 ```
 return {
