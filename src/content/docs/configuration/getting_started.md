@@ -61,7 +61,7 @@ Lazy is particularly feature rich in that it helps with plugin life cycle manage
 
 ### Adding a Plugin of Your Choosing
 
-To install and configure a plugin, a *plugin specification* is required. Here is an example of a specification for user plugin (i.e.: a plugin that is not a part of AstroNvim), for a theme:
+To install and configure a plugin, a *plugin specification* is required. Here is an example of a specification for the `catppuccin` theme:
 ```lua
 return {
   {
@@ -83,21 +83,21 @@ return {
 }
 ```
 
-The code above resides in a file. The name of the file can be any valid filename, as long as the file's extension is `.lua`. By convention, many people name the file after the plugin that is being installed. So, in the example above, the file would be called `catppuccin.lua`. If you are following the AstroNvim template then the file would be located in the `lua/plugins` directory.
+The code above resides in a file. The name of the file can be any valid filename, as long as the file's extension is `.lua`. By convention, many people name the file after the plugin that is being installed. So, in the example above, the file would be called `catppuccin.lua` and if you are following the AstroNvim template then the file would be located in the `lua/plugins` directory.
 
 The `return` statement is returning a table of tables. The outer table is a list of *plugin specifications*. Each entry in the list is a single plugin specification.
 
-For the first plugin specification, the first entry in the table in the name of the plugin to load. It's specified in short URL form. The next two entries in the table, `name` and `opts` are Lazy defined keywords and direct Lazy how to configure this plugin. There are many more configuration options that Lazy provides. To learn more about the options the[ Lazy documentation](https://github.com/folke/lazy.nvim#-plugin-spec) provides all the details.
+For the first plugin specification, the first entry in it's table is the name of the plugin to load, specified in short URL form. The next two entries in the table, `name` and `opts` are Lazy recognized keys that direct Lazy on how to configure this plugin. There are many more configuration options that Lazy provides. To learn more about plugin specifications, see the [Lazy documentation](https://github.com/folke/lazy.nvim#-plugin-spec).
 
-That's it! When `nvim` is started, the `catppuccin` plugin will be downloaded from GitHub, installed and configured for `nvim` to use.
-
-Ok, so what about a plugin that AstroNvim "installs" and configures for you? It is pretty much exactly the same, with one difference. Since AstroNvim has configured the plugin with some, hopefully, sane defaults, you need to be a bit more careful in how you configure the plugin as you might overwrite some the AstroNvim defaults. You may want to overwrite, in which case nothing is different - just be careful that something critical is not overwritten.
+That's it! When `nvim` is started, the `catppuccin` plugin will be downloaded from GitHub, installed, and configured.
 
 ### Configuring an AstroNvim Plugin
 
-Configuring a plugin that is a part of AstroNvim is for the most part the same format as shown above. The biggest difference is that you are modifying the configuration that AstroNvim created instead of configuring a plugin from scratch. The key point about modifying a configuration is that you have to be aware that you don't overwrite AstroNvim configuration that you want to keep.
+TODO: question - how is it decided when plugin config overwrites the existing config vs. merges? Can you control which happens? This entire section depends on those answers and what is here could be entirely wrong!
 
-Here is an example. One of the plugins installed for you by AstroNvim is `nvim-tree/nvim-web-devicons`. Here is a trimmed down version of that file:
+Configuring a plugin that is a part of AstroNvim is for the most part the same as shown above. The biggest difference is that you are modifying the configuration that AstroNvim created instead of configuring a plugin from scratch. The key point about modifying a configuration is that you have to be aware that you don't overwrite AstroNvim configuration that you want to keep.
+
+Here is an example. One of the plugins installed for you by AstroNvim is `nvim-tree/nvim-web-devicons`. Here is a trimmed down version of that file from the AstroNvim codebase:
 
 ```
 return {
