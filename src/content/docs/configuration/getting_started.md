@@ -45,18 +45,32 @@ Each file in the plugins directory can specify the installation and configuratio
 
 There is nothing special about the template! It's merely a quick way to get started, and, well, recommended to get you up and running quicker. Once you have a working configuration that may be the time when you start to move things around.
 
-## `lazy.nvim`
+## AstroCommunity
+
+[AstroCommunity](https://github.com/AstroNvim/astrocommunity) is a plugin specification repository on GitHub. The specifications found there are configurations for many popular plugins that can be used to augment your configuration. There are also "language packs" that are specifications for many programming lanaguages. These are a good way to get setup with a set of tools for the languages that you are using.
+
+The AstroCommunity setup is in the template file `lua/community.lua`.
+
+See the astrocommunity documentation for details of using the plugin specifications that it offers.
+
+## `lazy.nvim` and AstroNvim - Bringing it all together
 
 `lazy.nvim` (referred to as just *Lazy* from now on) is a plugin manager. A plugin manager helps to manage the installation and configuration of plugins. AstroNvim is built around plugins, and hence around Lazy.
 
 The power of AstroNvim is that it selects the "best" plugins that help to make `nvim` a great environment for editing, and, more importantly configures those plugins with "reasonable" defaults.
 
-Many people find great value in having the plugins selected and configured for you. AstroNvim encapsulates the complexity of plugin configuration, the interactions among plugins, the interactions with `nvim`, and provides sane defaults. The bigger win is that you are not locked in to the plugins that are part of AstronNvim. Many, but not all, of the plugins can be disabled if they are not to your liking. Additional plugins can be added if they suit your needs better. Finally, all of the plugins can have their configuration tuned to your liking.
+Many people find great value in having the plugins selected and configured for them. AstroNvim:
+- Encapsulates the complexity of plugin configuration
+- Takes care of the interactions among plugins
+- Takes care of the interactions with `nvim`
+- Provides "sane" defaults for plugins
+
+Another win is that you are not locked in to the plugins that are part of AstronNvim. Many, but not all, of the plugins can be disabled if they are not to your liking. Additional plugins can be added if they suit your needs better. Finally, all of the plugins can have their configuration tuned to your liking.
 
 Lazy is particularly feature rich in that it helps with plugin life cycle management. A few of the life cycle features are:
 - Installation of plugins from different sources, such as from GitHub or from a local directory.
 - Uninstalling plugins when they are no longer referenced in your configuration.
-- Lazily loading plugins, which is where it's name comes from. Lazily means that plugins can be loaded only when needed, for example on some editor event happening. This benefits `nvim` startup time.
+- Lazily loading plugins meaning that plugins can be loaded only when needed, such as on some editor event happening, benefiting `nvim` startup time.
 - Compiles plugin `lua` code into native code for your system, helping with execution speed of plugin code.
 
 ### Adding a Plugin of Your Choosing
@@ -87,9 +101,11 @@ The code above resides in a file. The name of the file can be any valid filename
 
 The `return` statement is returning a table of tables. The outer table is a list of *plugin specifications*. Each entry in the list is a single plugin specification.
 
-For the first plugin specification, the first entry in it's table is the name of the plugin to load, specified in short URL form. The next two entries in the table, `name` and `opts` are Lazy recognized keys that direct Lazy on how to configure this plugin. There are many more configuration options that Lazy provides. To learn more about plugin specifications, see the [Lazy documentation](https://github.com/folke/lazy.nvim#-plugin-spec).
+The first entry in the plugin specification is the name of the plugin to load, specified in short URL form. The next two entries in the table, `name` and `opts` are Lazy recognized keys that direct Lazy on how to configure this plugin. `opts` can be a table or a function (`opts` is a table in the example above) that contains the configuration for the plugin. The structure of what is inside of `opts` is up to each plugin.
 
-That's it! When `nvim` is started, the `catppuccin` plugin will be downloaded from GitHub, installed, and configured.
+To learn more about plugin specifications, see the [Lazy documentation](https://github.com/folke/lazy.nvim#-plugin-spec).
+
+That's it! When `nvim` is started, the `catppuccin` plugin will be downloaded from GitHub, installed, configured, and loaded.
 
 ### Configuring an AstroNvim Plugin
 
@@ -150,7 +166,7 @@ Here is a link to all of the AstroNvim [plugin configuration files.](https://git
 
 ### Disabling a Plugin
 
-If you want to disable a plugin, it is also done with a plugin specification. Here is an example of disabling two plugins:
+Disabling a plugin is done with a plugin specification. Here is an example of disabling two plugins:
 
 ```
 return {
