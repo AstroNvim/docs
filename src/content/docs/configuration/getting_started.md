@@ -109,7 +109,7 @@ That's it! When `nvim` is started, the `catppuccin` plugin will be downloaded fr
 
 ### Configuring an AstroNvim Plugin
 
-TODO: question - how is it decided when plugin config overwrites the existing config vs. merges? Can you control which happens? This entire section depends on those answers and what is here could be entirely wrong!
+TODO: question - how is it decided when plugin config overwrites the existing config vs. merges? Can you control which happens? This entire section depends on those answers and what is here could be entirely wrong! I think I know the answer but what to make sure we talk about this point.
 
 Configuring a plugin that is a part of AstroNvim is for the most part the same as shown above. The biggest difference is that you are modifying the configuration that AstroNvim created instead of configuring a plugin from scratch. The key point about modifying a configuration is that you have to be aware that you don't overwrite AstroNvim configuration that you want to keep.
 

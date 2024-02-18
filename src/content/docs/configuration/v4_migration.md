@@ -60,6 +60,12 @@ This is a work in progress. This guide is taking shape and covers much of the mi
 
 Each "Migrating" section below has an link to documentation and/or an example configuration. Each example configuration file shows the structure for configuring that plugin. The comments in each example configuration describes the configuration keys.
 
+::: note
+
+**Recommended reading**: for each plugin there is a link to example configuration. These configurations are full of documentation!
+
+:::
+
 The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4/lua%2Fastronvim%2Fplugins) in the AstroNvim codebase itself are also a good reference to learn how to configure.
 
 **Please also read the Other Changes section** - there are a number of changes that are not just "move some config from one place to another". For example, in key mapping `<leader>` is no longer recognized.
@@ -88,16 +94,16 @@ Additional non version 3 keys configured in the `lua/plugins/astrocore.lua` file
 📖 `:help astrolsp`
 
 The following version 3 `user/init.lua` configuration keys move to the same keys in the version 4 `lua/plugins/astrolsp.lua` template file:
-- `lsp.capabilities
-- `lsp.config.<lsp>
+- `diagnostics`
+- `lsp.capabilities`
+- `lsp.config.<lsp>`
 - `lsp.flags`
 - `lsp.formatting`
 - `lsp.mappings`
 - `lsp.on_attach`
 - `lsp.servers`
-- `lsp.setup_handlers`?? Where does this go?
-- `lsp.skip_setup` ?? Where does this go?
-- `diagnostics` - Correct?
+- `lsp.setup_handlers` ?? Where does this go?
+- `lsp.skip_setup`     ?? Where does this go?
 
 ### Migrating to AstroUI
 
@@ -115,7 +121,7 @@ Additional non version 3 keys configured in the `lua/plugins/astroui.lua` file a
 
 ### Heirline
 
-Read [Customizing Statusline](/recipes/status) page for how to move the following v3 keys: (?? TODO: do we want to have an heirline.lua file in the template??)
+Read [Customizing Statusline](/recipes/status) page for how to move the following v3 keys: (?? TODO: do we want to have an heirline.lua file in the template especially since in v3 there were a number of heirline keys??)
 - `heirline.attributes`
 - `heirline.colors`
 - `heirline.icon_highlights`
@@ -124,5 +130,6 @@ Read [Customizing Statusline](/recipes/status) page for how to move the followin
 ### Other Changes
 - Mapping modifiers are now capitalized. For example `<leader>` not longer works and must be changed to `<Leader>`.
 - `lazy` configuration key is no longer used.
-- `updater` TODO: what happens with that
+- `polish` - no longer configured; however, if you are using the starter template `polish` is still called after `lazy.setup` is complete as was done in previous versions
+- `updater` is no longer relevant. Updating of Astro{Nvim,core,lsp,ui} are all done through standard `lazy` plugin updates. Note in the starter template that `init.lua` does constrain updates to `^4`
 - TODO: More changes from @mehalter
