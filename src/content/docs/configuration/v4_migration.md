@@ -15,7 +15,7 @@ The new plugins are:
 - [AstroLSP](https://github.com/AstroNvim/astrolsp) - Provides a configuration interface for Language Server Protocol (LSP) functions. The [configuration here](https://github.com/AstroNvim/astrolsp#%EF%B8%8F-configuration) provides an example and `:help astrolsp` provides help within Neovim.
 - [AstroUI](https://github.com/AstroNvim/astroui) - Provides a configuration interface for User Interface (UI) functions, such as setting the colorscheme, highlights, icons, etc. The [configuration here](https://github.com/AstroNvim/astroui#%EF%B8%8F-configuration) provides and example and `:help astroui` provides help within Neovim.
 
-All AstroNvim configuration is coordinated through those plugins.
+All AstroNvim configuration is coordinated through those plugins above.
 
 ## Setting Up a Migration Environment
 
@@ -25,7 +25,7 @@ Before getting started it is recommended to review the [Getting Started]() guide
 
 :::
 
-You need an editor to configure an editor! As such breaking your working editor configuration when migrating to v4 will make it difficult to edit your new configuration. We **recommend following the process** below so that your existing editor keeps working while migrating to the v4 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
+Breaking your working editor configuration when migrating to v4 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while migrating to the v4 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
 
 1. Clone the AstroNvim v4 configuration template to a new location (`astronvim_v4` is used as the example):
    ```sh
@@ -62,7 +62,7 @@ Each "Migrating" section below has an link to documentation and/or an example co
 
 ::: note
 
-**Recommended reading**: for each plugin there is a link to example configuration. These configurations are full of documentation!
+**Recommended reading**: for each plugin there is a link to example configuration. These configurations are full of documentation and can help guide your migration!
 
 :::
 
@@ -102,8 +102,8 @@ The following version 3 `user/init.lua` configuration keys move to the same keys
 - `lsp.mappings`
 - `lsp.on_attach`
 - `lsp.servers`
-- `lsp.setup_handlers` ?? Where does this go?
-- `lsp.skip_setup`     ?? Where does this go?
+- `lsp.setup_handlers` ?? Where does this go? I'm guessing it is `config.<lang>`
+- `lsp.skip_setup`     ?? Where does this go? I'm guessing it is `config.<lang>`
 
 ### Migrating to AstroUI
 
