@@ -136,8 +136,6 @@ The following keys are introduced in v4 and have no equivalent in v3. This confi
 
 ### Plugin Changes
 
-TODO: check this list is correct
-
 - New:
   - AstroNvim
   - astrocore
