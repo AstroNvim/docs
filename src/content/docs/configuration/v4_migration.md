@@ -131,3 +131,20 @@ The following keys are introduced in v4 and have no equivalent in v3. This confi
 - Mapping modifiers are now capitalized. For example `<leader>` not longer works and must be changed to `<Leader>`.
 - `mapleader` and `maplocalleader` can be set in the `AstroNvim/astronvim` configuration spec `opts`
 - TODO: More changes from @mehalter
+
+### Plugin Changes
+
+TODO: check this list is correct
+
+- New:
+    - AstroNvim
+    - astrocore
+    - astrolsp
+    - astroui
+    - vim-illuminate
+    - todo-comments
+- Replaced:
+    - null-ls → none-ls
+    - nvim-session-manager → resession
+- Removed:
+    - SchemaStore
