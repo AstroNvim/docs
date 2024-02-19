@@ -1,6 +1,6 @@
 ---
-id: custom_plugins
-title: Custom Plugins
+id: customizing_plugins
+title: Customizing Plugins
 ---
 
 `lazy.nvim` (referred to as just _Lazy_ from now on) is a plugin manager. A plugin manager helps to manage the installation and configuration of plugins. AstroNvim is built around plugins, and hence around Lazy.
