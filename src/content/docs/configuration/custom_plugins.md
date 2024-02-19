@@ -14,7 +14,7 @@ Many people find great value in having the plugins selected and configured for t
 - Takes care of the interactions with `nvim`
 - Provides "sane" defaults for plugins
 
-Another win is that you are not locked in to the plugins that are part of AstroNvim. Many, but not all, of the plugins can be disabled if they are not to your liking. Additional plugins can be added if they suit your needs better. Finally, all of the plugins can have their configuration tuned to your liking.
+Another win is that you are not locked in to the plugins that are part of AstroNvim. Except for the `AstroNvim/*` plugins, all of the plugins can be disabled if they are not to your liking. Additional plugins can be added if they suit your needs better. Finally, all of the plugins can have their configuration tuned to your liking.
 
 Lazy is particularly feature rich in that it helps with plugin life cycle management. A few of the life cycle features are:
 
