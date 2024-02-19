@@ -17,7 +17,7 @@ export default defineConfig({
   locales,
   integrations: [
     starlight({
-      title: "AstroNvim Docs",
+      title: "AstroNvim Documentation",
       description: "The documentation website for AstroNvim.",
       favicon: "/astronvim.svg",
       head: [
@@ -114,6 +114,9 @@ export default defineConfig({
       ],
       logo: {
         src: "./src/assets/astronvim.svg",
+      },
+      components: {
+        SiteTitle: "./src/components/SiteTitle.astro",
       },
       plugins: [
         starlightDocSearch({
