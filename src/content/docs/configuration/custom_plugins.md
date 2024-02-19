@@ -3,37 +3,70 @@ id: custom_plugins
 title: Custom Plugins
 ---
 
-Plugins in AstroNvim are configured the same as using `lazy.nvim` in a configuration built from scratch. To see all available options for defining plugins in Lazy.nvim please refer to the [Lazy.nvim Plugin Spec](https://github.com/folke/lazy.nvim#-plugin-spec). Here we will go over examples of defining new plugins, overriding plugins, and disabling plugins.
+`lazy.nvim` (referred to as just _Lazy_ from now on) is a plugin manager. A plugin manager helps to manage the installation and configuration of plugins. AstroNvim is built around plugins, and hence around Lazy.
+
+The power of AstroNvim is that it selects the "best" plugins that help to make `nvim` a great environment for editing, and, more importantly configures those plugins with "reasonable" defaults.
+
+Many people find great value in having the plugins selected and configured for them. AstroNvim:
+
+- Encapsulates the complexity of plugin configuration
+- Takes care of the interactions among plugins
+- Takes care of the interactions with `nvim`
+- Provides "sane" defaults for plugins
+
+Another win is that you are not locked in to the plugins that are part of AstroNvim. Many, but not all, of the plugins can be disabled if they are not to your liking. Additional plugins can be added if they suit your needs better. Finally, all of the plugins can have their configuration tuned to your liking.
+
+Lazy is particularly feature rich in that it helps with plugin life cycle management. A few of the life cycle features are:
+
+- Installation of plugins from different sources, such as from GitHub or from a local directory.
+- Uninstalling plugins when they are no longer referenced in your configuration.
+- Lazily loading plugins meaning that plugins can be loaded only when needed, such as on some editor event happening, benefiting `nvim` startup time.
+- Compiles plugin `lua` code into native code for your system, helping with execution speed of plugin code.
+
+To see all available options for defining plugins in Lazy.nvim please refer to the [Lazy.nvim Plugin Spec](https://github.com/folke/lazy.nvim#-plugin-spec). Here we will go over examples of defining new plugins, overriding plugins, and disabling plugins.
 
 ## Defining Plugins
 
-Plugins can be added in your Neovim configuration inside of your `lua/plugins/` folder. You can create any number of Lua files in this folder that return `lazy.nvim` plugin specifications and they will automatically be loaded.
+To install and configure a plugin, a _plugin specification_ is required. Here is an example of a specification for the `catppuccin` theme:
 
-Here is an example that adds `lsp_signature.nvim`:
-
-```lua title="lua/plugins/lsp_signature.lua"
+```lua title="lua/plugins/catppuccin.lua"
 return {
-  -- add lsp_signature
   {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
+    "catppuccin/nvim",
+    name = "catppuccin",
     opts = {
-      -- configuration options go here...
+      dim_inactive = { enabled = true, percentage = 0.25 },
+      highlight_overrides = {
+        mocha = function(c)
+          return {
+            Normal = { bg = c.mantle },
+            Comment = { fg = "#7687a0" },
+            ["@tag.attribute"] = { style = {} },
+          }
+        end,
+      },
     },
-    config = function(plugin, opts)
-      require("lsp_signature").setup(opts)
-    end,
   },
 }
 ```
 
-## Overriding Plugins
+The code above resides in a file. The name of the file can be any valid filename, as long as the file's extension is `.lua`. By convention, many people name the file after the plugin that is being installed. So, in the example above, the file would be called `catppuccin.lua` and if you are following the AstroNvim template then the file would be located in the `lua/plugins` directory.
+
+The `return` statement is returning a table of tables. The outer table is a list of _plugin specifications_. Each entry in the list is a single plugin specification.
+
+The first entry in the plugin specification is the name of the plugin to load, specified in short URL form. The next two entries in the table, `name` and `opts` are Lazy recognized keys that direct Lazy on how to configure this plugin. `opts` can be a table or a function (`opts` is a table in the example above) that contains the configuration for the plugin. The structure of what is inside of `opts` is up to each plugin.
+
+To learn more about plugin specifications, see the [Lazy documentation](https://github.com/folke/lazy.nvim#-plugin-spec).
+
+That's it! When `nvim` is started, the `catppuccin` plugin will be downloaded from GitHub, installed, configured, and loaded.
+
+## Configure AstroNvim Plugins
 
 Overriding plugins are as simple as adding a plugin specification for that plugin and add modifications to the plugin specification that you want. Lazy.nvim supports extending many keys (`cmd`, `event`, `ft`, `keys`, `opts`, and `dependencies`) while other keys in the plugin specification will fully overwrite the defaults.
 
 Here are some examples of overwriting some plugins:
 
-```lua title="lua/plugins/overrided.lua" {5-10} {17-23}
+```lua title="lua/plugins/overridden.lua" {5-10} {17-23}
 return {
   {
     "AstroNvim/AstroLSP",
@@ -58,8 +91,26 @@ return {
       opts.mapping["<C-x>"] = cmp.mapping.select_next_item()
     end,
   },
+  -- customize treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      -- list like portions of a table cannot be merged naturally and require the user to merge it manually
+      -- check to make sure the key exists
+      if not opts.ensure_installed then
+        opts.ensure_installed = {}
+      end
+      vim.list_extend(opts.ensure_installed, {
+        "lua",
+        "vim",
+        -- add more arguments for adding more treesitter parsers
+      })
+    end,
+  },
 }
 ```
+
+Here is a link to all of the AstroNvim [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4/lua%2Fastronvim%2Fplugins). This is useful to see all the plugins installed by AstroNvim and see their default configuration.
 
 ### Extending Core Plugin Config Functions
 

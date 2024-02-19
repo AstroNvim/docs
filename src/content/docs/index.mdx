@@ -1,8 +1,6 @@
 ---
 id: intro
 title: Getting Started
-tableOfContents:
-  maxHeadingLevel: 2
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -54,17 +52,19 @@ color support.
 
 ## 🛠️ Installation
 
+[Our configuration template](https://github.com/AstroNvim/template) is an easy way to going with AstroNvim. The template provides a directory structure with the required files in place. Within the files some indication, through commented out code, of how to configure the feature. Here are the instructions for installing this template:
+
 <Tabs>
 
 <TabItem value="nix" label="Linux/Mac OS (Unix)" default>
 
-### Make a backup of your current nvim folder
+1. **Make a backup of your current nvim folder**
 
 ```sh
 mv ~/.config/nvim ~/.config/nvim.bak
 ```
 
-#### Clean neovim folders (Optional but recommended)
+2. **Clean neovim folders** _(Optional but recommended)_
 
 ```sh
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
@@ -72,7 +72,7 @@ mv ~/.local/state/nvim ~/.local/state/nvim.bak
 mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 
-### Clone the repository
+3. **Clone the repository**
 
 ```sh
 git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
@@ -85,19 +85,19 @@ nvim
 
 <TabItem value="windoze" label="Windows (PowerShell)" default>
 
-### Make a backup of your current nvim folder
+1. **Make a backup of your current nvim folder**
 
 ```powershell
 Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 ```
 
-### Clean old plugins (Optional but recommended)
+2. **Clean neovim folders** _(Optional but recommended)_
 
 ```powershell
 Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ```
 
-### Clone the repository
+3. **Clone the repository**
 
 ```powershell
 git clone --depth 1 https://github.com/AstroNvim/template $env:LOCALAPPDATA\nvim
@@ -127,41 +127,38 @@ docker run -w /root -it --rm alpine:edge sh -uelic '
 
 ## 📦 Setup
 
-### Install LSP
+- **Install LSP**
 
-Enter `:LspInstall` followed by the name of the server you want to install
+  Enter `:LspInstall` followed by the name of the server you want to install
 
-> Example: `:LspInstall pyright`
+  > Example: `:LspInstall pyright`
 
-### Install language parser
+- **Install language parser**
 
-Enter `:TSInstall` followed by the name of the language you want to install
+  Enter `:TSInstall` followed by the name of the language you want to install
 
-> Example: `:TSInstall python`
+  > Example: `:TSInstall python`
 
-### Install Debugger
+- **Install Debugger**
 
-Enter `:DapInstall` followed by the name of the debugger you want to install
+  Enter `:DapInstall` followed by the name of the debugger you want to install
 
-> Example: `:DapInstall python`
+  > Example: `:DapInstall python`
 
-### Manage plugins
+- **Manage plugins**
 
-Run `:Lazy check` (`<Leader>pu`) to check for plugin updates
+  - Run `:Lazy check` (`<Leader>pu`) to check for plugin updates
+  - Run `:Lazy update` (`<Leader>pU`) to apply any pending plugin updates
+  - Run `:Lazy sync` (`<Leader>pS`) to update and clean plugins
+  - Run `:Lazy clean` to remove any disabled or unused plugins
 
-Run `:Lazy update` (`<Leader>pU`) to apply any pending plugin updates
+- **Update Mason packages and plugins**
 
-Run `:Lazy sync` (`<Leader>pS`) to update and clean plugins
+  Run `:AstroUpdatePackages` (`<Leader>pa`) to update both Neovim plugins and Mason packages
 
-Run `:Lazy clean` to remove any disabled or unused plugins
+- **Reload AstroNvim** (_EXPERIMENTAL_)
 
-### Update Mason packages and plugins
-
-Run `:AstroUpdatePackages` (`<Leader>pa`) to update both Neovim plugins and Mason packages
-
-### Reload AstroNvim (_EXPERIMENTAL_)
-
-Run `:AstroReload` to reload the AstroNvim configuration and any new user configuration changes without restarting. This is currently an experimental feature and may lead to instability until the next restart.
+  Run `:AstroReload` to reload the AstroNvim configuration and any new user configuration changes without restarting. This is currently an experimental feature and may lead to instability until the next restart.
 
 ## ✨ Features
 
@@ -182,13 +179,56 @@ Run `:AstroReload` to reload the AstroNvim configuration and any new user config
 
 To begin making customizations simply treat your `nvim` folder as your own Neovim configuration! This can be synced to a git repository to backup as well. AstroNvim is simply a plugin managed by the Lazy package manager that provides it's own collection of plugins and their configurations.
 
-## 📦 Community Plugin Configurations
+### 🚀 The Starter Template
 
-To avoid duplication of effort, you can use community-provided setups from the [AstroCommunity repository](https://github.com/AstroNvim/astrocommunity). For example, to enable language tools (LSP and DAP etc.) for Rust and Python, your `plugins/community.lua` file can look like the following.
+If you followed the instructions in this guide for installation, you are probably starting out with our template configuration. This comes with the following basic structure:
 
-**Disclaimer: These setups might not always work. Think of them as VSCode extensions or AUR build scripts, separate from the main AstroNvim project. Report any issues to the [AstroCommunity](https://github.com/AstroNvim/astrocommunity) maintainers, not the AstroNvim maintainers.**
+```txt
+~/.config/nvim/
+├── README.md
+├── init.lua
+└── lua/
+    ├── community.lua
+    ├── lazy_setup.lua
+    ├── plugins/
+    │   ├── astrocore.lua
+    │   ├── astrolsp.lua
+    │   ├── astroui.lua
+    │   ├── mason.lua
+    │   ├── none-ls.lua
+    │   ├── treesitter.lua
+    │   ├── user.lua
+    │   └── vim-sandwich.lua
+    └── polish.lua
+```
 
-```lua
+:::note
+
+The list of files in the template may change over time as we fine tune what user's want in the template, so the files above may be slightly different from the actual template.
+
+:::
+
+At the top level is `init.lua`. This code bootstraps the configuration by installing [`lazy.nvim`](https://github.com/folke/lazy.nvim) if it is not already installed and then calling `lua/lazy_setup.lua` to install and configure the AstroNvim and user plugins.
+
+Looking a bit deeper, the `plugins` directory is where all plugins, except AstroNvim and AstroCommunity imports, are setup. The first three plugins are for the AstroNvim configuration. The next four plugins modify the configuration of a plugin that is part of AstroNvim (e.g.: `treesitter.lua`). The last file is not a part of the template. `vim-sandwich` specifies the installation and configuration a plugin of a user specified (i.e.: one that is not a part of AstroNvim distribution).
+
+Each file in the plugins directory can specify the installation and configuration of one or more plugins. The template generally installs and configures a single plugin per `lua` file. Further, the name of the file generally matches the name of the plugin. The one exception is `user.lua` which has multiple plugins in it - but they could be split into separate files if you wish!
+
+Be sure to check out the [Configuration/Custom Plugins](/configuration/custom_plugins) page and the [Lazy.nvim Documentation](https://github.com/folke/lazy.nvim?tab=readme-ov-file#-plugin-spec) for more details in how to define and configure plugins using `lazy.nvim`.
+
+There is nothing special about the template! It's merely a quick way to get started, and, well, recommended to get you up and running quicker. Once you have a working configuration that may be the time when you start to move things around.
+
+### 📦 AstroCommunity
+
+[AstroCommunity](https://github.com/AstroNvim/astrocommunity) is a plugin specification repository on GitHub. The specifications found there are configurations for many popular plugins that can be used to augment your configuration. There are also "language packs" that are specifications for many programming lanaguages. These are a good way to get setup with a set of tools for the languages that you are using.
+
+:::caution
+
+These setups might not always work. Think of them as VSCode extensions or AUR build scripts, separate from the main AstroNvim project. Report any issues to the [AstroCommunity](https://github.com/AstroNvim/astrocommunity) maintainers, not the AstroNvim maintainers.
+
+:::
+
+```lua title="lua/community.lua"
 return {
   -- Add the community repository of plugin specifications
   "AstroNvim/astrocommunity",
