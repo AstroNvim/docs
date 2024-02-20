@@ -112,22 +112,22 @@ v3 keys which are now handled entirely by the user in their configuration. Here 
 
 A few options were configured through global (`vim.g`) variables. These have also been moved to our core configuration plugins:
 
-| v3 `vim.g` variable              | v4 `AstroNvim/` plugin | v4 plugin `opt` key                 |
-| -------------------------------- | ---------------------- | ----------------------------------- |
-| `vim.g.autoformat_enabled`       | `astrolsp`             | `formatting.format_on_save.enabled` |
-| `vim.g.autopairs_enabled`        | `astrocore`            | `features.autopairs`                |
-| `vim.g.cmp_enabled`              | `astrocore`            | `features.cmp`                      |
-| `vim.g.codelens_enabled`         | `astrolsp`             | `features.codelens`                 |
-| `vim.g.diagnostic_mode`          | `astrolsp`             | `features.diagnostics_mode`         |
-| `vim.g.git_worktrees`            | `astrocore`            | `git_worktrees`                     |
-| `vim.g.highlighturl_enabled`     | `astrocore`            | `features.highlighturl`             |
-| `vim.g.icons_enabled`            | `AstroNvim`            | `icons_enabled`                     |
-| `vim.g.inlay_hints_enabled`      | `astrolsp`             | `features.inlay_hints`              |
-| `vim.g.lsp_handlers_enabled`     | `astrolsp`             | `features.lsp_handlers`             |
-| `vim.g.max_file`                 | `astrocore`            | `features.large_buf`                |
-| `vim.g.semantic_tokens_enabled`  | `astrolsp`             | `features.semantic_tokens`          |
-| `vim.g.ui_notifications_enabled` | `astrocore`            | `features.notifications`            |
-| `vim.g.resession_enabled`        | N/A                    | Resession is now the default        |
+| v3 `vim.g` variable        | v4 `AstroNvim/` plugin | v4 plugin `opt` key                 |
+| -------------------------- | ---------------------- | ----------------------------------- |
+| `autoformat_enabled`       | `astrolsp`             | `formatting.format_on_save.enabled` |
+| `autopairs_enabled`        | `astrocore`            | `features.autopairs`                |
+| `cmp_enabled`              | `astrocore`            | `features.cmp`                      |
+| `codelens_enabled`         | `astrolsp`             | `features.codelens`                 |
+| `diagnostic_mode`          | `astrolsp`             | `features.diagnostics_mode`         |
+| `git_worktrees`            | `astrocore`            | `git_worktrees`                     |
+| `highlighturl_enabled`     | `astrocore`            | `features.highlighturl`             |
+| `icons_enabled`            | `AstroNvim`            | `icons_enabled`                     |
+| `inlay_hints_enabled`      | `astrolsp`             | `features.inlay_hints`              |
+| `lsp_handlers_enabled`     | `astrolsp`             | `features.lsp_handlers`             |
+| `max_file`                 | `astrocore`            | `features.large_buf`                |
+| `semantic_tokens_enabled`  | `astrolsp`             | `features.semantic_tokens`          |
+| `ui_notifications_enabled` | `astrocore`            | `features.notifications`            |
+| `resession_enabled`        | N/A                    | Resession is now the default        |
 
 The following keys are introduced in v4 and have no equivalent in v3. This configuration was done through user configuration (for example in `polish.lua):
 
