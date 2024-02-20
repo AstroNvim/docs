@@ -77,29 +77,29 @@ If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum 
 
 v3 configuration options in `user/init.lua` and their new location in the core AstroNvim plugin configuration `opts`:
 
-| v3 `user/init.lua` table key | v4 plugin             | v4 plugin `opt` key         |
-| ---------------------------- | --------------------- | --------------------------- |
-| `colorscheme`                | `AstroNvim/astroui`   | `colorscheme`               |
-| `diagnostics`                | `AstroNvim/astrolsp`  | `diagnostics`               |
-| `heirline.attributes`        | `AstroNvim/astroui`   | `status.attributes`         |
-| `heirline.colors`            | `AstroNvim/astroui`   | `status.colors`             |
-| `heirline.icon_highlights`   | `AstroNvim/astroui`   | `status.icon_highlights`    |
-| `heirline.separators`        | `AstroNvim/astroui`   | `status.separators`         |
-| `highlights.init`            | `AstroNvim/astroui`   | `highlights.init`           |
-| `highlights.<colorscheme>`   | `AstroNvim/astroui`   | `highlights.<colorscheme>`  |
-| `icons`                      | `AstroNvim/astroui`   | `icons`                     |
-| `lsp.capabilities`           | `AstroNvim/astrolsp`  | `capabilities`              |
-| `lsp.config.<lsp>`           | `AstroNvim/astrolsp`  | `config.<lsp>`              |
-| `lsp.flags`                  | `AstroNvim/astrolsp`  | `flags`                     |
-| `lsp.formatting`             | `AstroNvim/astrolsp`  | `formatting`                |
-| `lsp.mappings`               | `AstroNvim/astrolsp`  | `mappings`                  |
-| `lsp.on_attach`              | `AstroNvim/astrolsp`  | `on_attach`                 |
-| `lsp.servers`                | `AstroNvim/astrolsp`  | `servers`                   |
-| `lsp.setup_handlers`         | `AstroNvim/astrolsp`  | `handlers`                  |
-| `lsp.skip_setup`             | `AstroNvim/astrolsp`  | Set `handler.<lsp> = false` |
-| `mappings`                   | `AstroNvim/astrocore` | `mappings`                  |
-| `options`                    | `AstroNvim/astrocore` | `options`                   |
-| `text_icons`                 | `AstroNvim/astroui`   | `text_icons`                |
+| v3 `user/init.lua` table key | v4 `AstroNvim/` plugin | v4 plugin `opt` key         |
+| ---------------------------- | ---------------------- | --------------------------- |
+| `colorscheme`                | `astroui`              | `colorscheme`               |
+| `diagnostics`                | `astrolsp`             | `diagnostics`               |
+| `heirline.attributes`        | `astroui`              | `status.attributes`         |
+| `heirline.colors`            | `astroui`              | `status.colors`             |
+| `heirline.icon_highlights`   | `astroui`              | `status.icon_highlights`    |
+| `heirline.separators`        | `astroui`              | `status.separators`         |
+| `highlights.init`            | `astroui`              | `highlights.init`           |
+| `highlights.<colorscheme>`   | `astroui`              | `highlights.<colorscheme>`  |
+| `icons`                      | `astroui`              | `icons`                     |
+| `lsp.capabilities`           | `astrolsp`             | `capabilities`              |
+| `lsp.config.<lsp>`           | `astrolsp`             | `config.<lsp>`              |
+| `lsp.flags`                  | `astrolsp`             | `flags`                     |
+| `lsp.formatting`             | `astrolsp`             | `formatting`                |
+| `lsp.mappings`               | `astrolsp`             | `mappings`                  |
+| `lsp.on_attach`              | `astrolsp`             | `on_attach`                 |
+| `lsp.servers`                | `astrolsp`             | `servers`                   |
+| `lsp.setup_handlers`         | `astrolsp`             | `handlers`                  |
+| `lsp.skip_setup`             | `astrolsp`             | Set `handler.<lsp> = false` |
+| `mappings`                   | `astrocore`            | `mappings`                  |
+| `options`                    | `astrocore`            | `options`                   |
+| `text_icons`                 | `astroui`              | `text_icons`                |
 
 v3 keys which are now handled entirely by the user in their configuration. Here are examples for where the configuration goes in the provided starter template:
 
@@ -112,34 +112,34 @@ v3 keys which are now handled entirely by the user in their configuration. Here 
 
 A few options were configured through global (`vim.g`) variables. These have also been moved to our core configuration plugins:
 
-| v3 `vim.g` variable              | v4 plugin             | v4 plugin `opt` key                 |
-| -------------------------------- | --------------------- | ----------------------------------- |
-| `vim.g.autoformat_enabled`       | `AstroNvim/astrolsp`  | `formatting.format_on_save.enabled` |
-| `vim.g.autopairs_enabled`        | `AstroNvim/astrocore` | `features.autopairs`                |
-| `vim.g.cmp_enabled`              | `AstroNvim/astrocore` | `features.cmp`                      |
-| `vim.g.codelens_enabled`         | `AstroNvim/astrolsp`  | `features.codelens`                 |
-| `vim.g.diagnostic_mode`          | `AstroNvim/astrolsp`  | `features.diagnostics_mode`         |
-| `vim.g.git_worktrees`            | `AstroNvim/astrocore` | `git_worktrees`                     |
-| `vim.g.highlighturl_enabled`     | `AstroNvim/astrocore` | `features.highlighturl`             |
-| `vim.g.icons_enabled`            | `AstroNvim/AstroNvim` | `icons_enabled`                     |
-| `vim.g.inlay_hints_enabled`      | `AstroNvim/astrolsp`  | `features.inlay_hints`              |
-| `vim.g.lsp_handlers_enabled`     | `AstroNvim/astrolsp`  | `features.lsp_handlers`             |
-| `vim.g.max_file`                 | `AstroNvim/astrocore` | `features.large_buf`                |
-| `vim.g.resession_enabled`        | N/A                   | Resession is now the default        |
-| `vim.g.semantic_tokens_enabled`  | `AstroNvim/astrolsp`  | `features.semantic_tokens`          |
-| `vim.g.ui_notifications_enabled` | `AstroNvim/astrocore` | `features.notifications`            |
+| v3 `vim.g` variable              | v4 `AstroNvim/` plugin | v4 plugin `opt` key                 |
+| -------------------------------- | ---------------------- | ----------------------------------- |
+| `vim.g.autoformat_enabled`       | `astrolsp`             | `formatting.format_on_save.enabled` |
+| `vim.g.autopairs_enabled`        | `astrocore`            | `features.autopairs`                |
+| `vim.g.cmp_enabled`              | `astrocore`            | `features.cmp`                      |
+| `vim.g.codelens_enabled`         | `astrolsp`             | `features.codelens`                 |
+| `vim.g.diagnostic_mode`          | `astrolsp`             | `features.diagnostics_mode`         |
+| `vim.g.git_worktrees`            | `astrocore`            | `git_worktrees`                     |
+| `vim.g.highlighturl_enabled`     | `astrocore`            | `features.highlighturl`             |
+| `vim.g.icons_enabled`            | `AstroNvim`            | `icons_enabled`                     |
+| `vim.g.inlay_hints_enabled`      | `astrolsp`             | `features.inlay_hints`              |
+| `vim.g.lsp_handlers_enabled`     | `astrolsp`             | `features.lsp_handlers`             |
+| `vim.g.max_file`                 | `astrocore`            | `features.large_buf`                |
+| `vim.g.semantic_tokens_enabled`  | `astrolsp`             | `features.semantic_tokens`          |
+| `vim.g.ui_notifications_enabled` | `astrocore`            | `features.notifications`            |
+| `vim.g.resession_enabled`        | N/A                    | Resession is now the default        |
 
 The following keys are introduced in v4 and have no equivalent in v3. This configuration was done through user configuration (for example in `polish.lua):
 
-| New key    | v4 plugin             | Description                                                                  |
-| ---------- | --------------------- | ---------------------------------------------------------------------------- |
-| `autocmds` | `AstroNvim/astrocore` | Configure global auto commands                                               |
-| `commands` | `AstroNvim/astrocore` | Configure global commands                                                    |
-| `on_keys`  | `AstroNvim/astrocore` | Configure functions on key press                                             |
-| `rooter`   | `AstroNvim/astrocore` | Configure project root detection                                             |
-| `sessions` | `AstroNvim/astrocore` | Configure session management (powered by Resession)                          |
-| `autocmds` | `AstroNvim/astrolsp`  | Configure buffer local auto commands to add when attaching a language server |
-| `commands` | `AstroNvim/astrolsp`  | Configure buffer local user commands to add when attaching a language server |
+| New key    | v4 `AstroNvim/` plugin | Description                                                                  |
+| ---------- | ---------------------- | ---------------------------------------------------------------------------- |
+| `autocmds` | `astrocore`            | Configure global auto commands                                               |
+| `commands` | `astrocore`            | Configure global commands                                                    |
+| `on_keys`  | `astrocore`            | Configure functions on key press                                             |
+| `rooter`   | `astrocore`            | Configure project root detection                                             |
+| `sessions` | `astrocore`            | Configure session management (powered by Resession)                          |
+| `autocmds` | `astrolsp`             | Configure buffer local auto commands to add when attaching a language server |
+| `commands` | `astrolsp`             | Configure buffer local user commands to add when attaching a language server |
 
 ### Other Changes
 
