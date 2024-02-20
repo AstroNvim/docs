@@ -11,7 +11,7 @@ Each of the core AstroNvim plugins have full integration with the Lua Language S
 | AstroUI   | `AstroUIOpts`   |
 | AstroLSP  | `AstroLSPOpts`  |
 
-In `lazy.nvim` there are a couple formats that the `opts` can be specified in, either a Lua table or a Lua Function. Here is the notation to specify the typing in each situation. For more information on how plugins are customized, check out the [Custom Plugins page](/configuration/custom_plugins).
+In `lazy.nvim` there are a couple formats that the `opts` can be specified in, either a Lua table or a Lua Function. Here is the notation to specify the typing in each situation. For more information on how plugins are customized, check out the [Customizing Plugins page](/configuration/customizing_plugins).
 
 ### `opts` Table
 
