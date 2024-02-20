@@ -112,6 +112,156 @@ return {
 
 Here is a link to all of the AstroNvim [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4/lua%2Fastronvim%2Fplugins). This is useful to see all the plugins installed by AstroNvim and see their default configuration.
 
+### How `opts` Overriding Works
+
+When configuring plugins the main configuration point is modifying a plugin's setup options through the `opts` key. As plugin specs are loaded in by `lazy.nvim` this field (along with others) is merged with previous settings that `lazy.nvim` has already setup. There are 2 main formats that this `opts` field can be set to. The first is a simple `table` which is directly merged using `vim.tbl_deep_extend` and the second is by using a Lua `function` that gives you complete control over the table itself.
+
+The `table` notation is the simplest method for configuration but does not cover all of the cases that users will experience which makes the `function` notation necessary in some situations. Understanding when to use each can make life much easier when doing advanced configuration. Here are a few cases in which the `table` notation may not do what you want:
+
+- When passing a `table` in Lua it is resolved immediately. This can break lazy loading and try to access modules before they are available. When passing a `function` in Lua the contents are only resolved when it is executed. This allows for safe accessing of modules when they should be available.
+- When using the `table` notation for overriding, merging works great for dictionary-like entries with a key/value pair, but does not do any actual "merging" for list-like tables. Instead the list-like table will be replaced completely. This can be resolved in the `function` notation by manually doing the list merging that you want either with something like the Lua function `table.insert` or provided Neovim functions like `vim.list_extend`.
+
+Let's take a closer look at these two notations with an example using [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter). Let's assume the default configuration for `nvim-treesitter` is:
+
+```lua
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = {
+    ensure_installed = { "lua", "vim" },
+    highlight = {
+      enable = true,
+    },
+  },
+}
+```
+
+With this specification the current `opts` would resolve to the table:
+
+```lua
+opts = {
+  ensure_installed = { "lua", "vim" },
+  highlight = {
+    enable = true,
+  },
+}
+```
+
+If you use the table notation to override these fields in your configuration like this:
+
+```lua
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = {
+    ensure_installed = { "python" },
+    highlight = {
+      enable = false,
+    },
+    indent = {
+      enable = false,
+    },
+  },
+}
+```
+
+You would end up with the `opts` resolving to:
+
+```lua
+opts = {
+  ensure_installed = { "python" },
+  highlight = {
+    enable = false,
+  },
+  indent = {
+    enable = false,
+  },
+}
+```
+
+The `highlight.enabled` and `indent.enabled` fields work as expected, but the `ensure_installed` table does not actually extend the list and instead simply overwrites it. This is a limitation of the table merging. To resolve this we can rewrite our `opts` as a function where the first parameter is the resolve plugin specification (this is rarely used but may be useful in very advanced cases) and the second parameter which is the current `opts` table:
+
+```lua
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = function(plugin, opts)
+    table.insert(opts.ensure_installed, "python")
+  end,
+}
+```
+
+You would end up with the `opts` resolving to:
+
+```lua
+opts = {
+  ensure_installed = { "lua", "vim", "python" },
+  highlight = {
+    enable = true,
+  },
+}
+```
+
+One thing to be careful for that the `table` merging handles that the function notation will not is the automatic creation of nested/parent keys. For example, if we want to set `indent.enable = true` in our `opts` with the function notation, it would look something like this:
+
+```lua
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = function(plugin, opts)
+    -- check if an `indent` table exists, if not, create it
+    if not opts.indent then
+      opts.indent = {}
+    end
+    -- once we know it is created, we can set the sub-keys
+    opts.indent.enable = true
+  end,
+}
+```
+
+You would end up with the `opts` resolving to:
+
+```lua
+opts = {
+  ensure_installed = { "lua", "vim", "python" },
+  highlight = {
+    enable = true,
+  },
+}
+```
+
+Notice how we didn't return anything from this function. In Lua, tables are passed by reference to functions which means if we modify the table directly then that will automatically apply to the plugin. We can however decide to return the table we want which will take full precedence over the `opts` table that was passed in. For example, if we wanted to completely clear the options:
+
+```lua
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = function(plugin, opts)
+    return {}
+  end,
+}
+```
+
+You would end up with the `opts` resolving to:
+
+```lua
+opts = {}
+```
+
+The last thing that this function notation provides is the ability to `require` modules safely even with lazy loading. `nvim-treesitter` isn't a great example of this, so here is a simple example with `nvim-cmp`. `nvim-cmp` allows the configuration of mappings and provides helper functions to make setting these mappings easy. Because `nvim-cmp` is lazy loaded, the function notation is required in this situation so that we don't break the lazy loading:
+
+```lua
+return {
+  "hrsh7th/nvim-cmp",
+  opts = function(plugin, opts)
+    -- opts parameter is the default options table
+    -- the function is lazy loaded so cmp is able to be required
+    local cmp = require("cmp")
+    -- make sure there is a `mapping` table in the `opts`
+    if not opts.mapping then
+      opts.mapping = {}
+    end
+    -- modify the mapping part of the table
+    opts.mapping["<C-x>"] = cmp.mapping.select_next_item()
+  end,
+}
+```
+
 ### Extending Core Plugin Config Functions
 
 Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own modules in `require("astronvim.plugins.configs.X")` (replacing `X` with the plugin `require` string) that returns the AstroNvim default config function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs`, add user snippets to `luasnip`, or add more extensions to `telescope` without having to rewrite our entire configuration function. Here is an example of adding the `media_files` Telescope extension:
