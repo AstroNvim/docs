@@ -3,9 +3,9 @@ id: v4_migration
 title: Migration to v4.0
 ---
 
-While there are many small improvements to AstroNvim in version 4, the major update is a move to to using the [`lazy.nvim`](https://github.com/folke/lazy.nvim) plugin manager for much more of the configuration.
+While there are many small improvements to AstroNvim in version 4, the major update is a move to use the [`lazy.nvim`](https://github.com/folke/lazy.nvim) plugin manager for much more of the configuration.
 
-The first major change is that the installation of AstroNvim itself is through using `lazy.nvim`. Rather than cloning AstroNvim, as was done in previous versions, AstroNvim is "just another" plugin and it is installed using `lazy.nvim`.
+The first major change is that the installation of AstroNvim itself is through `lazy.nvim`. Rather than cloning AstroNvim, as was done in previous versions, AstroNvim is "just another" plugin and it is installed using `lazy.nvim`.
 
 The second major change is that AstroNvim configuration has been split among a number of plugins, each with their own configuration. While the [AstroNvim](https://github.com/AstroNvim/AstroNvim/tree/v4) plugin is still the main plugin, it has very limited configuration options.
 
@@ -17,13 +17,13 @@ The new plugins are:
 
 All AstroNvim configuration is coordinated through those plugins above.
 
-## Setting Up a Migration Environment
-
 :::note
 
 Before getting started it is recommended to review the [Getting Started]() guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
 
 :::
+
+## Setting Up a Migration Environment
 
 Breaking your working editor configuration when migrating to v4 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while migrating to the v4 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
 
@@ -53,7 +53,7 @@ Breaking your working editor configuration when migrating to v4 will make it dif
 
 ## Configuration Options Migration
 
-:::warning
+:::caution
 
 This is a work in progress. This guide is taking shape and covers much of the migration. There are holes though! If you see something missing drop a note on the Discord `#v4_testing` channel or open a pull request on GitHub.
 
@@ -61,7 +61,7 @@ This is a work in progress. This guide is taking shape and covers much of the mi
 
 Each "Migrating" section below has an link to documentation and/or an example configuration. Each example configuration file shows the structure for configuring that plugin. The comments in each example configuration describes the configuration keys.
 
-::: note
+:::note
 
 **Recommended reading**: for each plugin there is a link to example configuration. These configurations are full of documentation and can help guide your migration!
 
@@ -75,29 +75,29 @@ If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum 
 
 v3 mapping to plugin and key:
 
-| v3 `user/init.lua` table key | v4 plugin           | v4 table key                |
-| ---------------------------- | ------------------- | --------------------------- |
-| `colorscheme`                | AstroNvim/astroui   | `colorscheme`               |
-| `diagnostics`                | AstroNvim/astrolsp  | `diagnostics`               |
-| `heirline.attributes`        | AstroNvim/astroui   | `status.attributes`         |
-| `heirline.colors`            | AstroNvim/astroui   | `status.colors`             |
-| `heirline.icon_highlights`   | AstroNvim/astroui   | `status.icon_highlights`    |
-| `heirline.separators`        | AstroNvim/astroui   | `status.separators`         |
-| `highlights.init`            | AstroNvim/astroui   | `highlights`                |
-| `highlights.<colorscheme>`   | AstroNvim/astroui   | `highlights.<colorscheme>`  |
-| `icons`                      | AstroNvim/astroui   | `icons`                     |
-| `lsp.capabilities`           | AstroNvim/astrolsp  | `capabilities`              |
-| `lsp.config.<lsp>`           | AstroNvim/astrolsp  | `config.<lsp>`              |
-| `lsp.flags`                  | AstroNvim/astrolsp  | `flags`                     |
-| `lsp.formatting`             | AstroNvim/astrolsp  | `formatting`                |
-| `lsp.mappings`               | AstroNvim/astrolsp  | `mappings`                  |
-| `lsp.on_attach`              | AstroNvim/astrolsp  | `on_attach`                 |
-| `lsp.servers`                | AstroNvim/astrolsp  | `servers`                   |
-| `lsp.setup_handlers`         | AstroNvim/astrolsp  | `handlers`                  |
-| `lsp.skip_setup`             | AstroNvim/astrolsp  | Set `handler.<lsp> = false` |
-| `mappings`                   | AstroNvim/astrocore | `mappings`                  |
-| `options`                    | AstroNvim/astrocore | `options`                   |
-| `text_icons`                 | AstroNvim/astroui   | `text_icons`                |
+| v3 `user/init.lua` table key | v4 plugin             | v4 table key                |
+| ---------------------------- | --------------------- | --------------------------- |
+| `colorscheme`                | `AstroNvim/astroui`   | `colorscheme`               |
+| `diagnostics`                | `AstroNvim/astrolsp`  | `diagnostics`               |
+| `heirline.attributes`        | `AstroNvim/astroui`   | `status.attributes`         |
+| `heirline.colors`            | `AstroNvim/astroui`   | `status.colors`             |
+| `heirline.icon_highlights`   | `AstroNvim/astroui`   | `status.icon_highlights`    |
+| `heirline.separators`        | `AstroNvim/astroui`   | `status.separators`         |
+| `highlights.init`            | `AstroNvim/astroui`   | `highlights`                |
+| `highlights.<colorscheme>`   | `AstroNvim/astroui`   | `highlights.<colorscheme>`  |
+| `icons`                      | `AstroNvim/astroui`   | `icons`                     |
+| `lsp.capabilities`           | `AstroNvim/astrolsp`  | `capabilities`              |
+| `lsp.config.<lsp>`           | `AstroNvim/astrolsp`  | `config.<lsp>`              |
+| `lsp.flags`                  | `AstroNvim/astrolsp`  | `flags`                     |
+| `lsp.formatting`             | `AstroNvim/astrolsp`  | `formatting`                |
+| `lsp.mappings`               | `AstroNvim/astrolsp`  | `mappings`                  |
+| `lsp.on_attach`              | `AstroNvim/astrolsp`  | `on_attach`                 |
+| `lsp.servers`                | `AstroNvim/astrolsp`  | `servers`                   |
+| `lsp.setup_handlers`         | `AstroNvim/astrolsp`  | `handlers`                  |
+| `lsp.skip_setup`             | `AstroNvim/astrolsp`  | Set `handler.<lsp> = false` |
+| `mappings`                   | `AstroNvim/astrocore` | `mappings`                  |
+| `options`                    | `AstroNvim/astrocore` | `options`                   |
+| `text_icons`                 | `AstroNvim/astroui`   | `text_icons`                |
 
 v3 keys configured in new ways in v4:
 
@@ -110,21 +110,21 @@ v3 keys configured in new ways in v4:
 
 The following keys are introduced in v4 and have no equivalent in v3. This configuration was done through user configuration (for example in `polish.lua):
 
-| New key         | v4 plugin           | Description                                                                    |
-| --------------- | ------------------- | ------------------------------------------------------------------------------ |
-| `autocmds`      | AstroNvim/astrocore | Configure global auto commands                                                 |
-| `commands`      | AstroNvim/astrocore | Configure global commands                                                      |
-| `features`      | AstroNvim/astrocore | Configuration options for AstroNvim itself; was a `vim.g` variable in v3       |
-| `git_worktrees` | AstroNvim/astrocore | Configure git integration for detached worktrees; was a `vim.g` variable in v3 |
-| `on_keys`       | AstroNvim/astrocore | Configure functions on key press                                               |
-| `rooter`        | AstroNvim/astrocore | Configure project root detection                                               |
-| `sessions`      | AstroNvim/astrocore | Configure session management (powered by Resession)                            |
-| `autocmds`      | AstroNvim/astrolsp  | Configure buffer local auto commands to add when attaching a language server   |
-| `commands`      | AstroNvim/astrolsp  | Configure buffer local user commands to add when attaching a language server   |
+| New key         | v4 plugin             | Description                                                                    |
+| --------------- | --------------------- | ------------------------------------------------------------------------------ |
+| `autocmds`      | `AstroNvim/astrocore` | Configure global auto commands                                                 |
+| `commands`      | `AstroNvim/astrocore` | Configure global commands                                                      |
+| `features`      | `AstroNvim/astrocore` | Configuration options for AstroNvim itself; was a `vim.g` variable in v3       |
+| `git_worktrees` | `AstroNvim/astrocore` | Configure git integration for detached worktrees; was a `vim.g` variable in v3 |
+| `on_keys`       | `AstroNvim/astrocore` | Configure functions on key press                                               |
+| `rooter`        | `AstroNvim/astrocore` | Configure project root detection                                               |
+| `sessions`      | `AstroNvim/astrocore` | Configure session management (powered by Resession)                            |
+| `autocmds`      | `AstroNvim/astrolsp`  | Configure buffer local auto commands to add when attaching a language server   |
+| `commands`      | `AstroNvim/astrolsp`  | Configure buffer local user commands to add when attaching a language server   |
 
 ### Other Changes
 
-::: caution
+:::caution
 
 `mapleader` and `maplocalleader` must be configured either before the `lazy.setup` call or in the `AstroNvim/AstorNvim` `opts` in the `lua/lazy_setup.lua` file due to the way that `lazy.nvim` plugin manager works.
 
