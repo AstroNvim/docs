@@ -213,7 +213,6 @@ Along with the new core AstroNvim plugins, we have made some other changes to ou
 - `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroLSP configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/v4/lua/astronvim/plugins/_astrolsp.lua#L45-L54)
 - The `signs` table is now a dictionary format rather than a list to more closely align with the core Neovim Lua API as well as make it easier for the user to modify. If you are customizing signs in your user configuration, the field that was previously `name` in the list is now the key in a dictionary like table.
 - The "loop" text object configured in `nvim-treesitter-text-objects` has been changed from `l` to `o` to avoid collisions with the common text object for line
-- TODO: More changes from @mehalter
 
 ### New Features
 
