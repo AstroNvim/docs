@@ -5,10 +5,10 @@ title: Project Rooter
 
 AstroNvim comes with a built in project root detection utility that can be used to update your current working directory manually or automatically. The user can customize the detection methods, configure language servers and directories to be ignored, the scope of the working directory change, as well as toggle automatic directory changing. We also provide a few user commands for interacting with the rooter:
 
-| Command          | Description                                                         |
-| ---------------- | ------------------------------------------------------------------- |
-| `:AstroRoot`     | Update the current working directory with the detected project root |
-| `:AstroRootInfo` | Check the current root detection information                        |
+| Command          | Description                                               |
+| ---------------- | --------------------------------------------------------- |
+| `:AstroRoot`     | Update current working directory to detected project root |
+| `:AstroRootInfo` | Check the current root detection information              |
 
 ## Default Configuration
 
