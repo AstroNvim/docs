@@ -75,9 +75,9 @@ The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4
 
 If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum are active and friendly! Like all humans, sometimes they are grumpy, so be nice to them! The best place to post is most likely the `#help-forum`, but poke around a few of the other channels, you never know what you will find that is useful.
 
-v3 mapping to plugin and key:
+v3 configuration options in `user/init.lua` and their new location in the core AstroNvim plugin configuration `opts`:
 
-| v3 `user/init.lua` table key | v4 plugin             | v4 table key                |
+| v3 `user/init.lua` table key | v4 plugin             | v4 plugin `opt` key         |
 | ---------------------------- | --------------------- | --------------------------- |
 | `colorscheme`                | `AstroNvim/astroui`   | `colorscheme`               |
 | `diagnostics`                | `AstroNvim/astrolsp`  | `diagnostics`               |
@@ -85,7 +85,7 @@ v3 mapping to plugin and key:
 | `heirline.colors`            | `AstroNvim/astroui`   | `status.colors`             |
 | `heirline.icon_highlights`   | `AstroNvim/astroui`   | `status.icon_highlights`    |
 | `heirline.separators`        | `AstroNvim/astroui`   | `status.separators`         |
-| `highlights.init`            | `AstroNvim/astroui`   | `highlights`                |
+| `highlights.init`            | `AstroNvim/astroui`   | `highlights.init`           |
 | `highlights.<colorscheme>`   | `AstroNvim/astroui`   | `highlights.<colorscheme>`  |
 | `icons`                      | `AstroNvim/astroui`   | `icons`                     |
 | `lsp.capabilities`           | `AstroNvim/astrolsp`  | `capabilities`              |
@@ -101,7 +101,7 @@ v3 mapping to plugin and key:
 | `options`                    | `AstroNvim/astrocore` | `options`                   |
 | `text_icons`                 | `AstroNvim/astroui`   | `text_icons`                |
 
-v3 keys configured in new ways in v4:
+v3 keys which are now handled entirely by the user in their configuration. Here are examples for where the configuration goes in the provided starter template:
 
 | `user/init.lua` table key | Starter Template Migration                                                                                                    |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -110,19 +110,36 @@ v3 keys configured in new ways in v4:
 | `polish`                  | `polish` is in the file `lua/polish.lua`                                                                                      |
 | `updater`                 | Updating uses `lazy` update features and is configured in `init.lua` using `lazy` `branch` and `version` plugin spec options. |
 
+A few options were configured through global (`vim.g`) variables. These have also been moved to our core configuration plugins:
+
+| v3 `vim.g` variable              | v4 plugin             | v4 plugin `opt` key                 |
+| -------------------------------- | --------------------- | ----------------------------------- |
+| `vim.g.autoformat_enabled`       | `AstroNvim/astrolsp`  | `formatting.format_on_save.enabled` |
+| `vim.g.autopairs_enabled`        | `AstroNvim/astrocore` | `features.autopairs`                |
+| `vim.g.cmp_enabled`              | `AstroNvim/astrocore` | `features.cmp`                      |
+| `vim.g.codelens_enabled`         | `AstroNvim/astrolsp`  | `features.codelens`                 |
+| `vim.g.diagnostic_mode`          | `AstroNvim/astrolsp`  | `features.diagnostics_mode`         |
+| `vim.g.git_worktrees`            | `AstroNvim/astrocore` | `git_worktrees`                     |
+| `vim.g.highlighturl_enabled`     | `AstroNvim/astrocore` | `features.highlighturl`             |
+| `vim.g.icons_enabled`            | `AstroNvim/AstroNvim` | `icons_enabled`                     |
+| `vim.g.inlay_hints_enabled`      | `AstroNvim/astrolsp`  | `features.inlay_hints`              |
+| `vim.g.lsp_handlers_enabled`     | `AstroNvim/astrolsp`  | `features.lsp_handlers`             |
+| `vim.g.max_file`                 | `AstroNvim/astrocore` | `features.large_buf`                |
+| `vim.g.resession_enabled`        | N/A                   | Resession is now the default        |
+| `vim.g.semantic_tokens_enabled`  | `AstroNvim/astrolsp`  | `features.semantic_tokens`          |
+| `vim.g.ui_notifications_enabled` | `AstroNvim/astrocore` | `features.notifications`            |
+
 The following keys are introduced in v4 and have no equivalent in v3. This configuration was done through user configuration (for example in `polish.lua):
 
-| New key         | v4 plugin             | Description                                                                    |
-| --------------- | --------------------- | ------------------------------------------------------------------------------ |
-| `autocmds`      | `AstroNvim/astrocore` | Configure global auto commands                                                 |
-| `commands`      | `AstroNvim/astrocore` | Configure global commands                                                      |
-| `features`      | `AstroNvim/astrocore` | Configuration options for AstroNvim itself; was a `vim.g` variable in v3       |
-| `git_worktrees` | `AstroNvim/astrocore` | Configure git integration for detached worktrees; was a `vim.g` variable in v3 |
-| `on_keys`       | `AstroNvim/astrocore` | Configure functions on key press                                               |
-| `rooter`        | `AstroNvim/astrocore` | Configure project root detection                                               |
-| `sessions`      | `AstroNvim/astrocore` | Configure session management (powered by Resession)                            |
-| `autocmds`      | `AstroNvim/astrolsp`  | Configure buffer local auto commands to add when attaching a language server   |
-| `commands`      | `AstroNvim/astrolsp`  | Configure buffer local user commands to add when attaching a language server   |
+| New key    | v4 plugin             | Description                                                                  |
+| ---------- | --------------------- | ---------------------------------------------------------------------------- |
+| `autocmds` | `AstroNvim/astrocore` | Configure global auto commands                                               |
+| `commands` | `AstroNvim/astrocore` | Configure global commands                                                    |
+| `on_keys`  | `AstroNvim/astrocore` | Configure functions on key press                                             |
+| `rooter`   | `AstroNvim/astrocore` | Configure project root detection                                             |
+| `sessions` | `AstroNvim/astrocore` | Configure session management (powered by Resession)                          |
+| `autocmds` | `AstroNvim/astrolsp`  | Configure buffer local auto commands to add when attaching a language server |
+| `commands` | `AstroNvim/astrolsp`  | Configure buffer local user commands to add when attaching a language server |
 
 ### Other Changes
 
