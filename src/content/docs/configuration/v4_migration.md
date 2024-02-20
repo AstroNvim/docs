@@ -141,6 +141,36 @@ The following keys are introduced in v4 and have no equivalent in v3. This confi
 | `autocmds` | `astrolsp`             | Configure buffer local auto commands to add when attaching a language server |
 | `commands` | `astrolsp`             | Configure buffer local user commands to add when attaching a language server |
 
+### Module Changes
+
+AstroNvim v3 also has many utility functions in `astronvim.utils` modules which users may be using in their user configuration These utility functions have been moved to the various AstroNvim core plugins. Here are the updated modules names which can be used to update `require` statements throughout the user configuration:
+
+| v3 module                          | v4 module                                 |
+| ---------------------------------- | ----------------------------------------- |
+| `astronvim.utils`                  | `astrocore`                               |
+| `astronvim.utils.buffer`           | `astrocore.buffer`                        |
+| `astronvim.utils.git`              | N/A - no longer providing a Git Lua API   |
+| `astronvim.utils.lsp`              | `astrolsp`                                |
+| `astronvim.utils.mason`            | `astrocore.mason`                         |
+| `astronvim.utils.status`           | `astroui.status`                          |
+| `astronvim.utils.status.component` | `astroui.status.component`                |
+| `astronvim.utils.status.condition` | `astroui.status.condition`                |
+| `astronvim.utils.status.env`       | `astroui.config.status`                   |
+| `astronvim.utils.status.heirline`  | `astroui.status.heirline`                 |
+| `astronvim.utils.status.hl`        | `astroui.status.hl`                       |
+| `astronvim.utils.status.init`      | `astroui.status.init`                     |
+| `astronvim.utils.status.provider`  | `astroui.status.provider`                 |
+| `astronvim.utils.status.utils`     | `astroui.status.utils`                    |
+| `astronvim.utils.ui`               | `astrocore.toggles`                       |
+| `astronvim.utils.updater`          | N/A - no longer providing our own updater |
+
+This table captures most of the changes, here are a few changes that don't exactly follow the above and need to be mentioned specifically:
+
+- A few `astronvim.util` functions were moved to `astroui` rather than `astrocore`:
+  - `get_hlgroup` → `require("astroui").get_hlgroup`
+  - `get_icon` → `require("astroui").get_icon`
+  - `get_spinner` → `require("astroui").get_spinner`
+
 ### Plugin Changes
 
 Along with the new core AstroNvim plugins, we have made some other changes to our plugin list that user's should keep in mind while performing the migration.
@@ -177,4 +207,19 @@ Along with the new core AstroNvim plugins, we have made some other changes to ou
 
 - Key codes in the keys for the mappings for AstroNvim are now normalized to match the casing in the official vimdocs. For example in v3 our mappings used `<leader>`, but this is now changed to `<Leader>`.
 - `mapleader` and `maplocalleader` must be set in the `AstroNvim/AstroNvim` configuration spec `opts` or before the `require("lazy").setup` call in your Neovim configuration.
+- `MasonUpdate` and `MasonUpdateAll` commands have been renamed to `AstroMasonUpdate` and `AstroMasonUpdateAll` to avoid conflicting with core Mason commands
+- `<Leader>u` mappings have been modified to align buffer-local and global commands to a common standard
+- The `file_info` component in the `status` API default options have been changed. If you are using `file_info` in your configuration, please refer to the new defaults in the [AstroUI Repository](https://github.com/AstroNvim/astroui/blob/main/lua/astroui/status/component.lua#L34-L57).
+- `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroLSP configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/v4/lua/astronvim/plugins/_astrolsp.lua#L45-L54)
+- The `signs` table is now a dictionary format rather than a list to more closely align with the core Neovim Lua API as well as make it easier for the user to modify. If you are customizing signs in your user configuration, the field that was previously `name` in the list is now the key in a dictionary like table.
+- The "loop" text object configured in `nvim-treesitter-text-objects` has been changed from `l` to `o` to avoid collisions with the common text object for line
 - TODO: More changes from @mehalter
+
+### New Features
+
+Some changes have been made that do not necessarily require any user intervention during the migration, but are just new features! Here are a few icon_highlights
+
+- `shift+enter` in Neo-Tree will now open the file under the cursor with the system. This is useful for opening images or other files that are not supported natively by Neovim.
+- Heirline now has a virtual environment component that is in the default configuration. If a virtual environment is activated, it will be shown in the statusline.
+- AstroNvim now has a built-in project rooting utility that can be used to update the current working directory to an automatically detected project root. `:AstroRootInfo` can be used to see the current information from the rooter and `:AstroRoot` will update the current working directory to the detected root. This can be configured in AstroCore in the `rooter` settings to update the root automatically as well as changing how the root detection works.
+- Large buffer detection has been greatly improved to make working with large files much faster. We have also added a user auto command event (`AstroLargeBuf`) which can be used to disable more things when a large buffer is detected.
