@@ -3,132 +3,222 @@ id: v4_migration
 title: Migration to v4.0
 ---
 
-The largest change between AstroNvim v3 and v4 is the transition towards shipping AstroNvim as a pack of plugins which can be distributed, updated, and configured entirely through the [`lazy.nvim` plugin manager](https://github.com/folke/lazy.nvim). Rather than cloning AstroNvim and then configuring everything through a `user/` folder inside a configuration you download, you simply set up your own Neovim configuration with `lazy.nvim`, add AstroNvim, and then import it's plugins. Nearly all of the configuration after that is done through the configuration of plugins with `lazy.nvim`. This page will help guide you through migrating your user configuration from your previous `user/` folder to your own neovim configuration that utilizes AstroNvim v4.
+While there are many small improvements to AstroNvim in version 4, the major update is a move to use the [`lazy.nvim`](https://github.com/folke/lazy.nvim) plugin manager for much more of the configuration.
+
+The first major change is that the installation of AstroNvim itself is through `lazy.nvim`. Rather than cloning AstroNvim, as was done in previous versions, AstroNvim is "just another" plugin and it is installed using `lazy.nvim`.
+
+The second major change is that AstroNvim configuration has been split among a number of plugins, each with their own configuration. While the [AstroNvim](https://github.com/AstroNvim/AstroNvim/tree/v4) plugin is still the main plugin, it has very limited configuration options.
+
+The new plugins are:
+
+- [AstroCore](https://github.com/AstroNvim/astrocore) - Provides a configuration interface for "core" AstroNvim functions, such as key mappings, auto commands, etc. The [configuration here](https://github.com/AstroNvim/astrocore#%EF%B8%8F-configuration) provides an example and `:help astrocore` provides help within Neovim. AstroCore also has an API for utility functions that help with managing and updating your configuration.
+- [AstroLSP](https://github.com/AstroNvim/astrolsp) - Provides a configuration interface for Language Server Protocol (LSP) functions. The [configuration here](https://github.com/AstroNvim/astrolsp#%EF%B8%8F-configuration) provides an example and `:help astrolsp` provides help within Neovim.
+- [AstroUI](https://github.com/AstroNvim/astroui) - Provides a configuration interface for User Interface (UI) functions, such as setting the colorscheme, highlights, icons, etc. The [configuration here](https://github.com/AstroNvim/astroui#%EF%B8%8F-configuration) provides and example and `:help astroui` provides help within Neovim.
+
+All AstroNvim configuration is coordinated through those plugins above.
+
+:::note
+
+Before getting started it is recommended to review the [Getting Started](/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
+
+:::
 
 ## Setting Up a Migration Environment
 
-With upgrading requiring dealing with breaking changes to your text editor configuration, we recommend setting up an isolated environment to safely migrate over your configuration at whatever pace you need. On the Alternative Installation reference page we have a section for setting up an [Isolated Installation](/reference/alt_install/#isolated-installation) which we would highly recommend using to do the migration from AstroNvim v3 to v4 so it does not interrupt your editor workflow and allows you to take your time. Here are some example steps to get started with a migration:
+Breaking your working editor configuration when migrating to v4 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while migrating to the v4 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
 
-1. Clone the new AstroNvim v4 template to a new configuration location:
+1. Clone the AstroNvim v4 configuration template to a new location (`astronvim_v4` is used as the example):
 
    ```sh
    git clone https://github.com/AstroNvim/template ~/.config/astronvim_v4
    rm -rf ~/.config/astronvim_v4/.git
    ```
 
-2. Run the new environment:
+2. Start `nvim` in the new environment. `nvim` should start, bootstrap itself by installing and loading `lazy.nvim`. Lazy will load all of the plugins specified by AstroNvim.
 
    ```sh
    NVIM_APPNAME=astronvim_v4 nvim
    ```
 
-3. Migrate your AstroNvim v3 configuration to your new AstroNvim v4 environment at `~/.config/astronvim_v4`. You can use your AstroNvim v3 setup to do the editing and then continue running the command in Step 2 to test the new installation.
+3. Migrate your AstroNvim v3 configuration to your new AstroNvim v4 environment at `~/.config/astronvim_v4` using the guide below. You can use your previous AstroNvim setup to do the editing and then continue running the command in Step 2 to test the new installation.
 
-4. Once you have your configuration set up how you like it, simply move it over to the default neovim configuration location:
+4. Once you have your configuration set up how you like it, move it over to the default neovim configuration location `~/.config/nvim`:
 
    ```sh
    mv ~/.config/nvim ~/.config/nvim.bak # backup old config
    mv ~/.config/astronvim_v4 ~/.config/nvim # move new config
    ```
 
-5. Run your new v4 environment simply with `nvim`
+5. Run your new v4 environment simply with `nvim` 🎉
 
 ## Migration Guide
 
-:::danger
+### Configuration Option Changes
 
-Currently this is the old v3 migration guide, this should be updated to migrating to v4
+:::caution
+
+This is a work in progress. This guide is taking shape and covers much of the migration. There are holes though! If you see something missing drop a note on the Discord `#v4_testing` channel or open a pull request on GitHub.
 
 :::
 
-## Old Configuration Options
+Each "Migrating" section below has an link to documentation and/or an example configuration. Each example configuration file shows the structure for configuring that plugin. The comments in each example configuration describes the configuration keys.
 
-These need to be converted into mappings from v3 to their locations in AstroCore/AstroUI/AstroLSP
+:::note
 
-| `user/init.lua` table key  | Expected Format            | Use Case                                                                                                                   | Alternate File Path (in `user/` folder) |
-| -------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| `colorscheme`              | `string`                   | The colorscheme to be set                                                                                                  | `colorscheme.lua`                       |
-| `diagnostics`              | `table`, `function(table)` | Modify the default vim diagnostics options                                                                                 | `diagnostics.lua`                       |
-| `heirline.attributes`      | `table`, `function(table)` | Modify the section highlight attributes used by Heirline                                                                   | `heirline/attributes.lua`               |
-| `heirline.colors`          | `table`, `function(table)` | Modify the section colors used by Heirline                                                                                 | `heirline/colors.lua`                   |
-| `heirline.icon_highlights` | `table`, `function(table)` | Modify which components should do dynamic icon highlighting Heirline                                                       | `heirline/icon_highlights.lua`          |
-| `heirline.separators`      | `table`, `function(table)` | Modify the section separators used by Heirline                                                                             | `heirline/separators.lua`               |
-| `highlights.init`          | `table`, `function(table)` | Custom highlight groups for the all colorschemes                                                                           | `highlights/init.lua`                   |
-| `highlights.<colorscheme>` | `table`, `function(table)` | Custom highlight groups for the specified theme, replace `<colorscheme>` with colorscheme name                             | `highlights/<colorscheme>.lua`          |
-| `icons`                    | `table`, `function(table)` | Customize the icons used in the user interface                                                                             | `icons.lua`                             |
-| `lazy`                     | `table`, `function(table)` | Modify the default lazy.nvim `setup` configuration table                                                                   | `lazy.lua`                              |
-| `lsp.capabilities`         | `table`, `function(table)` | Modify the default LSP `capabilities` table                                                                                | `lsp/capabilities.lua`                  |
-| `lsp.config.<lsp>`         | `table`, `function(table)` | Modify the LSP server settings, replace `<lsp>` with server name                                                           | `lsp/config/<lsp>.lua`                  |
-| `lsp.flags`                | `table`, `function(table)` | Modify the default LSP `flags` table                                                                                       | `lsp/flags.lua`                         |
-| `lsp.formatting`           | `table`, `function(table)` | Modify the formatting options described in the [LSP Configuration Page](../../recipes/advanced_lsp#controlling-formatting) | `lsp/formatting.lua`                    |
-| `lsp.mappings`             | `table`, `function(table)` | Modify the buffer mappings that are set when a language server attaches                                                    | `lsp/mappings.lua`                      |
-| `lsp.on_attach`            | `function(client, bufnr)`  | Modify the default LSP `on_attach` function                                                                                | `lsp/on_attach.lua`                     |
-| `lsp.servers`              | `table`, `function(table)` | List of language servers to be set up that are already installed without `mason`                                           | `lsp/servers.lua`                       |
-| `lsp.setup_handlers`       | `table`, `function(table)` | Modify the `lspconfig` setup handler for a given language server, each key in the table should be a language server        | `lsp/setup_handlers.lua`                |
-| `lsp.skip_setup`           | `table`, `function(table)` | List of language servers to guarantee the `lspconfig` setup is never called on automatically                               | `lsp/skip_setup.lua`                    |
-| `mappings`                 | `table`, `function(table)` | Modify the mappings table                                                                                                  | `mappings.lua`                          |
-| `options`                  | `table`, `function(table)` | The `vim.x.y` variables to be set                                                                                          | `options.lua`                           |
-| `plugins`                  | `table`                    | Modify the `lazy.nvim` plugin specifications                                                                               | `plugins/<any_files>.lua`               |
-| `polish`                   | `function()`               | Lua function to be run last. Good place for setting vim options and adding mappings                                        | `polish.lua`                            |
-| `text_icons`               | `table`, `function(table)` | Customize the text based icons used in the user interface when `vim.g.icons_enabled = false`                               | `text_icons.lua`                        |
-| `updater`                  | `table`, `function(table)` | The configuration for the AstroNvim updater                                                                                | `updater.lua`                           |
+**Recommended reading**: for each plugin there is a link to example configuration. These configurations are full of documentation and can help guide your migration!
 
-## Migrating User Configuration
+:::
 
-- **Plugin Manager Change:** With v3 we have moved away from Packer and to the new [lazy.nvim](https://github.com/folke/lazy.nvim). The options for lazy can be configured with the `lazy` user option. We have also removed all abstraction away from the plugin specifications. So the lazy.nvim docs can be referred to for the format of adding new plugins. You can also check the updated [Customizing Plugins Documentation](../custom_plugins) for defining new plugins as well as overriding core plugins.
+The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4/lua%2Fastronvim%2Fplugins) in the AstroNvim codebase itself are also a good reference to learn how to configure.
 
-  - Lazy also handles overriding options and setup functions automatically so we have removed all of the `plugins.X` user options for overriding the setup tables for the core provided plugins. These can be set up, extended, and configured similar to any other plugin that you are adding.
-  - **Note:** The default options for lazy sets `lazy = true` for each plugin. This means plugins should either be configured appropriately for lazy loading or use `lazy = false` if you do not want a plugin to be lazy loaded
-  - The `user/plugins/` folder is added to the Lazy plugin specifications to be imported. This allows you to add lists of plugins to any files in the `user/plugins/` folder and they will be used appropriately. This will allow you to organize your plugins in any way you would prefer.
+**Please also read the [Other Changes section](./#other-changes)** - there are a number of changes that are not just "move some config from one place to another". For example, in key mapping `<leader>` is no longer recognized.
 
-- `astronvim.file_plugins` and `astronvim.git_plugins` tables have been removed in favor of a `User` `autocmd` model. Wherever you are using `astronvim.file_plugins` or `astronvim.git_plugins` to lazy load your plugins, please switch to lazy loading on the user events `User AstroFile` and `User AstroGitFile`. More details for these can be found in the updated [Customizing Plugins Documentation](../custom_plugins).
+If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum are active and friendly! Like all humans, sometimes they are grumpy, so be nice to them! The best place to post is most likely the `#help-forum`, but poke around a few of the other channels, you never know what you will find that is useful.
 
-- A large restructuring of our internal utilities has taken place.
+v3 configuration options in `user/init.lua` and their new location in the core AstroNvim plugin configuration `opts`:
 
-  - Our `core` module has been renamed to `astronvim` so anywhere you use `require("core...")` will need to be replaced with `require("astronvim...")`
-  - Most utility functions in the global `astronvim` variable have been separated into specific modules and can be accessed with require such as: `require("astronvim.utils")`. Commonly used changes are: `astronvim.lsp` is now `require("astronvim.utils.lsp")`, `astronvim.status` is now `require("astronvim.utils.status")`, and most of the various utilities are now just in `require("astronvim.utils")`. Please check out the updated API documentation here for specific details and finding specific functions: [api.astronvim.com](https://api.astronvim.com).
+| v3 `user/init.lua` table key | v4 `AstroNvim/` plugin | v4 plugin `opt` key         |
+| ---------------------------- | ---------------------- | --------------------------- |
+| `colorscheme`                | `astroui`              | `colorscheme`               |
+| `diagnostics`                | `astrolsp`             | `diagnostics`               |
+| `heirline.attributes`        | `astroui`              | `status.attributes`         |
+| `heirline.colors`            | `astroui`              | `status.colors`             |
+| `heirline.icon_highlights`   | `astroui`              | `status.icon_highlights`    |
+| `heirline.separators`        | `astroui`              | `status.separators`         |
+| `highlights.init`            | `astroui`              | `highlights.init`           |
+| `highlights.<colorscheme>`   | `astroui`              | `highlights.<colorscheme>`  |
+| `icons`                      | `astroui`              | `icons`                     |
+| `lsp.capabilities`           | `astrolsp`             | `capabilities`              |
+| `lsp.config.<lsp>`           | `astrolsp`             | `config.<lsp>`              |
+| `lsp.flags`                  | `astrolsp`             | `flags`                     |
+| `lsp.formatting`             | `astrolsp`             | `formatting`                |
+| `lsp.mappings`               | `astrolsp`             | `mappings`                  |
+| `lsp.on_attach`              | `astrolsp`             | `on_attach`                 |
+| `lsp.servers`                | `astrolsp`             | `servers`                   |
+| `lsp.setup_handlers`         | `astrolsp`             | `handlers`                  |
+| `lsp.skip_setup`             | `astrolsp`             | Set `handler.<lsp> = false` |
+| `mappings`                   | `astrocore`            | `mappings`                  |
+| `options`                    | `astrocore`            | `options`                   |
+| `text_icons`                 | `astroui`              | `text_icons`                |
 
-- We have removed Bufferline and are now using Heirline and `astronvim.utils.status` (previously was in `astronvim.status` but is now accessed with `require("astronvim.utils.status")`) for our own performant and custom tabline.
+v3 keys which are now handled entirely by the user in their configuration. Here are examples for where the configuration goes in the provided starter template:
 
-- `:AstroReload` has been removed. There are a couple reasons for this, it was never very reliable and hard to maintain and lazy.nvim strictly does not support hot reloading neovim configurations.
+| `user/init.lua` table key | Starter Template Migration                                                                                                    |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `lazy`                    | `lazy` is bootstrapped through `init.lua` and configured using `lua/lazy_setup.lua`                                           |
+| `plugins`                 | Plugins are in the directory `lua/plugins/<any_files>.lua`                                                                    |
+| `polish`                  | `polish` is in the file `lua/polish.lua`                                                                                      |
+| `updater`                 | Updating uses `lazy` update features and is configured in `init.lua` using `lazy` `branch` and `version` plugin spec options. |
 
-- The `require("astronvim.utils.status").component.macro_recording` status component has been removed. Please use the improved `require("astronvim.utils.status").component.cmd_info` component.
+A few options were configured through global (`vim.g`) variables. These have also been moved to our core configuration plugins:
 
-- `lsp.server-settings` has been renamed to `lsp.config`. If you have the `["server-settings"]` table in your `user/init.lua` file, just rename it to `config`. If you have the folder `user/lsp/server-settings`, just rename the folder to `user/lsp/config`.
+| v3 `vim.g` variable        | v4 `AstroNvim/` plugin | v4 plugin `opt` key                 |
+| -------------------------- | ---------------------- | ----------------------------------- |
+| `autoformat_enabled`       | `astrolsp`             | `formatting.format_on_save.enabled` |
+| `autopairs_enabled`        | `astrocore`            | `features.autopairs`                |
+| `cmp_enabled`              | `astrocore`            | `features.cmp`                      |
+| `codelens_enabled`         | `astrolsp`             | `features.codelens`                 |
+| `diagnostic_mode`          | `astrolsp`             | `features.diagnostics_mode`         |
+| `git_worktrees`            | `astrocore`            | `git_worktrees`                     |
+| `highlighturl_enabled`     | `astrocore`            | `features.highlighturl`             |
+| `icons_enabled`            | `AstroNvim`            | `icons_enabled`                     |
+| `inlay_hints_enabled`      | `astrolsp`             | `features.inlay_hints`              |
+| `lsp_handlers_enabled`     | `astrolsp`             | `features.lsp_handlers`             |
+| `max_file`                 | `astrocore`            | `features.large_buf`                |
+| `semantic_tokens_enabled`  | `astrolsp`             | `features.semantic_tokens`          |
+| `ui_notifications_enabled` | `astrocore`            | `features.notifications`            |
+| `resession_enabled`        | N/A                    | Resession is now the default        |
 
-- `luasnip` options table has been removed. Please see the updated [Custom Snippets Documentation](../../recipes/snippets) for the new way to extend the default configuration of LuaSnip to add new loaders.
+The following keys are introduced in v4 and have no equivalent in v3. This configuration was done through user configuration (for example in `polish.lua):
 
-- `which-key` options table has been removed. Which-key menu titles can now be easily added into the `mappings` table by setting a binding to a table with the `name` property set and it will be passed to `which-key`. For example, you can add the following to the `mappings` table: `["<Leader>b"] = { name = "Buffer" }`.
+| New key    | v4 `AstroNvim/` plugin | Description                                                                  |
+| ---------- | ---------------------- | ---------------------------------------------------------------------------- |
+| `autocmds` | `astrocore`            | Configure global auto commands                                               |
+| `commands` | `astrocore`            | Configure global commands                                                    |
+| `on_keys`  | `astrocore`            | Configure functions on key press                                             |
+| `rooter`   | `astrocore`            | Configure project root detection                                             |
+| `sessions` | `astrocore`            | Configure Resession session management                                       |
+| `autocmds` | `astrolsp`             | Configure buffer local auto commands to add when attaching a language server |
+| `commands` | `astrolsp`             | Configure buffer local user commands to add when attaching a language server |
 
-- `nvim-autopairs` options table has been removed. Please see the updated [Customize Autopairs Documentation](../../recipes/autopairs) for the new way to extend the default configuration of autopairs and adding more rules.
+### Module Changes
 
-- `cmp` options table has been removed. Please see the updated [Customize cmp Completion Documentation](../../recipes/cmp) for the new way to extend the default configuration of cmp and running more `cmp` setup functions.
+AstroNvim v3 also has many utility functions in `astronvim.utils` modules which users may be using in their user configuration These utility functions have been moved to the various AstroNvim core plugins. Here are the updated modules names which can be used to update `require` statements throughout the user configuration:
 
-- `mason-lspconfig`, `mason-null-ls`, and `mason-nvim-dap` options tables have been removed, please use the new plugin notation for extending these options like adding custom setup handlers. This is described in the [Extending Core Plugin Config Functions Documentation](../custom_plugins#extending-core-plugin-config-functions).
+| v3 module                          | v4 module                                 |
+| ---------------------------------- | ----------------------------------------- |
+| `astronvim.utils`                  | `astrocore`                               |
+| `astronvim.utils.buffer`           | `astrocore.buffer`                        |
+| `astronvim.utils.git`              | N/A - no longer providing a Git Lua API   |
+| `astronvim.utils.lsp`              | `astrolsp`                                |
+| `astronvim.utils.mason`            | `astrocore.mason`                         |
+| `astronvim.utils.status`           | `astroui.status`                          |
+| `astronvim.utils.status.component` | `astroui.status.component`                |
+| `astronvim.utils.status.condition` | `astroui.status.condition`                |
+| `astronvim.utils.status.env`       | `astroui.config.status`                   |
+| `astronvim.utils.status.heirline`  | `astroui.status.heirline`                 |
+| `astronvim.utils.status.hl`        | `astroui.status.hl`                       |
+| `astronvim.utils.status.init`      | `astroui.status.init`                     |
+| `astronvim.utils.status.provider`  | `astroui.status.provider`                 |
+| `astronvim.utils.status.utils`     | `astroui.status.utils`                    |
+| `astronvim.utils.ui`               | `astrocore.toggles`                       |
+| `astronvim.utils.updater`          | N/A - no longer providing our own updater |
 
-- `default_theme` has been migrated to a dedicated plugin that can be used outside of AstroNvim as well at [AstroNvim/astrotheme](https://github.com/AstroNvim/astrotheme). This can be customized and configured the same as any other plugin, check the README for details on the `setup` function.
+This table captures most of the changes, here are a few changes that don't exactly follow the above and need to be mentioned specifically:
 
-- The bindings in `cmp` to scroll the preview window for a completion item have moved to `<c-u>` and `<c-d>`
+- A few `astronvim.util` functions were moved to `astroui` rather than `astrocore`:
+  - `get_hlgroup` → `require("astroui").get_hlgroup`
+  - `get_icon` → `require("astroui").get_icon`
+  - `get_spinner` → `require("astroui").get_spinner`
 
-- `<Leader>p` mappings for package and plugin management have been cleaned up to follow a common format amongst each other. `<Leader>ps` is now for checking Plugin Status and `<Leader>pS` is for syncing plugins. Mason mappings have been moved to `<Leader>pm` and `<Leader>pM` for Mason Status and Mason Update respectively.
+### Plugin Changes
 
-- The dashboard mapping has been changed from `<Leader>d` to `<Leader>h` for the "Home Screen"
+Along with the new core AstroNvim plugins, we have made some other changes to our plugin list that user's should keep in mind while performing the migration.
 
-- The debugging menu has been moved from `<Leader>D` to `<Leader>d` for quicker and more comfortable usage.
+- Added:
+  - [`AstroNvim/AstroNvim`](https://github.com/AstroNvim/AstroNvim)
+    - AstroNvim is now formatted as a plugin that provides plugin specifications to `lazy.nvim` through `import`.
+  - [`AstroNvim/astrocore`](https://github.com/AstroNvim/astrocore)
+    - The core configuration mechanism for AstroNvim for configuring things such as auto commands, mappings, vim options, session management, etc.
+  - [`AstroNvim/astrolsp`](https://github.com/AstroNvim/astrolsp)
+    - The core LSP configuration mechanism for AstroNvim which provides a single place of configuration that interfaces between the various LSP plugins.
+  - [`AstroNvim/astroui`](https://github.com/AstroNvim/astroui)
+    - The UI configuration mechanism for providing a unified interface such as icon and highlight configuration as well as our extensive `status` Lua API for building our `statusline`, `tabline`, `winbar`, and `statuscolumn`
+  - [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)
+    - provides more general and performant highlighting of the word under the cursor. If you were previously removing the `augroup` `lsp_document_highlight`, we are no longer creating that `augroup` and instead you should just disable (or configure) this plugin.
+  - [`folke/todo-comments.nvim`](https://github.com/folke/todo-comments.nvim)
+    - provides highlighting of known comment strings like `TODO:`.
+- Changed:
+  - [`jose-elias-alvarez/null-ls.nvim`](https://github.com/jose-elias-alvarez/null-ls.nvim) → [`nvimtools/none-ls.nvim`](https://github.com/nvimtools/none-ls.nvim)
+    - `null-ls` was archived by the author and `none-ls` is a maintainer fork. All `require`s are the same, but if you are configuring `null-ls` in your plugins anywhere be sure to update the repository to `nvimtools/none-ls.nvim`.
+  - [`Shatur/neovim-session-manager`](https://github.com/Shatur/neovim-session-manager) → [`stevearc/resession.nvim`](https://github.com/stevearc/resession.nvim)
+    - `resession.nvim` provides a deeper and more configurable Lua API for building up our session management. This allows us to take into account our tab-local buffers when saving and restoring sessions. Similar to how `heirline` provides a framework for building statuslines, `resession` provides a framework for session management. We have added a few easy to configure options in AstroCore under the `sessions` table in the configuration opts for easily configuring auto saving of sessions and rules for ignoring buffers when saving. For advanced configuration please check out the extensive [Ressesion Documentation](https://github.com/stevearc/resession.nvim/) and our [Session Management Recipes](/recipes/sessions).
+- Removed:
+  - [`b0o/SchemaStore.nvim`](https://github.com/b0o/SchemaStore.nvim)
+    - We are no longer providing `SchemaStore.nvim` out of the box. This will be provided as needed in the AstroCommunity language packs.
 
-- `H` and `L` have been changed to `[b` and `]b` respectively for changing tabs in the UI. This is for both switching buffers as well as neo-tree sources in the explorer. This can be changed in the your user configuration by adding the following entries to your `mappings.n` table (This uses an internal `astronvim.utils.buffer` function that follows the tab positioning and also allows for using a number to move by multiple tabs at once):
+### Other Changes
 
-```lua
-    L = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
-    H = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
-```
+:::caution
 
-- `header` option has been removed in favor of decreasing abstractions. Check the updated [Dashboard Customizations Documentation](../../recipes/alpha)
+`mapleader` and `maplocalleader` must be configured either before the `lazy.setup` call or in the `AstroNvim/AstroNvim` `opts` (This is in the `lua/lazy_setup.lua` file in the official template). This is required due to the way that `lazy.nvim` plugin manager works and how Neovim creates mappings with the leaders.
 
-- `<Leader>s` has been unified with the `<Leader>f` menu rather than spreading the Telescope mappings out across two menus. Please check the new mappings by pressing `<Leader>f` or in the updated [Mappings Documentation](/mappings)
+:::
 
-- Heirline has moved to a more sustainable configuration format for their `setup` call. Before it was configured with `require("heirline").setup(statusline, winbar, tabline)`, this has moved to a new format with a single table like `require("heirline").setup({ statusline = statusline, winbar = winbar, tabline = tabline, statuscolumn = statuscolumn })`. If you have a custom Heirline configuration please check out the updated [Customizing Statusline Documentation](../../recipes/status) as well as the updated [Heirline Documentation](https://github.com/rebelot/heirline.nvim/blob/master/cookbook.md). (_Note:_ also that along with all of the other core plugin setups, the abstractions have been removed and you will need to update to the new Lazy syntax described in the [Custom Plugins Documentation](../custom_plugins#overriding-core-plugins))
+- Key codes in the keys for the mappings for AstroNvim are now normalized to match the casing in the official vimdocs. For example in v3 our mappings used `<leader>`, but this is now changed to `<Leader>`.
+- `mapleader` and `maplocalleader` must be set in the `AstroNvim/AstroNvim` configuration spec `opts` or before the `require("lazy").setup` call in your Neovim configuration.
+- `MasonUpdate` and `MasonUpdateAll` commands have been renamed to `AstroMasonUpdate` and `AstroMasonUpdateAll` to avoid conflicting with core Mason commands
+- `<Leader>u` mappings have been modified to align buffer-local and global commands to a common standard
+- The `file_info` component in the `status` API default options have been changed. If you are using `file_info` in your configuration, please refer to the new defaults in the [AstroUI Repository](https://github.com/AstroNvim/astroui/blob/main/lua/astroui/status/component.lua#L34-L57).
+- `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroLSP configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/v4/lua/astronvim/plugins/_astrolsp.lua#L45-L54)
+- The `signs` table is now a dictionary format rather than a list to more closely align with the core Neovim Lua API as well as make it easier for the user to modify. If you are customizing signs in your user configuration, the field that was previously `name` in the list is now the key in a dictionary like table.
+- The "loop" text object configured in `nvim-treesitter-text-objects` has been changed from `l` to `o` to avoid collisions with the common text object for line
 
-- `lsp.skip_setup` option has been removed as the new and improved `lsp.setup_handlers` option makes this easy. If you are using this option for LSP specific plugins, check up the updated [Advanced LSP Setup Documentation](../../recipes/advanced_lsp#lsp-specific-plugins). This page also includes the new format for setting these plugins up with Lazy.nvim.
+### New Features
 
-- The `default_tbl(override_tbl, default_tbl)` internal function has been removed and replaced with `extend_tbl(default_tbl, override_tbl)`. If you use the original function anywhere in your config, remember to rename it and change the order of the parameters. Also note that this now lives in `astronvim.utils` rather than the global `astronvim` table. This can be accessed with `require("astronvim.utils").extend_tbl(default_tbl, override_tbl)`.
+Some changes have been made that do not necessarily require any user intervention during the migration, but are just new features! Here are a few icon_highlights
+
+- `shift+enter` in Neo-Tree will now open the file under the cursor with the system. This is useful for opening images or other files that are not supported natively by Neovim.
+- Heirline now has a virtual environment component that is in the default configuration. If a virtual environment is activated, it will be shown in the statusline.
+- AstroNvim now has a built-in project rooting utility that can be used to update the current working directory to an automatically detected project root. `:AstroRootInfo` can be used to see the current information from the rooter and `:AstroRoot` will update the current working directory to the detected root. This can be configured in AstroCore in the `rooter` settings to update the root automatically as well as changing how the root detection works.
+- Large buffer detection has been greatly improved to make working with large files much faster. We have also added a user auto command event (`AstroLargeBuf`) which can be used to disable more things when a large buffer is detected.
