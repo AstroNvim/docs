@@ -178,3 +178,37 @@ AstroNvim generally relies on `<Leader>` driven mappings, which is default set t
 | Open Toggle node         | `Leader + tn`           |
 | Open Toggle Python       | `Leader + tp`           |
 | Open Toggle btm          | `Leader + tt`           |
+
+## UI/UX Mappings
+
+| Action                                 | Mappings       |
+| -------------------------------------- | -------------- |
+| Toggle autopairs                       | `Leader + ua`  |
+| Toggle automatic root detection        | `Leader + uA`  |
+| Toggle background                      | `Leader + ub`  |
+| Toggle autocompletion (buffer)         | `Leader + uc`  |
+| Toggle autocompletion (global)         | `Leader + uC`  |
+| Toggle diagnostics                     | `Leader + ud`  |
+| Dismiss notifications                  | `Leader + uD`  |
+| Toggle autoformatting (buffer)         | `Leader + uf`  |
+| Toggle autoformatting (global)         | `Leader + uF`  |
+| Toggle signcolumn                      | `Leader + ug`  |
+| Toggle foldcolumn                      | `Leader + u>`  |
+| Toggle LSP inlay hints (buffer)        | `Leader + uh`  |
+| Toggle indent setting                  | `Leader + ui`  |
+| Toggle indent guides                   | `Leader + u\|` |
+| Toggle statusline                      | `Leader + ul`  |
+| Toggle CodeLens                        | `Leader + uL`  |
+| Change line numbering                  | `Leader + un`  |
+| Toggle notifications                   | `Leader + uN`  |
+| Toggle paste mode                      | `Leader + up`  |
+| Toggle reference highlighting (buffer) | `Leader + ur`  |
+| Toggle reference highlighting (global) | `Leader + uR`  |
+| Toggle spellcheck                      | `Leader + us`  |
+| Toggle conceal                         | `Leader + uS`  |
+| Toggle tabline                         | `Leader + ut`  |
+| Toggle URL highlighting                | `Leader + uu`  |
+| Toggle wrap                            | `Leader + uw`  |
+| Toggle syntax highlighting (buffer)    | `Leader + uy`  |
+| Toggle LSP semantic tokens (buffer)    | `Leader + uY`  |
+| Toggle color highlighting              | `Leader + uz`  |
