@@ -19,7 +19,7 @@ All AstroNvim configuration is coordinated through those plugins above.
 
 :::note
 
-Before getting started it is recommended to review the [Getting Started]() guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
+Before getting started it is recommended to review the [Getting Started](/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
 
 :::
 
