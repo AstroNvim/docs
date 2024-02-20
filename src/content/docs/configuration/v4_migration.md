@@ -51,7 +51,9 @@ Breaking your working editor configuration when migrating to v4 will make it dif
 
 5. Run your new v4 environment simply with `nvim` 🎉
 
-## Configuration Options Migration
+## Migration Guide
+
+### Configuration Option Changes
 
 :::caution
 
@@ -126,25 +128,36 @@ The following keys are introduced in v4 and have no equivalent in v3. This confi
 
 :::caution
 
-`mapleader` and `maplocalleader` must be configured either before the `lazy.setup` call or in the `AstroNvim/AstorNvim` `opts` in the `lua/lazy_setup.lua` file due to the way that `lazy.nvim` plugin manager works.
+`mapleader` and `maplocalleader` must be configured either before the `lazy.setup` call or in the `AstroNvim/AstroNvim` `opts` (This is in the `lua/lazy_setup.lua` file in the official template). This is required due to the way that `lazy.nvim` plugin manager works and how Neovim creates mappings with the leaders.
 
 :::
 
-- Mapping modifiers are now capitalized. For example `<leader>` not longer works and must be changed to `<Leader>`.
-- `mapleader` and `maplocalleader` can be set in the `AstroNvim/astronvim` configuration spec `opts`
+- Key codes in the keys for the mappings for AstroNvim are now normalized to match the casing in the official vimdocs. For example in v3 our mappings used `<leader>`, but this is now changed to `<Leader>`.
+- `mapleader` and `maplocalleader` must be set in the `AstroNvim/AstroNvim` configuration spec `opts` or before the `require("lazy").setup` call in your Neovim configuration.
 - TODO: More changes from @mehalter
 
-### Plugin Changes
+## Plugin Changes
 
-- New:
-  - AstroNvim
-  - astrocore
-  - astrolsp
-  - astroui
-  - vim-illuminate
-  - todo-comments
-- Replaced:
-  - null-ls → none-ls
-  - nvim-session-manager → resession
+Along with the new core AstroNvim plugins, we have made some other changes to our plugin list that user's should keep in mind while performing the migration.
+
+- Added:
+  - [`AstroNvim/AstroNvim`](https://github.com/AstroNvim/AstroNvim)
+    - AstroNvim is now formatted as a plugin that provides plugin specifications to `lazy.nvim` through `import`.
+  - [`AstroNvim/astrocore`](https://github.com/AstroNvim/astrocore)
+    - The core configuration mechanism for AstroNvim for configuring things such as auto commands, mappings, vim options, session management, etc.
+  - [`AstroNvim/astrolsp`](https://github.com/AstroNvim/astrolsp)
+    - The core LSP configuration mechanism for AstroNvim which provides a single place of configuration that interfaces between the various LSP plugins.
+  - [`AstroNvim/astroui`](https://github.com/AstroNvim/astroui)
+    - The UI configuration mechanism for providing a unified interface such as icon and highlight configuration as well as our extensive `status` Lua API for building our `statusline`, `tabline`, `winbar`, and `statuscolumn`
+  - [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)
+    - provides more general and performant highlighting of the word under the cursor. If you were previously removing the `augroup` `lsp_document_highlight`, we are no longer creating that `augroup` and instead you should just disable (or configure) this plugin.
+  - [`folke/todo-comments.nvim`](https://github.com/folke/todo-comments.nvim)
+    - provides highlighting of known comment strings like `TODO:`.
+- Changed:
+  - [`jose-elias-alvarez/null-ls.nvim`](https://github.com/jose-elias-alvarez/null-ls.nvim) → [`nvimtools/none-ls.nvim`](https://github.com/nvimtools/none-ls.nvim)
+    - `null-ls` was archived by the author and `none-ls` is a maintainer fork. All `require`s are the same, but if you are configuring `null-ls` in your plugins anywhere be sure to update the repository to `nvimtools/none-ls.nvim`.
+  - [`Shatur/neovim-session-manager`](https://github.com/Shatur/neovim-session-manager) → [`stevearc/resession.nvim`](https://github.com/stevearc/resession.nvim)
+    - `resession.nvim` provides a deeper and more configurable Lua API for building up our session management. This allows us to take into account our tab-local buffers when saving and restoring sessions. Similar to how `heirline` provides a framework for building statuslines, `resession` provides a framework for session management. We have added a few easy to configure options in AstroCore under the `sessions` table in the configuration opts for easily configuring auto saving of sessions and rules for ignoring buffers when saving. For advanced configuration please check out the extensive [Ressesion Documentation](https://github.com/stevearc/resession.nvim/) and our [Session Management Recipes](). TODO: CREATE SESSION MANAGEMENT RECIPE PAGE AND UPDATE THIS LINK @mehalter
 - Removed:
-  - SchemaStore
+  - [`b0o/SchemaStore.nvim`](https://github.com/b0o/SchemaStore.nvim)
+    - We are no longer providing `SchemaStore.nvim` out of the box. This will be provided as needed in the AstroCommunity language packs.
