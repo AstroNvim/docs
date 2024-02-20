@@ -141,19 +141,7 @@ The following keys are introduced in v4 and have no equivalent in v3. This confi
 | `autocmds` | `astrolsp`             | Configure buffer local auto commands to add when attaching a language server |
 | `commands` | `astrolsp`             | Configure buffer local user commands to add when attaching a language server |
 
-### Other Changes
-
-:::caution
-
-`mapleader` and `maplocalleader` must be configured either before the `lazy.setup` call or in the `AstroNvim/AstroNvim` `opts` (This is in the `lua/lazy_setup.lua` file in the official template). This is required due to the way that `lazy.nvim` plugin manager works and how Neovim creates mappings with the leaders.
-
-:::
-
-- Key codes in the keys for the mappings for AstroNvim are now normalized to match the casing in the official vimdocs. For example in v3 our mappings used `<leader>`, but this is now changed to `<Leader>`.
-- `mapleader` and `maplocalleader` must be set in the `AstroNvim/AstroNvim` configuration spec `opts` or before the `require("lazy").setup` call in your Neovim configuration.
-- TODO: More changes from @mehalter
-
-## Plugin Changes
+### Plugin Changes
 
 Along with the new core AstroNvim plugins, we have made some other changes to our plugin list that user's should keep in mind while performing the migration.
 
@@ -178,3 +166,15 @@ Along with the new core AstroNvim plugins, we have made some other changes to ou
 - Removed:
   - [`b0o/SchemaStore.nvim`](https://github.com/b0o/SchemaStore.nvim)
     - We are no longer providing `SchemaStore.nvim` out of the box. This will be provided as needed in the AstroCommunity language packs.
+
+### Other Changes
+
+:::caution
+
+`mapleader` and `maplocalleader` must be configured either before the `lazy.setup` call or in the `AstroNvim/AstroNvim` `opts` (This is in the `lua/lazy_setup.lua` file in the official template). This is required due to the way that `lazy.nvim` plugin manager works and how Neovim creates mappings with the leaders.
+
+:::
+
+- Key codes in the keys for the mappings for AstroNvim are now normalized to match the casing in the official vimdocs. For example in v3 our mappings used `<leader>`, but this is now changed to `<Leader>`.
+- `mapleader` and `maplocalleader` must be set in the `AstroNvim/AstroNvim` configuration spec `opts` or before the `require("lazy").setup` call in your Neovim configuration.
+- TODO: More changes from @mehalter
