@@ -144,6 +144,12 @@ export default defineConfig({
           translations: {},
         },
         {
+          label: "AstroCommunity",
+          link: "/astrocommunity",
+          collapsed: true,
+          translations: {},
+        },
+        {
           label: "Mappings",
           link: "/mappings",
           collapsed: true,
