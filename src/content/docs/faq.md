@@ -7,7 +7,7 @@ Here are some common questions that users have and their answers!
 
 ## How do I add plugin X to my configuration?
 
-AstroNvim provides a community-driven project called [AstroCommunity](https://github.com/AstroNvim/astrocommunity) to which every user is able to contribute plugin configurations. It is recommended to look there first since you can decide to either import a plugin specification if it's available or use it as a basis for your own customized specification.
+AstroNvim provides a community-driven project called [AstroCommunity](/astrocommunity) to which every user is able to contribute plugin configurations. It is recommended to look there first since you can decide to either import a plugin specification if it's available or use it as a basis for your own customized specification.
 
 If a plugin is missing feel free to contribute it using a pull request. Please just make sure to read through the [AstroCommunity Contribution Guidelines](https://github.com/AstroNvim/astrocommunity/blob/main/CONTRIBUTING.md) before contributing. Otherwise please refer to [this section](#how-do-i-customize-astronvim) and develop a general understanding for the specification of plugins.
 
