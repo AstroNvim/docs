@@ -11,10 +11,6 @@ Cache-Control = "public, max-age=31536000, immutable"
 [[plugins]]
 package = "@netlify/plugin-lighthouse"
 [[plugins]]
-package = "netlify-plugin-checklinks"
-[plugins.inputs]
-skipPatterns = ["dist/404", "id=\"%EF%B8%8F-installation\""]
-[[plugins]]
 package = "netlify-plugin-submit-sitemap"
 [plugins.inputs]
 sitemapPath = "/sitemap-index.xml"

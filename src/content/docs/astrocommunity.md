@@ -1,6 +1,6 @@
 ---
 id: astrocommunity
-title: AstroCommunity
+title: 📦 AstroCommunity
 ---
 
 [AstroCommunity](https://github.com/AstroNvim/astrocommunity) is a community driven repository that acts as essentially a marketplace for additional configuration pieces provided as `lazy.nvim` specifications similar to how VS Code extensions work. These pieces range from single plugins to entire collections for state of the art language support.
@@ -15,7 +15,7 @@ The entries in AstroCommunity are fully driven and maintained by the AstroNvim c
 
 :::
 
-## 🛠️ Usage
+## 🧰 Installation
 
 Similar to how AstroNvim is installed in your configuration, AstroCommunity is installed as a plugin and then each entry is included with an `import` statement. It is important that these imports happen after the main AstroNvim import and before the user's `plugins/` folder. This guarantees that the user modifications made on top of AstroCommunity will happen after all included specs are resolved. In the provided [AstroNvim Template](https://github.com/AstroNvim/template) these should go in the `lua/community.lua` file. Here is an example:
 
