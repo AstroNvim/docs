@@ -282,6 +282,19 @@ There are some plugins available for doing advanced setup of language servers th
 
 ### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
 
+:::tip
+
+This is included in the [AstroCommunity TypeScript language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/typescript)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.typescript" },
+}
+```
+
+:::
+
 ```lua title="lua/plugins/typescript.lua"
 return {
   { "jose-elias-alvarez/typescript.nvim", lazy = true }, -- add lsp plugin
@@ -307,6 +320,19 @@ return {
 ```
 
 ### Deno ([deno-nvim](https://github.com/sigmaSd/deno-nvim))
+
+:::tip
+
+This is included in the [AstroCommunity TypeScript Deno language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/typescript-deno)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.typescript-deno" },
+}
+```
+
+:::
 
 ```lua title="lua/plugins/deno.lua"
 return {
@@ -335,6 +361,19 @@ return {
 **tsserver + denols**
 
 Since both `tsserver` and `denols` (and others such as `eslint` and `prettier`) attach to TypeScript/JavaScript files, some extra configuration may be required if both are installed.
+
+:::tip
+
+This is included in the [AstroCommunity TypeScript All-in-One language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/typescript-all-in-one)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.typescript-all-in-one" },
+}
+```
+
+:::
 
 To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, add the following plugin specs:
 
@@ -415,6 +454,19 @@ return {
 
 ### C/C++ ([clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim))
 
+:::tip
+
+This is included in the [AstroCommunity C/C++ language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/cpp)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.cpp" },
+}
+```
+
+:::
+
 ```lua title="lua/plugins/clangd.lua"
 return {
   {
@@ -466,6 +518,19 @@ return {
 
 Requires `dart` to be available on the system.
 
+:::tip
+
+This is included in the [AstroCommunity Dart language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/dart)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.dart" },
+}
+```
+
+:::
+
 ```lua title="lua/plugins/flutter-tools.lua"
 return {
   { "akinsho/flutter-tools.nvim", lazy = true }, -- add lsp plugin
@@ -503,6 +568,19 @@ return {
 
 ### Rust ([rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim))
 
+:::tip
+
+This is included in the [AstroCommunity Rust language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/rust)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.rust" },
+}
+```
+
+:::
+
 ```lua title="lua/plugins/rust-tools.lua"
 return {
   { "simrat39/rust-tools.nvim", lazy = true }, -- add lsp plugin
@@ -528,6 +606,19 @@ return {
 ```
 
 ### Java ([nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls))
+
+:::tip
+
+This is included in the [AstroCommunity Java language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/java)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.java" },
+}
+```
+
+:::
 
 ```lua title="lua/plugins/jdtls.lua"
 return {

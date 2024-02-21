@@ -23,6 +23,19 @@ return {
 
 ## Fully disable `tabline`
 
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/disable-tabline)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.disable-tabline" },
+}
+```
+
+:::
+
 If you want to fully remove the `tabline` definition from Heirline as well as the `<Leader>b` functionality as well and not allow you to ever toggle the tabline on, you will also want to include the following in your plugins:
 
 ```lua title="lua/plugins/disable_tabline.lua"

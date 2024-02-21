@@ -3,6 +3,19 @@ id: telescope_theme
 title: NvChad Telescope Theme
 ---
 
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/telescope-nvchad-theme)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.telescope-nvchad-theme" },
+}
+```
+
+:::
+
 This plugin specification makes the default theme telescope look like the default NvChad telescope theme:
 
 ![Screenshot of telescope theme](../../../assets/recipes/telescope_theme.png)

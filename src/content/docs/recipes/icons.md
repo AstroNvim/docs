@@ -129,6 +129,19 @@ return {
 
 ### VS Code Style Icons
 
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/vscode-icons)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.vscode-icons" },
+}
+```
+
+:::
+
 Recent versions of NERD fonts have added the VS Code icons which can be easily configured through AstroUI to achieve a similar interface to VS Code. Here is an example plugin specification that can be added to your user configuration:
 
 ```lua title="lua/plugins/vscode_icons.lua"

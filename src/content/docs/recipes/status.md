@@ -307,6 +307,19 @@ return {
 
 ## Default Statusline With Mode Text
 
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/heirline-mode-text-statusline)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
+}
+```
+
+:::
+
 Some users want to be able to add the mode text to their statusline easily, AstroUI's `astroui.status` lua module as well as Heirline make that very easy to do in their user configuration file.
 
 ![Screenshot of the statusline with mode text](../../../assets/recipes/mode_text_statusline.png)
@@ -341,6 +354,19 @@ return {
 ```
 
 ## Default Statusline With Clock
+
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/heirline-clock-statusline)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.heirline-clock-statusline" },
+}
+```
+
+:::
 
 Some users want to be able to add a clock to their statusline easily, AstroUI's `astroui.status` lua module as well as Heirline make that very easy to do in their user configuration file.
 
@@ -421,6 +447,19 @@ return {
 ```
 
 ## Replicate NvChad Statusline
+
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/heirline-nvchad-statusline)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
+}
+```
+
+:::
 
 NvChad comes with a very specific statusline configuration that a lot of people like, so we figured it would be a nice exercise of the extensibility of our `astronvim.utils.status` API to show how to build that statusline in AstroNvim. _Warning:_ This is a fairly complicated example and is meant to be used by people who want it and to demonstrate how much you can customize the statusline.
 
@@ -625,6 +664,19 @@ return {
 ```
 
 ## Replicate Visual Studio Code Winbar
+
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/heirline-vscode-winbar)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
+}
+```
+
+:::
 
 Visual Studio Code has a default bar at the top of files that many users may prefer to AstroNvim's default. Their `winbar` shows the path to the current file (relative to the working directory) along with the LSP provided breadcrumbs. This is achievable through our status API as well!
 
