@@ -219,11 +219,14 @@ Along with the new core AstroNvim plugins, we have made some other changes to ou
 - `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroLSP configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/v4/lua/astronvim/plugins/_astrolsp.lua#L45-L54)
 - The `signs` table is now a dictionary format rather than a list to more closely align with the core Neovim Lua API as well as make it easier for the user to modify. If you are customizing signs in your user configuration, the field that was previously `name` in the list is now the key in a dictionary like table.
 - The "loop" text object configured in `nvim-treesitter-text-objects` has been changed from `l` to `o` to avoid collisions with the common text object for line
+- If you previously had configured a global `neoconf.json` file in your `user/` folder, this should now go into the root of your configuration (typically: `~/.config/nvim`)
+- `~/.config/astronvim` is no longer getting added to the runtime path as it doesn't make sense anymore
 
 ### New Features
 
 Some changes have been made that do not necessarily require any user intervention during the migration, but are just new features! Here are a few icon_highlights
 
+- Full control over Neovim configuration folder (typically: `~/.config/nvim`) which allows the usage of all core runtime folders such as `after/`, `queries/`, etc.
 - `shift+enter` in Neo-Tree will now open the file under the cursor with the system. This is useful for opening images or other files that are not supported natively by Neovim.
 - Heirline now has a virtual environment component that is in the default configuration. If a virtual environment is activated, it will be shown in the statusline.
 - AstroNvim now has a built-in project rooting utility that can be used to update the current working directory to an automatically detected project root. `:AstroRootInfo` can be used to see the current information from the rooter and `:AstroRoot` will update the current working directory to the detected root. This can be configured in AstroCore in the `rooter` settings to update the root automatically as well as changing how the root detection works.
