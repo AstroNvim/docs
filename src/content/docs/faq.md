@@ -1,6 +1,9 @@
 ---
 id: faq
-title: Frequently Asked Questions
+title: ❓ Frequently Asked Questions
+head:
+  - tag: title
+    content: Frequently Asked Questions
 ---
 
 Here are some common questions that users have and their answers!

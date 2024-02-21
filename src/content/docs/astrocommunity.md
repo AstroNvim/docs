@@ -1,6 +1,9 @@
 ---
 id: astrocommunity
 title: 📦 AstroCommunity
+head:
+  - tag: title
+    content: AstroCommunity
 ---
 
 [AstroCommunity](https://github.com/AstroNvim/astrocommunity) is a community driven repository that acts as essentially a marketplace for additional configuration pieces provided as `lazy.nvim` specifications similar to how VS Code extensions work. These pieces range from single plugins to entire collections for state of the art language support.

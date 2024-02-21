@@ -1,6 +1,9 @@
 ---
 id: using_the_docs
-title: Using This Documentation
+title: 📝 Using This Documentation
+head:
+  - tag: title
+    content: Using This Documentation
 ---
 
 AstroNvim is configured nearly entirely through the configuration of Neovim plugins which we provide with the help of `lazy.nvim`. Plugins are typically configured in the `lua/plugins/` folder within your Neovim configuration folder. Throughout this documentation we include many code snippets to help guide users which are full files that return `lazy.nvim` plugin specifications. The easiest way to utilize these is to simply copy the contents into a new file in your `plugins/` folder and it will automatically be loaded into AstroNvim the next time you start up the editor. These code blocks can also be added into files that you have already created as well just need to manually move the content you need into the appropriate place.
