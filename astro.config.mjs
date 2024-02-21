@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightDocSearch from "@astrojs/starlight-docsearch";
+import starlightLinksValidator from "starlight-links-validator";
 import tailwind from "@astrojs/tailwind";
 
 const locales = {
@@ -124,6 +125,7 @@ export default defineConfig({
           apiKey: "96faee2ebdaf4a8a66d0f810c635bfec",
           indexName: "astronvim",
         }),
+        starlightLinksValidator(),
       ],
       customCss: [
         // Path to your Tailwind base styles:

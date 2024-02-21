@@ -18,11 +18,11 @@
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.4.1",
     "sharp": "^0.33.2",
+    "starlight-links-validator": "^0.5.3",
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
     "@netlify/plugin-lighthouse": "^6.0.0",
-    "netlify-plugin-checklinks": "^4.1.1",
     "netlify-plugin-submit-sitemap": "^0.4.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",

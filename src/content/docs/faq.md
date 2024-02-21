@@ -21,7 +21,7 @@ Lastly, please go through the rest of the documentation as most of the common cu
 
 ## Why does AstroNvim not work?
 
-Please follow the [Installation Guide](/#%EF%B8%8F-installation). Make sure that you're system meets all of the listed [Requirements](/#-requirements). Please be aware that some features, like folding, might be missing if you're not using the latest stable release of Neovim and/or AstroNvim. There's also no support for nightly Neovim so make sure to be running a stable version if you're experiencing issues.
+Please follow the [Installation Guide](/#-installation). Make sure that you're system meets all of the listed [Requirements](/#-requirements). Please be aware that some features, like folding, might be missing if you're not using the latest stable release of Neovim and/or AstroNvim. There's also no support for nightly Neovim so make sure to be running a stable version if you're experiencing issues.
 
 ## Why are my icons missing/broken?
 
