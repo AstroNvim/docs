@@ -1,6 +1,9 @@
 ---
 id: acknowledgements
-title: ⭐Acknowledgements
+title: ⭐ Acknowledgements
+head:
+  - tag: title
+    content: Acknowledgements
 ---
 
 Sincere appreciation to the following repositories, plugin authors and the entire neovim community out there that made the development of AstroNvim possible.
