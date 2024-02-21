@@ -27,6 +27,12 @@ Before getting started it is recommended to review the [Getting Started](/) guid
 
 Breaking your working editor configuration when migrating to v4 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while migrating to the v4 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
 
+:::tip
+
+Checkout the [Managing User Configuration Page](/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
+
+:::
+
 1. Clone the AstroNvim v4 configuration template to a new location (`astronvim_v4` is used as the example):
 
    ```sh
