@@ -129,7 +129,7 @@ A few options were configured through global (`vim.g`) variables. These have als
 | `highlighturl_enabled`     | `astrocore`            | `features.highlighturl`             |
 | `icons_enabled`            | `AstroNvim`            | `icons_enabled`                     |
 | `inlay_hints_enabled`      | `astrolsp`             | `features.inlay_hints`              |
-| `lsp_handlers_enabled`     | `astrolsp`             | `features.lsp_handlers`             |
+| `lsp_handlers_enabled`     | `astrolsp`             | `lsp_handlers`                      |
 | `max_file`                 | `astrocore`            | `features.large_buf`                |
 | `semantic_tokens_enabled`  | `astrolsp`             | `features.semantic_tokens`          |
 | `ui_notifications_enabled` | `astrocore`            | `features.notifications`            |
