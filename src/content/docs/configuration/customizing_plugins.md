@@ -262,6 +262,57 @@ return {
 }
 ```
 
+#### Helpful Functions
+
+A lot of these configuration functions share common themes and has allowed us to build and provide a few useful utility functions in [AstroCore](/configuration/core_plugins/#astrocore).
+
+##### `extend_tbl`
+
+A lot of times you maybe want to use the function notation to handle a single field in the `opts` or even just to access some module `require`s. Our `extend_tbl` function makes it easy to easily get back the merge notation within the function notation. Here is the previous `nvim-cmp` example above using this function:
+
+:::note
+
+Notice that `extend_tbl` does not perform a merge in place and does need to be returned at the end of the function.
+
+:::
+
+```lua
+return {
+  "hrsh7th/nvim-cmp",
+  opts = function(plugin, opts)
+    -- opts parameter is the default options table
+    -- the function is lazy loaded so cmp is able to be required
+    local cmp = require("cmp")
+    -- use `extend_tbl` to easily merge into the `opts` table
+    -- NOTE: this function does not merge in place and needs to be
+    --       returned at the end of the function
+    return require("astrocore").extend_tbl(opts, {
+      mapping = {
+        ["<C-x>"] = cmp.mapping.select_next_item(),
+      },
+    })
+  end,
+}
+```
+
+##### `list_insert_unique`
+
+Other times when you do list inserting you want to safely insert new entries into a list but skip over values that already exist. This is useful if you are importing lots of language packs in AstroCommunity. Here is the previous `nvim-treesitter` example above using this function:
+
+```lua
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = function(plugin, opts)
+    -- `list_insert_unique` is in place, so it will modify
+    -- the first parameter table if provided
+    require("astrocore").list_insert_unique(
+      opts.ensure_installed,
+      { "python", "vim" }
+    )
+  end,
+}
+```
+
 ### Extending Core Plugin Config Functions
 
 Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own modules in `require("astronvim.plugins.configs.X")` (replacing `X` with the plugin `require` string) that returns the AstroNvim default config function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs`, add user snippets to `luasnip`, or add more extensions to `telescope` without having to rewrite our entire configuration function. Here is an example of adding the `media_files` Telescope extension:
