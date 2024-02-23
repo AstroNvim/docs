@@ -7,35 +7,3 @@ pretty_urls = false
 for = "/assets/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
-
-[[plugins]]
-package = "@netlify/plugin-lighthouse"
-[[plugins]]
-package = "netlify-plugin-checklinks"
-[plugins.inputs]
-skipPatterns = ["dist/404", "id=\"%EF%B8%8F-installation\""]
-[[plugins]]
-package = "netlify-plugin-submit-sitemap"
-[plugins.inputs]
-sitemapPath = "/sitemap-index.xml"
-
-# Old versions
-
-[[redirects]]
-from = "/v1/*"
-to = "https://luxury-sorbet-1e94f3.netlify.app/:splat"
-status = 200
-force = true                                           # COMMENT: ensure that we always redirect
-
-[[redirects]]
-from = "/v2/*"
-to = "https://magenta-malasada-aac0c8.netlify.app/:splat"
-status = 200
-force = true                                              # COMMENT: ensure that we always redirect
-
-# Old paths
-
-[[redirects]]
-from = "/Basic%20Usage/*"
-to = "/basic-usage/:splat"
-status = 301

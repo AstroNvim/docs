@@ -14,8 +14,6 @@
     "@astrojs/starlight": "^0.13.0",
     "@astrojs/starlight-tailwind": "^2.0.1",
     "@astrojs/tailwind": "^5.0.2",
-    "@docsearch/css": "^3.5.2",
-    "@docsearch/js": "^3.5.2",
     "astro": "^3.5.5",
     "sharp": "^0.32.6",
     "tailwindcss": "^3.3.5"

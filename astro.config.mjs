@@ -13,12 +13,13 @@ const locales = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://docs.astronvim.com",
+  base: "/v3",
   defaultLocale: "root",
   locales,
   integrations: [
     starlight({
-      title: "AstroNvim Docs",
-      description: "The documentation website for AstroNvim.",
+      title: "AstroNvim v3 Docs",
+      description: "The documentation website for AstroNvim v3.",
       favicon: "/astronvim.svg",
       head: [
         {
@@ -96,14 +97,6 @@ export default defineConfig({
           },
         },
         {
-          tag: "link",
-          attrs: {
-            rel: "preconnect",
-            href: "https://JXZNTZ86UN-dsn.algolia.net",
-            crossorigin: true,
-          },
-        },
-        {
           tag: "script",
           attrs: {
             src: "https://plausible.mehalter.com/js/script.js",
@@ -114,9 +107,6 @@ export default defineConfig({
       ],
       logo: {
         src: "./src/assets/astronvim.svg",
-      },
-      components: {
-        Search: "./src/components/Search.astro",
       },
       customCss: [
         // Path to your Tailwind base styles:
@@ -181,7 +171,7 @@ export default defineConfig({
       ],
       lastUpdated: true,
       editLink: {
-        baseUrl: 'https://github.com/AstroNvim/docs/edit/main/'
+        baseUrl: "https://github.com/AstroNvim/docs/edit/main/",
       },
     }),
     tailwind({
