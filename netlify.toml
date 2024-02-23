@@ -28,3 +28,9 @@ from = "/v2/*"
 to = "https://magenta-malasada-aac0c8.netlify.app/:splat"
 status = 200
 force = true                                              # COMMENT: ensure that we always redirect
+
+[[redirects]]
+from = "/v3/*"
+to = "https://neon-salmiakki-8da50a.netlify.app/:splat"
+status = 200
+force = true                                            # COMMENT: ensure that we always redirect
