@@ -18,7 +18,7 @@ If a plugin is missing feel free to contribute it using a pull request. Please j
 
 AstroNvim offers the addition of plugin specs with zero abstraction thanks to the [`lazy.nvim`](https://www.github.com/folke/lazy.nvim) plugin manager. Please go through the entire `README.md` for `lazy.nvim` as this will help to build a general understanding for the configuration mechanisms, the available properties, and how to lazily load plugins. More details on customizing plugins in AstroNvim can be found on the [Customizing Plugins page](/configuration/customizing_plugins).
 
-You can get a template configuration from [here!](https://github.com/AstroNvim/template) This should provide a solid starting point on which you can build your customized environment. Check out the pages for [Using these docs](/using_the_docs) and [Manageing User Configuration](/configuration/manage_user_config).
+You can get a template configuration from [here!](https://github.com/AstroNvim/template) This should provide a solid starting point on which you can build your customized environment. Check out the pages for [Using This Documentation](/using_the_docs) and [Managing User Configuration](/configuration/manage_user_config).
 
 Lastly, please go through the rest of the documentation as most of the common customizations are already thoroughly explained.
 
@@ -36,7 +36,7 @@ If your icons appear too small it's because you're using a Mono font. If a font 
 
 ## Why am I getting `symbol not found` error on Mac OS Sonoma?
 
-This was a bug in core Neovim not supporting Mac OS Sonoma. Most likely you have outdated [neovim](https://github.com/neovim/neovim), please update to atleast v0.9.4
+This was a bug in core Neovim not supporting Mac OS Sonoma. Most likely you have outdated [neovim](https://github.com/neovim/neovim), please update to at least v0.9.4
 
 ## Why `<Leader>fw` is not working?
 
