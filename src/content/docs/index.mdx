@@ -207,3 +207,12 @@ return {
 For more information on the organization of config files and general usage of AstroNvim, be sure to check out the excellent [youtube tutorial](https://www.youtube.com/watch?v=GEHPiZ10gOk).
 
 More advanced LSP setups can also be found in [Recipes](/recipes/advanced_lsp). Note that whenever you see `plugins = { <inner_code_block> }`, you can also put the `<inner_code_block>` into `plugins/user.lua` or `plugins/*.lua` (they will all be merged into the final plugins spec, and the lua code `plugins = {...}` acts like the directory structure `plugins/...`).
+
+## 🗑️ Uninstall Astronvim
+
+```bash
+rm ~/.config/nvim
+rm ~/.cache/nvim
+rm ~/.local/share/nvim
+rm ~/.local/state/nvim
+```
