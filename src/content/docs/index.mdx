@@ -207,3 +207,31 @@ return {
 For more information on the organization of config files and general usage of AstroNvim, be sure to check out the excellent [youtube tutorial](https://www.youtube.com/watch?v=GEHPiZ10gOk).
 
 More advanced LSP setups can also be found in [Recipes](/recipes/advanced_lsp). Note that whenever you see `plugins = { <inner_code_block> }`, you can also put the `<inner_code_block>` into `plugins/user.lua` or `plugins/*.lua` (they will all be merged into the final plugins spec, and the lua code `plugins = {...}` acts like the directory structure `plugins/...`).
+
+## 🗑️ Uninstall Astronvim
+
+To uninstall Astronvim, simply run:
+
+<Tabs>
+
+<TabItem value="nix" label="Linux/Mac OS (Unix)" default>
+
+```sh
+rm -rf ~/.config/nvim \
+  ~/.local/share/nvim \
+  ~/.local/state/nvim \
+  ~/.cache/nvim
+```
+
+</TabItem>
+
+<TabItem value="windoze" label="Windows (PowerShell)">
+
+```powershell
+Remove-Item $env:LOCALAPPDATA\nvim
+Remove-Item $env:LOCALAPPDATA\nvim-data
+```
+
+</TabItem>
+
+</Tabs>
