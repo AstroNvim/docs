@@ -212,9 +212,26 @@ More advanced LSP setups can also be found in [Recipes](/recipes/advanced_lsp). 
 
 To uninstall Astronvim, simply run:
 
-```bash
-rm -rf ~/.config/nvim
-rm -rf ~/.cache/nvim
-rm -rf ~/.local/share/nvim
-rm -rf ~/.local/state/nvim
+<Tabs>
+
+<TabItem value="nix" label="Linux/Mac OS (Unix)" default>
+
+```sh
+rm -rf ~/.config/nvim \
+  ~/.local/share/nvim \
+  ~/.local/state/nvim \
+  ~/.cache/nvim
 ```
+
+</TabItem>
+
+<TabItem value="windoze" label="Windows (PowerShell)">
+
+```powershell
+Remove-Item $env:LOCALAPPDATA\nvim
+Remove-Item $env:LOCALAPPDATA\nvim-data
+```
+
+</TabItem>
+
+</Tabs>
