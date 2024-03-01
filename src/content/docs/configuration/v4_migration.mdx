@@ -3,6 +3,8 @@ id: v4_migration
 title: Migration to v4.0
 ---
 
+import { Steps } from "@astrojs/starlight/components";
+
 While there are many small improvements to AstroNvim in version 4, the major update is a move to use the [`lazy.nvim`](https://github.com/folke/lazy.nvim) plugin manager for much more of the configuration.
 
 The first major change is that the installation of AstroNvim itself is through `lazy.nvim`. Rather than cloning AstroNvim, as was done in previous versions, AstroNvim is "just another" plugin and it is installed using `lazy.nvim`.
@@ -33,6 +35,8 @@ Checkout the [Managing User Configuration Page](/configuration/manage_user_confi
 
 :::
 
+<Steps>
+
 1. Clone the AstroNvim v4 configuration template to a new location (`astronvim_v4` is used as the example):
 
    ```sh
@@ -56,6 +60,8 @@ Checkout the [Managing User Configuration Page](/configuration/manage_user_confi
    ```
 
 5. Run your new v4 environment simply with `nvim` 🎉
+
+</Steps>
 
 ## Migration Guide
 
