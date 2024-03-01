@@ -6,7 +6,7 @@ head:
     content: Getting Started
 ---
 
-import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { Tabs, TabItem, FileTree, Steps } from "@astrojs/starlight/components";
 
 :::tip
 
@@ -59,59 +59,67 @@ color support.
 
 <Tabs>
 
-<TabItem value="nix" label="Linux/Mac OS (Unix)" default>
+<TabItem value="nix" label="Linux/Mac OS" icon="seti:shell" default>
+
+<Steps>
 
 1. **Make a backup of your current nvim folder**
 
-```sh
-mv ~/.config/nvim ~/.config/nvim.bak
-```
+   ```sh
+   mv ~/.config/nvim ~/.config/nvim.bak
+   ```
 
 2. **Clean neovim folders** _(Optional but recommended)_
 
-```sh
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
-```
+   ```sh
+   mv ~/.local/share/nvim ~/.local/share/nvim.bak
+   mv ~/.local/state/nvim ~/.local/state/nvim.bak
+   mv ~/.cache/nvim ~/.cache/nvim.bak
+   ```
 
 3. **Clone the repository**
 
-```sh
-git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
-# remove template's git connection to set up your own later
-rm -rf ~/.config/nvim/.git
-nvim
-```
+   ```sh
+   git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
+   # remove template's git connection to set up your own later
+   rm -rf ~/.config/nvim/.git
+   nvim
+   ```
+
+</Steps>
 
 </TabItem>
 
-<TabItem value="windoze" label="Windows (PowerShell)" default>
+<TabItem value="windoze" label="Windows (PowerShell)" icon="seti:windows">
+
+<Steps>
 
 1. **Make a backup of your current nvim folder**
 
-```powershell
-Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
-```
+   ```powershell
+   Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
+   ```
 
 2. **Clean neovim folders** _(Optional but recommended)_
 
-```powershell
-Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
-```
+   ```powershell
+   Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
+   ```
 
 3. **Clone the repository**
 
-```powershell
-git clone --depth 1 https://github.com/AstroNvim/template $env:LOCALAPPDATA\nvim
-# remove template's git connection to set up your own later
-Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
-nvim
-```
+   ```powershell
+   git clone --depth 1 https://github.com/AstroNvim/template $env:LOCALAPPDATA\nvim
+   # remove template's git connection to set up your own later
+   Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+   nvim
+   ```
+
+</Steps>
 
 </TabItem>
 
-<TabItem value="docker" label="Docker" default>
+<TabItem value="docker" label="Docker" icon="seti:docker">
 
 If you want to try AstroNvim before installing you can use the following Docker command to open a test instance without touching your current Neovim configuration. This also allows you to use `:TSInstall` and `:LspInstall` to load and evaluate language servers and treesitter parsers as well.
 
@@ -186,24 +194,27 @@ To begin making customizations simply treat your `nvim` folder as your own Neovi
 
 If you followed the instructions in this guide for installation, you are probably starting out with our template configuration. This comes with the following basic structure:
 
-```txt
-~/.config/nvim/
-├── README.md
-├── init.lua
-└── lua/
-    ├── community.lua
-    ├── lazy_setup.lua
-    ├── plugins/
-    │   ├── astrocore.lua
-    │   ├── astrolsp.lua
-    │   ├── astroui.lua
-    │   ├── mason.lua
-    │   ├── none-ls.lua
-    │   ├── treesitter.lua
-    │   ├── user.lua
-    │   └── vim-sandwich.lua
-    └── polish.lua
-```
+<FileTree>
+
+- ~/.config/nvim/
+  - README.md
+  - init.lua bootstrap the lazy plugin manager
+  - lua/
+    - community.lua import AstroCommunity plugin specs
+    - lazy_setup.lua configure and setup lazy.nvim
+    - plugins/ configure plugins
+      - astrocore.lua
+      - astrolsp.lua
+      - astroui.lua
+      - mason.lua
+      - none-ls.lua
+      - treesitter.lua
+      - user.lua
+      - vim-sandwich.lua
+      - ... add more files here as needed
+    - polish.lua file executed last with arbitrary Lua
+
+</FileTree>
 
 :::note
 
