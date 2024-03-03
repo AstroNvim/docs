@@ -210,7 +210,6 @@ If you followed the instructions in this guide for installation, you are probabl
       - none-ls.lua
       - treesitter.lua
       - user.lua
-      - vim-sandwich.lua
       - ... add more files here as needed
     - polish.lua file executed last with arbitrary Lua
 
@@ -224,7 +223,7 @@ The list of files in the template may change over time as we fine tune what user
 
 At the top level is `init.lua`. This code bootstraps the configuration by installing [`lazy.nvim`](https://github.com/folke/lazy.nvim) if it is not already installed and then calling `lua/lazy_setup.lua` to install and configure the AstroNvim and user plugins.
 
-Looking a bit deeper, the `plugins` directory is where all plugins, except AstroNvim and AstroCommunity imports, are setup. The first three plugins are for the AstroNvim configuration. The next four plugins modify the configuration of a plugin that is part of AstroNvim (e.g.: `treesitter.lua`). The last file is not a part of the template. `vim-sandwich` specifies the installation and configuration a plugin of a user specified (i.e.: one that is not a part of AstroNvim distribution).
+Looking a bit deeper, the `plugins` directory is where all plugins, except AstroNvim and AstroCommunity imports, are setup. The first three plugins are for the AstroNvim configuration. The next four plugins modify the configuration of a plugin that is part of AstroNvim (e.g.: `treesitter.lua`).
 
 Each file in the plugins directory can specify the installation and configuration of one or more plugins. The template generally installs and configures a single plugin per `lua` file. Further, the name of the file generally matches the name of the plugin. The one exception is `user.lua` which has multiple plugins in it - but they could be split into separate files if you wish!
 
