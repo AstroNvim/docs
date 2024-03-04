@@ -7,28 +7,28 @@ settings:
 dependencies:
   '@astrojs/mdx':
     specifier: ^2.1.1
-    version: 2.1.1(astro@4.4.8)
+    version: 2.1.1(astro@4.4.10)
   '@astrojs/starlight':
-    specifier: ^0.21.0
-    version: 0.21.0(astro@4.4.8)
+    specifier: ^0.21.1
+    version: 0.21.1(astro@4.4.10)
   '@astrojs/starlight-docsearch':
     specifier: ^0.1.0
-    version: 0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.21.0)(search-insights@2.13.0)
+    version: 0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.21.1)(search-insights@2.13.0)
   '@astrojs/starlight-tailwind':
     specifier: ^2.0.1
-    version: 2.0.1(@astrojs/starlight@0.21.0)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1)
+    version: 2.0.1(@astrojs/starlight@0.21.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1)
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.4.8)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.4.10)(tailwindcss@3.4.1)
   astro:
-    specifier: ^4.4.8
-    version: 4.4.8
+    specifier: ^4.4.10
+    version: 4.4.10
   sharp:
     specifier: ^0.33.2
     version: 0.33.2
   starlight-links-validator:
     specifier: ^0.5.3
-    version: 0.5.3(@astrojs/starlight@0.21.0)(astro@4.4.8)
+    version: 0.5.3(@astrojs/starlight@0.21.1)(astro@4.4.10)
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -232,7 +232,7 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx@2.1.1(astro@4.4.8):
+  /@astrojs/mdx@2.1.1(astro@4.4.10):
     resolution: {integrity: sha512-AgGFdE7HOGmoFooGvMSatkA9FiSKwyVW7ImHot/bXJ6uAbFfu6iG2ht18Cf1pT22Hda/6iSCGWusFvBv0/EnKQ==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -241,7 +241,7 @@ packages:
       '@astrojs/markdown-remark': 4.2.1
       '@mdx-js/mdx': 3.0.1
       acorn: 8.11.3
-      astro: 4.4.8
+      astro: 4.4.10
       es-module-lexer: 1.4.1
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
@@ -272,12 +272,12 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/starlight-docsearch@0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.21.0)(search-insights@2.13.0):
+  /@astrojs/starlight-docsearch@0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.21.1)(search-insights@2.13.0):
     resolution: {integrity: sha512-XQP+D6VmDvwCL+3IWW+fGccP8gGRsvSPD3pHZFO3ugDFPMAaIijOd51RlBISHb5qIvAWGf22x9npzddGYLlCLQ==}
     peerDependencies:
       '@astrojs/starlight': '>=0.14.0'
     dependencies:
-      '@astrojs/starlight': 0.21.0(astro@4.4.8)
+      '@astrojs/starlight': 0.21.1(astro@4.4.10)
       '@docsearch/css': 3.5.2
       '@docsearch/js': 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
     transitivePeerDependencies:
@@ -288,30 +288,30 @@ packages:
       - search-insights
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.21.0)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1):
+  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.21.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-niMgFcR7NHcsBVy8UAN3F2gqhmoN5v83st5Hu4YzvUL+6SNwjQmIipXppXdN9+iVneRjPr6PLGzDfI+wnjSBWQ==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.21.0(astro@4.4.8)
-      '@astrojs/tailwind': 5.1.0(astro@4.4.8)(tailwindcss@3.4.1)
+      '@astrojs/starlight': 0.21.1(astro@4.4.10)
+      '@astrojs/tailwind': 5.1.0(astro@4.4.10)(tailwindcss@3.4.1)
       tailwindcss: 3.4.1
     dev: false
 
-  /@astrojs/starlight@0.21.0(astro@4.4.8):
-    resolution: {integrity: sha512-mUUPFLs/UwXy0DK+hR1yNvAK50yc6JqEGyWMFmqOJeoPXm7CEOtXAoJtDGe8PLzTTbiJCG3bxh86eKPp5fUTkg==}
+  /@astrojs/starlight@0.21.1(astro@4.4.10):
+    resolution: {integrity: sha512-nQ5EwKnB3eI8jxQrbgzZJJcyxeIiL3GzsAhl//1fE541MlD+PKy53v1PsYPi/RILdjt1Pg39rf1fkJC/rhXRgw==}
     peerDependencies:
       astro: ^4.2.7
     dependencies:
-      '@astrojs/mdx': 2.1.1(astro@4.4.8)
+      '@astrojs/mdx': 2.1.1(astro@4.4.10)
       '@astrojs/sitemap': 3.1.0
       '@pagefind/default-ui': 1.0.4
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.3
-      astro: 4.4.8
-      astro-expressive-code: 0.33.4(astro@4.4.8)
+      astro: 4.4.10
+      astro-expressive-code: 0.33.4(astro@4.4.10)
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.1
       hast-util-select: 6.0.2
@@ -330,13 +330,13 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.4.8)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.4.10)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.4.8
+      astro: 4.4.10
       autoprefixer: 10.4.17(postcss@8.4.35)
       postcss: 8.4.35
       postcss-load-config: 4.0.2(postcss@8.4.35)
@@ -1658,18 +1658,18 @@ packages:
     hasBin: true
     dev: false
 
-  /astro-expressive-code@0.33.4(astro@4.4.8):
+  /astro-expressive-code@0.33.4(astro@4.4.10):
     resolution: {integrity: sha512-PtXLjd89WBA1WsDYlt3V1LZs9Pa8FFoXilaGDSyfxtbYJ2OPHjWh2JJvCiXmfXmY3HkPJ2oW9Jjo6om5vUlVcg==}
     peerDependencies:
       astro: ^3.3.0 || ^4.0.0-beta
     dependencies:
-      astro: 4.4.8
+      astro: 4.4.10
       hast-util-to-html: 8.0.4
       remark-expressive-code: 0.33.4
     dev: false
 
-  /astro@4.4.8:
-    resolution: {integrity: sha512-jAAfzvgHOfuZmqJjnSDownVNuWKYmsGkrFqecEppHarMA/cZ5QIboW6GQHZ8eGZQdtYRCjON3h4i64XFZfuwSg==}
+  /astro@4.4.10:
+    resolution: {integrity: sha512-8ASYlHPNKJg7F+1mlQts7nU1jZPQGE2xluB4fcdAUvH33BYLEBz/bCxJwLOmfC8Ai2gzs/wTwofwDzqbwjx6Ug==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -5608,15 +5608,15 @@ packages:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
     dev: false
 
-  /starlight-links-validator@0.5.3(@astrojs/starlight@0.21.0)(astro@4.4.8):
+  /starlight-links-validator@0.5.3(@astrojs/starlight@0.21.1)(astro@4.4.10):
     resolution: {integrity: sha512-v79rwmzjQlEMVL8sZ4dalD/jhFOUvGZ2/f4CvxCySZ9KbEN9nDmgV8zJgfpmTzhbcYQ35wzyUinF4QNxgKVA4g==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       '@astrojs/starlight': '>=0.15.0'
       astro: '>=4.0.0'
     dependencies:
-      '@astrojs/starlight': 0.21.0(astro@4.4.8)
-      astro: 4.4.8
+      '@astrojs/starlight': 0.21.1(astro@4.4.10)
+      astro: 4.4.10
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.1
       hast-util-has-property: 3.0.0
