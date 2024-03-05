@@ -92,7 +92,7 @@ v3 configuration options in `user/init.lua` and their new location in the core A
 | v3 `user/init.lua` table key | v4 `AstroNvim/` plugin | v4 plugin `opt` key         |
 | ---------------------------- | ---------------------- | --------------------------- |
 | `colorscheme`                | `astroui`              | `colorscheme`               |
-| `diagnostics`                | `astrolsp`             | `diagnostics`               |
+| `diagnostics`                | `astrocore`            | `diagnostics`               |
 | `heirline.attributes`        | `astroui`              | `status.attributes`         |
 | `heirline.colors`            | `astroui`              | `status.colors`             |
 | `heirline.icon_highlights`   | `astroui`              | `status.icon_highlights`    |
@@ -130,7 +130,7 @@ A few options were configured through global (`vim.g`) variables. These have als
 | `autopairs_enabled`        | `astrocore`            | `features.autopairs`                |
 | `cmp_enabled`              | `astrocore`            | `features.cmp`                      |
 | `codelens_enabled`         | `astrolsp`             | `features.codelens`                 |
-| `diagnostic_mode`          | `astrolsp`             | `features.diagnostics_mode`         |
+| `diagnostic_mode`          | `astrocore`            | `features.diagnostics_mode`         |
 | `git_worktrees`            | `astrocore`            | `git_worktrees`                     |
 | `highlighturl_enabled`     | `astrocore`            | `features.highlighturl`             |
 | `icons_enabled`            | `AstroNvim`            | `icons_enabled`                     |
@@ -222,7 +222,7 @@ Along with the new core AstroNvim plugins, we have made some other changes to ou
 - `MasonUpdate` and `MasonUpdateAll` commands have been renamed to `AstroMasonUpdate` and `AstroMasonUpdateAll` to avoid conflicting with core Mason commands
 - `<Leader>u` mappings have been modified to align buffer-local and global commands to a common standard
 - The `file_info` component in the `status` API default options have been changed. If you are using `file_info` in your configuration, please refer to the new defaults in the [AstroUI Repository](https://github.com/AstroNvim/astroui/blob/main/lua/astroui/status/component.lua#L34-L57).
-- `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroLSP configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/v4/lua/astronvim/plugins/_astrolsp.lua#L45-L54)
+- `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroCore configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/v4/lua/astronvim/plugins/_astrocore.lua#L26-L33)
 - The `signs` table is now a dictionary format rather than a list to more closely align with the core Neovim Lua API as well as make it easier for the user to modify. If you are customizing signs in your user configuration, the field that was previously `name` in the list is now the key in a dictionary like table.
 - The "loop" text object configured in `nvim-treesitter-text-objects` has been changed from `l` to `o` to avoid collisions with the common text object for line
 - If you previously had configured a global `neoconf.json` file in your `user/` folder, this should now go into the root of your configuration (typically: `~/.config/nvim`)

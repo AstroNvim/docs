@@ -69,8 +69,8 @@ Here are some examples of overwriting some plugins:
 ```lua title="lua/plugins/overridden.lua" {5-10} {17-23}
 return {
   {
-    "AstroNvim/AstroLSP",
-    ---@type AstroLSPOpts
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
     opts = { -- extend the plugin options
       diagnostics = {
         -- disable diagnostics virtual text
