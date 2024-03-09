@@ -34,14 +34,14 @@ This page goes over how to install and configure a custom color scheme or theme 
    }
    ```
 
-2. Configure AstroCore to set the colorscheme
+2. Configure AstroUI to set the colorscheme
 
-   The default colorscheme for AstroNvim can be configured through the [AstroCore](https://github.com/AstroNvim/astrocore) plugin with the `colorscheme` option. This can be added to your user configuration's plugins:
+   The default colorscheme for AstroNvim can be configured through the [AstroUI](https://github.com/AstroNvim/astroui) plugin with the `colorscheme` option. This can be added to your user configuration's plugins:
 
-   ```lua title="lua/plugins/astrocore.lua"
+   ```lua title="lua/plugins/astroui.lua"
    return {
-     "AstroNvim/astrocore",
-     ---@type AstroCoreOpts
+     "AstroNvim/astroui",
+     ---@type AstroUIOpts
      opts = {
        colorscheme = "astrodark",
      },
@@ -50,10 +50,10 @@ This page goes over how to install and configure a custom color scheme or theme 
 
    Then change it to the name of the theme you've installed in the step 1:
 
-   ```lua title="lua/plugins/astrocore.lua"
+   ```lua title="lua/plugins/astroui.lua"
    return {
-     "AstroNvim/astrocore",
-     ---@type AstroCoreOpts
+     "AstroNvim/astroui",
+     ---@type AstroUIOpts
      opts = {
        colorscheme = "catppuccin",
      },
@@ -69,8 +69,8 @@ Some colorscheme plugins are configured through global variables rather than Lua
 ```lua title="lua/plugins/sonokai.lua"
 return {
   {
-    "AstroNvim/astrocore",
-    ---@type AstroCoreOpts
+    "AstroNvim/astroui",
+    ---@type AstroUIOpts
     opts = {
       colorscheme = "sonokai",
     },
