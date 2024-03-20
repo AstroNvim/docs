@@ -11,12 +11,12 @@
     "upgrade": "pnpm dlx @astrojs/upgrade"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.1.1",
-    "@astrojs/starlight": "^0.21.1",
+    "@astrojs/mdx": "^2.2.0",
+    "@astrojs/starlight": "^0.21.2",
     "@astrojs/starlight-docsearch": "^0.1.0",
     "@astrojs/starlight-tailwind": "^2.0.1",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.4.10",
+    "astro": "^4.5.7",
     "sharp": "^0.33.2",
     "starlight-links-validator": "^0.5.3",
     "tailwindcss": "^3.4.1"
