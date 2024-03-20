@@ -1,5 +1,5 @@
 {
-  "name": "docs-v2",
+  "name": "astronvim-documentation",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -7,25 +7,26 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "upgrade": "pnpm dlx @astrojs/upgrade"
   },
   "dependencies": {
-    "@astrojs/mdx": "^1.1.5",
-    "@astrojs/starlight": "^0.13.0",
+    "@astrojs/mdx": "^2.2.0",
+    "@astrojs/starlight": "^0.21.2",
+    "@astrojs/starlight-docsearch": "^0.1.0",
     "@astrojs/starlight-tailwind": "^2.0.1",
-    "@astrojs/tailwind": "^5.0.2",
-    "@docsearch/css": "^3.5.2",
-    "@docsearch/js": "^3.5.2",
-    "astro": "^3.5.5",
-    "sharp": "^0.32.6",
-    "tailwindcss": "^3.3.5"
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.5.7",
+    "sharp": "^0.33.2",
+    "starlight-image-zoom": "^0.1.0",
+    "starlight-links-validator": "^0.5.3",
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
-    "@netlify/plugin-lighthouse": "^5.0.0",
-    "netlify-plugin-checklinks": "^4.1.1",
+    "@netlify/plugin-lighthouse": "^6.0.0",
     "netlify-plugin-submit-sitemap": "^0.4.0",
-    "prettier": "^3.1.0",
-    "prettier-plugin-astro": "^0.12.2",
-    "prettier-plugin-tailwindcss": "^0.5.7"
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-tailwindcss": "^0.5.11"
   }
 }

@@ -1,0 +1,189 @@
+---
+id: neovide
+title: Configure Neovide
+---
+
+Neovide is configured mainly through global variables and vim options. These can be configured easily with the AstroCore plugin in the `options` table. Here is an example:
+
+:::tip
+
+For details on what configuration options are available, check out the [Neovide Documentation](https://neovide.dev/configuration.html)
+
+:::
+
+```lua title="lua/plugins/neovide.lua"
+if not vim.g.neovide then
+  return {} -- do nothing if not in a Neovide session
+end
+
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    options = {
+      opt = { -- configure vim.opt options
+        -- configure font
+        guifont = "Source Code Pro:h14",
+        -- line spacing
+        linespace = 0,
+      },
+      g = { -- configure vim.g variables
+        -- configure scaling
+        neovide_scale_factor = 1.0,
+        -- configure padding
+        neovide_padding_top = 0,
+        neovide_padding_bottom = 0,
+        neovide_padding_right = 0,
+        neovide_padding_left = 0,
+      },
+    },
+  },
+}
+```
+
+## Recommended Configuration
+
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/v4/lua/astrocommunity/recipes/neovide)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.neovide" },
+}
+```
+
+:::
+
+### Features
+
+- Adjust the scale factor incrementally to find the perfect size for your needs.
+- Reset the scale factor to its initial value for a consistent starting point.
+
+#### Global Variables (`vim.g`)
+
+This recipe uses several global variables to configure its behavior.
+
+- `neovide_scale_factor` (default: 1) - The current scale factor of Neovide.
+- `neovide_increment_scale_factor` (default: 0.1) - Determines the increment/decrement value for adjusting the scale factor.
+- `neovide_min_scale_factor` (default: 0.7) - The minimum scale allowed.
+- `neovide_max_scale_factor` (default: 2.0) - The maximum scale allowed.
+- `neovide_initial_scale_factor` (default: from `neovide_scale_factor`) - Used to have the scale factor reset to the initial value.
+
+#### Commands
+
+##### `:NeovideSetScaleFactor {scale_factor:number} [force]`
+
+Sets the Neovide scale factor. If `force` is provided as the second argument, the scale factor is set without applying the minimum and maximum constraints.
+
+##### `:NeovideResetScaleFactor`
+
+Resets the scale factor to `vim.g.neovide_initial_scale_factor`.
+
+#### Keybindings
+
+| Mappings   | Action                                                                |
+| ---------- | --------------------------------------------------------------------- |
+| `Ctrl + =` | Increase the Neovide scale factor by `neovide_increment_scale_factor` |
+| `Ctrl + -` | Decrease the Neovide scale factor by `neovide_increment_scale_factor` |
+| `Ctrl + 0` | Reset the Neovide scale factor to `neovide_initial_scale_factor`      |
+
+### Code
+
+```lua title="lua/plugins/neovide.lua"
+if not vim.g.neovide then
+  return {}
+end
+
+---@param scale_factor number
+---@return number
+local function clamp_scale_factor(scale_factor)
+  return math.max(
+    math.min(scale_factor, vim.g.neovide_max_scale_factor),
+    vim.g.neovide_min_scale_factor
+  )
+end
+
+---@param scale_factor number
+---@param clamp? boolean
+local function set_scale_factor(scale_factor, clamp)
+  vim.g.neovide_scale_factor = clamp and clamp_scale_factor(scale_factor)
+    or scale_factor
+end
+
+local function reset_scale_factor()
+  vim.g.neovide_scale_factor = vim.g.neovide_initial_scale_factor
+end
+
+---@param increment number
+---@param clamp? boolean
+local function change_scale_factor(increment, clamp)
+  set_scale_factor(vim.g.neovide_scale_factor + increment, clamp)
+end
+
+---@type LazySpec
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    options = {
+      g = {
+        neovide_increment_scale_factor = vim.g.neovide_increment_scale_factor
+          or 0.1,
+        neovide_min_scale_factor = vim.g.neovide_min_scale_factor or 0.7,
+        neovide_max_scale_factor = vim.g.neovide_max_scale_factor or 2.0,
+        neovide_initial_scale_factor = vim.g.neovide_scale_factor or 1,
+        neovide_scale_factor = vim.g.neovide_scale_factor or 1,
+      },
+    },
+    commands = {
+      NeovideSetScaleFactor = {
+        function(event)
+          local scale_factor, option = tonumber(event.fargs[1]), event.fargs[2]
+
+          if not scale_factor then
+            vim.notify(
+              "Error: scale factor argument is nil or not a valid number.",
+              vim.log.levels.ERROR,
+              { title = "Recipe: neovide" }
+            )
+            return
+          end
+
+          set_scale_factor(scale_factor, option ~= "force")
+        end,
+        nargs = "+",
+        desc = "Set Neovide scale factor",
+      },
+      NeovideResetScaleFactor = {
+        reset_scale_factor,
+        desc = "Reset Neovide scale factor",
+      },
+    },
+    mappings = {
+      n = {
+        ["<C-=>"] = {
+          function()
+            change_scale_factor(
+              vim.g.neovide_increment_scale_factor * vim.v.count1,
+              true
+            )
+          end,
+          desc = "Increase Neovide scale factor",
+        },
+        ["<C-->"] = {
+          function()
+            change_scale_factor(
+              -vim.g.neovide_increment_scale_factor * vim.v.count1,
+              true
+            )
+          end,
+          desc = "Decrease Neovide scale factor",
+        },
+        ["<C-0>"] = { reset_scale_factor, desc = "Reset Neovide scale factor" },
+      },
+    },
+  },
+}
+```

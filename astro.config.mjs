@@ -1,6 +1,8 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
+import starlightDocSearch from "@astrojs/starlight-docsearch";
+import starlightLinksValidator from "starlight-links-validator";
+import starlightImageZoom from "starlight-image-zoom";
 import tailwind from "@astrojs/tailwind";
 
 const locales = {
@@ -17,7 +19,7 @@ export default defineConfig({
   locales,
   integrations: [
     starlight({
-      title: "AstroNvim Docs",
+      title: "AstroNvim Documentation",
       description: "The documentation website for AstroNvim.",
       favicon: "/astronvim.svg",
       head: [
@@ -116,8 +118,17 @@ export default defineConfig({
         src: "./src/assets/astronvim.svg",
       },
       components: {
-        Search: "./src/components/Search.astro",
+        SiteTitle: "./src/components/SiteTitle.astro",
       },
+      plugins: [
+        // starlightDocSearch({
+        //   appId: "JXZNTZ86UN",
+        //   apiKey: "96faee2ebdaf4a8a66d0f810c635bfec",
+        //   indexName: "astronvim",
+        // }),
+        starlightLinksValidator(),
+        starlightImageZoom(),
+      ],
       customCss: [
         // Path to your Tailwind base styles:
         "./src/tailwind.css",
@@ -131,57 +142,70 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Getting started",
+          label: "🚀 Getting Started",
           link: "/",
           collapsed: true,
           translations: {},
         },
         {
-          label: "Basic Usage",
+          label: "📦 AstroCommunity",
+          link: "/astrocommunity",
           collapsed: true,
-          autogenerate: { directory: "basic-usage" },
           translations: {},
         },
         {
-          label: "Configuration",
+          label: "⌨️ Mappings",
+          link: "/mappings",
+          collapsed: true,
+          translations: {},
+        },
+        {
+          label: "📝 Using This Documentation",
+          link: "/using_the_docs",
+          collapsed: true,
+          translations: {},
+        },
+        {
+          label: "🔧 Configuration",
           collapsed: true,
           autogenerate: { directory: "configuration" },
           translations: {},
         },
         {
-          label: "Recipes",
+          label: "🍳 Recipes",
           collapsed: true,
           autogenerate: { directory: "recipes" },
           translations: {},
         },
         {
-          label: "Acknowledgements",
+          label: "📔 Reference",
+          collapsed: true,
+          autogenerate: { directory: "reference" },
+          translations: {},
+        },
+        {
+          label: "⭐ Acknowledgements",
           link: "/acknowledgements",
           collapsed: true,
 
           translations: {},
         },
         {
-          label: "Code of Conduct",
+          label: "👪 Code of Conduct",
           collapsed: true,
           link: "/code_of_conduct",
           translations: {},
         },
         {
-          label: "Frequently Asked Questions",
+          label: "❓ FAQ",
           collapsed: true,
           link: "/faq",
-          translations: {},
-        },
-        {
-          label: "Core Lua API Documentation",
-          link: "https://api.astronvim.com",
           translations: {},
         },
       ],
       lastUpdated: true,
       editLink: {
-        baseUrl: 'https://github.com/AstroNvim/docs/edit/main/'
+        baseUrl: "https://github.com/AstroNvim/docs/edit/main/",
       },
     }),
     tailwind({
