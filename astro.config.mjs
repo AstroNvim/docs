@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightDocSearch from "@astrojs/starlight-docsearch";
 import starlightLinksValidator from "starlight-links-validator";
+import starlightImageZoom from "starlight-image-zoom";
 import tailwind from "@astrojs/tailwind";
 
 const locales = {
@@ -126,6 +127,7 @@ export default defineConfig({
         //   indexName: "astronvim",
         // }),
         starlightLinksValidator(),
+        starlightImageZoom(),
       ],
       customCss: [
         // Path to your Tailwind base styles:
