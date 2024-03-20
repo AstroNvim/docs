@@ -23,11 +23,9 @@ return {
           ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
           ["<Leader>bD"] = {
             function()
-              require("astroui.status").heirline.buffer_picker(
-                function(bufnr)
-                  require("astrocore.buffer").close(bufnr)
-                end
-              )
+              require("astroui.status").heirline.buffer_picker(function(bufnr)
+                require("astrocore.buffer").close(bufnr)
+              end)
             end,
             desc = "Pick to close",
           },
@@ -90,7 +88,7 @@ return {
     opts.mappings.n.gr[1] = function()
       vim.lsp.buf.references()
     end
-    opts.mappings.n.gT[1] = function()
+    opts.mappings.n.gy[1] = function()
       vim.lsp.buf.type_definition()
     end
     opts.mappings.n["<Leader>lG"][1] = function()
