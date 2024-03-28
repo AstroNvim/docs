@@ -55,7 +55,15 @@ Checkout the [Managing User Configuration Page](/configuration/manage_user_confi
 4. Once you have your configuration set up how you like it, move it over to the default neovim configuration location `~/.config/nvim`:
 
    ```sh
+   # Backup old Neovim folders
+   mv ~/.local/share/nvim ~/.local/share/nvim.bak # backup old data folder
+   mv ~/.local/state/nvim ~/.local/state/nvim.bak # backup old state folder
+   mv ~/.cache/nvim ~/.cache/nvim.bak # backup old cache folder
    mv ~/.config/nvim ~/.config/nvim.bak # backup old config
+   # Move new configuration into place
+   mv ~/.local/share/astronvim_v4 ~/.local/share/nvim # move new data folder
+   mv ~/.local/state/astronvim_v4 ~/.local/state/nvim # move new state folder
+   mv ~/.cache/astronvim_v4 ~/.cache/nvim # move new cache folder
    mv ~/.config/astronvim_v4 ~/.config/nvim # move new config
    ```
 
