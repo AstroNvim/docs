@@ -121,11 +121,11 @@ export default defineConfig({
         SiteTitle: "./src/components/SiteTitle.astro",
       },
       plugins: [
-        // starlightDocSearch({
-        //   appId: "JXZNTZ86UN",
-        //   apiKey: "96faee2ebdaf4a8a66d0f810c635bfec",
-        //   indexName: "astronvim",
-        // }),
+        starlightDocSearch({
+          appId: "JXZNTZ86UN",
+          apiKey: "96faee2ebdaf4a8a66d0f810c635bfec",
+          indexName: "astronvim",
+        }),
         starlightLinksValidator(),
         starlightImageZoom(),
       ],
