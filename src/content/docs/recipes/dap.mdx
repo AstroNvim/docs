@@ -5,7 +5,7 @@ title: Debugger Setup
 
 :::note
 
-AstroNvim does not currently support debugging in Windows, and the debugging plugins will not be installed by default
+AstroNvim relies on [`mason-nvim-dap`](https://github.com/jayp0521/mason-nvim-dap.nvim) for auto configuration of debuggers. This may have less than optimal support for debugging on Window and may require pull requests and issues there to get better support.
 
 :::
 
@@ -126,12 +126,4 @@ return {
     dap.listeners.before.event_exited["dapui_config"] = nil
   end,
 }
-```
-
-## Enable Plugins on Windows
-
-This does not work out of the box and we cannot provide support for it at the moment, but if you want to enable the plugins on Windows then you can manually enable the `dap` plugin in your user configuration. Here is an example plugin spec to re-enable `nvim-dap`:
-
-```lua title="lua/plugins/nvim-dap.lua"
-return { "mfussenegger/nvim-dap", enabled = true }
 ```
