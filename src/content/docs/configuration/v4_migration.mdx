@@ -9,7 +9,7 @@ While there are many small improvements to AstroNvim in version 4, the major upd
 
 The first major change is that the installation of AstroNvim itself is through `lazy.nvim`. Rather than cloning AstroNvim, as was done in previous versions, AstroNvim is "just another" plugin and it is installed using `lazy.nvim`.
 
-The second major change is that AstroNvim configuration has been split among a number of plugins, each with their own configuration. While the [AstroNvim](https://github.com/AstroNvim/AstroNvim/tree/v4) plugin is still the main plugin, it has very limited configuration options.
+The second major change is that AstroNvim configuration has been split among a number of plugins, each with their own configuration. While the [AstroNvim](https://github.com/AstroNvim/AstroNvim) plugin is still the main plugin, it has very limited configuration options.
 
 The new plugins are:
 
@@ -89,7 +89,7 @@ Each "Migrating" section below has an link to documentation and/or an example co
 
 :::
 
-The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/v4/lua%2Fastronvim%2Fplugins) in the AstroNvim codebase itself are also a good reference to learn how to configure.
+The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/main/lua%2Fastronvim%2Fplugins) in the AstroNvim codebase itself are also a good reference to learn how to configure.
 
 **Please also read the [Other Changes section](#other-changes)** - there are a number of changes that are not just "move some config from one place to another". For example, in key mapping `<leader>` is no longer recognized.
 
@@ -231,7 +231,7 @@ Along with the new core AstroNvim plugins, we have made some other changes to ou
 - `<Leader>u` mappings have been modified to align buffer-local and global commands to a common standard
 - The mapping for "Go to Type Definition" has changed from `gT` to `gy` to avoid the core vim mapping to go to previous vim tab
 - The `file_info` component in the `status` API default options have been changed. If you are using `file_info` in your configuration, please refer to the new defaults in the [AstroUI Repository](https://github.com/AstroNvim/astroui/blob/main/lua/astroui/status/component.lua#L34-L57).
-- `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroCore configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/v4/lua/astronvim/plugins/_astrocore.lua#L26-L33)
+- `signs` is no longer used for configuring diagnostic signs. This is now configured in the `diagnostics` table under the `signs` key. If you are modifying the diagnostic signs in your configuration, please refer to the [AstroCore configuration in AstroNvim](https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/_astrocore.lua#L26-L33)
 - The `signs` table is now a dictionary format rather than a list to more closely align with the core Neovim Lua API as well as make it easier for the user to modify. If you are customizing signs in your user configuration, the field that was previously `name` in the list is now the key in a dictionary like table.
 - The "loop" text object configured in `nvim-treesitter-text-objects` has been changed from `l` to `o` to avoid collisions with the common text object for line
 - If you previously had configured a global `neoconf.json` file in your `user/` folder, this should now go into the root of your configuration (typically: `~/.config/nvim`)
