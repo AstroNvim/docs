@@ -5,11 +5,12 @@ title: Lua Language Server Integration
 
 Each of the core AstroNvim plugins have full integration with the Lua Language Server which can be used to provide autocompletion and access to documentation directly in the editor. To enable this integration, you simply have to specify in the plugin specifications the type of the `opts` table. Each plugin provides the following Lua types:
 
-| Plugin    | Lua Type        |
-| --------- | --------------- |
-| AstroCore | `AstroCoreOpts` |
-| AstroUI   | `AstroUIOpts`   |
-| AstroLSP  | `AstroLSPOpts`  |
+| Plugin     | Lua Type         |
+| ---------- | ---------------- |
+| AstroCore  | `AstroCoreOpts`  |
+| AstroUI    | `AstroUIOpts`    |
+| AstroLSP   | `AstroLSPOpts`   |
+| AstroTheme | `AstroThemeOpts` |
 
 In `lazy.nvim` there are a couple formats that the `opts` can be specified in, either a Lua table or a Lua Function. Here is the notation to specify the typing in each situation. For more information on how plugins are customized, check out the [Customizing Plugins page](/configuration/customizing_plugins).
 
