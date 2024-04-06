@@ -7,10 +7,25 @@ AstroNvim aims to provide a unified and cohesive user experience which includes 
 
 ### Disable Icons
 
-Some users may want to disable icons across the entire user interface because they don't like icons or simply because they are using a machine that is unable to install a nerd font for whatever reason. To assist with this use case we have added a new option variable `vim.g.icons_enabled` (default: `true`) that lets you disable the icons entirely and just have a text based user interface. To opt into this text based UI, it does require a user configuration setting the appropriate option. You want to add this to your vim options:
+Some users may want to disable icons across the entire user interface because they don't like icons or simply because they are using a machine that is unable to install a nerd font for whatever reason. To assist with this use case we have added a new option to the AstroNvim setup, `icons_enabled` (default: `true`), that lets you disable the icons entirely and just have a text based user interface. To opt into this text based UI, it does require a user configuration setting the appropriate option. You want to add this to your AstroNvim `opts` table:
 
-```lua title="lua/config/options.lua" ins={1}
-vim.g.icons_enabled = false
+:::note
+
+Because the option also controls whether or not some core plugins get installed, this option is set in the `"AstroNvim/AstroNvim"` plugin itself when it is set up with `lazy` and the `astronvim.plugins` module is imported. It must be set here to work properly. If using the [AstroNvim Template](https://github.com/AstroNvim/template/blob/main/lua/lazy_setup.lua#L9) this is done in the `lua/lazy_setup.lua` file.
+
+:::
+
+```lua title="lua/lazy_setup.lua" ins={7}
+require("lazy").setup({
+  {
+    "AstroNvim/AstroNvim",
+    version = "^4", -- Remove version tracking to elect for nighly AstroNvim
+    import = "astronvim.plugins",
+    opts = { -- AstroNvim options must be set here with the `import` key
+      icons_enabled = false, -- Set to false to disable icons (if no Nerd Font is available)
+    },
+  },
+})
 ```
 
 ### Customize User Interface Icons
