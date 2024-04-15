@@ -48,6 +48,7 @@ return {
         {
           event = "VimEnter",
           desc = "Restore previous directory session if neovim opened with no arguments",
+          nested = true, -- trigger other autocommands as buffers open
           callback = function()
             -- Only load the session if nvim was started with no args
             if vim.fn.argc(-1) == 0 then
@@ -56,8 +57,6 @@ return {
                 vim.fn.getcwd(),
                 { dir = "dirsession", silence_errors = true }
               )
-              -- trigger buffer read auto commands on each opened buffer after load
-              vim.tbl_map(vim.cmd.doautoall, { "BufReadPre", "BufReadPost" })
             end
           end,
         },
@@ -136,6 +135,7 @@ return {
         {
           event = "VimEnter",
           desc = "Restore previous directory session if neovim opened with no arguments",
+          nested = true, -- trigger other autocommands as buffers open
           callback = function()
             -- Only load the session if nvim was started with no args
             if vim.fn.argc(-1) == 0 then
@@ -144,8 +144,6 @@ return {
                 get_session_name(),
                 { dir = "dirsession", silence_errors = true }
               )
-              -- trigger buffer read auto commands on each opened buffer after load
-              vim.tbl_map(vim.cmd.doautoall, { "BufReadPre", "BufReadPost" })
             end
           end,
         },
