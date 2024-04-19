@@ -27,16 +27,12 @@ In order to customize buttons presented on the dashboard, you can modify `alpha`
 
 ```lua title="lua/plugins/alpha_buttons.lua"
 return {
-  plugins = {
-    {
-      "goolord/alpha-nvim",
-      opts = function(_, opts) -- override the options using lazy.nvim
-        opts.section.buttons.val = {
-          opts.button( "h", "  Say Hi" , ":echo Hello World!"),
-        }
-      end,
-    },
-  },
+  "goolord/alpha-nvim",
+  opts = function(_, opts) -- override the options using lazy.nvim
+    opts.section.buttons.val = {
+      opts.button("h", "  Say Hi", ':echo "Hello World!"<CR>'),
+    }
+  end,
 }
 ```
 
