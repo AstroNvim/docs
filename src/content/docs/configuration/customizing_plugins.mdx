@@ -357,23 +357,31 @@ return {
 
 Lazy loading can be used to delay plugin loading to speed up start up time. There are a few basic methods of lazy loading that can be easily added. The main keys here are `lazy`, `cmd`, `ft`, `keys`, and `event`. More details of these and more options can be found in the [Lazy Documentation](https://github.com/folke/lazy.nvim#-plugin-spec). Here are a few examples:
 
-```lua title="lua/plugins/lazy_loaded.lua" /((lazy|event|cmd|ft|keys) = (\S+|{.*}))/
+```lua title="lua/plugins/lazy_loaded.lua" /((lazy|cmd|ft|keys|event) = (\S+|{.*}))/
 return {
   -- by enabling the lazy option, the plugin will automatically be lazy loaded
   -- until it's module is called for example require("tokyonight")
   { "folke/tokyonight.nvim", lazy = true },
-
-  -- this plugin will be loaded on the autocmd event "UIEnter"
-  { "rcarriga/nvim-notify", event = "UIEnter" },
-
-  -- this plugin will be loaded when using `:ZenMode`
-  { "folke/zen-mode.nvim", cmd = "ZenMode" },
 
   -- this plugin will be loaded when using `:ZenMode`
   { "folke/zen-mode.nvim", cmd = "ZenMode" },
 
   -- this plugin will be loaded when opening a "markdown" file
   { "lukas-reineke/headlines.nvim", ft = "markdown" },
+
+  -- this plugin will be loaded when pressing Alt+{h,j,k,l}
+  {
+    "echasnovski/mini.move",
+    keys = {
+      { "<M-h>", mode = { "v", "n" } },
+      { "<M-j>", mode = { "v", "n" } },
+      { "<M-k>", mode = { "v", "n" } },
+      { "<M-l>", mode = { "v", "n" } },
+    },
+  },
+
+  -- this plugin will be loaded on the autocmd event "UIEnter"
+  { "rcarriga/nvim-notify", event = "UIEnter" },
 }
 ```
 
