@@ -385,6 +385,53 @@ return {
 }
 ```
 
+### Lazy Loading with AstroCore
+
+Because we use [AstroCore](https://github.com/AstroNvim/astrocore) for our main configuration for things such as mappings or auto commands it makes it a great use case for setting up triggering lazy loading in a way where our mappings and auto commands are still centrally managed and will safely override core mappings that may be defined. This is useful for plugins that do not set up their own mappings but instead the user decides on them. Because we can lazy load plugins based on module and commands it is easy to integrate them together. Here are some basic examples of setting up a plugin to lazy load when a mapping is pressed and managing that plugin with AstroCore:
+
+```lua title="lua/plugins/astrocore_lazy_loaded.lua"
+return {
+  {
+    "NeogitOrg/neogit",
+    lazy = true, -- lazy load on module
+    dependencies = {
+      { -- AstroCore is always loaded on startup, so making it a dependency doesn't matter
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = { -- define a mapping to load the plugin module
+            n = {
+              ["<Leader>gG"] = function()
+                require("neogit").open()
+              end,
+            },
+          },
+        },
+      },
+    },
+    opts = {}, -- run `require("neogit").setup({})`
+  },
+  {
+    "danymat/neogen",
+    cmd = "Neogen", -- lazy load on command
+    dependencies = {
+      { -- AstroCore is always loaded on startup, so making it a dependency doesn't matter
+        "AstroNvim/astrocore",
+        opts = {
+          mappings = { -- define a mapping to invoke the command
+            n = {
+              ["<Leader>a"] = function()
+                vim.cmd("Neogen")
+              end,
+            },
+          },
+        },
+      },
+    },
+    opts = {},
+  },
+}
+```
+
 ### Lazy Load File Related Plugins
 
 AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. We achieve this by creating a custom `User` `autocmd` event called `AstroFile`. This can also be used by users for lazy loading plugins on the first real file that is opened:
