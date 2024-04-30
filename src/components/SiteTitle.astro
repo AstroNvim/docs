@@ -3,6 +3,7 @@ import { logos } from "virtual:starlight/user-images";
 import config from "virtual:starlight/user-config";
 import type { Props } from "@astrojs/starlight/props";
 
+const { siteTitle } = Astro.props;
 const href = "/";
 ---
 
@@ -33,7 +34,7 @@ const href = "/";
     }
   </a>
   <span class:list={{ "sr-only": config.logo?.replacesTitle }}>
-    <a {href} class="site-title">{config.title}</a>
+    <a {href} class="site-title">{siteTitle}</a>
   </span>
 </span>
 
