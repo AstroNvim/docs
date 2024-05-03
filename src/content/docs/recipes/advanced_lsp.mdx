@@ -708,3 +708,80 @@ return {
   },
 }
 ```
+
+## Inlay Hints
+
+:::caution
+
+This uses `vim.lsp.inlay_hint` which is currently only available in an unreleased and unstable version of Neovim.
+
+:::
+
+Since Neovim v0.10 there is the ability to handle and render inline virtual text and therefore first class support of inlay hints. AstroLSP comes with a built in feature for enabling inlay hints easily as well as toggling them during runtime. By default inlay hints are disabled, but they can easily be enabled by default by modifying `features.inlay_hints` in the AstroLSP `opts`:
+
+```lua title="lua/plugins/inlay_hints.lua"
+return {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    features = {
+      inlay_hints = true, -- enable inlay hints globally on startup
+    },
+  },
+}
+```
+
+### Disable in Insert Mode
+
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/recipes/astrolsp-no-insert-inlay-hints)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+}
+```
+
+:::
+
+Some users may like the look of inlay hints but prefer for them to be disabled with actively editing text in insert mode. This recipe also respects the current state of inlay hints and will only toggle them if inlay hints are enabled in a given buffer. This can easily be achieved with the AstroLSP `autocmds` feature:
+
+```lua title="lua/plugins/no_insert_inlay_hints.lua"
+return {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    autocmds = {
+      no_insert_inlay_hints = {
+        -- only create for language servers that support inlay hints
+        -- (and only if vim.lsp.inlay_hint is available)
+        cond = vim.lsp.inlay_hint and "textDocument/inlayHint" or false,
+        {
+          -- when going into insert mode
+          event = "InsertEnter",
+          desc = "disable inlay hints on insert",
+          callback = function(args)
+            local filter = { bufnr = args.buf }
+            -- if the inlay hints are currently enabled
+            if vim.lsp.inlay_hint.is_enabled(filter) then
+              -- disable the inlay hints
+              vim.lsp.inlay_hint.enable(false, filter)
+              -- create a single use autocommand to turn the inlay hints back on
+              -- when leaving insert mode
+              vim.api.nvim_create_autocmd("InsertLeave", {
+                buffer = args.buf,
+                once = true,
+                callback = function()
+                  vim.lsp.inlay_hint.enable(true, filter)
+                end,
+              })
+            end
+          end,
+        },
+      },
+    },
+  },
+}
+```
