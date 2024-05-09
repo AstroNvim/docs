@@ -4,6 +4,7 @@ import starlightDocSearch from "@astrojs/starlight-docsearch";
 import starlightLinksValidator from "starlight-links-validator";
 import starlightImageZoom from "starlight-image-zoom";
 import tailwind from "@astrojs/tailwind";
+import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 
 const locales = {
   root: {
@@ -129,6 +130,9 @@ export default defineConfig({
         starlightLinksValidator(),
         starlightImageZoom(),
       ],
+      expressiveCode: {
+        plugins: [pluginCollapsibleSections()],
+      },
       customCss: [
         // Path to your Tailwind base styles:
         "./src/tailwind.css",

@@ -1,0 +1,60 @@
+---
+id: contributing
+title: Contibuting to AstroNvim
+---
+
+AstroNvim is an open source project that has gotten to where it is today through the incredible support from the community. All contributions and recommendations are welcome by anyone no matter how big or small! Great ways to contribute include:
+
+- Starting discussions about improvements and asking questions in the [AstroNvim Discord](https://discord.astronvim.com)
+- Submitting Bug Reports and Feature Requests to the [AstroNvim GitHub Issues](https://github.com/AstroNvim/AstroNvim/issues)
+- Opening [Pull Requests](https://github.com/AstroNvim/AstroNvim/pulls) (Either in the core AstroNvim repository or any of the core plugins such as [AstroCore](https://github.com/AstroNvim/astrocore), [AstroLSP](https://github.com/AstroNvim/astrolsp), [AstroUI](https://github.com/AstroNvim/astrocore))
+- Contributing and improving the plugins in the community driven [AstroCommunity](https://github.com/AstroNvim/astrocommunity)
+
+When making contributions Make sure to check out the official contribution guidelines which help guarantee tests pass and expedite the review and merge process!
+
+- [General AstroNvim Contribution Guidelines](https://github.com/AstroNvim/.github/blob/main/CONTRIBUTING.md)
+- [AstroCommunity Specific Contribution Guidelines](https://github.com/AstroNvim/astrocommunity/blob/main/CONTRIBUTING.md)
+
+## Nightly/Unstable AstroNvim
+
+By default when using the [AstroNvim Template](https://github.com/AstroNvim/template) users get put on the update path of only receiving official, tagged released of AstroNvim. This guarantees the highest level of stability for the end user and avoid random breaking changes as much as possible. When making contributions to AstroNvim such as opening issues, you may want to test unreleased code to see if it resolves any problems or verify if a bug is already fixed. This can be achieved by simply disabling the default version pinning of AstroNvim that is set by the template. This version pinning and configuration will be located wherever you add the `AstroNvim/AstroNvim` repository and import it's plugins. If you are using the official template, this would be located in the file `~/.config/nvim/lua/lazy_setup.lua` (adjusting the path as necessary for your operating system or configuration location). You simply want to remove any reference to specifying a `version` such as this:
+
+::::tip
+Remember to restart and run `:Lazy update` after these changes!
+::::
+
+```diff lang="lua" title="lua/lazy_setup.lua" collapse={8-12,14-33}
+require("lazy").setup({
+  {
+    "AstroNvim/AstroNvim",
+-    version = "^4",    -- Remove version tracking to elect for nighly AstroNvim
++    -- version = "^4", -- Remove version tracking to elect for nighly AstroNvim
+    import = "astronvim.plugins",
+    opts = { -- AstroNvim options must be set here with the `import` key
+      mapleader = " ", -- This ensures the leader key must be configured before Lazy is set up
+      maplocalleader = ",", -- This ensures the localleader key must be configured before Lazy is set up
+      icons_enabled = true, -- Set to false to disable icons (if no Nerd Font is available)
+      pin_plugins = nil, -- Default will pin plugins when tracking `version` of AstroNvim, set to true/false to override
+      update_notifications = true, -- Enable/disable notification about running `:Lazy update` twice to update pinned plugins
+    },
+  },
+  { import = "community" },
+  { import = "plugins" },
+} --[[@as LazySpec]], {
+  -- Configure any other `lazy.nvim` configuration options here
+  install = { colorscheme = { "astrodark", "habamax" } },
+  ui = { backdrop = 100 },
+  performance = {
+    rtp = {
+      -- disable some rtp plugins, add more to your liking
+      disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "zipPlugin",
+      },
+    },
+  },
+} --[[@as LazyConfig]])
+```
