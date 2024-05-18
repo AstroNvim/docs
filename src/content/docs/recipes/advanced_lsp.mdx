@@ -711,12 +711,6 @@ return {
 
 ## Inlay Hints
 
-:::caution
-
-This uses `vim.lsp.inlay_hint` which is currently only available in an unreleased and unstable version of Neovim.
-
-:::
-
 Since Neovim v0.10 there is the ability to handle and render inline virtual text and therefore first class support of inlay hints. AstroLSP comes with a built in feature for enabling inlay hints easily as well as toggling them during runtime. By default inlay hints are disabled, but they can easily be enabled by default by modifying `features.inlay_hints` in the AstroLSP `opts`:
 
 ```lua title="lua/plugins/inlay_hints.lua"
