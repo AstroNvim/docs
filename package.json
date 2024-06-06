@@ -11,13 +11,13 @@
     "upgrade": "pnpm dlx @astrojs/upgrade"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.0.0",
-    "@astrojs/starlight": "^0.23.0",
+    "@astrojs/mdx": "^3.0.1",
+    "@astrojs/starlight": "^0.24.0",
     "@astrojs/starlight-docsearch": "^0.1.0",
-    "@astrojs/starlight-tailwind": "^2.0.2",
+    "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
     "@expressive-code/plugin-collapsible-sections": "^0.35.3",
-    "astro": "^4.8.6",
+    "astro": "^4.9.3",
     "sharp": "^0.33.2",
     "starlight-image-zoom": "^0.1.0",
     "starlight-links-validator": "^0.5.3",
