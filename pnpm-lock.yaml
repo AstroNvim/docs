@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@astrojs/mdx':
-    specifier: ^3.0.1
-    version: 3.0.1(astro@4.9.3)
+    specifier: ^3.1.0
+    version: 3.1.0(astro@4.10.0)
   '@astrojs/starlight':
     specifier: ^0.24.0
-    version: 0.24.0(astro@4.9.3)
+    version: 0.24.0(astro@4.10.0)
   '@astrojs/starlight-docsearch':
     specifier: ^0.1.0
     version: 0.1.0(@algolia/client-search@4.22.1)(@astrojs/starlight@0.24.0)(search-insights@2.13.0)
@@ -19,13 +19,13 @@ dependencies:
     version: 2.0.3(@astrojs/starlight@0.24.0)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.1)
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.9.3)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.10.0)(tailwindcss@3.4.1)
   '@expressive-code/plugin-collapsible-sections':
     specifier: ^0.35.3
     version: 0.35.3
   astro:
-    specifier: ^4.9.3
-    version: 4.9.3
+    specifier: ^4.10.0
+    version: 4.10.0
   sharp:
     specifier: ^0.33.2
     version: 0.33.2
@@ -34,7 +34,7 @@ dependencies:
     version: 0.1.0(@astrojs/starlight@0.24.0)
   starlight-links-validator:
     specifier: ^0.5.3
-    version: 0.5.3(@astrojs/starlight@0.24.0)(astro@4.9.3)
+    version: 0.5.3(@astrojs/starlight@0.24.0)(astro@4.10.0)
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -232,7 +232,7 @@ packages:
       remark-parse: 11.0.0
       remark-rehype: 11.1.0
       remark-smartypants: 2.1.0
-      shiki: 1.5.1
+      shiki: 1.6.2
       unified: 11.0.4
       unist-util-remove-position: 5.0.0
       unist-util-visit: 5.0.0
@@ -242,8 +242,8 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx@3.0.1(astro@4.9.3):
-    resolution: {integrity: sha512-UcPja14Qt6OEm7Wjak41Qa5f7G1M0oB2ARCsyIkXy6+Z65fJ6c1648UqEOqnEgR6Xtqq+V47wtK2qSP6KQKrAg==}
+  /@astrojs/mdx@3.1.0(astro@4.10.0):
+    resolution: {integrity: sha512-yuGDaOcCAfYgLQvUAlJDezYGK4twHlzW1Kvpyg3inxtDJuAsHdyVyYLWl0Wo5nwkyrbZktdrjnoW5scqzoAqAg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
     peerDependencies:
       astro: ^4.8.0
@@ -251,8 +251,8 @@ packages:
       '@astrojs/markdown-remark': 5.1.0
       '@mdx-js/mdx': 3.0.1
       acorn: 8.11.3
-      astro: 4.9.3
-      es-module-lexer: 1.5.2
+      astro: 4.10.0
+      es-module-lexer: 1.5.3
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
       gray-matter: 4.0.3
@@ -287,7 +287,7 @@ packages:
     peerDependencies:
       '@astrojs/starlight': '>=0.14.0'
     dependencies:
-      '@astrojs/starlight': 0.24.0(astro@4.9.3)
+      '@astrojs/starlight': 0.24.0(astro@4.10.0)
       '@docsearch/css': 3.5.2
       '@docsearch/js': 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
     transitivePeerDependencies:
@@ -305,23 +305,23 @@ packages:
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.24.0(astro@4.9.3)
-      '@astrojs/tailwind': 5.1.0(astro@4.9.3)(tailwindcss@3.4.1)
+      '@astrojs/starlight': 0.24.0(astro@4.10.0)
+      '@astrojs/tailwind': 5.1.0(astro@4.10.0)(tailwindcss@3.4.1)
       tailwindcss: 3.4.1
     dev: false
 
-  /@astrojs/starlight@0.24.0(astro@4.9.3):
+  /@astrojs/starlight@0.24.0(astro@4.10.0):
     resolution: {integrity: sha512-YUBf7TgDUMRcyoZ8S8hlnPuEvgqFuB5F7tQUwPK5GwkTC1E+gMW8zx9J/RgJAXNjQSi19s73nuF19zw/QSy5tw==}
     peerDependencies:
       astro: ^4.8.6
     dependencies:
-      '@astrojs/mdx': 3.0.1(astro@4.9.3)
+      '@astrojs/mdx': 3.1.0(astro@4.10.0)
       '@astrojs/sitemap': 3.1.0
       '@pagefind/default-ui': 1.0.4
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.3
-      astro: 4.9.3
-      astro-expressive-code: 0.35.2(astro@4.9.3)
+      astro: 4.10.0
+      astro-expressive-code: 0.35.2(astro@4.10.0)
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.1
       hast-util-select: 6.0.2
@@ -340,13 +340,13 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.9.3)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.10.0)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.9.3
+      astro: 4.10.0
       autoprefixer: 10.4.17(postcss@8.4.35)
       postcss: 8.4.35
       postcss-load-config: 4.0.2(postcss@8.4.35)
@@ -2133,17 +2133,17 @@ packages:
     hasBin: true
     dev: false
 
-  /astro-expressive-code@0.35.2(astro@4.9.3):
+  /astro-expressive-code@0.35.2(astro@4.10.0):
     resolution: {integrity: sha512-euLMzMBRyNjniHIdla2yjBEFVKbYJxo5jdzsFB/2M/nf3hgKs9o6VU41HEvKEnk5Pf2NhFtgUGGwrIrjwuHhyA==}
     peerDependencies:
       astro: ^4.0.0-beta || ^3.3.0
     dependencies:
-      astro: 4.9.3
+      astro: 4.10.0
       rehype-expressive-code: 0.35.2
     dev: false
 
-  /astro@4.9.3:
-    resolution: {integrity: sha512-LhiKZMee56GI7+zIt15bXZVX4JSnj4syTrQdkYNgE+Y0udMad0x8RgJGzc2NMOK31e6w/SL+NFSvnt/d1kgs5w==}
+  /astro@4.10.0:
+    resolution: {integrity: sha512-UNVGGZIwdEPIUumcwgIQnd90b4/PslReY9q3xy/Q6bIq/kvK0duIWCbhFPwf06xu+1tExziP9Jl+klvLXM0LfA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
@@ -2896,10 +2896,6 @@ packages:
     resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
     engines: {node: '>= 0.4'}
     dev: true
-
-  /es-module-lexer@1.5.2:
-    resolution: {integrity: sha512-l60ETUTmLqbVbVHv1J4/qj+M8nq7AwMzEcg3kmJDt9dCNrTk+yHcYFf/Kw75pMDwd9mPcIGCG5LcS20SxYRzFA==}
-    dev: false
 
   /es-module-lexer@1.5.3:
     resolution: {integrity: sha512-i1gCgmR9dCl6Vil6UKPI/trA69s08g/syhiDK9TG0Nf1RJjjFI+AzoWW7sPufzkgYAn861skuCwJa0pIIHYxvg==}
@@ -6039,21 +6035,21 @@ packages:
     peerDependencies:
       '@astrojs/starlight': '>=0.20.0'
     dependencies:
-      '@astrojs/starlight': 0.24.0(astro@4.9.3)
+      '@astrojs/starlight': 0.24.0(astro@4.10.0)
       rehype-raw: 7.0.0
       unist-util-visit: 5.0.0
       unist-util-visit-parents: 6.0.1
     dev: false
 
-  /starlight-links-validator@0.5.3(@astrojs/starlight@0.24.0)(astro@4.9.3):
+  /starlight-links-validator@0.5.3(@astrojs/starlight@0.24.0)(astro@4.10.0):
     resolution: {integrity: sha512-v79rwmzjQlEMVL8sZ4dalD/jhFOUvGZ2/f4CvxCySZ9KbEN9nDmgV8zJgfpmTzhbcYQ35wzyUinF4QNxgKVA4g==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       '@astrojs/starlight': '>=0.15.0'
       astro: '>=4.0.0'
     dependencies:
-      '@astrojs/starlight': 0.24.0(astro@4.9.3)
-      astro: 4.9.3
+      '@astrojs/starlight': 0.24.0(astro@4.10.0)
+      astro: 4.10.0
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.1
       hast-util-has-property: 3.0.0
