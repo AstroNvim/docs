@@ -121,6 +121,12 @@ The `table` notation is the simplest method for configuration but does not cover
 - When passing a `table` in Lua it is resolved immediately. This can break lazy loading and try to access modules before they are available. When passing a `function` in Lua the contents are only resolved when it is executed. This allows for safe accessing of modules when they should be available.
 - When using the `table` notation for overriding, merging works great for dictionary-like entries with a key/value pair, but does not do any actual "merging" for list-like tables. Instead the list-like table will be replaced completely. This can be resolved in the `function` notation by manually doing the list merging that you want either with something like the Lua function `table.insert` or provided Neovim functions like `vim.list_extend`.
 
+:::tip
+
+Since [`lazy.nvim` v10.23.0](https://github.com/folke/lazy.nvim/releases/tag/v10.23.0) a new configuration option has been added called `opts_extend` which allows specifying that a part of the options passed to the `opts` table should be treated as a list that is extended rather than replaced completely as described below. Since [AstroNvim v4.9.0](https://github.com/AstroNvim/AstroNvim/releases/tag/v4.9.0) this option has been enabled out of the box for the `ensure_installed` tables for the following plugins: [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter), [`mason-lspconfig.nvim`](https://github.com/williamboman/mason-lspconfig.nvim), [`mason-null-ls.nvim`](https://github.com/jay-babu/mason-null-ls.nvim), and [`mason-nvim-dap.nvim`](https://github.com/jay-babu/mason-nvim-dap.nvim). This allows the user to use the basic table notation to simply add more items to these `ensure_installed` lists.
+
+:::
+
 Let's take a closer look at these two notations with an example using [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter). Let's assume the default configuration for `nvim-treesitter` is:
 
 ```lua
