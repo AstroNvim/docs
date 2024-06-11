@@ -72,6 +72,19 @@ return {
 
 ### Enable Telescope LSP Mappings
 
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/recipes/telescope-lsp-mappings)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
+}
+```
+
+:::
+
 Telescope proivdes functionality for using the picker for tasks such as getting references and symbols. This can be easily enabled through AstroLSP. Here is an example specification that can be added to your plugins:
 
 ```lua title="lua/plugins/telescope_lsp_mappings.lua"
