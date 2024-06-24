@@ -23,7 +23,7 @@ Lazy is particularly feature rich in that it helps with plugin life cycle manage
 - Lazily loading plugins meaning that plugins can be loaded only when needed, such as on some editor event happening, benefiting `nvim` startup time.
 - Compiles plugin `lua` code into native code for your system, helping with execution speed of plugin code.
 
-To see all available options for defining plugins in Lazy.nvim please refer to the [Lazy.nvim Plugin Spec](https://github.com/folke/lazy.nvim#-plugin-spec). Here we will go over examples of defining new plugins, overriding plugins, and disabling plugins.
+To see all available options for defining plugins in Lazy.nvim please refer to the [Lazy.nvim Plugin Spec](https://lazy.folke.io/spec). Here we will go over examples of defining new plugins, overriding plugins, and disabling plugins.
 
 ## Defining Plugins
 
@@ -56,7 +56,7 @@ The `return` statement is returning a table of tables. The outer table is a list
 
 The first entry in the plugin specification is the name of the plugin to load, specified in short URL form. The next two entries in the table, `name` and `opts` are Lazy recognized keys that direct Lazy on how to configure this plugin. `opts` can be a table or a function (`opts` is a table in the example above) that contains the configuration for the plugin. The structure of what is inside of `opts` is up to each plugin.
 
-To learn more about plugin specifications, see the [Lazy documentation](https://github.com/folke/lazy.nvim#-plugin-spec).
+To learn more about plugin specifications, see the [Lazy documentation](https://lazy.folke.io/spec).
 
 That's it! When `nvim` is started, the `catppuccin` plugin will be downloaded from GitHub, installed, configured, and loaded.
 
@@ -364,7 +364,7 @@ return {
 
 ## Lazy Loading
 
-Lazy loading can be used to delay plugin loading to speed up start up time. There are a few basic methods of lazy loading that can be easily added. The main keys here are `lazy`, `cmd`, `ft`, `keys`, and `event`. More details of these and more options can be found in the [Lazy Documentation](https://github.com/folke/lazy.nvim#-plugin-spec). Here are a few examples:
+Lazy loading can be used to delay plugin loading to speed up start up time. There are a few basic methods of lazy loading that can be easily added. The main keys here are `lazy`, `cmd`, `ft`, `keys`, and `event`. More details of these and more options can be found in the [Lazy Documentation](https://lazy.folke.io/spec). Here are a few examples:
 
 ```lua title="lua/plugins/lazy_loaded.lua" /((lazy|cmd|ft|event) = \S+)/ {15-20}
 return {
