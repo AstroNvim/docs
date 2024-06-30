@@ -11,23 +11,23 @@
     "upgrade": "pnpm dlx @astrojs/upgrade"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.0",
-    "@astrojs/starlight": "^0.24.2",
+    "@astrojs/mdx": "^3.1.2",
+    "@astrojs/starlight": "^0.24.5",
     "@astrojs/starlight-docsearch": "^0.1.1",
     "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/tailwind": "^5.1.0",
     "@expressive-code/plugin-collapsible-sections": "^0.35.3",
-    "astro": "^4.10.2",
-    "sharp": "^0.33.2",
+    "astro": "^4.11.3",
+    "sharp": "^0.33.4",
     "starlight-image-zoom": "^0.1.0",
     "starlight-links-validator": "^0.5.3",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
     "@netlify/plugin-lighthouse": "^6.0.0",
     "netlify-plugin-submit-sitemap": "^0.4.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.11"
+    "prettier-plugin-tailwindcss": "^0.5.14"
   }
 }
