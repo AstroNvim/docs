@@ -10,34 +10,34 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^3.1.2
-        version: 3.1.2(astro@4.11.3(@types/node@20.14.9))
+        version: 3.1.2(astro@4.11.5(@types/node@20.14.9))
       '@astrojs/starlight':
-        specifier: ^0.24.5
-        version: 0.24.5(astro@4.11.3(@types/node@20.14.9))
+        specifier: ^0.25.0
+        version: 0.25.0(astro@4.11.5(@types/node@20.14.9))
       '@astrojs/starlight-docsearch':
         specifier: ^0.1.1
-        version: 0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9)))(search-insights@2.13.0)
+        version: 0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9)))(search-insights@2.13.0)
       '@astrojs/starlight-tailwind':
         specifier: ^2.0.3
-        version: 2.0.3(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.11.3(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)
+        version: 2.0.3(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.11.5(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)
       '@astrojs/tailwind':
         specifier: ^5.1.0
-        version: 5.1.0(astro@4.11.3(@types/node@20.14.9))(tailwindcss@3.4.4)
+        version: 5.1.0(astro@4.11.5(@types/node@20.14.9))(tailwindcss@3.4.4)
       '@expressive-code/plugin-collapsible-sections':
         specifier: ^0.35.3
         version: 0.35.3
       astro:
-        specifier: ^4.11.3
-        version: 4.11.3(@types/node@20.14.9)
+        specifier: ^4.11.5
+        version: 4.11.5(@types/node@20.14.9)
       sharp:
         specifier: ^0.33.4
         version: 0.33.4
       starlight-image-zoom:
         specifier: ^0.1.0
-        version: 0.1.0(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9)))
+        version: 0.1.0(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9)))
       starlight-links-validator:
         specifier: ^0.5.3
-        version: 0.5.3(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9)))(astro@4.11.3(@types/node@20.14.9))
+        version: 0.5.3(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9)))(astro@4.11.5(@types/node@20.14.9))
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.4
@@ -170,8 +170,8 @@ packages:
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
 
-  '@astrojs/starlight@0.24.5':
-    resolution: {integrity: sha512-DDI8NpLzk+ReBudhAV09OhO5DxD+KN4Nnp3YlG6kwn/F8fmywNTNgY7VW67Z8aad+A/85OOiQOtq9wIFNRy3YA==}
+  '@astrojs/starlight@0.25.0':
+    resolution: {integrity: sha512-1T317AsdmMa+EP0tAPZY84G/9Ez79/8G6fHBaUr994GZSaptpr45vlyxyWtxlgIbdlio2EhKaXay4RVqqUKqXw==}
     peerDependencies:
       astro: ^4.8.6
 
@@ -913,8 +913,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^3.3.0
 
-  astro@4.11.3:
-    resolution: {integrity: sha512-SuZbB/71XVn+WqWNCe7XOfHuqhS+k4gj8+A3wluTZQrORGaHUFRn/f8F9Tu5yESQZB1q8UKhahvHwkTV3AdVsg==}
+  astro@4.11.5:
+    resolution: {integrity: sha512-TCRhuaLwrxwMhS8S1GG+ZTdrAXigX9C8E/YUTs/r2t+owHxDgwl86IV9xH1IHrCPoqhK6civyAQNOT+GKmkb0A==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3299,12 +3299,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@3.1.2(astro@4.11.3(@types/node@20.14.9))':
+  '@astrojs/mdx@3.1.2(astro@4.11.5(@types/node@20.14.9))':
     dependencies:
       '@astrojs/markdown-remark': 5.1.1
       '@mdx-js/mdx': 3.0.1
       acorn: 8.12.0
-      astro: 4.11.3(@types/node@20.14.9)
+      astro: 4.11.5(@types/node@20.14.9)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
@@ -3330,9 +3330,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/starlight-docsearch@0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9)))(search-insights@2.13.0)':
+  '@astrojs/starlight-docsearch@0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9)))(search-insights@2.13.0)':
     dependencies:
-      '@astrojs/starlight': 0.24.5(astro@4.11.3(@types/node@20.14.9))
+      '@astrojs/starlight': 0.25.0(astro@4.11.5(@types/node@20.14.9))
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.24.0)(search-insights@2.13.0)
     transitivePeerDependencies:
@@ -3342,21 +3342,21 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.11.3(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)':
+  '@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.11.5(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)':
     dependencies:
-      '@astrojs/starlight': 0.24.5(astro@4.11.3(@types/node@20.14.9))
-      '@astrojs/tailwind': 5.1.0(astro@4.11.3(@types/node@20.14.9))(tailwindcss@3.4.4)
+      '@astrojs/starlight': 0.25.0(astro@4.11.5(@types/node@20.14.9))
+      '@astrojs/tailwind': 5.1.0(astro@4.11.5(@types/node@20.14.9))(tailwindcss@3.4.4)
       tailwindcss: 3.4.4
 
-  '@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9))':
+  '@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9))':
     dependencies:
-      '@astrojs/mdx': 3.1.2(astro@4.11.3(@types/node@20.14.9))
+      '@astrojs/mdx': 3.1.2(astro@4.11.5(@types/node@20.14.9))
       '@astrojs/sitemap': 3.1.6
       '@pagefind/default-ui': 1.1.0
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.4
-      astro: 4.11.3(@types/node@20.14.9)
-      astro-expressive-code: 0.35.3(astro@4.11.3(@types/node@20.14.9))
+      astro: 4.11.5(@types/node@20.14.9)
+      astro-expressive-code: 0.35.3(astro@4.11.5(@types/node@20.14.9))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.1
       hast-util-select: 6.0.2
@@ -3374,9 +3374,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/tailwind@5.1.0(astro@4.11.3(@types/node@20.14.9))(tailwindcss@3.4.4)':
+  '@astrojs/tailwind@5.1.0(astro@4.11.5(@types/node@20.14.9))(tailwindcss@3.4.4)':
     dependencies:
-      astro: 4.11.3(@types/node@20.14.9)
+      astro: 4.11.5(@types/node@20.14.9)
       autoprefixer: 10.4.19(postcss@8.4.39)
       postcss: 8.4.39
       postcss-load-config: 4.0.2(postcss@8.4.39)
@@ -4008,7 +4008,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 20.14.9
 
   '@types/unist@2.0.10': {}
 
@@ -4101,12 +4101,12 @@ snapshots:
 
   astring@1.8.6: {}
 
-  astro-expressive-code@0.35.3(astro@4.11.3(@types/node@20.14.9)):
+  astro-expressive-code@0.35.3(astro@4.11.5(@types/node@20.14.9)):
     dependencies:
-      astro: 4.11.3(@types/node@20.14.9)
+      astro: 4.11.5(@types/node@20.14.9)
       rehype-expressive-code: 0.35.3
 
-  astro@4.11.3(@types/node@20.14.9):
+  astro@4.11.5(@types/node@20.14.9):
     dependencies:
       '@astrojs/compiler': 2.8.1
       '@astrojs/internal-helpers': 0.4.1
@@ -6513,17 +6513,17 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
-  starlight-image-zoom@0.1.0(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9))):
+  starlight-image-zoom@0.1.0(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9))):
     dependencies:
-      '@astrojs/starlight': 0.24.5(astro@4.11.3(@types/node@20.14.9))
+      '@astrojs/starlight': 0.25.0(astro@4.11.5(@types/node@20.14.9))
       rehype-raw: 7.0.0
       unist-util-visit: 5.0.0
       unist-util-visit-parents: 6.0.1
 
-  starlight-links-validator@0.5.3(@astrojs/starlight@0.24.5(astro@4.11.3(@types/node@20.14.9)))(astro@4.11.3(@types/node@20.14.9)):
+  starlight-links-validator@0.5.3(@astrojs/starlight@0.25.0(astro@4.11.5(@types/node@20.14.9)))(astro@4.11.5(@types/node@20.14.9)):
     dependencies:
-      '@astrojs/starlight': 0.24.5(astro@4.11.3(@types/node@20.14.9))
-      astro: 4.11.3(@types/node@20.14.9)
+      '@astrojs/starlight': 0.25.0(astro@4.11.5(@types/node@20.14.9))
+      astro: 4.11.5(@types/node@20.14.9)
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.1
       hast-util-has-property: 3.0.0
