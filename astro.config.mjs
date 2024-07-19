@@ -148,25 +148,21 @@ export default defineConfig({
         {
           label: "🚀 Getting Started",
           link: "/",
-          collapsed: true,
           translations: {},
         },
         {
           label: "📦 AstroCommunity",
           link: "/astrocommunity",
-          collapsed: true,
           translations: {},
         },
         {
           label: "⌨️ Mappings",
           link: "/mappings",
-          collapsed: true,
           translations: {},
         },
         {
           label: "📝 Using This Documentation",
           link: "/using_the_docs",
-          collapsed: true,
           translations: {},
         },
         {
@@ -190,19 +186,16 @@ export default defineConfig({
         {
           label: "⭐ Acknowledgements",
           link: "/acknowledgements",
-          collapsed: true,
 
           translations: {},
         },
         {
           label: "👪 Code of Conduct",
-          collapsed: true,
           link: "/code_of_conduct",
           translations: {},
         },
         {
           label: "❓ FAQ",
-          collapsed: true,
           link: "/faq",
           translations: {},
         },
