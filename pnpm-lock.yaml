@@ -10,34 +10,34 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^3.1.3
-        version: 3.1.3(astro@4.12.2(@types/node@20.14.9))
+        version: 3.1.3(astro@4.12.3(@types/node@20.14.9))
       '@astrojs/starlight':
-        specifier: ^0.25.1
-        version: 0.25.1(astro@4.12.2(@types/node@20.14.9))
+        specifier: ^0.25.3
+        version: 0.25.3(astro@4.12.3(@types/node@20.14.9))
       '@astrojs/starlight-docsearch':
         specifier: ^0.1.1
-        version: 0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9)))(search-insights@2.13.0)
+        version: 0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9)))(search-insights@2.13.0)
       '@astrojs/starlight-tailwind':
         specifier: ^2.0.3
-        version: 2.0.3(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.12.2(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)
+        version: 2.0.3(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.12.3(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)
       '@astrojs/tailwind':
         specifier: ^5.1.0
-        version: 5.1.0(astro@4.12.2(@types/node@20.14.9))(tailwindcss@3.4.4)
+        version: 5.1.0(astro@4.12.3(@types/node@20.14.9))(tailwindcss@3.4.4)
       '@expressive-code/plugin-collapsible-sections':
         specifier: ^0.35.3
         version: 0.35.3
       astro:
-        specifier: ^4.12.2
-        version: 4.12.2(@types/node@20.14.9)
+        specifier: ^4.12.3
+        version: 4.12.3(@types/node@20.14.9)
       sharp:
         specifier: ^0.33.4
         version: 0.33.4
       starlight-image-zoom:
         specifier: ^0.1.0
-        version: 0.1.0(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9)))
+        version: 0.1.0(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9)))
       starlight-links-validator:
         specifier: ^0.5.3
-        version: 0.5.3(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9)))(astro@4.12.2(@types/node@20.14.9))
+        version: 0.5.3(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9)))(astro@4.12.3(@types/node@20.14.9))
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.4
@@ -170,8 +170,8 @@ packages:
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
 
-  '@astrojs/starlight@0.25.1':
-    resolution: {integrity: sha512-tniE870QpwDs7stJk/qb1LwE78761Fi77qF/UsWedDU90gC6gPjGOHNrbQYUABAmkQ63t3/Jpq9/kmS6sfHT0g==}
+  '@astrojs/starlight@0.25.3':
+    resolution: {integrity: sha512-XNpGbZ54ungtzen4wQkPXn50D1ZquB51paWrZftA0jWxUkj4b/pP8PijAFrGFypydhvu7Dhl0DjD07lrnSSUhQ==}
     peerDependencies:
       astro: ^4.8.6
 
@@ -765,11 +765,11 @@ packages:
     resolution: {integrity: sha512-z95ECmE3i9pbWoXQrD/7PgkBAzJYR+iXtPuTkpBjDKs86O3mT+PXOT3BAn79w2wkn7/i3vOGD2xVr1uiMl26dA==}
     engines: {node: '>=6'}
 
-  '@shikijs/core@1.10.0':
-    resolution: {integrity: sha512-BZcr6FCmPfP6TXaekvujZcnkFmJHZ/Yglu97r/9VjzVndQA56/F4WjUKtJRQUnK59Wi7p/UTAOekMfCJv7jnYg==}
-
   '@shikijs/core@1.10.3':
     resolution: {integrity: sha512-D45PMaBaeDHxww+EkcDQtDAtzv00Gcsp72ukBtaLSmqRvh0WgGMq3Al0rl1QQBZfuneO75NXMIzEZGFitThWbg==}
+
+  '@shikijs/core@1.12.0':
+    resolution: {integrity: sha512-mc1cLbm6UQ8RxLc0dZES7v5rkH+99LxQp/ZvTqV3NLyYsO/fD6JhEflP1H5b2SDq9gI0+0G36AVZWxvounfR9w==}
 
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
@@ -916,8 +916,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^3.3.0
 
-  astro@4.12.2:
-    resolution: {integrity: sha512-l6OmqlL+FiuSi9x6F+EGZitteOznq1JffOil7st7cdqeMCTEIym4oagI1a6zp6QekliKWEEZWdplGhgh1k1f7Q==}
+  astro@4.12.3:
+    resolution: {integrity: sha512-rFcRktbZk8CsHufLOB51gYAia3RTuOyaBD8iZXRHP7Oqo6QviquNaa/5U6RoUqyF5KS8vyq/ldJ5jfboJzxuuw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -2664,6 +2664,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.6.3:
+    resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   send@0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
     engines: {node: '>= 0.8.0'}
@@ -2691,11 +2696,11 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  shiki@1.10.0:
-    resolution: {integrity: sha512-YD2sXQ+TMD/F9BimV9Jn0wj35pqOvywvOG/3PB6hGHyGKlM7TJ9tyJ02jOb2kF8F0HfJwKNYrh3sW7jEcuRlXA==}
-
   shiki@1.10.3:
     resolution: {integrity: sha512-eneCLncGuvPdTutJuLyUGS8QNPAVFO5Trvld2wgEq1e002mwctAhJKeMGWtWVXOIEzmlcLRqcgPSorR6AVzOmQ==}
+
+  shiki@1.12.0:
+    resolution: {integrity: sha512-BuAxWOm5JhRcbSOl7XCei8wGjgJJonnV0oipUupPY58iULxUGyHhW5CF+9FRMuM1pcJ5cGEJGll1LusX6FwpPA==}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -3289,12 +3294,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@3.1.3(astro@4.12.2(@types/node@20.14.9))':
+  '@astrojs/mdx@3.1.3(astro@4.12.3(@types/node@20.14.9))':
     dependencies:
       '@astrojs/markdown-remark': 5.2.0
       '@mdx-js/mdx': 3.0.1
       acorn: 8.12.1
-      astro: 4.12.2(@types/node@20.14.9)
+      astro: 4.12.3(@types/node@20.14.9)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
@@ -3320,9 +3325,9 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/starlight-docsearch@0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9)))(search-insights@2.13.0)':
+  '@astrojs/starlight-docsearch@0.1.1(@algolia/client-search@4.24.0)(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9)))(search-insights@2.13.0)':
     dependencies:
-      '@astrojs/starlight': 0.25.1(astro@4.12.2(@types/node@20.14.9))
+      '@astrojs/starlight': 0.25.3(astro@4.12.3(@types/node@20.14.9))
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.24.0)(search-insights@2.13.0)
     transitivePeerDependencies:
@@ -3332,21 +3337,21 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.12.2(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)':
+  '@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9)))(@astrojs/tailwind@5.1.0(astro@4.12.3(@types/node@20.14.9))(tailwindcss@3.4.4))(tailwindcss@3.4.4)':
     dependencies:
-      '@astrojs/starlight': 0.25.1(astro@4.12.2(@types/node@20.14.9))
-      '@astrojs/tailwind': 5.1.0(astro@4.12.2(@types/node@20.14.9))(tailwindcss@3.4.4)
+      '@astrojs/starlight': 0.25.3(astro@4.12.3(@types/node@20.14.9))
+      '@astrojs/tailwind': 5.1.0(astro@4.12.3(@types/node@20.14.9))(tailwindcss@3.4.4)
       tailwindcss: 3.4.4
 
-  '@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9))':
+  '@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9))':
     dependencies:
-      '@astrojs/mdx': 3.1.3(astro@4.12.2(@types/node@20.14.9))
+      '@astrojs/mdx': 3.1.3(astro@4.12.3(@types/node@20.14.9))
       '@astrojs/sitemap': 3.1.6
       '@pagefind/default-ui': 1.1.0
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.4
-      astro: 4.12.2(@types/node@20.14.9)
-      astro-expressive-code: 0.35.3(astro@4.12.2(@types/node@20.14.9))
+      astro: 4.12.3(@types/node@20.14.9)
+      astro-expressive-code: 0.35.3(astro@4.12.3(@types/node@20.14.9))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.1
       hast-util-select: 6.0.2
@@ -3354,19 +3359,20 @@ snapshots:
       hastscript: 9.0.0
       mdast-util-directive: 3.0.0
       mdast-util-to-markdown: 2.1.0
+      mdast-util-to-string: 4.0.0
       pagefind: 1.1.0
       rehype: 13.0.1
       rehype-format: 5.0.0
       remark-directive: 3.0.0
       unified: 11.0.5
       unist-util-visit: 5.0.0
-      vfile: 6.0.1
+      vfile: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/tailwind@5.1.0(astro@4.12.2(@types/node@20.14.9))(tailwindcss@3.4.4)':
+  '@astrojs/tailwind@5.1.0(astro@4.12.3(@types/node@20.14.9))(tailwindcss@3.4.4)':
     dependencies:
-      astro: 4.12.2(@types/node@20.14.9)
+      astro: 4.12.3(@types/node@20.14.9)
       autoprefixer: 10.4.19(postcss@8.4.39)
       postcss: 8.4.39
       postcss-load-config: 4.0.2(postcss@8.4.39)
@@ -3664,7 +3670,7 @@ snapshots:
   '@expressive-code/plugin-shiki@0.35.3':
     dependencies:
       '@expressive-code/core': 0.35.3
-      shiki: 1.10.0
+      shiki: 1.10.3
 
   '@expressive-code/plugin-text-markers@0.35.3':
     dependencies:
@@ -3935,9 +3941,11 @@ snapshots:
       '@sentry/types': 6.19.7
       tslib: 1.14.1
 
-  '@shikijs/core@1.10.0': {}
-
   '@shikijs/core@1.10.3':
+    dependencies:
+      '@types/hast': 3.0.4
+
+  '@shikijs/core@1.12.0':
     dependencies:
       '@types/hast': 3.0.4
 
@@ -4095,12 +4103,12 @@ snapshots:
 
   astring@1.8.6: {}
 
-  astro-expressive-code@0.35.3(astro@4.12.2(@types/node@20.14.9)):
+  astro-expressive-code@0.35.3(astro@4.12.3(@types/node@20.14.9)):
     dependencies:
-      astro: 4.12.2(@types/node@20.14.9)
+      astro: 4.12.3(@types/node@20.14.9)
       rehype-expressive-code: 0.35.3
 
-  astro@4.12.2(@types/node@20.14.9):
+  astro@4.12.3(@types/node@20.14.9):
     dependencies:
       '@astrojs/compiler': 2.9.2
       '@astrojs/internal-helpers': 0.4.1
@@ -4151,8 +4159,8 @@ snapshots:
       preferred-pm: 4.0.0
       prompts: 2.4.2
       rehype: 13.0.1
-      semver: 7.6.2
-      shiki: 1.10.3
+      semver: 7.6.3
+      shiki: 1.12.0
       string-width: 7.2.0
       strip-ansi: 7.1.0
       tsconfck: 3.1.1
@@ -6375,6 +6383,8 @@ snapshots:
 
   semver@7.6.2: {}
 
+  semver@7.6.3: {}
+
   send@0.18.0:
     dependencies:
       debug: 2.6.9
@@ -6445,13 +6455,14 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  shiki@1.10.0:
-    dependencies:
-      '@shikijs/core': 1.10.0
-
   shiki@1.10.3:
     dependencies:
       '@shikijs/core': 1.10.3
+      '@types/hast': 3.0.4
+
+  shiki@1.12.0:
+    dependencies:
+      '@shikijs/core': 1.12.0
       '@types/hast': 3.0.4
 
   side-channel@1.0.6:
@@ -6494,17 +6505,17 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
-  starlight-image-zoom@0.1.0(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9))):
+  starlight-image-zoom@0.1.0(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9))):
     dependencies:
-      '@astrojs/starlight': 0.25.1(astro@4.12.2(@types/node@20.14.9))
+      '@astrojs/starlight': 0.25.3(astro@4.12.3(@types/node@20.14.9))
       rehype-raw: 7.0.0
       unist-util-visit: 5.0.0
       unist-util-visit-parents: 6.0.1
 
-  starlight-links-validator@0.5.3(@astrojs/starlight@0.25.1(astro@4.12.2(@types/node@20.14.9)))(astro@4.12.2(@types/node@20.14.9)):
+  starlight-links-validator@0.5.3(@astrojs/starlight@0.25.3(astro@4.12.3(@types/node@20.14.9)))(astro@4.12.3(@types/node@20.14.9)):
     dependencies:
-      '@astrojs/starlight': 0.25.1(astro@4.12.2(@types/node@20.14.9))
-      astro: 4.12.2(@types/node@20.14.9)
+      '@astrojs/starlight': 0.25.3(astro@4.12.3(@types/node@20.14.9))
+      astro: 4.12.3(@types/node@20.14.9)
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.1
       hast-util-has-property: 3.0.0
