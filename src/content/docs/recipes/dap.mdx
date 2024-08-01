@@ -121,9 +121,35 @@ return {
 
     -- disable dap events that are created
     local dap = require("dap")
-    dap.listeners.after.event_initialized["dapui_config"] = nil
-    dap.listeners.before.event_terminated["dapui_config"] = nil
-    dap.listeners.before.event_exited["dapui_config"] = nil
+    dap.listeners.after.event_initialized.dapui_config = nil
+    dap.listeners.before.event_terminated.dapui_config = nil
+    dap.listeners.before.event_exited.dapui_config = nil
   end,
+}
+```
+
+## Add parsing of JSON5
+
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/utility/lua-json5)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.utility.lua-json5" },
+}
+```
+
+:::
+
+By default `nvim-dap` will attempt to parse and load `.vscode/launch.json` files in a project to load debugging targets. By default this uses the built in `vim.json.decode` function. This function doesn't support JSON5 which adds compatibility for trailing commas and comments. If you need support for these JSON syntaxes you can add the [`lua-json5`](https://github.com/Joakker/lua-json5) plugin to your configuration:
+
+```lua title="lua/plugins/json5.lua"
+return {
+  "Joakker/lua-json5",
+  lazy = true,
+  build = vim.fn.has("win32") == 1 and "powershell ./install.ps1"
+    or "./install.sh",
 }
 ```
