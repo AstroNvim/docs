@@ -24,33 +24,34 @@ Lastly, please go through the rest of the documentation as most of the common cu
 
 ## Why does AstroNvim not work?
 
-Please follow the [Installation Guide](/#-installation). Make sure that you're system meets all of the listed [Requirements](/#-requirements). Please be aware that some features, like folding, might be missing if you're not using the latest stable release of Neovim and/or AstroNvim. There's also no support for nightly Neovim so make sure to be running a stable version if you're experiencing issues.
+Please follow the [Installation Guide](/#-installation). Make sure that your system meets all of the listed [Requirements](/#-requirements). Please be aware that some features, like folding, might be missing if you're not using the latest stable release of Neovim and/or AstroNvim. There's also no support for nightly Neovim so make sure to be running a stable version if you're experiencing issues.
 
 ## Why are my icons missing/broken?
 
 The font in your terminal requires the correct glyphs (icons) so AstroNvim can display them. For that you can use a pre-patched font from [Nerd Fonts](https://www.nerdfonts.com/).
 
-If you're already using a Nerd Font and face this issue it's very likely that your Nerd Font is outdated. Please verify that your Font is of Version 2.3+ and that you chose it in your terminal.
+If you're already using a Nerd Font and face this issue it's very likely that your Nerd Font is outdated. Please verify that your font is of Version 2.3+ and that you chose it in your terminal.
 
-If your icons appear too small it's because you're using a Mono font. If a font ends with `mono` the icons will also be mono-spaced. [Video recommendation](https://youtu.be/mQdB_kHyZn8) on how to install a Nerd Font for a handful of popular terminals.
+If your icons appear too small it's because you're using a Mono font. If a font ends with `mono` the icons will also be monospaced. [Video recommendation](https://youtu.be/mQdB_kHyZn8) on how to install a Nerd Font for a handful of popular terminals.
 
 ## Why am I getting `symbol not found` error on Mac OS Sonoma?
 
-This was a bug in core Neovim not supporting Mac OS Sonoma. Most likely you have outdated [neovim](https://github.com/neovim/neovim), please update to at least v0.9.4
+This was a bug in core Neovim not supporting Mac OS Sonoma. Most likely you have an outdated [Neovim](https://github.com/neovim/neovim) version, please update to at least v0.9.4.
 
-## Why `<Leader>fw` is not working?
+## Why is `<Leader>fw` not working?
 
-Make sure you have [ripgrep](https://github.com/BurntSushi/ripgrep) installed. For other missing feature please check [optional requirements section](/#-requirements) in the documentation
+Make sure you have [ripgrep](https://github.com/BurntSushi/ripgrep) installed. For other missing feature please check [optional requirements section](/#-requirements) in the documentation.
 
-## Why is my code syntax is not highlighted?
+## Why is my code syntax not highlighted?
 
 Ensure that the correct treesitter parser is installed and running. You will see "TS" in the bottom right on the status line. If you do not, install it for the filetype you are using with `:TSInstall <filetype>`.
 
 ## What if I require further assistance with the customization of AstroNvim?
 
-Feel free to join our [official community Discord server!](https://discord.astronvim.com) Before asking questions please make sure go through the following steps:
+Feel free to join our [official community Discord server!](https://discord.astronvim.com) Before asking questions please make sure to go through the following steps:
 
 1. Read the server rules in the rules channel
 2. Make sure to have read the documentation ([RTFM!](https://www.urbandictionary.com/define.php?term=RTFM))
 3. Use the Discord search functions within the `#astronvim` channel & the `#help-forum` channel to see if your question has been answered before
 4. If the above steps didn't help then please open a post in the `#help-forum` channel and wait for someone to respond
+
