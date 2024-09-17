@@ -445,10 +445,10 @@ return {
 
 AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. We achieve this by creating a custom `User` `autocmd` event called `AstroFile`. This can also be used by users for lazy loading plugins on the first real file that is opened:
 
-```lua title="lua/plugins/nvim-colorizer.lua" {4}
+```lua title="lua/plugins/indent-blankline.lua" {4}
 return {
   {
-    "NvChad/nvim-colorizer.lua",
+    "lukas-reineke/indent-blankline.nvim",
     event = "User AstroFile",
   },
 }
