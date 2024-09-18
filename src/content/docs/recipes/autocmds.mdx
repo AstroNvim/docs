@@ -1,0 +1,93 @@
+---
+id: autocmds
+title: Customize Autocommands
+---
+
+A large part of configuring Neovim is the use of autocommands and autocmd groups (augroups). AstroNvim makes it easy to configure autocommands through [AstroCore](https://github.com/AstroNvim/astrocore) and [AstroLSP](https://github.com/AstroNvim/astrolsp). AstroCore handles the general autocommands that are applied on startup where AstroLSP handles autocommands that are set when a language server attaches. This page goes over how to customize these mappings to fit your needs.
+
+### Add Custom Autocommands
+
+These tables are a direct conversion to the `vim.api.nvim_create_autocmd({event}, {autocmd_opts})` and `vim.api.nvim_create_augroup({name}, {augroup_opts})` Lua APIs. The key into the table is the `{name}` field for creating an `augroup`, and the value is a list-like table where each element is the `{autocmds_opts}` table with the `{event}` in as a value with the key `"event"`. Also AstroLSP supports adding a `cond` key which can dictate when the autocmd should be created (this is described in detail in the [AstroLSP plugin configuration documentation](https://github.com/AstroNvim/astrolsp#%EF%B8%8F-configuration)) Here is a simple plugin specification example of setting both core and LSP autocmds:
+
+```lua title="lua/plugins/autocmds.lua"
+return {
+  {
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = {
+      autocmds = {
+        -- first key is the augroup name
+        terminal_settings = {
+          -- the value is a list of autocommands to create
+          {
+            -- event is added here as a string or a list-like table of events
+            event = "TermOpen",
+            -- the rest of the autocmd options (:h nvim_create_autocmd)
+            desc = "Disable line number/fold column/sign column for terminals",
+            callback = function()
+              vim.opt_local.number = false
+              vim.opt_local.relativenumber = false
+              vim.opt_local.foldcolumn = "0"
+              vim.opt_local.signcolumn = "no"
+            end,
+          },
+        },
+      },
+    },
+  },
+  {
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    opts = {
+      automcds = {
+        -- these autocommands will only be created in buffers where
+        -- a language servers attaches
+        lsp_codelens_refresh = {
+          -- condition to create/delete auto command group
+          -- can either be a string of a client capability
+          -- or a function of `fun(client, bufnr): boolean`
+          cond = "textDocument/codeLens",
+          {
+            -- events to trigger
+            event = { "InsertLeave", "BufEnter" },
+            -- the rest of the autocmd options (:h nvim_create_autocmd)
+            desc = "Refresh codelens (buffer)",
+            callback = function(args)
+              vim.lsp.codelens.refresh { bufnr = args.buf }
+            end,
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+### Removing Built-in Autocommands
+
+AstroNvim comes with a number of autocommands for improving the out of the box experience. This includes things such as mapping `q` to buffer close in non-editable buffers, disabling features for large buffers, or flashing the highlight of text on copy. These can be easily disabled similar to how mappings are disabled, by setting the `augroup` name to `false`.
+
+For example, if you want to disable the autocommand that highlights yanked text (using `vim.highlight.on_yank`) you can add the following plugin spec:
+
+```lua title="lua/plugins/disable_highlight_on_yank.lua"
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    autocmds = {
+      -- set a key to false to disable the autocommands from being created
+      highlightyank = false
+    },
+  },
+}
+```
+
+:::tip[Debugging Tip]
+
+You can use the `require("astrocore").plugin_opts()` function to check what autocommands and augroups exist easily:
+
+```lua
+:lua =vim.tbl_keys(require("astrocore").plugin_opts("astrocore").autocmds)
+```
+
+:::
