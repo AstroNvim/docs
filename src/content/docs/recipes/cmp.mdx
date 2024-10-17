@@ -143,3 +143,32 @@ return { -- override nvim-cmp plugin
   end,
 }
 ```
+
+### Limit Label and Menu Item Length
+
+To limit the label and menu item length and prevent the documentation window from getting too small, you can use the following configuration:
+
+```lua title="lua/plugins/cmp.lua"
+return {
+  "hrsh7th/nvim-cmp",
+  opts = function(_, opts)
+    local astrocore, astroui = require "astrocore", require "astroui"
+    if not opts.formatting then opts.formatting = {} end
+    opts.formatting.format = astrocore.patch_func(opts.formatting.format, function(format, ...)
+      -- get item from original formatting function
+      local vim_item = format(...)
+
+      -- truncate label to maximum of 25% of the window
+      local label = vim_item.abbr
+      local truncated_label = vim.fn.strcharpart(label, 0, math.floor(0.25 * vim.o.columns))
+      if truncated_label ~= label then vim_item.abbr = truncated_label .. astroui.get_icon "Ellipsis" end
+
+      -- truncate menu to maximum of 25% of the window
+      local menu = vim_item.menu or ""
+      local truncated_menu = vim.fn.strcharpart(menu, 0, math.floor(0.25 * vim.o.columns))
+      if truncated_menu ~= menu then vim_item.menu = truncated_menu .. astroui.get_icon "Ellipsis" end
+
+      return vim_item
+    end)
+  end,
+}
