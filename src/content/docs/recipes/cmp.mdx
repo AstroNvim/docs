@@ -164,9 +164,11 @@ return {
       if truncated_label ~= label then vim_item.abbr = truncated_label .. astroui.get_icon "Ellipsis" end
 
       -- truncate menu to maximum of 25% of the window
-      local menu = vim_item.menu or ""
-      local truncated_menu = vim.fn.strcharpart(menu, 0, math.floor(0.25 * vim.o.columns))
-      if truncated_menu ~= menu then vim_item.menu = truncated_menu .. astroui.get_icon "Ellipsis" end
+      if vim_item.menu then
+        local menu = vim_item.menu
+        local truncated_menu = vim.fn.strcharpart(menu, 0, math.floor(0.25 * vim.o.columns))
+        if truncated_menu ~= menu then vim_item.menu = truncated_menu .. astroui.get_icon "Ellipsis" end
+      end
 
       return vim_item
     end)
