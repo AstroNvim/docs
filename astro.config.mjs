@@ -113,7 +113,7 @@ export default defineConfig({
         //    defer: true,
         //    "data-domain": "docs.astronvim.com",
         //  },
-        },
+        //},
       ],
       logo: {
         src: "./src/assets/astronvim.svg",
