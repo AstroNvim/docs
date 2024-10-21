@@ -106,13 +106,13 @@ export default defineConfig({
             crossorigin: true,
           },
         },
-        {
-          tag: "script",
-          attrs: {
-            src: "https://plausible.mehalter.com/js/script.js",
-            defer: true,
-            "data-domain": "docs.astronvim.com",
-          },
+        //{
+        //  tag: "script",
+        //  attrs: {
+        //    src: "https://plausible.mehalter.com/js/script.js",
+        //    defer: true,
+        //    "data-domain": "docs.astronvim.com",
+        //  },
         },
       ],
       logo: {
