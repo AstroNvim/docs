@@ -71,7 +71,7 @@ return {
 
 ### LSP Setup Without Installer
 
-AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up and installing language servers, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
+AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up language servers installed with Mason, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
 
 ```lua title="lua/plugins/astrolsp.lua" {7-12}
 return {
@@ -278,7 +278,7 @@ Many of these can be found pre-configured in the [AstroNvim Community Repository
 
 :::
 
-There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason-lspconfig` for installing the language servers. You can use the `setup_handlers` table for specifying how language servers should be setup such as using a language specific plugin. This function for each handler has two parameters, the first is the name of the server and the second is the options we would be passing to the `lspconfig` setup call. These options include things such as our built in `capabilities`, `on_attach`, as well as the user defined options in the `config` table. Here are a couple examples for some common LSP plugins:
+There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason.nvim` for installing the language servers. You can use the `setup_handlers` table for specifying how language servers should be setup such as using a language specific plugin. This function for each handler has two parameters, the first is the name of the server and the second is the options we would be passing to the `lspconfig` setup call. These options include things such as our built in `capabilities`, `on_attach`, as well as the user defined options in the `config` table. Here are a couple examples for some common LSP plugins:
 
 ### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
 
@@ -311,9 +311,9 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
-      ensure_installed = { "tsserver" }, -- automatically install lsp
+      ensure_installed = { "typescript-language-server" }, -- automatically install lsp
     },
   },
 }
@@ -350,9 +350,9 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
-      ensure_installed = { "denols" }, -- automatically install lsp
+      ensure_installed = { "deno" }, -- automatically install lsp
     },
   },
 }
@@ -506,7 +506,7 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = { "clangd" }, -- automatically install lsp
     },
@@ -597,9 +597,9 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
-      ensure_installed = { "rust_analyzer" }, -- automatically install lsp
+      ensure_installed = { "rust-analyzer" }, -- automatically install lsp
     },
   },
 }
@@ -701,7 +701,7 @@ return {
     },
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = { "jdtls" },
     },
