@@ -26,6 +26,12 @@ importers:
       '@expressive-code/plugin-collapsible-sections':
         specifier: ^0.35.3
         version: 0.35.3
+      '@fontsource-variable/inter':
+        specifier: ^5.1.1
+        version: 5.1.1
+      '@fontsource-variable/jetbrains-mono':
+        specifier: ^5.1.2
+        version: 5.1.2
       astro:
         specifier: ^4.16.6
         version: 4.16.6(@types/node@20.14.9)(rollup@4.21.2)(typescript@5.6.2)
@@ -470,6 +476,12 @@ packages:
 
   '@expressive-code/plugin-text-markers@0.35.6':
     resolution: {integrity: sha512-/k9eWVZSCs+uEKHR++22Uu6eIbHWEciVHbIuD8frT8DlqTtHYaaiwHPncO6KFWnGDz5i/gL7oyl6XmOi/E6GVg==}
+
+  '@fontsource-variable/inter@5.1.1':
+    resolution: {integrity: sha512-OpXFTmiH6tHkYijMvQTycFKBLK4X+SRV6tet1m4YOUH7SzIIlMqDja+ocDtiCA72UthBH/vF+3ZtlMr2rN/wIw==}
+
+  '@fontsource-variable/jetbrains-mono@5.1.2':
+    resolution: {integrity: sha512-syGEJ/N4FFisAXegxtbe1etYpo2T630dqCbYufPf7Dli/hMKSoSUIm3wK4q5RsGFRxWno1WecfnsgZA1jRK0EQ==}
 
   '@img/sharp-darwin-arm64@0.33.4':
     resolution: {integrity: sha512-p0suNqXufJs9t3RqLBO6vvrgr5OhgbWp76s5gTRvdmxmuv9E1rcaqGUsl3l4mKVmXPkTkTErXediAui4x+8PSA==}
@@ -3771,6 +3783,10 @@ snapshots:
   '@expressive-code/plugin-text-markers@0.35.6':
     dependencies:
       '@expressive-code/core': 0.35.6
+
+  '@fontsource-variable/inter@5.1.1': {}
+
+  '@fontsource-variable/jetbrains-mono@5.1.2': {}
 
   '@img/sharp-darwin-arm64@0.33.4':
     optionalDependencies:

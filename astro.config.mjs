@@ -134,6 +134,9 @@ export default defineConfig({
         plugins: [pluginCollapsibleSections()],
       },
       customCss: [
+        // Fonts
+        "@fontsource-variable/inter",
+        "@fontsource-variable/jetbrains-mono",
         // Path to your Tailwind base styles:
         "./src/tailwind.css",
       ],
