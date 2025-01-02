@@ -566,7 +566,7 @@ return {
 }
 ```
 
-### Rust ([rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim))
+### Rust ([rustaceanvim](https://github.com/mrcjkb/rustaceanvim))
 
 :::tip
 
@@ -581,19 +581,18 @@ return {
 
 :::
 
-```lua title="lua/plugins/rust-tools.lua"
+```lua title="lua/plugins/rustaceanvim.lua"
 return {
-  { "simrat39/rust-tools.nvim", lazy = true }, -- add lsp plugin
+  {
+    'mrcjkb/rustaceanvim', -- add lsp plugin
+    version = '^5',
+    lazy = false, -- This plugin is already lazy
+  },
   {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
-      setup_handlers = {
-        -- add custom handler
-        rust_analyzer = function(_, opts)
-          require("rust-tools").setup({ server = opts })
-        end,
-      },
+      handlers = { rust_analyzer = false }, -- Let rustaceanvim setup `rust_analyzer`
     },
   },
   {
