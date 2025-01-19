@@ -16,7 +16,7 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-        devShells.default = pkgs.mkShell {packages = with pkgs; [nodejs_22 pnpm alejandra];};
+        devShells.default = pkgs.mkShell {packages = with pkgs; [nodejs_22 pnpm];};
       }
     );
 }
