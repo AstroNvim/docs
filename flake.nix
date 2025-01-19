@@ -17,8 +17,6 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in {
         devShells.default = pkgs.mkShell {packages = with pkgs; [nodejs_22 pnpm alejandra];};
-
-        formatter = pkgs.alejandra;
       }
     );
 }
