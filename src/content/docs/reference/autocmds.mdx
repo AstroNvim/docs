@@ -44,6 +44,14 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
   `:AstroMasonUpdateAll`. `AstroMasonUpdateCompleted` is triggered after all of the
   available updates have been applied.
 
+- `AstroRenameFilePre`: AstroCore provides a `rename_file` method for easily
+  renaming files. `AstroRenameFilePre` is triggered immediately prior to
+  performing the file rename.
+
+- `AstroRenameFilePost`: AstroCore provides a `rename_file` method for easily
+  renaming files. `AstroRenameFilePost` is triggered immediately after performing
+  the file rename.
+
 ### Example Autocommand Usage
 
 Just to demonstrate the usage of `User` autocommand events in Neovim here is an
