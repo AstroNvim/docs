@@ -123,7 +123,7 @@ The `table` notation is the simplest method for configuration but does not cover
 
 :::tip
 
-Since [`lazy.nvim` v10.23.0](https://github.com/folke/lazy.nvim/releases/tag/v10.23.0) a new configuration option has been added called `opts_extend` which allows specifying that a part of the options passed to the `opts` table should be treated as a list that is extended rather than replaced completely as described below. Since [AstroNvim v4.9.0](https://github.com/AstroNvim/AstroNvim/releases/tag/v4.9.0) this option has been enabled out of the box for the `ensure_installed` tables for the following plugins: [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter), [`mason-lspconfig.nvim`](https://github.com/williamboman/mason-lspconfig.nvim), [`mason-null-ls.nvim`](https://github.com/jay-babu/mason-null-ls.nvim), and [`mason-nvim-dap.nvim`](https://github.com/jay-babu/mason-nvim-dap.nvim). This allows the user to use the basic table notation to simply add more items to these `ensure_installed` lists.
+Since [`lazy.nvim` v10.23.0](https://github.com/folke/lazy.nvim/releases/tag/v10.23.0) a new configuration option has been added called `opts_extend` which allows specifying that a part of the options passed to the `opts` table should be treated as a list that is extended rather than replaced completely as described below. Since [AstroNvim v4.9.0](https://github.com/AstroNvim/AstroNvim/releases/tag/v4.9.0) this option has been enabled out of the box for the `ensure_installed` tables for [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) and [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim). This allows the user to use the basic table notation to simply add more items to these `ensure_installed` lists.
 
 :::
 
@@ -445,10 +445,10 @@ return {
 
 AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. We achieve this by creating a custom `User` `autocmd` event called `AstroFile`. This can also be used by users for lazy loading plugins on the first real file that is opened:
 
-```lua title="lua/plugins/nvim-colorizer.lua" {4}
+```lua title="lua/plugins/indent-blankline.lua" {4}
 return {
   {
-    "NvChad/nvim-colorizer.lua",
+    "lukas-reineke/indent-blankline.nvim",
     event = "User AstroFile",
   },
 }
