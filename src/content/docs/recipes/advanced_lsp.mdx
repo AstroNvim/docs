@@ -270,6 +270,43 @@ return {
 }
 ```
 
+## LSP File Operations
+
+AstroLSP provides a complete implementation of the file manipulation features provided by the [LSP Specification](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#workspace_willCreateFiles) through the [`astrolsp.file_operations` module](https://github.com/AstroNvim/astrolsp/blob/main/doc/api.md#astrolspfile_operations). These operations are useful when language servers provide functionality such as automatically updating import statements when files are renamed. Currently this includes:
+
+- `workspace/willCreateFiles`
+- `workspace/didCreateFiles`
+- `workspace/willRenameFiles`
+- `workspace/didRenameFiles`
+- `workspace/willDeleteFiles`
+- `workspace/didDeleteFiles`
+
+This functionality was introduced in AstroNvim v4 disabled by default and will be enabled by default starting in AstroNvim v5. The module is used to integrate with the Neo-tree file explorer out of the box as well as the file renaming capability provided by AstroCore (`require("astrocore").rename_file()` which is bound to `<Leader>R`).
+
+To enable the file operations in AstroNvim v4, you can configure them through the AstroLSP plugin `opts`:
+
+```lua title="lua/plugins/astrolsp.lua" {5-15}
+return {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    file_operations = {
+      timeout = 10000, -- default timeout in ms for completing LSP operations
+      operations = { -- enable all of the file operations
+        willCreate = true,
+        didCreate = true,
+        willRename = true,
+        didRename = true,
+        willDelete = true,
+        didDelete = true,
+      },
+    },
+  },
+}
+```
+
+The `astrolsp.file_operations` module is meant to provide a simple Lua API to allow easy integration with any file management plugins/workflows that users may have. Some example integration code can be found in the [AstroLSP Documentation](https://github.com/AstroNvim/astrolsp/tree/main#lsp-file-operations). Many of the AstroCommunity plugins such as [`mini.files`](https://astronvim.github.io/astrocommunity/#mini-files) already provide the necessary integration to execute the LSP file operations when appropriate.
+
 ## LSP Specific Plugins
 
 :::tip
