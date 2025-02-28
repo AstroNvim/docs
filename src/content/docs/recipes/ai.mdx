@@ -5,6 +5,19 @@ title: AI Completion
 
 There are many AI plugins out there which provide completion through various mechanisms. This page goes over how to build onto an AstroNvim configuration in order to easily hook up and configure different AI completion plugins.
 
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/recipes/ai) and the AI completion plugins within AstroCommunity utilize the configuration it sets up.
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.ai" },
+}
+```
+
+:::
+
 ### Completion Engine Integration
 
 In order to make AI plugins play nicely with AstroNvim it's important to set up an integration point with completion engines in Neovim in order to accept AI recommended code. Depending on which completion plugin you are using, you may need to modify the configuration of the mappings to account for interacting with normal completion as well as AI recommended code. By default AstroNvim utilizes a "super-tab" like configuration where the `<Tab>` key is used for triggering completion, navigating through snippets, and navigating through completion items. These code snippets change this configuration so that the `<Tab>` key is only used for snippet navigation and AI completion. To navigate through the completion lists, it would then be recommended to use `<C-n>` and `<C-p>`.
