@@ -106,10 +106,114 @@ return {
 
 ### AI Plugin Integration
 
-Once our completion engine is configured, we can start choosing and adding in an AI plugin from the Neovim plugin ecosystem, and setting up the `vim.g.ai_accept` function appropriately to hook into the completion engine mappings that we previously set up.
+Once our completion engine is configured, we can start choosing and adding in an AI plugin from the Neovim plugin ecosystem, and setting up the `vim.g.ai_accept` function appropriately to hook into the completion engine mappings that we previously set up. Please note that further configuration may be necessary if you want to use completion sources rather than inline suggestions or change other behavior of the AI plugins. For that setup, please refer to the documentation of the plugins themselves.
 
 #### [copilot.lua](https://github.com/zbirenbaum/copilot.lua)
 
+```lua title="lua/plugins/copilot.lua"
+return {
+  "zbirenbaum/copilot.lua",
+  cmd = "Copilot",
+  build = ":Copilot auth",
+  event = "BufReadPost",
+  opts = {
+    suggestion = {
+      keymap = {
+        accept = false, -- handled by completion engine
+      },
+    },
+  },
+  specs = {
+    {
+      "AstroNvim/astrocore",
+      opts = {
+        options = {
+          g = {
+            -- set the ai_accept function
+            ai_accept = function()
+              if require("copilot.suggestion").is_visible() then
+                require("copilot.suggestion").accept()
+                return true
+              end
+            end,
+          },
+        },
+      },
+    },
+  },
+}
+```
+
 #### [codeium.nvim](https://github.com/Exafunction/codeium.nvim)
 
+```lua title="lua/plugins/codeium.lua"
+return {
+  "Exafunction/codeium.nvim",
+  cmd = "Codeium",
+  event = "InsertEnter",
+  build = ":Codeium Auth",
+  opts = {
+    virtual_text = {
+      key_bindings = {
+        accept = false, -- handled by completion engine
+      },
+    },
+  },
+  specs = {
+    {
+      "AstroNvim/astrocore",
+      opts = {
+        options = {
+          g = {
+            -- set the ai_accept function
+            ai_accept = function()
+              if
+                require("codeium.virtual_text").get_current_completion_item()
+              then
+                vim.api.nvim_input(require("codeium.virtual_text").accept())
+                return true
+              end
+            end,
+          },
+        },
+      },
+    },
+  },
+}
+```
+
 #### [supermaven-nvim](https://github.com/supermaven-inc/supermaven-nvim)
+
+```lua title="lua/plugins/supermaven.lua"
+return {
+  "supermaven-inc/supermaven-nvim",
+  event = "InsertEnter",
+  cmd = { "SupermavenUseFree", "SupermavenUsePro" },
+  opts = {
+    keymaps = {
+      accept_suggestion = nil, -- handled by completion engine
+    },
+  },
+  specs = {
+    {
+      "AstroNvim/astrocore",
+      opts = {
+        options = {
+          g = {
+            -- set the ai_accept function
+            ai_accept = function()
+              local suggestion = require("supermaven-nvim.completion_preview")
+              if suggestion.has_suggestion() then
+                vim.schedule(function()
+                  suggestion.on_accept_suggestion()
+                end)
+                return true
+              end
+            end,
+          },
+        },
+      },
+    },
+  },
+}
+```
