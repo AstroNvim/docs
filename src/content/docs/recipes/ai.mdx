@@ -1,0 +1,115 @@
+---
+id: ai
+title: AI Completion
+---
+
+There are many AI plugins out there which provide completion through various mechanisms. This page goes over how to build onto an AstroNvim configuration in order to easily hook up and configure different AI completion plugins.
+
+### Completion Engine Integration
+
+In order to make AI plugins play nicely with AstroNvim it's important to set up an integration point with completion engines in Neovim in order to accept AI recommended code. Depending on which completion plugin you are using, you may need to modify the configuration of the mappings to account for interacting with normal completion as well as AI recommended code. By default AstroNvim utilizes a "super-tab" like configuration where the `<Tab>` key is used for triggering completion, navigating through snippets, and navigating through completion items. These code snippets change this configuration so that the `<Tab>` key is only used for snippet navigation and AI completion. To navigate through the completion lists, it would then be recommended to use `<C-n>` and `<C-p>`.
+
+These configurations set up the completion engines to look for a function stored in `vim.g.ai_accept` which can be later configured by an AI completion plugin to choose what action should be taken when attempting to accept an AI suggestion if available.
+
+#### [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) Integration
+
+By default AstroNvim comes with [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) for completion. This modifies the default configuration to set up the `<Tab>` key as described above:
+
+```lua title="lua/plugins/cmp_ai.lua"
+return {
+  "hrsh7th/nvim-cmp",
+  optional = true,
+  opts = function(_, opts)
+    local cmp = require("cmp")
+    if not opts.mapping then
+      opts.mapping = {}
+    end
+    opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
+      -- Snippet jump next (with support for several popular snippet plugins)
+      local mini_snippets_avail, mini_snippets = pcall(require, "mini.snippets")
+      local luasnip_avail, luasnip = pcall(require, "luasnip")
+      if mini_snippets_avail then
+        if mini_snippets.session.get(false) then
+          mini_snippets.session.jump("next")
+          return
+        end
+      elseif luasnip_avail then
+        if luasnip.locally_jumpable(1) then
+          luasnip.jump(1)
+          return
+        end
+      elseif vim.snippet and vim.snippet.active({ direction = 1 }) then
+        vim.schedule(function()
+          vim.snippet.jump(1)
+        end)
+        return
+      end
+      -- AI accept
+      if vim.g.ai_accept and vim.g.ai_accept() then
+        return
+      end
+      -- Fallback
+      fallback()
+    end, { "i", "s" })
+    opts.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
+      -- Snippet jump previous
+      local mini_snippets_avail, mini_snippets = pcall(require, "mini.snippets")
+      local luasnip_avail, luasnip = pcall(require, "luasnip")
+      if mini_snippets_avail then
+        if mini_snippets.session.get(false) then
+          mini_snippets.session.jump("prev")
+          return
+        end
+      elseif luasnip_avail then
+        if luasnip.locally_jumpable(-1) then
+          luasnip.jump(-1)
+          return
+        end
+      elseif vim.snippet and vim.snippet.active({ direction = -1 }) then
+        vim.schedule(function()
+          vim.snippet.jump(-1)
+        end)
+        return
+      end
+      -- Fallback
+      fallback()
+    end, { "i", "s" })
+  end,
+}
+```
+
+#### [blink.cmp](https://github.com/Saghen/blink.cmp) Integration
+
+[blink.cmp](https://github.com/Saghen/blink.cmp) is another popular completion plugin. This configures the `<Tab>` key as described above:
+
+```lua title="lua/plugins/cmp_ai.lua"
+return {
+  "Saghen/blink.cmp",
+  optional = true,
+  opts = function(_, opts)
+    if not opts.keymap then
+      opts.keymap = {}
+    end
+    opts.keymap["<Tab>"] = {
+      "snippet_forward",
+      function()
+        if vim.g.ai_accept then
+          return vim.g.ai_accept()
+        end
+      end,
+      "fallback",
+    }
+    opts.keymap["<S-Tab>"] = { "snippet_backward", "fallback" }
+  end,
+}
+```
+
+### AI Plugin Integration
+
+Once our completion engine is configured, we can start choosing and adding in an AI plugin from the Neovim plugin ecosystem, and setting up the `vim.g.ai_accept` function appropriately to hook into the completion engine mappings that we previously set up.
+
+#### [copilot.lua](https://github.com/zbirenbaum/copilot.lua)
+
+#### [codeium.nvim](https://github.com/Exafunction/codeium.nvim)
+
+#### [supermaven-nvim](https://github.com/supermaven-inc/supermaven-nvim)
