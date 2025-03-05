@@ -10,12 +10,12 @@ AstroNvim is configured nearly entirely through the configuration of Neovim plug
 
 For example, a recipe or code block may look like this which describes how to automatically install the Typescript language server:
 
-```lua title="lua/plugins/mason-lspconfig.lua"
+```lua title="lua/plugins/mason-tool-installer.lua"
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
-      ensure_installed = { "tsserver" },
+      ensure_installed = { "typescript-language-server" },
     },
   },
 }
@@ -26,24 +26,24 @@ This can either be fully copied and pasted into a new file in your `lua/plugins`
 ```lua title="lua/plugins/tsserver.lua" ins={1-8}
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
-      ensure_installed = { "tsserver" },
+      ensure_installed = { "typescript-language-server" },
     },
   },
 }
 ```
 
-Sometimes you might want to consolidate the code as well such as if you are already automatically installing other language servers. In that case you will just want to take the code that is in the recipe and fit it into files/locations that you are already managing. For example, say you already have a `lua/plugins/mason-lspconfig.lua` file that is automatically installing the python language server:
+Sometimes you might want to consolidate the code as well such as if you are already automatically installing other language servers. In that case you will just want to take the code that is in the recipe and fit it into files/locations that you are already managing. For example, say you already have a `lua/plugins/mason-tool-installer.lua` file that is automatically installing the python language server:
 
-```lua title="lua/plugins/mason-lspconfig.lua" ins={7}
+```lua title="lua/plugins/mason-tool-installer.lua" ins={7}
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
         "pyright",
-        "tsserver",
+        "typescript-language-server",
       },
     },
   },
