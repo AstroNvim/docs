@@ -46,24 +46,27 @@ return {
 
 ## What is a "Rooter"?
 
-A rooter automatically changes Neovim's working directory based on the context of your current file. Instead of staying in the directory where you launched Neovim, it can detect and switch to the root of your project. This concept has been popular in the Vim ecosystem for many years, with plugins like [vim-rooter](https://github.com/airblade/vim-rooter) being among the first implementations.
-Why Use a Rooter?
+A rooter automatically changes Neovim's working directory based on the context of your current file. Instead of staying in the directory where you launched Neovim, it can detect and switch to the root of your project. This concept has been popular in the Vim ecosystem for many years with the `autochdir` option, and with plugins like [vim-rooter](https://github.com/airblade/vim-rooter) being among the first implementations.
+
+## Why Use a Rooter?
 
 ### The working directory in Neovim affects many operations:
 
 - **File searching**: Tools like Telescope will search relative to your working directory
 - **Command execution**: Shell commands run from Neovim use the working directory as their context
 - **Project navigation**: Moving between files is easier when your working directory is at the project root
+- **LSP operations**: Many language servers work best when operating from the project root
 
 ### Without a rooter, you might encounter these scenarios:
 
 - Opening a file from a deeply nested directory makes it difficult to search for other project files
 - Moving between files in different parts of a project changes your context unpredictably
 - Running commands against your project requires manually changing directories
+- Build tools and language servers might not function correctly if not at the project root
 
 ## Rooter vs. autochdir
 
-Neovim has a built-in autochdir option that automatically changes the working directory to match the current file's directory. However, this is rarely ideal for project work, since `autochdir` always sets the directory to the file's immediate parent directory. But a rooter intelligently finds the project root, which is typically several levels up from individual files.
+Neovim has a built-in autochdir option that automatically changes the working directory to match the current file's directory. However, this is rarely ideal for project work, since `autochdir` always sets the directory to the file's immediate parent directory. But a rooter intelligently finds the project root, which is typically several levels up from individual files by applying more rules for detecting the root of the project.
 
 ## Practical Use Cases:
 
