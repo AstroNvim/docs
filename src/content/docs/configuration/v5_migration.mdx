@@ -5,7 +5,7 @@ title: Migration to v5.0
 
 import { Steps } from "@astrojs/starlight/components";
 
-While AstroNvim v4 came with a large restructuring of the configuration organization, AstroNvim v5 is a much smaller major version release and mainly comes with some modernization of plugins and small quality of life improvements. Most of the migration will only apply to users who have gone and customized the plugins that have been replaced. The plugin replacements come from various reasons such as plugins getting archived (`dressing.nvim`), better performance, more stable development practices, and overall simplification.
+While AstroNvim v4 came with a large restructuring of the configuration organization, AstroNvim v5 is a much smaller major version release and mainly comes with some modernization of plugins and small quality of life improvements. The most notable change in AstroNvim v5 is that support for Neovim \<0.10 has been dropped and users must be running either Neovim stable releases of v0.10 or v0.11. Most of the migration will only apply to users who have gone and customized the plugins that have been replaced. The plugin replacements come from various reasons such as plugins getting archived (`dressing.nvim`), better performance, more stable development practices, and overall simplification.
 
 :::note
 
@@ -84,50 +84,156 @@ If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum 
 
 AstroNvim v5 comes with some changes to our default plugin list that user's should keep in mind while performing the migration.
 
-- Added:
-  - [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
-    - AstroNvim is now relying on `mason-tool-installer.nvim` rather than `mason-lspconfig`/`mason-nvim-dap`/`mason-null-ls`. This makes configuration of installed packages easier rather than managing several `ensure_installed` tables and also adds support for installing packages automatically that are not part of any of those usecase specific plugins. `mason-tool-installer.nvim` also allows the user to specify specific package versions and other options. Check out the [`mason-tool-installer.nvim` Documentation](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) for details on it's configuration.
-    - For migration, anywhere in your configuration where you are configuring `ensure_installed` for `mason-lspconfig`/`mason-nvim-dap`/`mason-null-ls`, you should move those to an `ensure_installed` table in `mason-tool-installer.nvim`. You must also change the name of the package where necessary to properly reflect the name of the package in Mason. For instance, if you have `lua_ls` specified for `mason-lspconfig`, this would be `lua-language-server` in `mason-tool-installer.nvim`.
-- Changed:
-  - [`nvim-web-devicons`](https://github.com/nvim-tree/nvim-web-devicons) → [`mini.icons`](https://github.com/echasnovski/mini.icons)
-    - TODO
-  - [`lspkind.nvim`](https://github.com/onsails/lspkind.nvim) → [`mini.icons`](https://github.com/echasnovski/mini.icons)
-    - TODO
-  - [`nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) → [`nvim-highlight-colors`](https://github.com/brenoprata10/nvim-highlight-colors)
-    - TODO
-  - [`dressing.nvim`](https://github.com/stevearc/dressing.nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
-    - TODO
-  - [`indent-blankline.nvim`](https://github.com/lukas-reineke/indent-blankline.nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
-    - TODO
-  - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
-    - TODO
-  - [`alpha-nvim`](https://github.com/goolord/alpha-nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
-    - TODO
-  - [`nvim-notify`](https://github.com/rcarriga/nvim-notify) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
-    - TODO
+#### Overview
+
+| Old Plugin                                                                        | New Plugin                                                                                  |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| N/A                                                                               | [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) |
+| [`alpha-nvim`](https://github.com/goolord/alpha-nvim)                             | [`snacks.nvim`](https://github.com/folke/snacks.nvim)                                       |
+| [`dressing.nvim`](https://github.com/stevearc/dressing.nvim)                      | [`snacks.nvim`](https://github.com/folke/snacks.nvim)                                       |
+| [`indent-blankline.nvim`](https://github.com/lukas-reineke/indent-blankline.nvim) | [`snacks.nvim`](https://github.com/folke/snacks.nvim)                                       |
+| [`lspkind.nvim`](https://github.com/onsails/lspkind.nvim)                         | [`mini.icons`](https://github.com/echasnovski/mini.icons)                                   |
+| [`mini.bufremove`](https://github.com/echasnovski/mini.bufremove)                 | [`snacks.nvim`](https://github.com/folke/snacks.nvim)                                       |
+| [`nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua)              | [`nvim-highlight-colors`](https://github.com/brenoprata10/nvim-highlight-colors)            |
+| [`nvim-notify`](https://github.com/rcarriga/nvim-notify)                          | [`snacks.nvim`](https://github.com/folke/snacks.nvim)                                       |
+| [`nvim-web-devicons`](https://github.com/nvim-tree/nvim-web-devicons)             | [`mini.icons`](https://github.com/echasnovski/mini.icons)                                   |
+| [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim)              | [`snacks.nvim`](https://github.com/folke/snacks.nvim)                                       |
+
+#### Details
+
+- [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) (New Plugin)
+  - AstroNvim is now relying on `mason-tool-installer.nvim` rather than `mason-lspconfig`/`mason-nvim-dap`/`mason-null-ls`. This makes configuration of installed packages easier rather than managing several `ensure_installed` tables and also adds support for installing packages automatically that are not part of any of those usecase specific plugins. `mason-tool-installer.nvim` also allows the user to specify specific package versions and other options. Check out the [`mason-tool-installer.nvim` Documentation](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) for details on it's configuration.
+  - For migration, anywhere in your configuration where you are configuring `ensure_installed` for `mason-lspconfig`/`mason-nvim-dap`/`mason-null-ls`, you should move those to an `ensure_installed` table in `mason-tool-installer.nvim`. You must also change the name of the package where necessary to properly reflect the name of the package in Mason. For instance, if you have `lua_ls` specified for `mason-lspconfig`, this would be `lua-language-server` in `mason-tool-installer.nvim`.
+- [`alpha-nvim`](https://github.com/goolord/alpha-nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
+  - If you are customizing `alpha-nvim`, checkout the [updated Dashboard Customizations recipes](/recipes/dashboard) and the [`snacks.dashboard` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md) for how to implement the same customizations in the new plugin.
+- [`dressing.nvim`](https://github.com/stevearc/dressing.nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
+  - If you are customizing the `input` field in `dressing.nvim`, check out the [`snacks.input` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/input.md) for how to implement the same customizations in the new plugin.
+  - If you are customizing the `select` field in `dressing.nvim`, checkout the [`snacks.picker` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) for how to implement the same customizations in the new plugin.
+- [`indent-blankline.nvim`](https://github.com/lukas-reineke/indent-blankline.nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
+  - If you are customizing `indent-blankline.nvim`, checkout the [`snacks.indent` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/indent.md) for how to implement the same customizations in the new plugin.
+- [`lspkind.nvim`](https://github.com/onsails/lspkind.nvim) → [`mini.icons`](https://github.com/echasnovski/mini.icons)
+
+  - If you are customizing lsp kind icons, check out the [`mini.icons` Documentation](https://github.com/echasnovski/mini.icons/blob/main/doc/mini-icons.txt) for how to implement the same custom icons in the new plugin.
+  - If you have customized the `mode` option in `lspkind.nvim` to change the look of the LSP icons, this can be done easily by customizing the `formatting.format` function in `nvim-cmp`:
+
+    ```lua title="lua/plugins/cmp_lspkind_modes.lua"
+    return {
+      "hrsh7th/nvim-cmp",
+      opts = function(_, opts)
+        if not opts.formatting then
+          opts.formatting = {}
+        end
+        -- use the `fields` option for reordering the fields
+        opts.formatting.fields = { "abbr", "kind", "menu" }
+
+        -- we can use the AstroCore utility for easily patching a
+        -- function to extend our formatting
+        opts.formatting.format = require("astrocore").patch_func(
+          opts.formatting.format,
+          -- the function provides the original function for patching
+          -- and all of the parameters following
+          function(orig_format, entry, vim_item)
+            local kind_text = vim_item.kind -- store the kind text
+
+            -- perform the base format function
+            vim_item = orig_format(entry, vim_item)
+
+            -- put your lspkind.nvim `mode` here
+            local lspkind_mode = "symbol_text"
+
+            -- symbol only is the default, so we will do nothing
+            -- if that mode is set. For all other modes set the
+            -- kind to the appropriate string concatenation
+            if lspkind_mode == "text" then
+              vim_item.kind = kind_text
+            elseif lspkind_mode == "text_symbol" then
+              vim_item.kind = kind_text .. " " .. vim_item.kind
+            elseif lspkind_mode == "symbol_text" then
+              vim_item.kind = vim_item.kind .. " " .. kind_text
+            end
+
+            return vim_item
+          end
+        )
+      end,
+    }
+    ```
+
+- [`mini.bufremove`](https://github.com/echasnovski/mini.bufremove) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
+  - If you are using any of the API provided by `mini.bufremove`, check out the [`snacks.bufdelete` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/bufdelete.md) for the new method names to call.
+- [`nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) → [`nvim-highlight-colors`](https://github.com/brenoprata10/nvim-highlight-colors)
+  - If you are customizing `nvim-colorizer.lua`, check out the [`nvim-highlight-colors` Documentation](https://github.com/brenoprata10/nvim-highlight-colors) for how to implement the same customizations in the new plugin.
+- [`nvim-notify`](https://github.com/rcarriga/nvim-notify) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
+  - If you are customizing `nvim-notify`, checkout the [`snacks.notify` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/notify.md) for how to implement the same customizations in the new plugin.
+- [`nvim-web-devicons`](https://github.com/nvim-tree/nvim-web-devicons) → [`mini.icons`](https://github.com/echasnovski/mini.icons)
+  - If you are customizing icons, check out the [`mini.icons` Documentation](https://github.com/echasnovski/mini.icons/blob/main/doc/mini-icons.txt) for how to implement the same custom icons in the new plugin.
+- [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
+  - If you are customizing `telescope.nvim`, checkout the [`snacks.picker` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) for how to implement the same customizations in the new plugin.
+  - Some plugins have strong `telescope.nvim` integration, if you have plugins such as this, look to see if they have support for `snacks.picker` or just the native `vim.ui.select` function which will use `snacks.picker`.
+  - If you want to revert back to using `telescope.nvim`, you can install it from [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/fuzzy-finder/telescope-nvim)
 
 ### AstroNvim Core Plugin Changes
 
 #### AstroCore
 
 - The `system_open` function has been removed and any references to `require("astrocore").system_open()` should be replaced with `vim.ui.open()`
-- The `features.diagnostics_mode` configuration option has been simplified to just be `features.diagnostics`. This new value is either a boolean (`true`/`false`) to enable/disable diagnostics completely on startup, or it can be a table in the form of `{ virtual_text = true, virtual_lines = false }` to control the display of virtual text/virtual lines on startup. New toggles have been added (`<Leader>uv` and `<Leader>uV`) to toggle the virtual text and virtual lines at runtime. Furthermore the `<Leader>ud` mapping simply enables/disables diagnostics completely rather than managing various different states.
+- The `features.diagnostics_mode` configuration option has been simplified to just be `features.diagnostics`. This new value is either a boolean (`true`/`false`) to enable/disable diagnostics completely on startup, or it can be a table in the form of `{ virtual_text = true, virtual_lines = false }` to control the display of virtual text/virtual lines on startup. New toggles have been added (`<Leader>uv` and `<Leader>uV`) to toggle the virtual text and virtual lines at runtime.
+- The mapping `<Leader>ud` simply enables/disables diagnostics completely rather than managing various different states.
+- The `mappings` configuration table now does some basic normalization which means specific casing of the keys should not matter as much. It is still recommended to use the official keycode casing to maintain the most stable behavior.
+- The `mason` module has been removed. If you are using `require("astrocore.mason")` anywhere, investigate the APIs available from [`mason.nvim`](https://github.com/williamboman/mason.nvim/blob/main/doc/reference.md) and [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) for alternatives.
 
 #### AstroLSP
 
 - Configuration of `vim.lsp.buf.hover` and `vim.lsp.buf.signature_help` are no longer configured through the `handlers["textDocument/hover"]` and `handlers["textDocument/signature_help"]` configuration options. This is because of a breaking change in core Neovim where these are no longer configured as such. The options are now configured through a new `defaults` table in the AstroLSP configuration (`defaults.hover` and `defaults.signature_help`). If you have customized those handlers in your configuration, then check the [AstroLSP Documentation](https://github.com/AstroNvim/astrolsp) for where to place those configurations.
+- The `mappings` configuration table now does some basic normalization which means specific casing of the keys should not matter as much. It is still recommended to use the official keycode casing to maintain the most stable behavior.
 
 #### AstroUI
 
-- Introduction of a new `folding` module for a custom built `foldexpr` function in order to replace `nvim-ufo`. This feature is currently only enabled by default if you are using Neovim v0.11 as this provides LSP based folding out of the box, but if you want to use it with Neovim v0.10 then you can simply disable `nvim-ufo` in your user configuration. When in use, it also exposes a new command, `:AstroFoldInfo` which displays the current fold information. The folding behavior can also be configured through the new `folding` configuration table which can be explored through the [AstroUI Documentation](https://github.com/AstroNvim/astroui) which allows the user to configure when folding is enabled as well as which folding methods are utilized (currently supports treesitter based folding, indentation based folding, and LSP based folding which is Neovim v0.11 only).
+- Introduction of a new `folding` module for a custom built `foldexpr` function in order to replace `nvim-ufo`.
+  - This feature is currently only enabled by default if you are using Neovim v0.11 as this provides LSP based folding out of the box, but if you want to use it with Neovim v0.10 then you can simply disable `nvim-ufo` in your user configuration.
+  - When in use, it also exposes a new command, `:AstroFoldInfo` which displays the current fold information.
+  - The folding behavior can also be configured through the new `folding` configuration table which can be explored through the [AstroUI Documentation](https://github.com/AstroNvim/astroui) which allows the user to configure when folding is enabled as well as which folding methods are utilized (currently supports treesitter based folding, indentation based folding, and LSP based folding which is Neovim v0.11 only).
+- AstroUI status providers and component defaults options can now be configured in the `opts` table through `status.providers` and `status.components`.
 
-### Other Changes
+  - All of these options have strong typing and autocompletion as long as the type is set with Lua annotations in the code (an example of this is shown in the code example below).
+  - This is primarily useful for customizing default options for the providers such as setting up custom LSP client name mappings or alignment/padding of some elements without having to fully modify the statusline in `heirline.nvim`. For example, if you want to set up custom LSP client names to be displayed, you can do the following:
 
+    ```lua title="lua/plugins/astroui_lsp_client_names.lua"
+    return {
+      "AstroNvim/astroui",
+      ---@type AstroUIOpts
+      opts = {
+        status = {
+          providers = {
+            lsp_client_names = {
+              mappings = {
+                -- display `lua_ls` as just `LUA` in the statusline
+                lua_ls = "LUA",
+              },
+            },
+          },
+        },
+      },
+    }
+    ```
+
+### Other Breaking Changes
+
+- Drop support for Neovim v0.9
 - `AstroMasonUpdate` and `AstroMasonUpdateAll` commands have been removed in favor for the commands provided by [`mason-tool-installer`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)
 - The mapping `<C-S>` for saving while in insert mode has been removed as this is now a core Neovim binding for showing signature help.
+- The mapping `gI` for lsp implementation has been moved to `gri` to align with new core Neovim default LSP mappings
 
 ### New Features
 
 Some changes have been made that do not necessarily require any user intervention during the migration, but are just new features! Here are a few highlights
 
-- TODO
+- Neovim v0.11 adds a ton of great new features such as `vim.lsp.foldexpr` and context based comment strings. When using Neovim v0.11 we disable a few plugins and just rely on core features
+  - `Comment.nvim` and `nvim-ts-context-commentstring` are disabled in Neovim v0.11 in favor of the built in commenting features
+  - `nvim-ufo` is disabled in Neovim v0.11 in favor of the new AstroUI based fold expression. This provides a much clearer implementation of folding rather than relying on the "manual" fold method which can lead to soome strange behavior.
+- New mappings `<Leader>uv` and `<Leader>uV` for toggling diagnostic virtual text and virtual lines (virtual lines are only available in Neovim v0.11 and can replace plugins such as `lsp_lines.nvim`)
+- New mapping `gO` for document symbols to align with new core Neovim default LSP mappings
+- New mapping `<Leader>uZ` for toggling "Zen mode" for the current buffer which maximizes the buffer, centers the code, and disables most of the "eye candy" such as diagnostics
+- New mapping `<Leader>go` for opening the current buffer's git URL in the browser if it is a git tracked file
+- A new command, `:AstroRename` has been added which renames the current file. This uses a new function in AstroCore, [`require("astrocore").rename_file()`](https://github.com/AstroNvim/astrocore/blob/main/doc/api.md#rename_file)
+- AstroLSP has a full implementation for LSP based file operations which can help with things such as updating import statements when renaming files. These features are now enabled by default and have integration with [`neo-tree.nvim`](https://github.com/nvim-neo-tree/neo-tree.nvim) when moving and renaming files as well as the `:AstroRename` command
