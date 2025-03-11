@@ -30,7 +30,7 @@ AstroNvim is an aesthetically pleasing and feature-rich neovim config that is ex
 - A clipboard tool is necessary for the integration with the system clipboard (see [`:help clipboard-tool`](https://neovim.io/doc/user/provider.html#clipboard-tool) for supported solutions)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using) <sup>[[2]](#2)</sup>
 - Optional Requirements:
-  - [ripgrep](https://github.com/BurntSushi/ripgrep) - live grep telescope search (`<Leader>fw`)
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) - live grep file search (`<Leader>fw`)
   - [lazygit](https://github.com/jesseduffield/lazygit) - git ui toggle terminal (`<Leader>tl` or `<Leader>gg`)
   - [go DiskUsage()](https://github.com/dundee/gdu) - disk usage toggle terminal (`<Leader>tu`)
   - [bottom](https://github.com/ClementTsang/bottom) - process viewer toggle terminal (`<Leader>tt`)
@@ -40,19 +40,20 @@ AstroNvim is an aesthetically pleasing and feature-rich neovim config that is ex
 :::note
 
 <sup id="1">\[1\]</sup> All downloadable Nerd Fonts contain icons which are used
-by AstroNvim. Install the Nerd Font of your choice to your system and in your terminal
-emulator settings, set its font face to that Nerd Font. If you are using AstroNvim
-on a remote system via SSH, you do not need to install the font on the remote system.
+by AstroNvim. Install the Nerd Font of your choice to your system and in your
+terminal emulator settings, set its font face to that Nerd Font. If you are
+using AstroNvim on a remote system via SSH, you do not need to install the font
+on the remote system.
 
 :::
 
 :::note
 
-<sup id="2">\[2\]</sup> When using default theme: For MacOS, the default terminal
-does not have true color support. You will need to use [iTerm2](https://iterm2.com/),
-[Kitty](https://sw.kovidgoyal.net/kitty/), [WezTerm](https://wezfurlong.org/wezterm/),
-or another [terminal emulator](https://github.com/termstandard/colors) that has true
-color support.
+<sup id="2">\[2\]</sup> When using default theme: For MacOS, the default
+terminal does not have true color support. You will need to use
+[iTerm2](https://iterm2.com/), [Kitty](https://sw.kovidgoyal.net/kitty/),
+[WezTerm](https://wezfurlong.org/wezterm/), or another [terminal
+emulator](https://github.com/termstandard/colors) that has true color support.
 
 :::
 
@@ -188,7 +189,7 @@ docker run -w /root -it --rm alpine:edge sh -uelic '
 - Autocompletion with [Cmp](https://github.com/hrsh7th/nvim-cmp)
 - Git integration with [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 - Terminal with [Toggleterm](https://github.com/akinsho/toggleterm.nvim)
-- Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- Fuzzy finding with [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
 - Syntax highlighting with [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - Formatting and linting with [none-ls](https://github.com/nvimtools/none-ls.nvim)
 - Language Server Protocol with [Native LSP](https://github.com/neovim/nvim-lspconfig)

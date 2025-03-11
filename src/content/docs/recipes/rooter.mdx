@@ -52,7 +52,7 @@ A rooter automatically changes Neovim's working directory based on the context o
 
 ### The working directory in Neovim affects many operations:
 
-- **File searching**: Tools like Telescope will search relative to your working directory
+- **File searching**: Tools like `snacks.picker` will search relative to your working directory
 - **Command execution**: Shell commands run from Neovim use the working directory as their context
 - **Project navigation**: Moving between files is easier when your working directory is at the project root
 
@@ -69,6 +69,6 @@ Neovim has a built-in autochdir option that automatically changes the working di
 ## Practical Use Cases:
 
 - **Cross-project navigation**: When opening files from different projects, the rooter ensures your working context switches appropriately
-- **Telescope optimization**: Limits searches to the relevant project rather than including unrelated files
+- **File picker optimization**: Limits searches to the relevant project rather than including unrelated files
 - **Consistent command context**: Shell commands and LSP operations work against the proper project root
 - **Improved file navigation**: Makes it easier to navigate between related files in a project
