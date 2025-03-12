@@ -179,13 +179,13 @@ AstroNvim v5 comes with some changes to our default plugin list that user's shou
 - The `system_open` function has been removed and any references to `require("astrocore").system_open()` should be replaced with `vim.ui.open()`
 - The `features.diagnostics_mode` configuration option has been simplified to just be `features.diagnostics`. This new value is either a boolean (`true`/`false`) to enable/disable diagnostics completely on startup, or it can be a table in the form of `{ virtual_text = true, virtual_lines = false }` to control the display of virtual text/virtual lines on startup. New toggles have been added (`<Leader>uv` and `<Leader>uV`) to toggle the virtual text and virtual lines at runtime.
 - The mapping `<Leader>ud` simply enables/disables diagnostics completely rather than managing various different states.
-- The `mappings` configuration table now does some basic normalization which means specific casing of the keys should not matter as much. It is still recommended to use the official keycode casing to maintain the most stable behavior.
+- The `mappings` configuration table now does some basic normalization which means specific casing of the keys should not matter as much. It is still recommended to use the official keycode casing to maintain the most stable behavior (keycode casing can be found in [`:h keycodes`](https://neovim.io/doc/user/intro.html#keycodes)).
 - The `mason` module has been removed. If you are using `require("astrocore.mason")` anywhere, investigate the APIs available from [`mason.nvim`](https://github.com/williamboman/mason.nvim/blob/main/doc/reference.md) and [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) for alternatives.
 
 #### AstroLSP
 
 - Configuration of `vim.lsp.buf.hover` and `vim.lsp.buf.signature_help` are no longer configured through the `handlers["textDocument/hover"]` and `handlers["textDocument/signature_help"]` configuration options. This is because of a breaking change in core Neovim where these are no longer configured as such. The options are now configured through a new `defaults` table in the AstroLSP configuration (`defaults.hover` and `defaults.signature_help`). If you have customized those handlers in your configuration, then check the [AstroLSP Documentation](https://github.com/AstroNvim/astrolsp) for where to place those configurations.
-- The `mappings` configuration table now does some basic normalization which means specific casing of the keys should not matter as much. It is still recommended to use the official keycode casing to maintain the most stable behavior.
+- The `mappings` configuration table now does some basic normalization which means specific casing of the keys should not matter as much. It is still recommended to use the official keycode casing to maintain the most stable behavior (keycode casing can be found in [`:h keycodes`](https://neovim.io/doc/user/intro.html#keycodes)).
 
 #### AstroUI
 
