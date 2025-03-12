@@ -74,12 +74,6 @@ This is a work in progress. This guide is taking shape and covers much of the mi
 
 Each "Migrating" section below has an link to documentation and/or an example configuration. Each example configuration file shows the structure for configuring that plugin. The comments in each example configuration describes the configuration keys.
 
-:::note
-
-**Recommended reading**: for each plugin there is a link to example configuration. These configurations are full of documentation and can help guide your migration!
-
-:::
-
 The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/main/lua%2Fastronvim%2Fplugins) in the AstroNvim codebase itself are also a good reference to learn how to configure.
 
 **Please also read the [Other Breaking Changes section](#other-breaking-changes)** - there are a number of changes that are not just "move some config from one place to another". For example, in key mapping `<leader>` is no longer recognized.
@@ -236,7 +230,7 @@ Some changes have been made that do not necessarily require any user interventio
 
 - Neovim v0.11 adds a ton of great new features such as `vim.lsp.foldexpr` and context based comment strings. When using Neovim v0.11 we disable a few plugins and just rely on core features
   - `Comment.nvim` and `nvim-ts-context-commentstring` are disabled in Neovim v0.11 in favor of the built in commenting features
-  - `nvim-ufo` is disabled in Neovim v0.11 in favor of the new AstroUI based fold expression. This provides a much clearer implementation of folding rather than relying on the "manual" fold method which can lead to soome strange behavior.
+  - `nvim-ufo` is disabled in Neovim v0.11 in favor of the new AstroUI based fold expression. This provides a much clearer implementation of folding rather than relying on the "manual" fold method which can lead to some strange behavior.
 - New mappings `<Leader>uv` and `<Leader>uV` for toggling diagnostic virtual text and virtual lines (virtual lines are only available in Neovim v0.11 and can replace plugins such as `lsp_lines.nvim`)
 - New mapping `gO` for document symbols to align with new core Neovim default LSP mappings
 - New mapping `<Leader>uZ` for toggling "Zen mode" for the current buffer which maximizes the buffer, centers the code, and disables most of the "eye candy" such as diagnostics
