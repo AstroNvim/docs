@@ -231,6 +231,7 @@ Some changes have been made that do not necessarily require any user interventio
 - Neovim v0.11 adds a ton of great new features such as `vim.lsp.foldexpr` and context based comment strings. When using Neovim v0.11 we disable a few plugins and just rely on core features
   - `Comment.nvim` and `nvim-ts-context-commentstring` are disabled in Neovim v0.11 in favor of the built in commenting features
   - `nvim-ufo` is disabled in Neovim v0.11 in favor of the new AstroUI based fold expression. This provides a much clearer implementation of folding rather than relying on the "manual" fold method which can lead to some strange behavior.
+- New mappings `gco` and `gcO` for inserting new comments below and above the current line
 - New mappings `<Leader>uv` and `<Leader>uV` for toggling diagnostic virtual text and virtual lines (virtual lines are only available in Neovim v0.11 and can replace plugins such as `lsp_lines.nvim`)
 - New mapping `gO` for document symbols to align with new core Neovim default LSP mappings
 - New mapping `<Leader>uZ` for toggling "Zen mode" for the current buffer which maximizes the buffer, centers the code, and disables most of the "eye candy" such as diagnostics
