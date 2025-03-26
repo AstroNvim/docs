@@ -14,7 +14,7 @@ import { Tabs, TabItem, FileTree, Steps } from "@astrojs/starlight/components";
 :::tip
 
 When getting started, please be sure to check out the
-[Frequently Asked Questions](/faq)!
+[Frequently Asked Questions](/v4/faq)!
 
 :::
 
@@ -24,7 +24,7 @@ AstroNvim is an aesthetically pleasing and feature-rich neovim config that is ex
 
 ## ⚡ Requirements
 
-- [Nerd Fonts](https://www.nerdfonts.com/font-downloads) (_Optional with manual intervention:_ See [Recipes/Customizing Icons](/recipes/icons#disable-icons)) <sup>[[1]](#1)</sup>
+- [Nerd Fonts](https://www.nerdfonts.com/font-downloads) (_Optional with manual intervention:_ See [Recipes/Customizing Icons](/v4/recipes/icons#disable-icons)) <sup>[[1]](#1)</sup>
 - [Neovim v0.9.5+ (_Not_ including nightly)](https://github.com/neovim/neovim/releases/tag/stable)
 - [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) (_Note:_ This is only necessary if you want to use `auto_install` feature with Treesitter)
 - A clipboard tool is necessary for the integration with the system clipboard (see [`:help clipboard-tool`](https://neovim.io/doc/user/provider.html#clipboard-tool) for supported solutions)
@@ -234,7 +234,7 @@ Looking a bit deeper, the `plugins` directory is where all plugins, except Astro
 
 Each file in the plugins directory can specify the installation and configuration of one or more plugins. The template generally installs and configures a single plugin per `lua` file. Further, the name of the file generally matches the name of the plugin. The one exception is `user.lua` which has multiple plugins in it - but they could be split into separate files if you wish!
 
-Be sure to check out the [Configuration/Customizing Plugins page](/configuration/customizing_plugins) and the [Lazy.nvim Documentation](https://lazy.folke.io/spec) for more details in how to define and configure plugins using `lazy.nvim`.
+Be sure to check out the [Configuration/Customizing Plugins page](/v4/configuration/customizing_plugins) and the [Lazy.nvim Documentation](https://lazy.folke.io/spec) for more details in how to define and configure plugins using `lazy.nvim`.
 
 There is nothing special about the template! It's merely a quick way to get started, and, well, recommended to get you up and running quicker. Once you have a working configuration that may be the time when you start to move things around.
 
