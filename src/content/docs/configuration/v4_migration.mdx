@@ -21,17 +21,17 @@ All AstroNvim configuration is coordinated through those plugins above.
 
 :::note
 
-Before getting started it is recommended to review the [Getting Started](/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
+Before getting started it is recommended to review the [Getting Started](/v4/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
 
 :::
 
 ## Setting Up a Migration Environment
 
-Breaking your working editor configuration when migrating to v4 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v4 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
+Breaking your working editor configuration when migrating to v4 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v4 configuration. This workflow makes use of an [Isolated Installation](/v4/reference/alt_install/#isolated-installation) environment.
 
 :::tip
 
-Checkout the [Managing User Configuration Page](/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
+Checkout the [Managing User Configuration Page](/v4/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
 
 :::
 
@@ -209,7 +209,7 @@ Along with the new core AstroNvim plugins, we have made some other changes to ou
   - [`jose-elias-alvarez/null-ls.nvim`](https://github.com/jose-elias-alvarez/null-ls.nvim) → [`nvimtools/none-ls.nvim`](https://github.com/nvimtools/none-ls.nvim)
     - `null-ls` was archived by the author and `none-ls` is a maintainer fork. All `require`s are the same, but if you are configuring `null-ls` in your plugins anywhere be sure to update the repository to `nvimtools/none-ls.nvim`.
   - [`Shatur/neovim-session-manager`](https://github.com/Shatur/neovim-session-manager) → [`stevearc/resession.nvim`](https://github.com/stevearc/resession.nvim)
-    - `resession.nvim` provides a deeper and more configurable Lua API for building up our session management. This allows us to take into account our tab-local buffers when saving and restoring sessions. Similar to how `heirline` provides a framework for building statuslines, `resession` provides a framework for session management. We have added a few easy to configure options in AstroCore under the `sessions` table in the configuration opts for easily configuring auto saving of sessions and rules for ignoring buffers when saving. For advanced configuration please check out the extensive [Ressesion Documentation](https://github.com/stevearc/resession.nvim/) and our [Session Management Recipes](/recipes/sessions).
+    - `resession.nvim` provides a deeper and more configurable Lua API for building up our session management. This allows us to take into account our tab-local buffers when saving and restoring sessions. Similar to how `heirline` provides a framework for building statuslines, `resession` provides a framework for session management. We have added a few easy to configure options in AstroCore under the `sessions` table in the configuration opts for easily configuring auto saving of sessions and rules for ignoring buffers when saving. For advanced configuration please check out the extensive [Ressesion Documentation](https://github.com/stevearc/resession.nvim/) and our [Session Management Recipes](/v4/recipes/sessions).
 - Removed:
   - [`b0o/SchemaStore.nvim`](https://github.com/b0o/SchemaStore.nvim)
     - We are no longer providing `SchemaStore.nvim` out of the box. This will be provided as needed in the AstroCommunity language packs.
