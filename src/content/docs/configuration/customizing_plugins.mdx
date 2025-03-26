@@ -78,19 +78,6 @@ return {
       },
     },
   },
-  -- customize cmp mappings
-  {
-    "hrsh7th/nvim-cmp",
-    -- override the options table that is used
-    -- in the `require("cmp").setup()` call
-    opts = function(_, opts)
-      -- opts parameter is the default options table
-      -- the function is lazy loaded so cmp is able to be required
-      local cmp = require("cmp")
-      -- modify the mapping part of the table
-      opts.mapping["<C-x>"] = cmp.mapping.select_next_item()
-    end,
-  },
   -- customize treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
@@ -123,7 +110,7 @@ The `table` notation is the simplest method for configuration but does not cover
 
 :::tip
 
-Since [`lazy.nvim` v10.23.0](https://github.com/folke/lazy.nvim/releases/tag/v10.23.0) a new configuration option has been added called `opts_extend` which allows specifying that a part of the options passed to the `opts` table should be treated as a list that is extended rather than replaced completely as described below. Since [AstroNvim v4.9.0](https://github.com/AstroNvim/AstroNvim/releases/tag/v4.9.0) this option has been enabled out of the box for the `ensure_installed` tables for the following plugins: [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter), [`mason-lspconfig.nvim`](https://github.com/williamboman/mason-lspconfig.nvim), [`mason-null-ls.nvim`](https://github.com/jay-babu/mason-null-ls.nvim), and [`mason-nvim-dap.nvim`](https://github.com/jay-babu/mason-nvim-dap.nvim). This allows the user to use the basic table notation to simply add more items to these `ensure_installed` lists.
+Since [`lazy.nvim` v10.23.0](https://github.com/folke/lazy.nvim/releases/tag/v10.23.0) a new configuration option has been added called `opts_extend` which allows specifying that a part of the options passed to the `opts` table should be treated as a list that is extended rather than replaced completely as described below. Since [AstroNvim v4.9.0](https://github.com/AstroNvim/AstroNvim/releases/tag/v4.9.0) this option has been enabled out of the box for the `ensure_installed` tables for [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) and [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim). This allows the user to use the basic table notation to simply add more items to these `ensure_installed` lists.
 
 :::
 
@@ -324,7 +311,7 @@ return {
 
 ### Extending Core Plugin Config Functions
 
-Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own modules in `require("astronvim.plugins.configs.X")` (replacing `X` with the plugin `require` string) that returns the AstroNvim default config function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs`, add user snippets to `luasnip`, or add more extensions to `telescope` without having to rewrite our entire configuration function. Here is an example of adding the `media_files` Telescope extension:
+Many of our core plugins have additional code that runs during setup which you might want to extend. For this reason we have included our own modules in `require("astronvim.plugins.configs.X")` (replacing `X` with the plugin `require` string) that returns the AstroNvim default config function in each plugin specification that has a `config` function which can be easily called if you want to extend a plugin configuration. This is particularly useful if you want to do something like add rules to `nvim-autopairs` or add user snippets to `luasnip` without having to rewrite our entire configuration function. Here is an example of adding extending LuaSnip to use extend snippet filetypes:
 
 :::note
 
@@ -335,18 +322,15 @@ Not all plugins have custom `config` functions and will not have an `astronvim.p
 ```lua title="lua/plugins/extended_config.lua" {10-11}
 return {
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { -- add a new dependency to telescope that is our new plugin
-      "nvim-telescope/telescope-media-files.nvim",
-    },
+    "L3MON4D3/LuaSnip",
     -- the first parameter is the plugin specification
     -- the second is the table of options as set up in Lazy with the `opts` key
     config = function(plugin, opts)
       -- run the core AstroNvim configuration function with the options table
-      require("astronvim.plugins.configs.telescope")(plugin, opts)
+      require("astronvim.plugins.configs.luasnip")(plugin, opts)
 
-      -- require telescope and load extensions as necessary
-      require("telescope").load_extension("media_files")
+      -- require luasnip and use it's API as normal
+      require("luasnip").filetype_extend("javascript", { "javascriptreact" })
     end,
   },
 }
@@ -354,11 +338,11 @@ return {
 
 ## Disabling Plugins
 
-Plugins can be easily disabled by simply setting the `enabled` option to `false`. Here is an example of disabling the core dashboard plugin, `alpha`:
+Plugins can be easily disabled by simply setting the `enabled` option to `false`. Here is an example of disabling the core easy escape plugin, `better-escape`:
 
 ```lua title="lua/plugins/disabled.lua" "enabled = false"
 return {
-  { "goolord/alpha-nvim", enabled = false },
+  { "max397574/better-escape.nvim", enabled = false },
 }
 ```
 
@@ -390,7 +374,7 @@ return {
   },
 
   -- this plugin will be loaded on the autocmd event "UIEnter"
-  { "rcarriga/nvim-notify", event = "UIEnter" },
+  { "rebelot/heirline.nvim", event = "UIEnter" },
 }
 ```
 
@@ -445,10 +429,10 @@ return {
 
 AstroNvim has many plugins that we load on the first real file that is open. This is used internally for plugins like Treesitter, LSP related plugins, and other various plugins related to interacting with files. We achieve this by creating a custom `User` `autocmd` event called `AstroFile`. This can also be used by users for lazy loading plugins on the first real file that is opened:
 
-```lua title="lua/plugins/nvim-colorizer.lua" {4}
+```lua title="lua/plugins/illuminate.lua" {4}
 return {
   {
-    "NvChad/nvim-colorizer.lua",
+    "RRethy/vim-illuminate",
     event = "User AstroFile",
   },
 }

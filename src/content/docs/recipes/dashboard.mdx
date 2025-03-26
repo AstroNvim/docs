@@ -1,0 +1,78 @@
+---
+id: dashboard
+title: Dashboard Customizations
+---
+
+AstroNvim comes with [snacks.dashboard](https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md) by default for providing a dashboard/home screen. This page provides a few common customization options.
+
+### Customize Dashboard Header
+
+If you want to customize your header on the dashboard you can do this easily by overriding the `snacks.nvim` options in your plugins:
+
+```lua title="lua/plugins/dashboard.lua"
+return {
+  "folke/snacks.nvim",
+  opts = {
+    dashboard = {
+      preset = {
+        header = table.concat({
+          "My Custom",
+          "Dashboard Header",
+        }, "\n"),
+      },
+    },
+  },
+}
+```
+
+### Customize Buttons
+
+In order to customize buttons presented on the dashboard, you can modify `snacks.nvim` options:
+
+```lua title="lua/plugins/dashboard_buttons.lua"
+return {
+  "folke/snacks.nvim",
+  opts = {
+    dashboard = {
+      preset = {
+        keys = {
+          {
+            key = "h",
+            action = function()
+              vim.notify("Hello World!")
+            end,
+            desc = "Say Hi",
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+### Open Dashboard Automatically When No More Buffers
+
+If you want to make the dashboard/home screen open automatically when you close the last buffer in your session you can add the following to your AstroCore mappings configuration:
+
+```lua title="lua/plugins/astrocore.lua"
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    mappings = {
+      n = {
+        ["<Leader>c"] = {
+          function()
+            local bufs = vim.fn.getbufinfo({ buflisted = true })
+            require("astrocore.buffer").close(0)
+            if not bufs[2] then
+              require("snacks").dashboard()
+            end
+          end,
+          desc = "Close buffer",
+        },
+      },
+    },
+  },
+}
+```

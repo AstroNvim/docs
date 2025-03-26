@@ -118,9 +118,6 @@ export default defineConfig({
       logo: {
         src: "./src/assets/astronvim.svg",
       },
-      components: {
-        SiteTitle: "./src/components/SiteTitle.astro",
-      },
       plugins: [
         starlightDocSearch({
           appId: "JXZNTZ86UN",

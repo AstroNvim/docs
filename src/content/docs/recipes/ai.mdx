@@ -24,6 +24,32 @@ In order to make AI plugins play nicely with AstroNvim it's important to set up 
 
 These configurations set up the completion engines to look for a function stored in `vim.g.ai_accept` which can be later configured by an AI completion plugin to choose what action should be taken when attempting to accept an AI suggestion if available.
 
+#### [blink.cmp](https://github.com/Saghen/blink.cmp) Integration
+
+[blink.cmp](https://github.com/Saghen/blink.cmp) is another popular completion plugin. This configures the `<Tab>` key as described above:
+
+```lua title="lua/plugins/cmp_ai.lua"
+return {
+  "Saghen/blink.cmp",
+  optional = true,
+  opts = function(_, opts)
+    if not opts.keymap then
+      opts.keymap = {}
+    end
+    opts.keymap["<Tab>"] = {
+      "snippet_forward",
+      function()
+        if vim.g.ai_accept then
+          return vim.g.ai_accept()
+        end
+      end,
+      "fallback",
+    }
+    opts.keymap["<S-Tab>"] = { "snippet_backward", "fallback" }
+  end,
+}
+```
+
 #### [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) Integration
 
 By default AstroNvim comes with [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) for completion. This modifies the default configuration to set up the `<Tab>` key as described above:
@@ -87,32 +113,6 @@ return {
       -- Fallback
       fallback()
     end, { "i", "s" })
-  end,
-}
-```
-
-#### [blink.cmp](https://github.com/Saghen/blink.cmp) Integration
-
-[blink.cmp](https://github.com/Saghen/blink.cmp) is another popular completion plugin. This configures the `<Tab>` key as described above:
-
-```lua title="lua/plugins/cmp_ai.lua"
-return {
-  "Saghen/blink.cmp",
-  optional = true,
-  opts = function(_, opts)
-    if not opts.keymap then
-      opts.keymap = {}
-    end
-    opts.keymap["<Tab>"] = {
-      "snippet_forward",
-      function()
-        if vim.g.ai_accept then
-          return vim.g.ai_accept()
-        end
-      end,
-      "fallback",
-    }
-    opts.keymap["<S-Tab>"] = { "snippet_backward", "fallback" }
   end,
 }
 ```

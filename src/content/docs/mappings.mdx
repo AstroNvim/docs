@@ -29,7 +29,6 @@ AstroNvim generally relies on `<Leader>` driven mappings, which is default set t
 | Close Buffer                | `Leader + c`        |
 | Next Tab (real vim tab)     | `]t`                |
 | Previous Tab (real vim tab) | `[t`                |
-| Comment                     | `Leader + /`        |
 | Horizontal Split            | `\`                 |
 | Vertical Split              | <code>&#124;</code> |
 
@@ -55,6 +54,14 @@ AstroNvim generally relies on `<Leader>` driven mappings, which is default set t
 | Sort buffers by relative path                                       | `Leader + bsr`                |
 | Open a buffer tab in a new horizontal split with interactive picker | `Leader + b\`                 |
 | Open a buffer tab in a new vertical split with interactive picker   | <code>Leader + b&#124;</code> |
+
+## Commenting Mappings
+
+| Action                            | Mappings     |
+| --------------------------------- | ------------ |
+| Toggle comment of current line    | `Leader + /` |
+| Insert comment below current line | `gco`        |
+| Insert comment above current line | `gcO`        |
 
 ## List Management
 
@@ -154,10 +161,11 @@ AstroNvim generally relies on `<Leader>` driven mappings, which is default set t
 | Diagnostic Warning Previous | `[w`                             |
 | Document Symbol Next        | `]y`                             |
 | Document Symbol Previous    | `[y`                             |
+| Document Symbol             | `gO`                             |
 | Declaration                 | `gD`                             |
 | Type Definition             | `gy`                             |
 | Definition                  | `gd`                             |
-| Implementation              | `gI`                             |
+| Implementation              | `gri`                            |
 | References                  | `grr`, `Leader + lR`             |
 
 ## Debugger Mappings
@@ -181,45 +189,53 @@ AstroNvim generally relies on `<Leader>` driven mappings, which is default set t
 | Toggle Debugger UI      | `Leader + du`              |
 | Debugger Hover          | `Leader + dh`              |
 
-## Telescope Mappings
+## Picker Mappings
 
 | Action                            | Mappings             |
 | --------------------------------- | -------------------- |
 | Resume previous search            | `Leader + f + Enter` |
 | Marks                             | `Leader + f'`        |
+| AstroNvim config files            | `Leader + fa`        |
 | Buffers                           | `Leader + fb`        |
 | Word at cursor                    | `Leader + fc`        |
 | Commands                          | `Leader + fC`        |
 | Find files                        | `Leader + ff`        |
 | Find files (include hidden files) | `Leader + fF`        |
+| Git tracked files                 | `Leader + fg`        |
 | Help Tags                         | `Leader + fh`        |
 | Keymaps                           | `Leader + fk`        |
+| Lines                             | `Leader + fl`        |
 | Man Pages                         | `Leader + fm`        |
 | Notifications                     | `Leader + fn`        |
 | Old Files                         | `Leader + fo`        |
+| Old Files (current directory)     | `Leader + fO`        |
+| Projects                          | `Leader + fp`        |
 | Registers                         | `Leader + fr`        |
+| Smart (buffers,recent,files)      | `Leader + fs`        |
 | Colorschemes                      | `Leader + ft`        |
 | Live Grep                         | `Leader + fw`        |
 | Live Grep (include hidden files)  | `Leader + fW`        |
 | Git Branches                      | `Leader + gb`        |
 | Git Commits (repository)          | `Leader + gc`        |
 | Git Commits (current file)        | `Leader + gC`        |
+| Git browse (open)                 | `Leader + go`        |
 | Git Status                        | `Leader + gt`        |
+| Git Stash                         | `Leader + gT`        |
 | LSP Symbols                       | `Leader + ls`        |
 | LSP Workspace Symbols             | `Leader + lG`        |
 
 ## Terminal Mappings
 
-| Action                   | Mappings                |
-| ------------------------ | ----------------------- |
-| Open Floating Terminal   | `Leader + tf`           |
-| Open Horizontal Terminal | `Leader + th`           |
-| Open Vertical Terminal   | `Leader + tv`           |
-| Open Toggle Lazygit      | `Leader + tl`           |
-| Open Toggle node         | `Leader + tn`           |
-| Open Toggle Python       | `Leader + tp`           |
-| Open Toggle btm          | `Leader + tt`           |
-| Toggle Current Terminal  | `<F7>`                  |
+| Action                   | Mappings      |
+| ------------------------ | ------------- |
+| Open Floating Terminal   | `Leader + tf` |
+| Open Horizontal Terminal | `Leader + th` |
+| Open Vertical Terminal   | `Leader + tv` |
+| Open Toggle Lazygit      | `Leader + tl` |
+| Open Toggle node         | `Leader + tn` |
+| Open Toggle Python       | `Leader + tp` |
+| Open Toggle btm          | `Leader + tt` |
+| Toggle Current Terminal  | `<F7>`        |
 
 ## UI/UX Mappings
 
@@ -251,7 +267,10 @@ AstroNvim generally relies on `<Leader>` driven mappings, which is default set t
 | Toggle conceal                         | `Leader + uS`  |
 | Toggle tabline                         | `Leader + ut`  |
 | Toggle URL highlighting                | `Leader + uu`  |
+| Toggle diagnostics virtual text        | `Leader + uv`  |
+| Toggle diagnostics virtual lines       | `Leader + uV`  |
 | Toggle wrap                            | `Leader + uw`  |
 | Toggle syntax highlighting (buffer)    | `Leader + uy`  |
 | Toggle LSP semantic tokens (buffer)    | `Leader + uY`  |
 | Toggle color highlighting              | `Leader + uz`  |
+| Toggle zen mode                        | `Leader + uZ`  |

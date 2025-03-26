@@ -53,13 +53,13 @@ return {
 
 ### Automatically Install Debuggers
 
-`mason-nvim-dap` also allows you to automatically install debuggers that you may want. This can be configured by extending the `mason-nvim-dap` plugin options:
+`mason-tool-installer.nvim` is the plugin AstroNvim uses to centralize Mason package management and allows you to automatically install debuggers that you may want. This can be configured by extending the `mason-tool-installer.nvim` plugin options:
 
-```lua title="lua/plugins/mason-nvim-dap.lua"
+```lua title="lua/plugins/mason-tool-installer.lua"
 return {
-  "jay-babu/mason-nvim-dap.nvim",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   opts = {
-    ensure_installed = { "python" },
+    ensure_installed = { "debugpy" },
   },
 }
 ```
