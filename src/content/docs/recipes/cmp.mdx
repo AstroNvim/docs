@@ -3,173 +3,128 @@ id: cmp
 title: Customize cmp Completion
 ---
 
-AstroNvim comes with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) for powering completion out of the box. This page documents common configuration options such as custom keybindings or adding more sources.
+AstroNvim comes with [blink.cmp](https://github.com/Saghen/blink.cmp) for powering completion out of the box. This page documents common configuration options such as custom keybindings or adding more sources, for more detailed information on configuring the plugin be sure to check out the extensive [blink.cmp Documentation](https://cmp.saghen.dev/).
 
 ### Customize Keybindings
 
-Some overrides require access to the plugin itself that you are overriding. This comes up a lot in things adding custom mappings to `cmp`. This can be achieved with the following plugin spec:
+Some overrides require access to the plugin itself that you are overriding. This comes up a lot in things adding custom mappings to `blink.cmp`. This can be achieved with the following plugin spec:
 
-```lua title="lua/plugins/cmp.lua"
-return { -- override nvim-cmp plugin
-  "hrsh7th/nvim-cmp",
-  -- override the options table that is used in the `require("cmp").setup()` call
-  opts = function(_, opts)
-    -- opts parameter is the default options table
-    -- the function is lazy loaded so cmp is able to be required
-    local cmp = require("cmp")
-    -- modify the mapping part of the table
-    opts.mapping["<C-x>"] = cmp.mapping.select_next_item()
-  end,
+```lua title="lua/plugins/blink.lua"
+return { -- override blink.cmp plugin
+  "Saghen/blink.cmp",
+  opts = {
+    keymap = {
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+    },
+  },
 }
 ```
 
 ### Customize Source Priority
 
-Similarly to customizing mappings, you can customize and configure your `cmp` sources as well:
+Similarly to customizing mappings, you can customize and configure your `blink.cmp` providers as well:
 
-```lua title="lua/plugins/cmp.lua"
-return { -- override nvim-cmp plugin
-  "hrsh7th/nvim-cmp",
-  -- override the options table that is used in the `require("cmp").setup()` call
-  opts = function(_, opts)
-    -- opts parameter is the default options table
-    -- the function is lazy loaded so cmp is able to be required
-    local cmp = require("cmp")
-    -- modify the sources part of the options table
-    opts.sources = cmp.config.sources({
-      { name = "nvim_lsp", priority = 1000 },
-      { name = "luasnip", priority = 750 },
-      { name = "buffer", priority = 500 },
-      { name = "path", priority = 250 },
-    })
-  end,
+```lua title="lua/plugins/blink.lua"
+return { -- override blink.cmp plugin
+  "Saghen/blink.cmp",
+  opts = {
+    sources = {
+      providers = {
+        path = { score_offset = 3 },
+        lsp = { score_offset = 0 },
+        snippets = { score_offset = -1 },
+        buffer = { score_offset = -3 },
+      },
+    },
+  },
 }
 ```
 
 ### Modify Existing Source Options
 
-You can use this `cmp` override to also customize the options of the sources:
+You can use this `blink.cmp` override to also customize the options of the sources. You can find all of the available options for the providers in the [blink.cmp Documentation](https://cmp.saghen.dev/configuration/reference.html#providers):
 
-```lua title="lua/plugins/cmp.lua"
-return { -- override nvim-cmp plugin
-  "hrsh7th/nvim-cmp",
-  -- override the options table that is used in the `require("cmp").setup()` call
-  opts = function(_, opts)
-    -- opts parameter is the default options table
-    -- the function is lazy loaded so cmp is able to be required
-    local cmp = require("cmp")
-    -- modify the sources part of the options table
-    opts.sources = cmp.config.sources({
-      { name = "nvim_lsp", priority = 1000 },
-      { name = "luasnip", priority = 750 },
-      {
-        name = "buffer",
-        priority = 500,
-        option = {
-          get_bufnrs = function()
-            return vim.api.nvim_list_bufs()
-          end,
+```lua title="lua/plugins/blink.lua"
+return { -- override blink.cmp plugin
+  "Saghen/blink.cmp",
+  opts = {
+    sources = {
+      providers = {
+        buffer = {
+          -- each provider can be customized with their `opts`
+          opts = {
+            get_bufnrs = function()
+              return vim.api.nvim_list_bufs()
+            end,
+          },
         },
       },
-      { name = "path", priority = 250 },
-    })
-  end,
+    },
+  },
 }
 ```
 
 ### Add More Sources
 
-To add more sources than the default, you can add other `cmp` source plugins as dependencies, and then add the new source in the `opts`:
+To add more sources than the default, you can add the new `blink` source plugins ([blink.cmp Community Sources](https://cmp.saghen.dev/configuration/sources.html#community-sources)) and configure the `blink.cmp` options to enable the provider:
 
-```lua title="lua/plugins/cmp.lua"
-return { -- override nvim-cmp plugin
-  "hrsh7th/nvim-cmp",
-  dependencies = {
-    "hrsh7th/cmp-emoji", -- add cmp source as dependency of cmp
-  },
-  -- override the options table that is used in the `require("cmp").setup()` call
-  opts = function(_, opts)
-    -- opts parameter is the default options table
-    -- the function is lazy loaded so cmp is able to be required
-    local cmp = require("cmp")
-    -- modify the sources part of the options table
-    opts.sources = cmp.config.sources({
-      { name = "nvim_lsp", priority = 1000 },
-      { name = "luasnip", priority = 750 },
-      { name = "buffer", priority = 500 },
-      { name = "path", priority = 250 },
-      { name = "emoji", priority = 700 }, -- add new source
-    })
-  end,
-}
-```
-
-### Advanced Setup For Filetype and Cmdline
-
-You can also use the `config` function and the provided default configuration function for each plugin to extend the configuration and setup of `cmp` like adding `cmp-cmdline`:
-
-```lua title="lua/plugins/cmp.lua"
-return { -- override nvim-cmp plugin
-  "hrsh7th/nvim-cmp",
-  keys = { ":", "/", "?" }, -- lazy load cmp on more keys along with insert mode
-  dependencies = {
-    "hrsh7th/cmp-cmdline", -- add cmp-cmdline as dependency of cmp
-  },
-  config = function(plugin, opts)
-    local cmp = require("cmp")
-    -- run cmp setup
-    cmp.setup(opts)
-
-    -- configure `cmp-cmdline` as described in their repo: https://github.com/hrsh7th/cmp-cmdline#setup
-    cmp.setup.cmdline("/", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = "buffer" },
-      },
-    })
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        {
-          name = "cmdline",
-          option = {
-            ignore_cmds = { "Man", "!" },
+```lua title="lua/plugins/blink-emoji.lua"
+return {
+  "moyiz/blink-emoji.nvim",
+  lazy = true,
+  specs = {
+    {
+      "Saghen/blink.cmp",
+      optional = true,
+      opts = {
+        sources = {
+          -- enable the provider by default (automatically extends when merging tables)
+          default = { "emoji" },
+          providers = {
+            -- Specific details depend on the blink source
+            emoji = {
+              name = "Emoji",
+              module = "blink-emoji",
+              min_keyword_length = 1,
+              score_offset = -1,
+            },
           },
         },
-      }),
-    })
-  end,
+      },
+    },
+  },
 }
 ```
 
-### Limit Label and Menu Item Length
+#### Add `nvim-cmp` Sources
 
-To limit the label and menu item length and prevent the documentation window from getting too small, you can use the following configuration:
+Not all sources for `nvim-cmp` are available as `blink.cmp` providers, but `blink.cmp` provides a compatibility layer to make it easy to add more sources. For more detail check out the [`blink.compat` Documentation](https://github.com/Saghen/blink.compat). Here is an example for adding `cmp-latex-symbols`:
 
-```lua title="lua/plugins/cmp.lua"
+```lua title="lua/plugins/cmp-latex-symbols.lua"
 return {
-  "hrsh7th/nvim-cmp",
-  opts = function(_, opts)
-    local astrocore, astroui = require "astrocore", require "astroui"
-    local function truncate(str, len)
-      if not str then return end
-      local truncated = vim.fn.strcharpart(str, 0, len)
-      return truncated == str and str or truncated .. astroui.get_icon "Ellipsis"
-    end
-
-    if not opts.formatting then opts.formatting = {} end
-    opts.formatting.format = astrocore.patch_func(opts.formatting.format, function(format, ...)
-      -- get item from original formatting function
-      local vim_item = format(...)
-
-      -- truncate text fields to maximum of 25% of the window
-      vim_item.abbr = truncate(vim_item.abbr, math.floor(0.25 * vim.o.columns))
-      vim_item.menu = truncate(vim_item.menu, math.floor(0.25 * vim.o.columns))
-
-      return vim_item
-    end)
-  end,
+  "Saghen/blink.cmp",
+  optional = true,
+  dependencies = {
+    -- add the legacy cmp source as a dependency for `blink.cmp`
+    "kdheepak/cmp-latex-symbols",
+  },
+  specs = {
+    -- install the blink, nvim-cmp compatibility layer
+    { "Saghen/blink.compat", version = "*", lazy = true, opts = {} },
+  },
+  opts = {
+    sources = {
+      -- enable the provider by default
+      default = { "latex" },
+      -- configure the provider for your new source
+      providers = {
+        latex = {
+          name = "latex_symbols",
+          module = "blink.compat.source",
+          score_offset = -1,
+        },
+      },
+    },
+  },
 }
 ```
