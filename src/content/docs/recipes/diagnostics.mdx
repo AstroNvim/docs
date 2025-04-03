@@ -1,0 +1,144 @@
+---
+id: diagnostics
+title: Diagnostics Customizations
+---
+
+Neovim has a powerful internal diagnostics system with many ways to render the diagnostics in a document. AstroNvim provides a nice interface to ease the configuration of diagnostics through the AstroCore plugin.
+
+```lua title="lua/plugins/diagnostics.lua"
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    features = {
+      -- toggle if diagnostics are enabled on startup
+      diagnostics = true,
+    },
+    -- Configuration passed to `vim.diagnostic.config()`
+    -- All available options can be found with `:h vim.diagnostic.Opts`
+    diagnostics = {
+      virtual_text = true,
+      virtual_lines = false, -- Neovim v0.11+ only
+      update_in_insert = false,
+      underline = true,
+      severity_sort = true,
+    },
+  },
+}
+```
+
+### Using Both Virtual Lines and Virtual Text
+
+AstroCore provides an option in the `features` table to allow controlling if diagnostic options are enabled on startup which allows for the user to configure their options for both `virtual_text` and `virtual_lines` and toggle between them at runtime using `<Leader>uv` and `<Leader>uV` respectively.
+
+```lua title="lua/plugins/diagnostics.lua"
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    features = {
+      -- toggle if diagnostics are enabled on startup
+      diagnostics = {
+        virtual_text = true,
+        virtual_lines = false, -- disable one option on startup
+      },
+    },
+    -- Configuration passed to `vim.diagnostic.config()`
+    -- All available options can be found with `:h vim.diagnostic.Opts`
+    diagnostics = {
+      virtual_text = true,
+      virtual_lines = true, -- Neovim v0.11+ only
+      update_in_insert = false,
+      underline = true,
+      severity_sort = true,
+    },
+  },
+}
+```
+
+### Virtual Line Current Line Only
+
+:::tip
+
+This is available in the [AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/recipes/diagnostic-virtual-lines-current-line)
+
+```lua title="lua/community.lua" ins={3}
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.recipes.diagnostic-virtual-lines-current-line" },
+}
+```
+
+:::
+
+:::note
+
+This recipe is based on the great [reddit post by @marjrohn](https://www.reddit.com/r/neovim/comments/1jpbc7s/disable_virtual_text_if_there_is_diagnostic_in/)
+
+:::
+
+Some users may like the new `virtual_lines` feature in Neovim 0.11+ but find it too intrusive showing all the time. A good work around for this is to show virtual text normally, but then show the virtual lines only on the current line if there is a diagnostic.
+
+```lua title="lua/plugins/diagnostics.lua"
+local og_virt_text
+local og_virt_line
+return {
+  "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
+  opts = {
+    features = {
+      diagnostics = true,
+    },
+    diagnostics = {
+      virtual_text = true,
+      virtual_lines = { current_line = true },
+      underline = true,
+      update_in_insert = false,
+    },
+    autocmds = {
+      diagnostic_only_virtlines = {
+        {
+          event = { "CursorMoved", "DiagnosticChanged" },
+          callback = function()
+            if not require("astrocore.buffer").is_valid() then
+              return
+            end
+            if og_virt_line == nil then
+              og_virt_line = vim.diagnostic.config().virtual_lines
+            end
+
+            -- ignore if virtual_lines.current_line is disabled
+            if not (og_virt_line and og_virt_line.current_line) then
+              if og_virt_text then
+                vim.diagnostic.config({ virtual_text = og_virt_text })
+                og_virt_text = nil
+              end
+              return
+            end
+
+            if og_virt_text == nil then
+              og_virt_text = vim.diagnostic.config().virtual_text
+            end
+
+            local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+            if vim.tbl_isempty(vim.diagnostic.get(0, { lnum = lnum })) then
+              vim.diagnostic.config({ virtual_text = og_virt_text })
+            else
+              vim.diagnostic.config({ virtual_text = false })
+            end
+          end,
+        },
+        {
+          event = "ModeChanged",
+          callback = function()
+            if require("astrocore.buffer").is_valid() then
+              pcall(vim.diagnostic.show)
+            end
+          end,
+        },
+      },
+    },
+  },
+}
+```
