@@ -3,8 +3,9 @@ import starlight from "@astrojs/starlight";
 import starlightDocSearch from "@astrojs/starlight-docsearch";
 import starlightLinksValidator from "starlight-links-validator";
 import starlightImageZoom from "starlight-image-zoom";
-import tailwind from "@astrojs/tailwind";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
+
+import tailwindcss from "@tailwindcss/vite";
 
 const locales = {
   root: {
@@ -18,6 +19,7 @@ export default defineConfig({
   site: "https://docs.astronvim.com",
   defaultLocale: "root",
   locales,
+
   integrations: [
     starlight({
       title: "AstroNvim Documentation",
@@ -137,13 +139,33 @@ export default defineConfig({
         // Path to your Tailwind base styles:
         "./src/tailwind.css",
       ],
-      social: {
-        mastodon: "https://hachyderm.io/@AstroNvim",
-        "x.com": "https://x.com/AstroNvim",
-        discord: "https://discord.astronvim.com",
-        reddit: "https://www.reddit.com/r/AstroNvim",
-        github: "https://git.astronvim.com/AstroNvim",
-      },
+      social: [
+        {
+          icon: "mastodon",
+          label: "Mastodon",
+          href: "https://hachyderm.io/@AstroNvim",
+        },
+        {
+          icon: "x.com",
+          label: "X",
+          href: "https://x.com/AstroNvim",
+        },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.astronvim.com",
+        },
+        {
+          icon: "reddit",
+          label: "Reddit",
+          href: "https://www.reddit.com/r/AstroNvim",
+        },
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://git.astronvim.com/AstroNvim",
+        },
+      ],
       sidebar: [
         {
           label: "🚀 Getting Started",
@@ -205,9 +227,10 @@ export default defineConfig({
         baseUrl: "https://github.com/AstroNvim/docs/edit/main/",
       },
     }),
-    tailwind({
-      // Disable the default base styles:
-      applyBaseStyles: false,
-    }),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
+
