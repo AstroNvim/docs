@@ -192,7 +192,7 @@ opts = {
 }
 ```
 
-One thing to be careful for that the `table` merging handles that the function notation will not is the automatic creation of nested/parent keys. For example, if we want to set `indent.enable = true` in our `opts` with the function notation, it would look something like this:
+One thing to watch out for (that `table` merging handles automatically, but the function notation does not) is the creation of nested/parent keys. When using a function to modify `opts`, you’re responsible for ensuring that nested tables exist before setting any values on them. For example, if we want to set `indent.enable = true` in our `opts` with the function notation, it would look something like this:
 
 ```lua
 return {
