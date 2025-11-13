@@ -111,10 +111,14 @@ export default defineConfig({
         {
           tag: "script",
           attrs: {
-            src: "https://plausible.mehalter.com/js/script.js",
-            defer: true,
-            "data-domain": "docs.astronvim.com",
+            async: true,
+            src: "https://plausible.mehalter.com/js/pa-xb_-Rd2uWvmUJ1Ceqa3Gn.js",
           },
+        },
+        {
+          tag: "script",
+          content:
+            "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}}; plausible.init()",
         },
       ],
       logo: {
@@ -233,4 +237,3 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 });
-
