@@ -42,7 +42,10 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
 - `AstroUpdateCompleted`: AstroNvim provides a custom command for easily
   updating all plugins and packages using `:AstroUpdate`.
   `AstroUpdateCompleted` is triggered after all of the available updates have
-  been applied.
+  been applied. Useful for headless updates:
+  ```bash
+  nvim --headless -c "autocmd User AstroUpdateCompleted quitall" -c "AstroUpdate"
+  ```
 
 - `AstroRenameFilePre`: AstroCore provides a `rename_file` method for easily
   renaming files. `AstroRenameFilePre` is triggered immediately prior to
