@@ -32,12 +32,10 @@ local plugins = {
   "AstroNvim",
   "astrocore",
   "astroui",
-  "Comment.nvim",
   "nvim-autopairs",
   "nvim-treesitter",
   "nvim-ts-autotag",
   "nvim-treesitter-textobjects",
-  "nvim-ts-context-commentstring",
 }
 
 local Config = require("lazy.core.config")
@@ -63,14 +61,13 @@ return {
           ["<Leader>ls"] = "<CMD>call VSCodeNotify('workbench.action.gotoSymbol')<CR>",
         },
       },
+      -- disable treesitter highlighting
+      treesitter = {
+        highlight = false,
+      },
     },
   },
   -- disable colorscheme setting
   { "AstroNvim/astroui", opts = { colorscheme = false } },
-  -- disable treesitter highlighting
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { highlight = { enable = false } },
-  },
 }
 ```
