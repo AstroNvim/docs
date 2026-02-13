@@ -1,0 +1,128 @@
+---
+id: v6_migration
+title: Migration to v6.0
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+AstroNvim v6 brings together many exciting updates mainly focusing on moving towards newer Neovim APIs. Neovim v0.11 introduced a new LSP configuration API (`vim.lsp.config`) which over the past year has been refined and cleaned up. Now with the release of Neovim v0.12 this API seems to be stable and nearly has feature parity with the original method with the API previosuly provided by `nvim-lspconfig`. Along with this LSP restructuring, Neovim has been pushing to integrate a solid treesitter API into the core Neovim codebase. This has led to a big refactor of the `nvim-treesitter` plugin to simply act as a treesitter language parser download utility rather than providing modules and functionality. AstroNvim v6 adapts to both of these major breaking changes and utilizes it's core plugins such as AstroCore and AstroLSP to make sure these features are still easy to configure for users. Along with these we have removed a few legacy plugins that were only enabled in Neovim v0.10 as well as plugins that do not support the new `vim.lsp.config` APIs.
+
+:::note
+
+Before getting started it is recommended to review the [Getting Started](/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
+
+:::
+
+## Setting Up a Migration Environment
+
+Breaking your working editor configuration when migrating to v5 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v6 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
+
+:::tip
+
+Checkout the [Managing User Configuration Page](/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
+
+:::
+
+:::tip
+
+Rather than cloning the template into `~/.config/astronvim_v6`, you can also clone your personal configuration into that location and change the AstroNvim version in the `lazy_setup.lua` file to `"^6"` and do the migration with your current configuration while using your old installation as the main editor while testing.
+
+:::
+
+<Steps>
+
+1. Clone the AstroNvim v6 configuration template to a new location (`astronvim_v6` is used as the example):
+
+   ```sh
+   git clone https://github.com/AstroNvim/template ~/.config/astronvim_v6
+   rm -rf ~/.config/astronvim_v6/.git
+   ```
+
+2. Start `nvim` in the new environment. `nvim` should start, bootstrap itself by installing and loading `lazy.nvim`. Lazy will load all of the plugins specified by AstroNvim.
+
+   ```sh
+   NVIM_APPNAME=astronvim_v6 nvim
+   ```
+
+3. Migrate your AstroNvim v5 configuration to your new AstroNvim v6 environment at `~/.config/astronvim_v6` using the guide below. You can use your previous AstroNvim setup to do the editing and then continue running the command in Step 2 to test the new installation.
+
+4. Once you have your configuration set up how you like it, move it over to the default neovim configuration location `~/.config/nvim`:
+
+   ```sh
+   # Backup old Neovim folders
+   mv ~/.local/share/nvim ~/.local/share/nvim.bak # backup old data folder
+   mv ~/.local/state/nvim ~/.local/state/nvim.bak # backup old state folder
+   mv ~/.cache/nvim ~/.cache/nvim.bak             # backup old cache folder
+   mv ~/.config/nvim ~/.config/nvim.bak           # backup old config
+   # Move new configuration into place
+   mv ~/.config/astronvim_v6 ~/.config/nvim # move new config
+   ```
+
+5. Run your new v6 environment simply with `nvim` 🎉
+
+</Steps>
+
+## Migration Guide
+
+### Configuration Option Changes
+
+:::caution
+
+This is a work in progress. This guide is taking shape and covers much of the migration. There are holes though! If you see something missing drop a note on the Discord `#next` channel or open a pull request on GitHub.
+
+:::
+
+Each "Migrating" section below has an link to documentation and/or an example configuration. Each example configuration file shows the structure for configuring that plugin. The comments in each example configuration describes the configuration keys.
+
+The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/main/lua%2Fastronvim%2Fplugins) in the AstroNvim codebase itself are also a good reference to learn how to configure.
+
+**Please also read the [Other Breaking Changes section](#other-breaking-changes)** - there are a number of changes that are not just "move some config from one place to another". For example, in key mapping `<leader>` is no longer recognized.
+
+If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum are active and friendly! Like all humans, sometimes they are grumpy, so be nice to them! The best place to post is most likely the `#help-forum`, but poke around a few of the other channels, you never know what you will find that is useful.
+
+### Plugin Changes
+
+AstroNvim v5 comes with some changes to our default plugin list that user's should keep in mind while performing the migration.
+
+#### Renamed Plugins
+
+| Old Plugin Name                     | New Plugin Name                  |
+| ----------------------------------- | -------------------------------- |
+| `Saghen/blink.cmp`                  | `saghen/blink.cmp`               |
+| `echasnovski/mini.icons`            | `nvim-mini/mini.icons`           |
+| `williamboman/mason-lspconfig.nvim` | `mason-org/mason-lspconfig.nvim` |
+| `williamboman/mason.nvim`           | `mason-org/mason.nvim`           |
+
+#### Removed Plugins
+
+| Old Plugin Name                               | Reason                                                 |
+| --------------------------------------------- | ------------------------------------------------------ |
+| `JoosepAlviste/nvim-ts-context-commentstring` | Not necessary in Neovim v0.11+ and built in commenting |
+| `folke/neoconf.nvim`                          | Does not support `vim.lsp.config`                      |
+| `kevinhwang91/nvim-ufo`                       | Replaced with built in `foldexpr`                      |
+
+#### Details
+
+- TODO
+
+### AstroNvim Core Plugin Changes
+
+#### AstroCore
+
+- TODO
+
+#### AstroLSP
+
+- TODO
+
+#### AstroUI
+
+- TODO
+
+### Other Breaking Changes
+
+- TODO
+
+### New Features
+
+- TODO
