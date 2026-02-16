@@ -76,7 +76,7 @@ Each "Migrating" section below has an link to documentation and/or an example co
 
 The [plugin configuration files.](https://github.com/AstroNvim/AstroNvim/tree/main/lua%2Fastronvim%2Fplugins) in the AstroNvim codebase itself are also a good reference to learn how to configure.
 
-**Please also read the [Other Breaking Changes section](#other-breaking-changes)** - there are a number of changes that are not just "move some config from one place to another". For example, in key mapping `<leader>` is no longer recognized.
+**Please also read the [Other Breaking Changes section](#other-breaking-changes)** - there are a number of changes that are not just "move some config from one place to another". For example, _TODO_
 
 If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum are active and friendly! Like all humans, sometimes they are grumpy, so be nice to them! The best place to post is most likely the `#help-forum`, but poke around a few of the other channels, you never know what you will find that is useful.
 
@@ -85,6 +85,8 @@ If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum 
 AstroNvim v5 comes with some changes to our default plugin list that user's should keep in mind while performing the migration.
 
 #### Renamed Plugins
+
+A few plugins have been updated to a new name due to changes in the plugin repository owner. Please make sure to search and replace the old plugin entry names with the new to make sure plugin spec merging happens correctly.
 
 | Old Plugin Name                     | New Plugin Name                  |
 | ----------------------------------- | -------------------------------- |
@@ -95,6 +97,8 @@ AstroNvim v5 comes with some changes to our default plugin list that user's shou
 
 #### Removed Plugins
 
+A few plugins have been removed due to being replaced with core Neovim functions or no longer support the new Neovim APIs.
+
 | Old Plugin Name                               | Reason                                                 |
 | --------------------------------------------- | ------------------------------------------------------ |
 | `JoosepAlviste/nvim-ts-context-commentstring` | Not necessary in Neovim v0.11+ and built in commenting |
@@ -103,13 +107,14 @@ AstroNvim v5 comes with some changes to our default plugin list that user's shou
 
 #### Details
 
-- TODO
+- `nvim-ufo` and `nvim-ts-context-commentstring` in v5 were only used when users were using Neovim v0.10, so this shouldn't require changes for most users. If you were previously using AstroNvim v5 and Neovim v0.10 please make sure to remove usages of these plugins in your configuration, or if you want to continue using these rather than the built in functionality explore installing them again using AstroCommunity.
+- `neoconf.nvim` has been removed as folke is no longer supporting it in lieu of focusing on users utilizing the new `vim.lsp.config` API and the new `lsp/<server_name>.lua` configuration files. If you were previously using `neoconf.nvim` for project local LSP settings, look into alternatives. A lot of language servers support project configuration files (such as `.luarc` for the Lua language server), for other language servers project local Neovim configuration files can be used with the `exrc` option (see `:h exrc`).
 
 ### AstroNvim Core Plugin Changes
 
 #### AstroCore
 
-- TODO
+- Configuration of Treesitter features in Neovim. With the latest development of the `nvim-treesitter` plugin, the plugin has moved to simply being a download utility for treesitter parsers and it is up to the user to configure treesitter features such as highlighting and folding. This also applies to `nvim-treesitter-textobjects` which now is simply a plugin that provides an API for manually creating key mappings. AstroCore has added a new `treesitter` module to help aid with this and can be configured through the plugin configuration `opts`. This configuration table includes the ability to configure both `nvim-treesitter` and `nvim-treesitter-textobjects` in a similar format to how they were configured before. If you have custom configuration for either plugins you will need to migrate those plugin configurations to AstroCore. For more details, checkout the new [Treesitter Configuration Documentation](/recipes/treesitter)
 
 #### AstroLSP
 
@@ -121,7 +126,7 @@ AstroNvim v5 comes with some changes to our default plugin list that user's shou
 
 ### Other Breaking Changes
 
-- TODO
+- Drop support for Neovim v0.9
 
 ### New Features
 
