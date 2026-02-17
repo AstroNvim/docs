@@ -117,34 +117,30 @@ A few plugins have been removed due to being replaced with core Neovim functions
 
 - Configuration of Treesitter features in Neovim. With the latest development of the `nvim-treesitter` plugin, the plugin has moved to simply being a download utility for treesitter parsers and it is up to the user to configure treesitter features such as highlighting and folding. This also applies to `nvim-treesitter-textobjects` which now is simply a plugin that provides an API for manually creating key mappings. AstroCore has added a new `treesitter` module to help aid with this and can be configured through the plugin configuration `opts`. This configuration table includes the ability to configure both `nvim-treesitter` and `nvim-treesitter-textobjects` in a similar format to how they were configured before. If you have custom configuration for either plugins you will need to migrate those plugin configurations to AstroCore. For more details, checkout the new [Treesitter Configuration Documentation](/recipes/treesitter)
 
-  ```lua title="lua/plugins/astrocore_treesitter.lua" del={2-15} ins={16-32}
+  ```lua title="lua/plugins/astrocore_treesitter.lua" del={2-13} ins={14-28}
   return {
-    {
-      "nvim-treesitter/nvim-treesitter",
-      opts = {
-        ensure_installed = { "vim", "lua" },
-        highlight = { enable = true },
-        textobjects = {
-          select = {
-            keymaps = {
-              ["ak"] = { query = "@block.outer", desc = "around block" },
-            },
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = { "vim", "lua" },
+      highlight = { enable = true },
+      textobjects = {
+        select = {
+          keymaps = {
+            ["ak"] = { query = "@block.outer", desc = "around block" },
           },
         },
       },
     },
-    {
-      "AstroNvim/astrocore",
-      ---@type AstroCoreOpts
-      opts = {
-        treesitter = {
-          ensure_installed = { "vim", "lua" },
-          highlight = true,
-          textobjects = {
-            select = {
-              select_textobject = {
-                ["ak"] = { query = "@block.outer", desc = "around block" },
-              },
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = {
+      treesitter = {
+        ensure_installed = { "vim", "lua" },
+        highlight = true,
+        textobjects = {
+          select = {
+            select_textobject = {
+              ["ak"] = { query = "@block.outer", desc = "around block" },
             },
           },
         },
