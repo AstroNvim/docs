@@ -15,7 +15,7 @@ Before getting started it is recommended to review the [Getting Started](/) guid
 
 ## Setting Up a Migration Environment
 
-Breaking your working editor configuration when migrating to v5 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v6 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
+Breaking your working editor configuration when migrating to v6 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v6 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
 
 :::tip
 
@@ -82,7 +82,7 @@ If you get stuck, people on the [Discord](https://discord.astronvim.com/) forum 
 
 ### Plugin Changes
 
-AstroNvim v5 comes with some changes to our default plugin list that user's should keep in mind while performing the migration.
+AstroNvim v6 comes with some changes to our default plugin list that user's should keep in mind while performing the migration.
 
 #### Renamed Plugins
 
@@ -153,7 +153,7 @@ A few plugins have been removed due to being replaced with core Neovim functions
 
 The biggest change for AstroLSP is the migration to using `vim.lsp.config` as the backend for language server configuration. In general, this doesn't change all that much of the configuration. The `config` and `handlers` tables can still be used for configuring language server options as well as how they are actually enabled, but now each table has a `["*"]` key for defining defaults. Below is a walk through of each major configuration change:
 
-- `config["*"]` is now used for the default language server options which in turn call `vim.lsp.config("*", config_table)`. Previously this was done with separate `capabilities` and `flags` tables at the root of the AstroLSP opts. If you have anything in the `capabilities` or `flags` tables, they should be moved to `config["*"].capabilities` and `config["*"].flags` respectively.
+- `config["*"]` is now used for the default language server options which in turn calls `vim.lsp.config("*", config_table)`. Previously this was done with separate `capabilities` and `flags` tables at the root of the AstroLSP opts. If you have anything in the `capabilities` or `flags` tables, they should be moved to `config["*"].capabilities` and `config["*"].flags` respectively.
 
   ```lua title="lua/plugins/astroui_default_config.lua" del={5-12} ins={13-24}
   return {
@@ -184,7 +184,7 @@ The biggest change for AstroLSP is the migration to using `vim.lsp.config` as th
   }
   ```
 
-- The `handlers` table default handler is no longer done through the first entry with no key which blended list like and dictionary like tables. This is now done with the `"*"` key. This makes it clearer to the user which handler is the global one and cleaner to define. The other change is the default handler is now `vim.lsp.enable` by default. Lastly, handler functions here simply provide the server name as a parameter and no longer pass in the server options. Users should use the new `vim.lsp.config[server_name]` built in Neovim LSP API for accessing the resolved language server configuration table.
+- The `handlers` table default handler is no longer done through the first entry with no key which blended list-like and dictionary-like tables. This is now done with the `"*"` key. This makes it clearer to the user which handler is the global one and cleaner to define. The other change is the default handler is now `vim.lsp.enable` by default. Lastly, handler functions here simply provide the server name as a parameter and no longer pass in the server options. Users should use the new `vim.lsp.config[server_name]` built in Neovim LSP API for accessing the resolved language server configuration table.
 
   ```lua title="lua/plugins/astroui_default_handler.lua" del={6-8} ins={9-14}
   return {
@@ -206,7 +206,7 @@ The biggest change for AstroLSP is the migration to using `vim.lsp.config` as th
   }
   ```
 
-- `require("astrolsp").lsp_opts(server_name)` function has been removed, users should replace all usages with `vim.lsp.config[server_name]`. This typically comes up when configuring language server specific plugins. For migration of language server specific plugins, you should also verify with each plugin to make sure they have support for the new `vim.lsp.config` APIs and Neovim v0.11+. Some plugins that are no longer actively maintained may still rely on old `nvim-lspconfig` APIs that are no longer available. Be sure to check out the update [Advanced LSP Setup Documentation](/recipes/advanced_lsp).
+- `require("astrolsp").lsp_opts(server_name)` function has been removed, users should replace all usages with `vim.lsp.config[server_name]`. This typically comes up when configuring language server specific plugins. For migration of language server specific plugins, you should also verify with each plugin to make sure they have support for the new `vim.lsp.config` APIs and Neovim v0.11+. Some plugins that are no longer actively maintained may still rely on old `nvim-lspconfig` APIs that are no longer available. Be sure to check out the updated [Advanced LSP Setup Documentation](/recipes/advanced_lsp).
 
 - Previously we had a relatively undocumented configuration table for `mason_lspconfig` which allowed hot patching mason-lspconfig to recognize packages that didn't define their language servers. This is no longer necessary as the Mason Registry maintenance has been improved and the registry provides the mapping to language servers rather than `mason-lspconfig` maintaining the mapping. This configuration table and functionality has been removed, if you happen to use it you should remove all usages.
 
@@ -220,7 +220,7 @@ The biggest change for AstroLSP is the migration to using `vim.lsp.config` as th
 - `nvim-treesitter/nvim-treesitter` has been updated to the new (and default) `main` branch with the latest rewrite and development. Verify that user installed treesitter based plugins are updated to use this new version rather than the removed module system of the previous `nvim-treesitter` release.
 - `nvim-treesitter/nvim-treesitter-textobjects` has been updated to the new (and default) `main` branch. This refactors it to no longer be a module for `nvim-treesitter`. If you are doing configuration of this plugin in your user configuration, make sure to follow the AstroCore changes detailed above.
 - `mason-org/mason-lspconfig.nvim` has been updated to v2 which utilizes the new `vim.lsp.config` APIs as well as Mason packages self registering as language servers. Make sure language server specific plugins are not reliant on `mason-lspconfig` v1 if they have any sort of integration.
-- `:LspInfo`, `:LspLog`, `:LspStart`, `:LspRestart`, `:LspStop` commands from `nvim-lspconfig` are removed in Neovim v0.12 and are replaced with the built in `:lsp` command (`:h lsp-commands`). If you are using these commands in your configuration make sure to update them accordingly.
+- `:LspInfo`, `:LspLog`, `:LspStart`, `:LspRestart`, `:LspStop` commands from `nvim-lspconfig` are removed in Neovim v0.12. `:LspInfo` has been replaced with `:checkhealth vim.lsp` and `:Lsp{Start/Restart/Stop}` with the built in `:lsp` command (`:h lsp-commands`). If you are using these commands in your configuration make sure to update them accordingly.
 
 ### New Features
 
