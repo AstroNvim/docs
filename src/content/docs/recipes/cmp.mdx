@@ -3,7 +3,7 @@ id: cmp
 title: Customize cmp Completion
 ---
 
-AstroNvim comes with [blink.cmp](https://github.com/Saghen/blink.cmp) for powering completion out of the box. This page documents common configuration options such as custom keybindings or adding more sources, for more detailed information on configuring the plugin be sure to check out the extensive [blink.cmp Documentation](https://cmp.saghen.dev/).
+AstroNvim comes with [blink.cmp](https://github.com/saghen/blink.cmp) for powering completion out of the box. This page documents common configuration options such as custom keybindings or adding more sources, for more detailed information on configuring the plugin be sure to check out the extensive [blink.cmp Documentation](https://cmp.saghen.dev/).
 
 ### Customize Keybindings
 
@@ -11,7 +11,7 @@ Some overrides require access to the plugin itself that you are overriding. This
 
 ```lua title="lua/plugins/blink.lua"
 return { -- override blink.cmp plugin
-  "Saghen/blink.cmp",
+  "saghen/blink.cmp",
   opts = {
     keymap = {
       ["<Tab>"] = { "snippet_forward", "fallback" },
@@ -26,7 +26,7 @@ Similarly to customizing mappings, you can customize and configure your `blink.c
 
 ```lua title="lua/plugins/blink.lua"
 return { -- override blink.cmp plugin
-  "Saghen/blink.cmp",
+  "saghen/blink.cmp",
   opts = {
     sources = {
       providers = {
@@ -46,7 +46,7 @@ You can use this `blink.cmp` override to also customize the options of the sourc
 
 ```lua title="lua/plugins/blink.lua"
 return { -- override blink.cmp plugin
-  "Saghen/blink.cmp",
+  "saghen/blink.cmp",
   opts = {
     sources = {
       providers = {
@@ -74,7 +74,7 @@ return {
   lazy = true,
   specs = {
     {
-      "Saghen/blink.cmp",
+      "saghen/blink.cmp",
       optional = true,
       opts = {
         sources = {
@@ -98,11 +98,11 @@ return {
 
 #### Add `nvim-cmp` Sources
 
-Not all sources for `nvim-cmp` are available as `blink.cmp` providers, but `blink.cmp` provides a compatibility layer to make it easy to add more sources. For more detail check out the [`blink.compat` Documentation](https://github.com/Saghen/blink.compat). Here is an example for adding `cmp-latex-symbols`:
+Not all sources for `nvim-cmp` are available as `blink.cmp` providers, but `blink.cmp` provides a compatibility layer to make it easy to add more sources. For more detail check out the [`blink.compat` Documentation](https://github.com/saghen/blink.compat). Here is an example for adding `cmp-latex-symbols`:
 
 ```lua title="lua/plugins/cmp-latex-symbols.lua"
 return {
-  "Saghen/blink.cmp",
+  "saghen/blink.cmp",
   optional = true,
   dependencies = {
     -- add the legacy cmp source as a dependency for `blink.cmp`
@@ -110,7 +110,7 @@ return {
   },
   specs = {
     -- install the blink, nvim-cmp compatibility layer
-    { "Saghen/blink.compat", version = "*", lazy = true, opts = {} },
+    { "saghen/blink.compat", version = "*", lazy = true, opts = {} },
   },
   opts = {
     sources = {

@@ -7,9 +7,17 @@ LSP configuration is mostly done through the help of [AstroLSP](https://github.c
 
 ## Configuring Language Servers
 
-Our main tool for configuring and setting up language servers is with the [nvim-lspconfig plugin](https://github.com/neovim/nvim-lspconfig). This plugin provides configurations for many common language servers (A full list can be found in [nvim-lspconfig server configurations documentation](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)). These baseline configuration options are not always sufficient to meet everyone's needs, and are typically configured by calling `require("lspconfig")[<server_name>].setup(opts)` where `opts` is a table of options. For the complete set of options that can be used in the `nvim-lspconfig` setup check out `:h lspconfig-setup` in your editor.
+Our main tool for configuring and setting up language servers is with the [nvim-lspconfig plugin](https://github.com/neovim/nvim-lspconfig). This plugin provides configurations for many common language servers (A full list can be found in [nvim-lspconfig server configurations documentation](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md) or `:h lspconfig-all`). These baseline configuration options are not always sufficient to meet everyone's needs. For the complete set of options that can be used when configuraing language servers, check out `:h lsp-config` in your editor.
 
-AstroLSP automatically calls these `setup` functions for language servers installed through Mason and for servers specified manually (See [LSP Setup Without Installer](#lsp-setup-without-installer)). AstroLSP also provides a simple `config` table in the plugin's options for extending the built in server configurations provided by `nvim-lspconfig`.
+AstroLSP automatically enables language servers installed through Mason and for servers specified manually (See [LSP Setup Without Installer](#lsp-setup-without-installer)). Neovim allows for easy language server customization within the `after/lsp/` folder in the root of your configuration (Check out `:h lsp-config`). While the `after/lsp/` directory is the recommended way to configure language servers, AstroLSP also provides a simple `config` table in the plugin's options for extending the built in server configurations provided by `nvim-lspconfig`. This can be helpful if you want to conditionally make modifications in your plugin configuration.
+
+```lua title="lsp/clangd.lua"
+return {
+  capabilities = {
+    offsetEncoding = "utf-8",
+  },
+}
+```
 
 ```lua title="lua/plugins/astrolsp.lua" {5-13}
 return {
@@ -31,23 +39,34 @@ return {
 
 ### Custom LSP Definition
 
-`nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_dir`. This can also be done completely through `servers` and `config` tables similar to configuring servers that are supported by `nvim-lspconfig`! For these custom servers, the minimum requirement is defining a `cmd` in the `config` entry, but to get automatic starting of language servers you also need to set `filetypes` and `root_dir`. Here is a simple example setting up a Prolog LSP with `swipl`:
+`nvim-lspconfig` is great, but it doesn't support all language servers that exist. You may want to set up a custom server where you manually define the `cmd` and the `root_markers`. This can be achieved by putting a new file in your `lsp/` folder at the root of your configuration with the necessary information. This can also be done completely through `servers` and `config` tables similar to configuring servers that are supported by `nvim-lspconfig`! For these custom servers, the minimum requirement is defining a `cmd` in the `config` entry, but to get automatic starting of language servers you also need to set `filetypes` and `root_markers`. Here is a simple example setting up a Prolog LSP with `swipl`:
 
-```lua title="lua/plugins/astrolsp.lua" {6-31}
+```lua title="lsp/prolog_lsp.lua"
+return {
+  cmd = {
+    "swipl",
+    "-g",
+    "use_module(library(lsp_server)).",
+    "-g",
+    "lsp_server:main",
+    "-t",
+    "halt",
+    "--",
+    "stdio",
+  },
+  filetypes = { "prolog" },
+  root_markers = { "pack.pl" },
+}
+```
+
+```lua title="lua/plugins/astrolsp.lua" {6-23}
 return {
   "AstroNvim/astrolsp",
-  -- we need to use the function notation to get access to the `lspconfig` module
-  ---@param opts AstroLSPOpts
-  opts = function(plugin, opts)
-    -- insert "prolog_lsp" into our list of servers
-    opts.servers = opts.servers or {}
-    table.insert(opts.servers, "prolog_lsp")
-
-    -- extend our configuration table to have our new prolog server
-    opts.config = require("astrocore").extend_tbl(opts.config or {}, {
-      -- this must be a function to get access to the `lspconfig` module
+  ---@type AstroLSPOpts
+  opts = {
+    servers = { "prolog_lsp" }, -- always necessary to tell AstroNvim to enable the language server
+    config = { -- only necessary if not configured through `lsp/`
       prolog_lsp = {
-        -- the command for starting the server
         cmd = {
           "swipl",
           "-g",
@@ -59,34 +78,25 @@ return {
           "--",
           "stdio",
         },
-        -- the filetypes to attach the server to
         filetypes = { "prolog" },
-        -- root directory detection for detecting the project root
-        root_dir = require("lspconfig.util").root_pattern("pack.pl"),
+        root_markers = { "pack.pl" },
       },
-    })
-  end,
+    },
+  },
 }
 ```
 
 ### LSP Setup Without Installer
 
-AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up language servers installed with Mason, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for setting up these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
+AstroNvim comes with [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) as an easy interface for setting up language servers installed with Mason, but this might not be adequate for all users. The LSP installer doesn't support all of the language servers that Neovim's LSP config supports and some users may already have the language servers installed on their machine and don't want to reinstall it separately. In these cases we have added an easy interface for enabling these servers. The following plugin specification for AstroLSP simply sets up `pyright` language server for a user with `pyright` already available on their system:
 
-```lua title="lua/plugins/astrolsp.lua" {7-12}
+```lua title="lua/plugins/astrolsp.lua" {5}
 return {
   "AstroNvim/astrolsp",
-  -- we must use the function override because table merging
-  -- does not play nicely with list-like tables
-  ---@param opts AstroLSPOpts
-  opts = function(plugin, opts)
-    -- safely extend the servers list
-    opts.servers = opts.servers or {}
-    vim.list_extend(opts.servers, {
-      "pyright",
-      -- add more servers as needed...
-    })
-  end,
+  ---@type AstroLSPOpts
+  opts = {
+    servers = { "pyright" },
+  },
 }
 ```
 
@@ -315,46 +325,7 @@ Many of these can be found pre-configured in the [AstroNvim Community Repository
 
 :::
 
-There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason.nvim` for installing the language servers. You can use the `setup_handlers` table for specifying how language servers should be setup such as using a language specific plugin. This function for each handler has two parameters, the first is the name of the server and the second is the options we would be passing to the `lspconfig` setup call. These options include things such as our built in `capabilities`, `on_attach`, as well as the user defined options in the `config` table. Here are a couple examples for some common LSP plugins:
-
-### Typescript ([typescript.nvim](https://github.com/jose-elias-alvarez/typescript.nvim))
-
-:::tip
-
-This is included in the [AstroCommunity TypeScript language pack](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack/typescript)
-
-```lua title="lua/community.lua" ins={3}
-return {
-  "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.typescript" },
-}
-```
-
-:::
-
-```lua title="lua/plugins/typescript.lua"
-return {
-  { "jose-elias-alvarez/typescript.nvim", lazy = true }, -- add lsp plugin
-  {
-    "AstroNvim/astrolsp",
-    ---@type AstroLSPOpts
-    opts = {
-      setup_handlers = {
-        -- add custom handler
-        tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
-        end,
-      },
-    },
-  },
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-      ensure_installed = { "typescript-language-server" }, -- automatically install lsp
-    },
-  },
-}
-```
+There are some plugins available for doing advanced setup of language servers that require the user to not use the `lspconfig` setup call and instead use their own plugin setup for handling this. AstroNvim provides a nice way to do this while still using `mason.nvim` for installing the language servers. You can use the `handlers` table for specifying how language servers should be setup such as using a language specific plugin. This function for each handler can take a single parameter which is the name of the server. The current lsp configuration settings can be retried with `vim.lsp.config[server_name]`. These options include things such as our built in `capabilities`, `on_attach`, as well as the user defined options in and `lsp/<server_name>.lua` and `after/lsp/<server_name>.lua` files the `config` table. Here are a couple examples for some common LSP plugins:
 
 ### Deno ([deno-nvim](https://github.com/sigmaSd/deno-nvim))
 
@@ -378,10 +349,10 @@ return {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
-      setup_handlers = {
+      handlers = {
         -- add custom handler
-        denols = function(_, opts)
-          require("deno-nvim").setup({ server = opts })
+        denols = function()
+          require("deno-nvim").setup({ server = vim.lsp.config.denols })
         end,
       },
     },
@@ -412,30 +383,26 @@ return {
 
 :::
 
-To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, add the following plugin specs:
+To conditionally enable `tsserver`/`denols` based on the presence of `package.json`/`deno.json`, put the following LSP definitions in your `after/lsp/` directory:
 
-```lua title="lua/plugins/typescript_deno.lua"
+```lua title="after/lsp/denols.lua"
+---@type vim.lsp.Config
 return {
-  "AstroNvim/astrolsp",
-  ---@param opts AstroLSPOpts
-  opts = function(plugin, opts)
-    require("astrocore").extend_tbl(opts, {
-      config = {
-        denols = {
-          root_dir = require("lspconfig.util").root_pattern(
-            "deno.json",
-            "deno.jsonc"
-          ),
-        },
-        tsserver = {
-          root_dir = require("lspconfig.util").root_pattern("package.json"),
-        },
-        -- eslint = {
-        --   root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js"),
-        -- },
-      },
-    })
-  end,
+  root_markers = { "deno.json", "deno.jsonc" },
+}
+```
+
+```lua title="after/lsp/tsserver.lua"
+---@type vim.lsp.Config
+return {
+  root_markers = { "package.json" },
+}
+```
+
+```lua title="after/lsp/eslint.lua"
+---@type vim.lsp.Config
+return {
+  root_markers = { "package.json", ".eslintrc.json", ".eslintrc.js" },
 }
 ```
 
@@ -504,30 +471,23 @@ return {
 
 :::
 
+```lua title="after/lsp/clangd.lua"
+---@type vim.lsp.Config
+return {
+  capabilities = {
+    offsetEncoding = "utf-8",
+  },
+}
+```
+
 ```lua title="lua/plugins/clangd.lua"
 return {
-  {
-    "AstroNvim/astrolsp",
-    ---@type AstroLSPOpts
-    opts = {
-      config = {
-        clangd = {
-          capabilities = {
-            offsetEncoding = "utf-8",
-          },
-        },
-      },
-    },
-  },
   {
     "p00f/clangd_extensions.nvim", -- install lsp plugin
     lazy = true,
     init = function()
       -- load clangd extensions when clangd attaches
-      local augroup =
-        vim.api.nvim_create_augroup("clangd_extensions", { clear = true })
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = augroup,
         desc = "Load clangd_extensions with clangd",
         callback = function(args)
           if
@@ -536,7 +496,7 @@ return {
           then
             require("clangd_extensions")
             -- add more `clangd` setup here as needed such as loading autocmds
-            vim.api.nvim_del_augroup_by_id(augroup) -- delete auto command since it only needs to happen once
+            return true -- delete the autocommand once the plugin is loaded
           end
         end,
       })
@@ -568,37 +528,38 @@ return {
 
 :::
 
+```lua title="after/lsp/dartls.lua"
+---@type vim.lsp.Config
+return {
+  config = {
+    dartls = {
+      -- any changes you want to make to the LSP setup, for example
+      color = {
+        enabled = true,
+      },
+      settings = {
+        showTodos = true,
+        completeFunctionCalls = true,
+      },
+    },
+  },
+}
+```
+
 ```lua title="lua/plugins/flutter-tools.lua"
 return {
   { "akinsho/flutter-tools.nvim", lazy = true }, -- add lsp plugin
   {
     "AstroNvim/astrolsp",
-    ---@param opts AstroLSPOpts
-    opts = function(plugin, opts)
-      opts.servers = opts.servers or {}
-      table.insert(opts.servers, "dartls")
-
-      opts = require("astrocore").extend_tbl(opts, {
-        setup_handlers = {
-          -- add custom handler
-          dartls = function(_, dartls_opts)
-            require("flutter-tools").setup({ lsp = dartls_opts })
-          end,
-        },
-        config = {
-          dartls = {
-            -- any changes you want to make to the LSP setup, for example
-            color = {
-              enabled = true,
-            },
-            settings = {
-              showTodos = true,
-              completeFunctionCalls = true,
-            },
-          },
-        },
-      })
-    end,
+    ---@type AstroLSPOpts
+    opts = {
+      servers = { "dartls" },
+      handlers = {
+        dartls = function()
+          require("flutter-tools").setup({ lsp = vim.lsp.config.dartls })
+        end,
+      },
+    },
   },
 }
 ```
@@ -621,19 +582,19 @@ return {
 ```lua title="lua/plugins/rustaceanvim.lua"
 return {
   {
-    'mrcjkb/rustaceanvim', -- add lsp plugin
-    version = '^5',
+    "mrcjkb/rustaceanvim", -- add lsp plugin
+    version = "^5",
     lazy = false, -- This plugin is already lazy
     opts = function(_, opts)
-      local astrolsp_avail, astrolsp = pcall(require, "astrolsp")
-      local astrolsp_opts = (astrolsp_avail and astrolsp.lsp_opts "rust_analyzer") or {}
+      local server_opts = vim.lsp.config.rust_analyzer
       local server = {
         ---@type table | (fun(project_root:string|nil, default_settings: table|nil):table) -- The rust-analyzer settings or a function that creates them.
         settings = function(project_root, default_settings)
-          local astrolsp_settings = astrolsp_opts.settings or {}
-
-          local merge_table = require("astrocore").extend_tbl(default_settings or {}, astrolsp_settings)
-          local ra = require "rustaceanvim.config.server"
+          local merge_table = require("astrocore").extend_tbl(
+            default_settings or {},
+            server_opts.settings or {}
+          )
+          local ra = require("rustaceanvim.config.server")
           -- load_rust_analyzer_settings merges any found settings with the passed in default settings table and then returns that table
           return ra.load_rust_analyzer_settings(project_root, {
             settings_file_pattern = "rust-analyzer.json",
@@ -641,11 +602,13 @@ return {
           })
         end,
       }
-      return { server = require("astrocore").extend_tbl(astrolsp_opts, server) }
+      return { server = require("astrocore").extend_tbl(server_opts, server) }
     end,
     -- configure `rustaceanvim` by setting the `vim.g.rustaceanvim` variable
-    config = function(_, opts) vim.g.rustaceanvim = require("astrocore").extend_tbl(opts, vim.g.rustaceanvim) end,
-
+    config = function(_, opts)
+      vim.g.rustaceanvim =
+        require("astrocore").extend_tbl(opts, vim.g.rustaceanvim)
+    end,
   },
   {
     "AstroNvim/astrolsp",
@@ -680,69 +643,10 @@ return {
 
 ```lua title="lua/plugins/jdtls.lua"
 return {
-  { "mfussenegger/nvim-jdtls", lazy = true }, -- load jdtls on module
   {
     "AstroNvim/astrolsp",
-    ---@type AstroLSPOpts
-    opts = {
-      setup_handlers = {
-        -- add custom handler
-        jdtls = function(_, opts)
-          vim.api.nvim_create_autocmd("Filetype", {
-            pattern = "java", -- autocmd to start jdtls
-            callback = function()
-              if opts.root_dir and opts.root_dir ~= "" then
-                require("jdtls").start_or_attach(opts)
-              end
-            end,
-          })
-        end,
-      },
-      config = {
-        -- set jdtls server settings
-        jdtls = function()
-          -- use this function notation to build some variables
-          local root_markers =
-            { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
-          local root_dir = require("jdtls.setup").find_root(root_markers)
-
-          -- calculate workspace dir
-          local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-          local workspace_dir = vim.fn.stdpath("data")
-            .. "/site/java/workspace-root/"
-            .. project_name
-          os.execute("mkdir " .. workspace_dir)
-
-          -- get the mason jdtls path
-          local jdtls_files = vim.fn.expand("$MASON/share/jdtls")
-
-          -- return the server config
-          return {
-            cmd = {
-              "java",
-              "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-              "-Dosgi.bundles.defaultStartLevel=4",
-              "-Declipse.product=org.eclipse.jdt.ls.core.product",
-              "-Dlog.protocol=true",
-              "-Dlog.level=ALL",
-              "-javaagent:" .. jdtls_files .. "/lombok.jar",
-              "-Xms1g",
-              "--add-modules=ALL-SYSTEM",
-              "--add-opens",
-              "java.base/java.util=ALL-UNNAMED",
-              "--add-opens",
-              "java.base/java.lang=ALL-UNNAMED",
-              "-jar",
-              jdtls_files .. "/plugins/org.eclipse.equinox.launcher.jar",
-              "-configuration",
-              jdtls_files .. "/config",
-              "-data",
-              workspace_dir,
-            },
-            root_dir = root_dir,
-          }
-        end,
-      },
+    dependencies = {
+      { "mfussenegger/nvim-jdtls" }, -- load jdtls before loading language servers
     },
   },
   {
@@ -772,7 +676,7 @@ return {
 
 ## Inlay Hints
 
-Since Neovim v0.10 there is the ability to handle and render inline virtual text and therefore first class support of inlay hints. AstroLSP comes with a built in feature for enabling inlay hints easily as well as toggling them during runtime. By default inlay hints are disabled, but they can easily be enabled by default by modifying `features.inlay_hints` in the AstroLSP `opts`:
+Neovim has the ability to handle and render inline virtual text and therefore first class support of inlay hints. AstroLSP comes with a built in feature for enabling inlay hints easily as well as toggling them during runtime. By default inlay hints are disabled, but they can easily be enabled by default by modifying `features.inlay_hints` in the AstroLSP `opts`:
 
 ```lua title="lua/plugins/inlay_hints.lua"
 return {
@@ -811,8 +715,7 @@ return {
     autocmds = {
       no_insert_inlay_hints = {
         -- only create for language servers that support inlay hints
-        -- (and only if vim.lsp.inlay_hint is available)
-        cond = vim.lsp.inlay_hint and "textDocument/inlayHint" or false,
+        cond = "textDocument/inlayHint",
         {
           -- when going into insert mode
           event = "InsertEnter",

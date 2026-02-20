@@ -3,9 +3,7 @@ id: disable_borders
 title: Disable Borders
 ---
 
-By default AstroNvim unifies the user interface to utilize rounded borders. If you prefer other border types such as setting borders to `"none"` then you currently must do this for each individual plugin which has configurable borders. The provided code below helps aid the user in getting started with this.
-
-It is worth noting that Neovim v0.11 adds support for a new option, `winborder`, which will allow an easy place to change this option. Currently AstroNvim is not able to utilize this option due to lack of support in plugins currently which leads to unexpected results in the user interface. Once plugins catch up in general we will move to utilizing this option globally to improve the user configuration experience.
+By default AstroNvim unifies the user interface to utilize rounded borders. If you prefer other border types such as setting borders to `"none"` then you currently must do this for each individual plugin which has configurable borders. This can be easily configured with the `vim.opt.winborder` configuration setting. Here is some example code:
 
 :::tip
 
@@ -21,50 +19,16 @@ return {
 :::
 
 ```lua title="lua/plugins/disable_borders.lua"
-local border_type = "none"
-
 return {
   {
     "AstroNvim/astrocore",
     ---@type AstroCoreOpts
     opts = {
-      diagnostics = { float = { border = border_type } },
-    },
-  },
-  {
-    "AstroNvim/astrolsp",
-    optional = true,
-    ---@type AstroLSPOpts
-    opts = {
-      defaults = {
-        hover = { border = border_type },
-        signature_help = { border = border_type },
+      options = {
+        opt = {
+          winborder = "none",
+        },
       },
-    },
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    optional = true,
-    opts = {
-      float_opts = { border = border_type },
-    },
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    optional = true,
-    opts = {
-      floating = { border = border_type },
-    },
-  },
-  {
-    "Saghen/blink.cmp",
-    optional = true,
-    opts = {
-      completion = {
-        menu = { border = border_type },
-        documentation = { window = { border = border_type } },
-      },
-      signature = { window = { border = border_type } },
     },
   },
 }
