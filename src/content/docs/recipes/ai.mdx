@@ -24,13 +24,13 @@ In order to make AI plugins play nicely with AstroNvim it's important to set up 
 
 These configurations set up the completion engines to look for a function stored in `vim.g.ai_accept` which can be later configured by an AI completion plugin to choose what action should be taken when attempting to accept an AI suggestion if available.
 
-#### [blink.cmp](https://github.com/Saghen/blink.cmp) Integration
+#### [blink.cmp](https://github.com/saghen/blink.cmp) Integration
 
-By default AstroNvim comes with [blink.cmp](https://github.com/Saghen/blink.cmp) for completion. This modifies the default configuration to set up the `<Tab>` key as described above:
+By default AstroNvim comes with [blink.cmp](https://github.com/saghen/blink.cmp) for completion. This modifies the default configuration to set up the `<Tab>` key as described above:
 
 ```lua title="lua/plugins/cmp_ai.lua"
 return {
-  "Saghen/blink.cmp",
+  "saghen/blink.cmp",
   optional = true,
   opts = function(_, opts)
     if not opts.keymap then

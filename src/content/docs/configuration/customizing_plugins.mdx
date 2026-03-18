@@ -78,19 +78,18 @@ return {
       },
     },
   },
-  -- customize treesitter parsers
+  -- customize enabled AstroLSP servers
   {
-    "nvim-treesitter/nvim-treesitter",
+    "AstroNvim/astrolsp",
     opts = function(_, opts)
-      -- list like portions of a table cannot be merged naturally and require the user to merge it manually
+      -- list like portions of a table cannot be merged naturally and may require the user to merge it manually
       -- check to make sure the key exists
-      if not opts.ensure_installed then
-        opts.ensure_installed = {}
+      if not opts.servers then
+        opts.servers = {}
       end
-      vim.list_extend(opts.ensure_installed, {
-        "lua",
-        "vim",
-        -- add more arguments for adding more treesitter parsers
+      vim.list_extend(opts.servers, {
+        "lua_ls",
+        -- add more arguments for manually enabling more language servers
       })
     end,
   },
@@ -110,19 +109,19 @@ The `table` notation is the simplest method for configuration but does not cover
 
 :::tip
 
-Since [`lazy.nvim` v10.23.0](https://github.com/folke/lazy.nvim/releases/tag/v10.23.0) a new configuration option has been added called `opts_extend` which allows specifying that a part of the options passed to the `opts` table should be treated as a list that is extended rather than replaced completely as described below. Since [AstroNvim v4.9.0](https://github.com/AstroNvim/AstroNvim/releases/tag/v4.9.0) this option has been enabled out of the box for the `ensure_installed` tables for [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) and [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim). This allows the user to use the basic table notation to simply add more items to these `ensure_installed` lists.
+Since [`lazy.nvim` v10.23.0](https://github.com/folke/lazy.nvim/releases/tag/v10.23.0) a new configuration option has been added called `opts_extend` which allows specifying that a part of the options passed to the `opts` table should be treated as a list that is extended rather than replaced completely as described below. Since [AstroNvim v4.9.0](https://github.com/AstroNvim/AstroNvim/releases/tag/v4.9.0) this option has been enabled out of the box for the `ensure_installed` tables for [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim). This allows the user to use the basic table notation to simply add more items to these `ensure_installed` lists.
 
 :::
 
-Let's take a closer look at these two notations with an example using [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter). Let's assume the default configuration for `nvim-treesitter` is:
+Let's take a closer look at these two notations with an example using [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim). Let's assume the default configuration for `mason-tool-installer` is:
 
 ```lua
 return {
-  "nvim-treesitter/nvim-treesitter",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   opts = {
-    ensure_installed = { "lua", "vim" },
-    highlight = {
-      enable = true,
+    ensure_installed = { "lua_ls" },
+    integrations = {
+      ["mason-lspconfig"] = true,
     },
   },
 }
@@ -132,9 +131,9 @@ With this specification the current `opts` would resolve to the table:
 
 ```lua
 opts = {
-  ensure_installed = { "lua", "vim" },
-  highlight = {
-    enable = true,
+  ensure_installed = { "lua_ls" },
+  integrations = {
+    ["mason-lspconfig"] = true,
   },
 }
 ```
@@ -143,14 +142,12 @@ If you use the table notation to override these fields in your configuration lik
 
 ```lua
 return {
-  "nvim-treesitter/nvim-treesitter",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   opts = {
-    ensure_installed = { "python" },
-    highlight = {
-      enable = false,
-    },
-    indent = {
-      enable = false,
+    ensure_installed = { "prettier" },
+    integrations = {
+      ["mason-lspconfig"] = false,
+      ["mason-nvim-dap"] = true,
     },
   },
 }
@@ -160,23 +157,21 @@ You would end up with the `opts` resolving to:
 
 ```lua
 opts = {
-  ensure_installed = { "python" },
-  highlight = {
-    enable = false,
-  },
-  indent = {
-    enable = false,
+  ensure_installed = { "prettier" },
+  integrations = {
+    ["mason-lspconfig"] = false,
+    ["mason-nvim-dap"] = true,
   },
 }
 ```
 
-The `highlight.enabled` and `indent.enabled` fields work as expected, but the `ensure_installed` table does not actually extend the list and instead simply overwrites it. This is a limitation of the table merging. To resolve this we can rewrite our `opts` as a function where the first parameter is the resolve plugin specification (this is rarely used but may be useful in very advanced cases) and the second parameter which is the current `opts` table:
+The `integrations.mason-lspconfig` and `integrations.mason-nvim-dap` fields work as expected, but the `ensure_installed` table does not actually extend the list and instead simply overwrites it. This is a limitation of the table merging. To resolve this we can rewrite our `opts` as a function where the first parameter is the resolve plugin specification (this is rarely used but may be useful in very advanced cases) and the second parameter which is the current `opts` table:
 
 ```lua
 return {
-  "nvim-treesitter/nvim-treesitter",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   opts = function(plugin, opts)
-    table.insert(opts.ensure_installed, "python")
+    table.insert(opts.ensure_installed, "prettier")
   end,
 }
 ```
@@ -185,39 +180,9 @@ You would end up with the `opts` resolving to:
 
 ```lua
 opts = {
-  ensure_installed = { "lua", "vim", "python" },
-  highlight = {
-    enable = true,
-  },
-}
-```
-
-One thing to watch out for (that `table` merging handles automatically, but the function notation does not) is the creation of nested/parent keys. When using a function to modify `opts`, you’re responsible for ensuring that nested tables exist before setting any values on them. For example, if we want to set `indent.enable = true` in our `opts` with the function notation, it would look something like this:
-
-```lua
-return {
-  "nvim-treesitter/nvim-treesitter",
-  opts = function(plugin, opts)
-    -- check if an `indent` table exists, if not, create it
-    if not opts.indent then
-      opts.indent = {}
-    end
-    -- once we know it is created, we can set the sub-keys
-    opts.indent.enable = true
-  end,
-}
-```
-
-You would end up with the `opts` resolving to:
-
-```lua
-opts = {
-  ensure_installed = { "lua", "vim", "python" },
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
+  ensure_installed = { "lua_ls", "prettier" },
+  integrations = {
+    ["mason-lspconfig"] = true,
   },
 }
 ```
@@ -226,7 +191,7 @@ Notice how we didn't return anything from this function. In Lua, tables are pass
 
 ```lua
 return {
-  "nvim-treesitter/nvim-treesitter",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   opts = function(plugin, opts)
     return {}
   end,
@@ -239,7 +204,7 @@ You would end up with the `opts` resolving to:
 opts = {}
 ```
 
-The last thing that this function notation provides is the ability to `require` modules safely even with lazy loading. `nvim-treesitter` isn't a great example of this, so here is a simple example with `nvim-cmp`. `nvim-cmp` allows the configuration of mappings and provides helper functions to make setting these mappings easy. Because `nvim-cmp` is lazy loaded, the function notation is required in this situation so that we don't break the lazy loading:
+The last thing that this function notation provides is the ability to `require` modules safely even with lazy loading. `mason-tool-installer.nvim` isn't a great example of this, so here is a simple example with `nvim-cmp`. `nvim-cmp` allows the configuration of mappings and provides helper functions to make setting these mappings easy. Because `nvim-cmp` is lazy loaded, the function notation is required in this situation so that we don't break the lazy loading:
 
 ```lua
 return {
@@ -293,17 +258,17 @@ return {
 
 ##### `list_insert_unique`
 
-Other times when you do list inserting you want to safely insert new entries into a list but skip over values that already exist. This is useful if you are importing lots of language packs in AstroCommunity. Here is the previous `nvim-treesitter` example above using this function:
+Other times when you do list inserting you want to safely insert new entries into a list but skip over values that already exist. This is useful if you are importing lots of language packs in AstroCommunity. Here is the previous `mason-tool-installer` example above using this function:
 
 ```lua
 return {
-  "nvim-treesitter/nvim-treesitter",
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
   opts = function(plugin, opts)
     -- `list_insert_unique` is in place, so it will modify
     -- the first parameter table if provided
     require("astrocore").list_insert_unique(
       opts.ensure_installed,
-      { "python", "vim" }
+      { "lua_ls", "prettier" }
     )
   end,
 }
