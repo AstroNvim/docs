@@ -216,7 +216,7 @@ The biggest change for AstroLSP is the migration to using `vim.lsp.config` as th
 
 ### Other Breaking Changes
 
-- Drop support for Neovim v0.9
+- Drop support for Neovim v0.10
 - `nvim-treesitter/nvim-treesitter` has been updated to the new (and default) `main` branch with the latest rewrite and development. Verify that user installed treesitter based plugins are updated to use this new version rather than the removed module system of the previous `nvim-treesitter` release.
 - `nvim-treesitter/nvim-treesitter-textobjects` has been updated to the new (and default) `main` branch. This refactors it to no longer be a module for `nvim-treesitter`. If you are doing configuration of this plugin in your user configuration, make sure to follow the AstroCore changes detailed above.
 - `mason-org/mason-lspconfig.nvim` has been updated to v2 which utilizes the new `vim.lsp.config` APIs as well as Mason packages self registering as language servers. Make sure language server specific plugins are not reliant on `mason-lspconfig` v1 if they have any sort of integration.

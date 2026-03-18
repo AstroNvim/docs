@@ -164,11 +164,13 @@ return {
   ---@type AstroLSPOpts
   opts = {
     formatting = {
-      enabled = true, -- enable format on save
-      filter = function(bufnr)
-        -- any lua logic...
-        return true -- return boolean whether or not to format
-      end,
+      format_on_save = {
+        enabled = true, -- enable format on save
+        filter = function(bufnr)
+          -- any lua logic...
+          return true -- return boolean whether or not to format
+        end,
+      },
     },
   },
 }
