@@ -11,19 +11,19 @@
     "upgrade": "pnpm dlx @astrojs/upgrade"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/starlight": "^0.37.6",
-    "@astrojs/starlight-docsearch": "^0.6.1",
-    "@astrojs/starlight-tailwind": "^4.0.2",
-    "@expressive-code/plugin-collapsible-sections": "^0.41.6",
+    "@astrojs/mdx": "^5.0.2",
+    "@astrojs/starlight": "^0.38.2",
+    "@astrojs/starlight-docsearch": "^0.7.0",
+    "@astrojs/starlight-tailwind": "^5.0.0",
+    "@expressive-code/plugin-collapsible-sections": "^0.41.7",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.17.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.0.8",
     "sharp": "^0.34.5",
-    "starlight-image-zoom": "^0.13.2",
-    "starlight-links-validator": "^0.19.2",
-    "tailwindcss": "^4.1.18"
+    "starlight-image-zoom": "^0.14.1",
+    "starlight-links-validator": "^0.20.1",
+    "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
     "@netlify/plugin-lighthouse": "^6.0.4",
