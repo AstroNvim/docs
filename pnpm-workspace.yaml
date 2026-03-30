@@ -1,4 +1,4 @@
 allowBuilds:
   esbuild: true
   puppeteer: true
-  sharp: true
+  sharp: false
