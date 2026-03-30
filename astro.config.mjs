@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import starlightDocSearch from "@astrojs/starlight-docsearch";
 import starlightLinksValidator from "starlight-links-validator";
 import starlightImageZoom from "starlight-image-zoom";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
@@ -17,13 +16,14 @@ const locales = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://docs.astronvim.com",
+  base: "/v5",
   defaultLocale: "root",
   locales,
 
   integrations: [
     starlight({
-      title: "AstroNvim Documentation",
-      description: "The documentation website for AstroNvim.",
+      title: "AstroNvim v5 Documentation",
+      description: "The documentation website for AstroNvim v5.",
       favicon: "/astronvim.svg",
       head: [
         {
@@ -101,14 +101,6 @@ export default defineConfig({
           },
         },
         {
-          tag: "link",
-          attrs: {
-            rel: "preconnect",
-            href: "https://JXZNTZ86UN-dsn.algolia.net",
-            crossorigin: true,
-          },
-        },
-        {
           tag: "script",
           attrs: {
             async: true,
@@ -124,15 +116,7 @@ export default defineConfig({
       logo: {
         src: "./src/assets/astronvim.svg",
       },
-      plugins: [
-        starlightDocSearch({
-          appId: "JXZNTZ86UN",
-          apiKey: "96faee2ebdaf4a8a66d0f810c635bfec",
-          indexName: "astronvim",
-        }),
-        starlightLinksValidator(),
-        starlightImageZoom(),
-      ],
+      plugins: [starlightLinksValidator(), starlightImageZoom()],
       expressiveCode: {
         plugins: [pluginCollapsibleSections()],
       },

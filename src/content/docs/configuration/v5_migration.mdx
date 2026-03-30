@@ -9,17 +9,17 @@ While AstroNvim v4 came with a large restructuring of the configuration organiza
 
 :::note
 
-Before getting started it is recommended to review the [Getting Started](/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
+Before getting started it is recommended to review the [Getting Started](/v5/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
 
 :::
 
 ## Setting Up a Migration Environment
 
-Breaking your working editor configuration when migrating to v5 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v5 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
+Breaking your working editor configuration when migrating to v5 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v5 configuration. This workflow makes use of an [Isolated Installation](/v5/reference/alt_install/#isolated-installation) environment.
 
 :::tip
 
-Checkout the [Managing User Configuration Page](/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
+Checkout the [Managing User Configuration Page](/v5/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
 
 :::
 
@@ -106,7 +106,7 @@ AstroNvim v5 comes with some changes to our default plugin list that user's shou
   - AstroNvim is now relying on `mason-tool-installer.nvim` rather than `mason-lspconfig`/`mason-nvim-dap`/`mason-null-ls`. This makes configuration of installed packages easier rather than managing several `ensure_installed` tables and also adds support for installing packages automatically that are not part of any of those usecase specific plugins. `mason-tool-installer.nvim` also allows the user to specify specific package versions and other options. Check out the [`mason-tool-installer.nvim` Documentation](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) for details on it's configuration.
   - For migration, anywhere in your configuration where you are configuring `ensure_installed` for `mason-lspconfig`/`mason-nvim-dap`/`mason-null-ls`, you should move those to an `ensure_installed` table in `mason-tool-installer.nvim`. You must also change the name of the package where necessary to properly reflect the name of the package in Mason. For instance, if you have `lua_ls` specified for `mason-lspconfig`, this would be `lua-language-server` in `mason-tool-installer.nvim`.
 - [`alpha-nvim`](https://github.com/goolord/alpha-nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
-  - If you are customizing `alpha-nvim`, checkout the [updated Dashboard Customizations recipes](/recipes/dashboard) and the [`snacks.dashboard` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md) for how to implement the same customizations in the new plugin.
+  - If you are customizing `alpha-nvim`, checkout the [updated Dashboard Customizations recipes](/v5/recipes/dashboard) and the [`snacks.dashboard` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md) for how to implement the same customizations in the new plugin.
 - [`dressing.nvim`](https://github.com/stevearc/dressing.nvim) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
   - If you are customizing the `input` field in `dressing.nvim`, check out the [`snacks.input` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/input.md) for how to implement the same customizations in the new plugin.
   - If you are customizing the `select` field in `dressing.nvim`, checkout the [`snacks.picker` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) for how to implement the same customizations in the new plugin.
@@ -139,7 +139,7 @@ AstroNvim v5 comes with some changes to our default plugin list that user's shou
 - [`mini.bufremove`](https://github.com/echasnovski/mini.bufremove) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
   - If you are using any of the API provided by `mini.bufremove`, check out the [`snacks.bufdelete` Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/bufdelete.md) for the new method names to call.
 - [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) → [`blink.cmp`](https://github.com/Saghen/blink.cmp)
-  - If you are customizing `nvim-cmp`, checkout the [updated Cmp Customizations recipes](/recipes/cmp) and the [`blink.cmp` Documentation](https://cmp.saghen.dev/) for how to implement the same customizations in the new plugin.
+  - If you are customizing `nvim-cmp`, checkout the [updated Cmp Customizations recipes](/v5/recipes/cmp) and the [`blink.cmp` Documentation](https://cmp.saghen.dev/) for how to implement the same customizations in the new plugin.
 - [`nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) → [`nvim-highlight-colors`](https://github.com/brenoprata10/nvim-highlight-colors)
   - If you are customizing `nvim-colorizer.lua`, check out the [`nvim-highlight-colors` Documentation](https://github.com/brenoprata10/nvim-highlight-colors) for how to implement the same customizations in the new plugin.
 - [`nvim-notify`](https://github.com/rcarriga/nvim-notify) → [`snacks.nvim`](https://github.com/folke/snacks.nvim)
