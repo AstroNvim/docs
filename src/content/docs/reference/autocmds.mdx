@@ -35,14 +35,11 @@ Neovim autocmd events, check the help page with `:h autocmd-events`.
   AstroCore. This event fires if a file is read into a buffer that exceeds these
   limits.
 
-- `AstroLspSetup`: AstroNvim has a lot of internal tooling surrounding setting
-  up handlers for the internal LSP mechanisms. `AstroLspSetup` is triggered when
-  we have finished setting up these handlers and configuring `lspconfig`.
-
 - `AstroUpdateCompleted`: AstroNvim provides a custom command for easily
   updating all plugins and packages using `:AstroUpdate`.
   `AstroUpdateCompleted` is triggered after all of the available updates have
   been applied. Useful for headless updates:
+
   ```bash
   nvim --headless -c "autocmd User AstroUpdateCompleted quitall" -c "AstroUpdate"
   ```

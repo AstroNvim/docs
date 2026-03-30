@@ -1,6 +1,6 @@
 {
   "name": "AstroNvim Documentation",
-  "start_url": "https://docs.astronvim.com",
+  "start_url": "./",
   "description": "Documentation for the AstroNvim Neovim configuration.",
   "display": "minimal-ui",
   "background_color": "#1a1d23",
