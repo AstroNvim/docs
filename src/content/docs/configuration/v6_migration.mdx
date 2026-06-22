@@ -221,6 +221,7 @@ The biggest change for AstroLSP is the migration to using `vim.lsp.config` as th
 - `nvim-treesitter/nvim-treesitter-textobjects` has been updated to the new (and default) `main` branch. This refactors it to no longer be a module for `nvim-treesitter`. If you are doing configuration of this plugin in your user configuration, make sure to follow the AstroCore changes detailed above.
 - `mason-org/mason-lspconfig.nvim` has been updated to v2 which utilizes the new `vim.lsp.config` APIs as well as Mason packages self registering as language servers. Make sure language server specific plugins are not reliant on `mason-lspconfig` v1 if they have any sort of integration.
 - `:LspInfo`, `:LspLog`, `:LspStart`, `:LspRestart`, `:LspStop` commands from `nvim-lspconfig` are removed in Neovim v0.12. `:LspInfo` has been replaced with `:checkhealth vim.lsp` and `:Lsp{Start/Restart/Stop}` with the built in `:lsp` command (`:h lsp-commands`). If you are using these commands in your configuration make sure to update them accordingly.
+- `catppuccin` is a built in colorscheme in Neovim now. If you are using [`catppuccin.nvim`](https://github.com/catppuccin/nvim) make sure you change your `colorscheme` setting to `catppuccin-nvim` instead of `catppuccin`.
 
 ### New Features
 
