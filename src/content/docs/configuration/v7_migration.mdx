@@ -1,0 +1,92 @@
+---
+id: v7_migration
+title: Migration to v7.0
+---
+
+import { Steps } from "@astrojs/starlight/components";
+
+AstroNvim v7 update is pretty mild! A lot of development has gone into Neovim v0.13 and the main goal of this update is to provide full support for the new release. Luckily there hasn't been really any breaking changes from upstream for users to worry about, so most of the changes in our source code have just been code clean up and dropping support for Neovim v0.11. For those of you who have been here for several previous major version releases, I am pleased to inform you this one should be nearly 100% hands off.
+
+:::note
+
+Before getting started it is recommended to review the [Getting Started](/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
+
+:::
+
+## Setting Up a Migration Environment
+
+Breaking your working editor configuration when migrating to v7 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v7 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
+
+:::tip
+
+Checkout the [Managing User Configuration Page](/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
+
+:::
+
+:::tip
+
+Rather than cloning the template into `~/.config/astronvim_v7`, you can also clone your personal configuration into that location and change the AstroNvim version in the `lazy_setup.lua` file to `"^7"` and do the migration with your current configuration while using your old installation as the main editor while testing.
+
+:::
+
+<Steps>
+
+1. Clone the AstroNvim v7 configuration template to a new location (`astronvim_v7` is used as the example):
+
+   ```sh
+   git clone https://github.com/AstroNvim/template ~/.config/astronvim_v7
+   rm -rf ~/.config/astronvim_v7/.git
+   ```
+
+2. Start `nvim` in the new environment. `nvim` should start, bootstrap itself by installing and loading `lazy.nvim`. Lazy will load all of the plugins specified by AstroNvim.
+
+   ```sh
+   NVIM_APPNAME=astronvim_v7 nvim
+   ```
+
+3. Migrate your AstroNvim v6 configuration to your new AstroNvim v7 environment at `~/.config/astronvim_v7` using the guide below. You can use your previous AstroNvim setup to do the editing and then continue running the command in Step 2 to test the new installation.
+
+4. Once you have your configuration set up how you like it, move it over to the default neovim configuration location `~/.config/nvim`:
+
+   ```sh
+   # Backup old Neovim folders
+   mv ~/.local/share/nvim ~/.local/share/nvim.bak # backup old data folder
+   mv ~/.local/state/nvim ~/.local/state/nvim.bak # backup old state folder
+   mv ~/.cache/nvim ~/.cache/nvim.bak             # backup old cache folder
+   mv ~/.config/nvim ~/.config/nvim.bak           # backup old config
+   # Move new configuration into place
+   mv ~/.config/astronvim_v7 ~/.config/nvim # move new config
+   ```
+
+5. Run your new v6 environment simply with `nvim` 🎉
+
+</Steps>
+
+## Migration Guide
+
+### Plugin Changes
+
+AstroNvim v7 comes with some changes to our default plugin list that user's should keep in mind while performing the migration.
+
+#### Renamed Plugins
+
+A few plugins have been updated to a new name due to changes in the plugin repository owner. Please make sure to search and replace the old plugin entry names with the new to make sure plugin spec merging happens correctly.
+
+| Old Plugin Name                 | New Plugin Name                       |
+| ------------------------------- | ------------------------------------- |
+| `mrjones2014/smart-splits.nvim` | `smart-splits-nvim/smart-splits.nvim` |
+
+#### Details
+
+- `smart-splits.nvim` has been update to [v3.0.0](https://github.com/smart-splits-nvim/smart-splits.nvim/releases/tag/v3.0.0) which comes with a large refactor and improvements to the project. If you have customized `smart-splits.nvim` at all in your personal configuration you may want to check out the [Migration from v2 documentation](https://github.com/smart-splits-nvim/smart-splits.nvim#migration-from-v2) on the `smart-splits.nvim` repository. Another not is that a big part of this change is separating out the available terminal backends into plugins. If you were previously utilizing different backends of smart-splits, you can manually configure and set up backend plugins that you want to use, or you can get them easily from the [`split-and-window` section of AstroCommunity](https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/split-and-window)
+
+### Other Breaking Changes
+
+- Drop support for Neovim v0.11
+
+### New Features
+
+- [Multiple cursors](https://neovim.io/doc/user/repeat/#_multiple-cursors) (`:h multicursor`) - Neovim v0.13 ships with built in multiple cursor support. This is fully supported in AstroNvim with one caveat. The default mapping for clearing multicurors by default is `Ctrl + l`, this conflicts with the pane navigation mappings so we have opted to add `Ctrl + Backspace` as the mapping for clearing multicursors.
+
+- New mappings:
+  - `Ctrl + Backspace` - Clear multicursors in the current buffer
