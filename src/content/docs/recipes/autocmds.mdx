@@ -39,7 +39,7 @@ return {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
-      automcds = {
+      autocmds = {
         -- these autocommands will only be created in buffers where
         -- a language servers attaches
         lsp_codelens_refresh = {
@@ -53,7 +53,7 @@ return {
             -- the rest of the autocmd options (:h nvim_create_autocmd)
             desc = "Refresh codelens (buffer)",
             callback = function(args)
-              vim.lsp.codelens.refresh { bufnr = args.buf }
+              vim.lsp.codelens.enable(true, { bufnr = args.buf })
             end,
           },
         },
@@ -67,7 +67,7 @@ return {
 
 AstroNvim comes with a number of autocommands for improving the out of the box experience. This includes things such as mapping `q` to buffer close in non-editable buffers, disabling features for large buffers, or flashing the highlight of text on copy. These can be easily disabled similar to how mappings are disabled, by setting the `augroup` name to `false`.
 
-For example, if you want to disable the autocommand that highlights yanked text (using `vim.highlight.on_yank`) you can add the following plugin spec:
+For example, if you want to disable the autocommand that highlights yanked text (using `vim.hl.hl_op`) you can add the following plugin spec:
 
 ```lua title="lua/plugins/disable_highlight_on_yank.lua"
 return {
@@ -76,7 +76,7 @@ return {
   opts = {
     autocmds = {
       -- set a key to false to disable the autocommands from being created
-      highlightyank = false
+      highlightyank = false,
     },
   },
 }

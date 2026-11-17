@@ -731,7 +731,7 @@ return {
               -- create a single use autocommand to turn the inlay hints back on
               -- when leaving insert mode
               vim.api.nvim_create_autocmd("InsertLeave", {
-                buffer = args.buf,
+                buf = args.buf,
                 once = true,
                 callback = function()
                   vim.lsp.inlay_hint.enable(true, filter)
