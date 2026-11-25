@@ -9,17 +9,17 @@ AstroNvim v6 brings together many exciting updates mainly focusing on moving tow
 
 :::note
 
-Before getting started it is recommended to review the [Getting Started](/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
+Before getting started it is recommended to review the [Getting Started](/v6/) guide. The guide explains how AstroNvim uses `lazy.nvim` and it also explains the AstroNvim configuration template, which is the recommended way to migrate from the previous version.
 
 :::
 
 ## Setting Up a Migration Environment
 
-Breaking your working editor configuration when migrating to v6 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v6 configuration. This workflow makes use of an [Isolated Installation](/reference/alt_install/#isolated-installation) environment.
+Breaking your working editor configuration when migrating to v6 will make it difficult to edit your new configuration. As such, we **recommend following the process** below so that your existing editor keeps working while you upgrade to the new v6 configuration. This workflow makes use of an [Isolated Installation](/v6/reference/alt_install/#isolated-installation) environment.
 
 :::tip
 
-Checkout the [Managing User Configuration Page](/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
+Checkout the [Managing User Configuration Page](/v6/configuration/manage_user_config) for details on how to create a new git repository from our template or convert the clone described above into a repository. It is highly recommended to set up your configuration as a git repository so that it is backed up as well as easier to share.
 
 :::
 
@@ -115,7 +115,7 @@ A few plugins have been removed due to being replaced with core Neovim functions
 
 #### AstroCore
 
-- Configuration of Treesitter features in Neovim. With the latest development of the `nvim-treesitter` plugin, the plugin has moved to simply being a download utility for treesitter parsers and it is up to the user to configure treesitter features such as highlighting and folding. This also applies to `nvim-treesitter-textobjects` which now is simply a plugin that provides an API for manually creating key mappings. AstroCore has added a new `treesitter` module to help aid with this and can be configured through the plugin configuration `opts`. This configuration table includes the ability to configure both `nvim-treesitter` and `nvim-treesitter-textobjects` in a similar format to how they were configured before. If you have custom configuration for either plugins you will need to migrate those plugin configurations to AstroCore. For more details, checkout the new [Treesitter Configuration Documentation](/recipes/treesitter)
+- Configuration of Treesitter features in Neovim. With the latest development of the `nvim-treesitter` plugin, the plugin has moved to simply being a download utility for treesitter parsers and it is up to the user to configure treesitter features such as highlighting and folding. This also applies to `nvim-treesitter-textobjects` which now is simply a plugin that provides an API for manually creating key mappings. AstroCore has added a new `treesitter` module to help aid with this and can be configured through the plugin configuration `opts`. This configuration table includes the ability to configure both `nvim-treesitter` and `nvim-treesitter-textobjects` in a similar format to how they were configured before. If you have custom configuration for either plugins you will need to migrate those plugin configurations to AstroCore. For more details, checkout the new [Treesitter Configuration Documentation](/v6/recipes/treesitter)
 
   ```lua title="lua/plugins/astrocore_treesitter.lua" del={2-13} ins={14-28}
   return {
@@ -206,7 +206,7 @@ The biggest change for AstroLSP is the migration to using `vim.lsp.config` as th
   }
   ```
 
-- `require("astrolsp").lsp_opts(server_name)` function has been removed, users should replace all usages with `vim.lsp.config[server_name]`. This typically comes up when configuring language server specific plugins. For migration of language server specific plugins, you should also verify with each plugin to make sure they have support for the new `vim.lsp.config` APIs and Neovim v0.11+. Some plugins that are no longer actively maintained may still rely on old `nvim-lspconfig` APIs that are no longer available. Be sure to check out the updated [Advanced LSP Setup Documentation](/recipes/advanced_lsp).
+- `require("astrolsp").lsp_opts(server_name)` function has been removed, users should replace all usages with `vim.lsp.config[server_name]`. This typically comes up when configuring language server specific plugins. For migration of language server specific plugins, you should also verify with each plugin to make sure they have support for the new `vim.lsp.config` APIs and Neovim v0.11+. Some plugins that are no longer actively maintained may still rely on old `nvim-lspconfig` APIs that are no longer available. Be sure to check out the updated [Advanced LSP Setup Documentation](/v6/recipes/advanced_lsp).
 
 - Previously we had a relatively undocumented configuration table for `mason_lspconfig` which allowed hot patching mason-lspconfig to recognize packages that didn't define their language servers. This is no longer necessary as the Mason Registry maintenance has been improved and the registry provides the mapping to language servers rather than `mason-lspconfig` maintaining the mapping. This configuration table and functionality has been removed, if you happen to use it you should remove all usages.
 

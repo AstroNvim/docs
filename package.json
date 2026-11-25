@@ -13,7 +13,6 @@
   "dependencies": {
     "@astrojs/mdx": "^5.0.2",
     "@astrojs/starlight": "^0.38.2",
-    "@astrojs/starlight-docsearch": "^0.7.0",
     "@astrojs/starlight-tailwind": "^5.0.0",
     "@expressive-code/plugin-collapsible-sections": "^0.41.7",
     "@fontsource-variable/inter": "^5.2.8",
