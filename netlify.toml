@@ -46,3 +46,9 @@ from = "/v5/*"
 to = "https://frolicking-sawine-b4081b.netlify.app/:splat"
 status = 200
 force = true                                               # COMMENT: ensure that we always redirect
+
+[[redirects]]
+from = "/v6/*"
+to = "https://astounding-sorbet-a69296.netlify.app/:splat"
+status = 200
+force = true                                               # COMMENT: ensure that we always redirect
